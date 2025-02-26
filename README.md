@@ -11,12 +11,6 @@ Nextflow process for running AMR detection using Abricate on ONT metagenomic sam
 - [ ] Create NexFlow workflow 
 - [ ] Run NextFlow workflow
 
-## Created Env
-```
-mm env create -n amr-workflow
-mm activate amr-workflow
-```
-
 ## Dependencies
 - [Abricate](https://github.com/tseemann/abricate):  
 Mass screening of contigs for antimicrobial resistance or virulence genes.
