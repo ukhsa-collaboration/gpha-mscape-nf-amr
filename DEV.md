@@ -23,6 +23,8 @@ Install Abricate:
 
 Create python script to run Abricate (`src/mscape-amr-nf/abricate.py`)
 
-## Set up Nextf
+## Testing Nextflow
+Running tests:   
+`nextflow run main.nf -profile test,docker`
 
 
