@@ -5,16 +5,16 @@ nextflow.enable.dsl=2
 // Step 1: Fetch FASTQ files from S3
 process FETCH_FASTQ {
     input:
-    climb_id
-    path output
+    params.climb_id
+    path params.output
     
     output:
-    path "${output}/fastq_files/*"
+    path "${params.output}/fastq_files/*"
 
     script:
     """
-    mkdir -p ${output}/fastq_files
-    s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz ${output}/fastq_files/
+    mkdir -p ${params.output}/fastq_files
+    s3cmd get s3://mscape-published-read-fractions/${params.climb_id}/${params.climb_id}.human_filtered.fastq.gz ${params.output}/fastq_files/
     """
 }
 
@@ -34,10 +34,10 @@ process FETCH_FASTQ {
 
 workflow run_abricate {
     take:
-        climb_id
-        output
+        params.climb_id
+        params.output
     main:
-        FETCH_FASTQ(climb_id, output)
+        FETCH_FASTQ(params.climb_id, params.output)
     //     RUN_ABRICATE(FETCH_FASTQ.out)
     
     // emit:
