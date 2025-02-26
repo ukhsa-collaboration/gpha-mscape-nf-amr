@@ -23,4 +23,6 @@ Install Abricate:
 
 Create python script to run Abricate (`src/mscape-amr-nf/abricate.py`)
 
+## Set up Nextf
+
 
