@@ -34,10 +34,13 @@ process FETCH_FASTQ {
 
 workflow run_abricate {
     take:
-        params.climb_id
-        params.output
+        climb_id
+        output
     main:
-        FETCH_FASTQ(climb_id, output)
+        log.info "Running Abricate subworkflow"
+        log.info "CLIMB ID file: ${params.climb_id}"
+        log.info "Output directory: ${params.output}"
+        // FETCH_FASTQ(climb_id, output)
     //     RUN_ABRICATE(FETCH_FASTQ.out)
     
     // emit:
