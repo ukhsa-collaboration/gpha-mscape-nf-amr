@@ -8,14 +8,14 @@ process FETCH_FASTQ {
     climb_id
     path output
     
-    output:
-    path "${output}/fastq_files/*"
+    // output:
+    // path "${output}/fastq_files/*"
 
-    script:
-    """
-    mkdir -p ${output}/fastq_files
-    s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz ${output}/fastq_files/
-    """
+    // script:
+    // """
+    // mkdir -p ${output}/fastq_files
+    // s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz ${output}/fastq_files/
+    // """
 }
 
 // // Step 2: Run Abricate on each FASTQ file
@@ -40,7 +40,7 @@ workflow run_abricate {
         log.info "Running Abricate subworkflow"
         log.info "CLIMB ID file: ${params.climb_id}"
         log.info "Output directory: ${params.output}"
-        // FETCH_FASTQ(climb_id, output)
+        FETCH_FASTQ(climb_id, output)
     //     RUN_ABRICATE(FETCH_FASTQ.out)
     
     // emit:
