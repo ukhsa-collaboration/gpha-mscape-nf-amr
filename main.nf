@@ -8,12 +8,12 @@ log.info "CLIMB ID file: ${params.climb_id}"
 log.info "Output directory: ${params.output}"
 log.info "Number of threads: ${params.threads}"
 
-// process checkPath {    
-//     script:
-//     """
-//     echo "Current PATH: \$PATH" >temp.txt
-//     """
-// }
+process checkPath {    
+    script:
+    """
+    echo "Current PATH: \$PATH" >temp.txt
+    """
+}
 
 // workflow {
 //     // handle input parameters
