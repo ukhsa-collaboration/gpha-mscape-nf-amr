@@ -10,7 +10,7 @@ process FETCH_FASTQ {
     script:
     """
     mkdir -p fastq_files
-    s3cmd get s3://mscape-published-read-fractions/${params.climb_id}/${params.climb_id}.human_filtered.fastq.gz fastq_files/
+    s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz fastq_files/
     """
 }
 
@@ -28,11 +28,11 @@ process RUN_ABRICATE {
     """
 }
 
-workflow generate_recipes {
+workflow run_abricate {
     take:
         climb_id
     main:
-        FETCH_FASTQ()
+        FETCH_FASTQ(climb_id)
         RUN_ABRICATE(FETCH_FASTQ.out)
     
     emit:
