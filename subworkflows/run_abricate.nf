@@ -29,8 +29,8 @@ nextflow.enable.dsl=2
 // }
 
 workflow run_abricate {
-    // take:
-    //     climb_id
+    take:
+        climb_id
     // main:
     //     FETCH_FASTQ(climb_id)
     //     RUN_ABRICATE(FETCH_FASTQ.out)
