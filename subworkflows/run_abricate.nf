@@ -4,12 +4,9 @@ nextflow.enable.dsl=2
 
 // Step 1: Fetch FASTQ files from S3
 process FETCH_FASTQ {
-    input:
-    path output
-
     script:
      """
-     echo ${output}
+     echo ${params.output}
      """
 
     // output:
@@ -44,7 +41,7 @@ workflow run_abricate {
         log.info "Running Abricate subworkflow"
         log.info "CLIMB ID file: ${params.climb_id}"
         log.info "Output directory: ${params.output}"
-        FETCH_FASTQ(output)
+        FETCH_FASTQ()
     //     RUN_ABRICATE(FETCH_FASTQ.out)
     
     // emit:
