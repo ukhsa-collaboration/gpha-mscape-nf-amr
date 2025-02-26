@@ -33,7 +33,7 @@ workflow run_abricate {
         climb_id
         output
     main:
-        FETCH_FASTQ(climb_id)
+        FETCH_FASTQ(climb_id, output)
     //     RUN_ABRICATE(FETCH_FASTQ.out)
     
     // emit:
