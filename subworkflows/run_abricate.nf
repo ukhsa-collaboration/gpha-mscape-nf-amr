@@ -4,9 +4,6 @@ nextflow.enable.dsl=2
 
 // Step 1: Fetch FASTQ files from S3
 process FETCH_FASTQ {
-    input:
-    climb_id
-    path output
 
     script:
      """
