@@ -14,4 +14,10 @@ conda activate mscape_amr_nf
 ```
 
 ## Abricate
-- Install abricate
+Install Abricate:  
+`mamba install -c conda-forge -c bioconda -c defaults abricate`
+
+Create python script to run Abricate (`src/mscape-amr-nf/abricate.py`)
+
+## Get FASTQs
+
