@@ -15,4 +15,7 @@ workflow {
     // handle input parameters
 
     // Run subworkflows
+    log.info "CLIMB ID file: ${params.climb_id}"
+    log.info "Output directory: ${params.output}"
+    log.info "Number of threads: ${params.threads}"
 }
