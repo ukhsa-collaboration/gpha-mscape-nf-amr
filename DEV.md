@@ -12,3 +12,6 @@ mm activate mscape-amr-nf
 conda create --name mscape_amr_nf
 conda activate mscape_amr_nf
 ```
+
+## Abricate
+- Install abricate
