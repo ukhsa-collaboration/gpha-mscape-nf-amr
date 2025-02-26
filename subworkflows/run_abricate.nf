@@ -4,13 +4,17 @@ nextflow.enable.dsl=2
 
 // Step 1: Fetch FASTQ files from S3
 process FETCH_FASTQ {
+    input:
+    climb_id
+    path output
+    
     output:
     path "${output}/fastq_files/*"
 
     script:
     """
     mkdir -p ${output}/fastq_files
-    s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz fastq_files/
+    s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz ${output}/fastq_files/
     """
 }
 
