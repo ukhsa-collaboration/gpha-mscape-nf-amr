@@ -7,7 +7,13 @@ process FETCH_FASTQ {
     input:
     climb_id
     path output
-    
+
+    script:
+     """
+     echo ${climb_id}
+     echo ${output}
+     """
+
     // output:
     // path "${output}/fastq_files/*"
 
