@@ -5,11 +5,13 @@ Nextflow process for running AMR detection using Abricate on ONT metagenomic sam
 - [x] Create environment
 - [X] Create repo structure
 - [ ] Set up formatting and linting (Ruff)
+- [X] set up Nextflow config files
 - [X] Install depedencies (Abricate, scagaire)
-- [ ] Run AMR analysis with local scripts
-- [ ] Run Scagaire analysis with local scripts
-- [ ] Create NexFlow workflow 
-- [ ] Run NextFlow workflow
+- [ ] Nextflow: Run Abricate 
+- [ ] Nextflow: Run Scagaire 
+- [ ] Nextflow: Set up for multiple input samples
+- [ ] Nextflow: Set up for multiple species (Scagaire)
+
 
 ## Dependencies
 - [Abricate](https://github.com/tseemann/abricate):  
