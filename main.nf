@@ -11,15 +11,11 @@ process checkPath {
     """
 }
 
-// // Print parameters
-// log.info "CLIMB ID file: ${params.climb_id}"
-// log.info "Output directory: ${params.output}"
-// log.info "Number of threads: ${params.threads}"
+workflow {
+    // handle input parameters
+    log.info "CLIMB ID file: ${params.climb_id}"
+    log.info "Output directory: ${params.output}"
+    log.info "Number of threads: ${params.threads}"
+    // Run subworkflows
 
-
-// workflow {
-//     // handle input parameters
-
-//     // Run subworkflows
-
-// }
+}
