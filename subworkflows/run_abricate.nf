@@ -4,19 +4,18 @@ nextflow.enable.dsl=2
 
 // Step 1: Fetch FASTQ files from S3
 process FETCH_FASTQ {
+    label "process_low"
+
+    container 'biocontainers/python:3.10.4'
+
+    output:
+    path "${params.output}/fastq_files/*"
+
     script:
-     """
-     echo ${params.output}
-     """
-
-    // output:
-    // path "${output}/fastq_files/*"
-
-    // script:
-    // """
-    // mkdir -p ${output}/fastq_files
-    // s3cmd get s3://mscape-published-read-fractions/${climb_id}/${climb_id}.human_filtered.fastq.gz ${output}/fastq_files/
-    // """
+    """
+    mkdir -p ${params.output}/fastq_files
+    s3cmd get s3://mscape-published-read-fractions/${params.climb_id}/${params.climb_id}.human_filtered.fastq.gz ${params.output}/fastq_files/
+    """
 }
 
 // // Step 2: Run Abricate on each FASTQ file
