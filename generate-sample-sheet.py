@@ -45,7 +45,7 @@ def parse_file(fp: Path):
 def main():
     args = get_args()
     climb_id_list = parse_file(args.input)
-    get_record_by_climb_id(climb_id_list)
+    # get_record_by_climb_id(climb_id_list)
 
 if __name__ == "__main__":
     main()
