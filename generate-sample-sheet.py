@@ -34,6 +34,7 @@ def get_record_by_climb_id(climb_id_list: list):
 
     with OnyxClient(config) as client:
         lookups = client.lookups()
+        print(lookups)
 
 def parse_file(fp: Path):
     """
