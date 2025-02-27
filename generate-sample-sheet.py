@@ -22,6 +22,8 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("-o", "--output",
                 help="Output directory for downloaded data",
                 required=True, type=Path)
+    args = parser.parse_args()
+    return args
 
 def get_record_by_climb_id(climb_id_list: list):
     for climb_id in climb_id_list:
