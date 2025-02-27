@@ -26,11 +26,14 @@ def get_args() -> argparse.Namespace:
     return args
 
 def get_record_by_climb_id(climb_id_list: list):
-    for climb_id in climb_id_list:
-        print(f'Processing: {climb_id}')
-        with OnyxClient(config) as client:
-            record = client.get("mscape",str(climb_id))
-            print(record)
+    # for climb_id in climb_id_list:
+    #     print(f'Processing: {climb_id}')
+    #     with OnyxClient(config) as client:
+    #         record = client.get("mscape",str(climb_id))
+    #         print(record)
+
+    with OnyxClient(config) as client:
+        lookups = client.lookups()
 
 def parse_file(fp: Path):
     """
