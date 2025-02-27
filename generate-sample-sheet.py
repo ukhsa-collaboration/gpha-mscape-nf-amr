@@ -50,7 +50,7 @@ def parse_file(fp: Path):
     Read in text file, seperate climb ids into lis
     :args: filepath str()
     """
-    with open(fp, "r") as file:
+    with open(fp, "r", , encoding="utf-8-sig") as file:
         data = file.readlines()  # Reads lines into a list
         data = [line.strip() for line in data]  # Remove newline characters
         return data
