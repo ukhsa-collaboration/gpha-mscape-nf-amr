@@ -23,6 +23,7 @@ workflow {
     log.info "Output directory: ${params.output}"
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     // Run subworkflows
+    get_sampledata(ch_samplesheet)
     // run_abricate(params.climb_id, params.output)
 
 }
