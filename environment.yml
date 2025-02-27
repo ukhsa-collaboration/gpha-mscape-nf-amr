@@ -1,0 +1,13 @@
+name: mscape_amr_nf
+channels:
+  - biobakery
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - ipykernel
+  - abricate
+  - ca-certificates
+  - openssl
+  - pandas
+prefix: /shared/team/conda/nicholasellaby.gpha-ukhsa-mscap/mscape_amr_nf
