@@ -19,22 +19,19 @@ nextflow.enable.dsl=2
 // }
 
 // Step 2: Run Abricate on each FASTQ file
-process RUN_ABRICATE {
-    container 'community.wave.seqera.io/library/pip_s3cmd:04c678b1462475bc'
+// process RUN_ABRICATE {
+//     container 'community.wave.seqera.io/library/pip_s3cmd:04c678b1462475bc'
 
-    input:
-    path fastq_file from FETCH_FASTQ.out
+//     output:
+//     path "${params.output}/abricate_results.txt"
 
-    output:
-    path "${params.output}/abricate_results.txt"
-
-    script:
-    """
-    gunzip s3://mscape-published-read-fractions/${params.climb_id}/${params.climb_id}.human_filtered.fastq.gz > ${params.output}/${params.climb_id}.human_filtered.fastq
-    abricate --db resfinder --mincov 50 --threads 4 ${params.output}/${params.climb_id}.human_filtered.fastq
- > ${params.output}/abricate_results.txt
-    """
-}
+//     script:
+//     """
+//     gunzip s3://mscape-published-read-fractions/${params.climb_id}/${params.climb_id}.human_filtered.fastq.gz > ${params.output}/${params.climb_id}.human_filtered.fastq
+//     abricate --db resfinder --mincov 50 --threads 4 ${params.output}/${params.climb_id}.human_filtered.fastq
+//  > ${params.output}/abricate_results.txt
+//     """
+// }
 
 workflow run_abricate {
     take:
