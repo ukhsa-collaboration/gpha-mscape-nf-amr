@@ -6,7 +6,7 @@ nextflow.enable.dsl=2
 process FETCH_FASTQ {
     label "process_low"
 
-    container 'biocontainers/python:3.10.4'
+    container 'community.wave.seqera.io/library/pip_s3cmd:04c678b1462475bc'
 
     output:
     path "${params.output}/fastq_files/*"
