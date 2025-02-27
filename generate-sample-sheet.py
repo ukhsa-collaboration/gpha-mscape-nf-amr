@@ -3,7 +3,7 @@ from onyx import OnyxConfig, OnyxEnv, OnyxClient
 import argparse
 from pathlib import Path
 import pandas as pd
-
+import csv
 
 
 config = OnyxConfig(
@@ -30,20 +30,20 @@ def get_record_by_climb_id(climb_id_list: list):
     # for climb_id in climb_id_list:
     #     print(f'Processing: {climb_id}')
     # climb_id_list = ["C-514753DBDA"]
-    input_list = climb_id_list
-    print(climb_id_list)
-    with OnyxClient(config) as client:
-            data = pd.DataFrame(client.filter(
-            project = "mscape",
-            climb_id = input_list[1]
-        ))
-    # read_1_link = data["human_filtered_reads_1"][0]
-    # read_2_link = data["human_filtered_reads_2"][0]
-    print(data)
-
-    # with OnyxClient(config) as client:
-    #     lookups = client.lookups()
-    #     print(lookups)
+    dict_list = []
+    for id in climb_id_list:
+        with OnyxClient(config) as client:
+                data = pd.DataFrame(client.filter(
+                project = "mscape",
+                climb_id = id
+            ))
+        read_1_link = data["human_filtered_reads_1"][0]
+        read_2_link = data["human_filtered_reads_2"][0]
+        dict_list.append({'climb-id': id, 
+             'human_filtered_reads_1': read_1_link, 
+             'human_filtered_reads_2': read_2_link,
+        })
+    return dict_list
 
 def parse_file(fp: Path):
     """
@@ -55,10 +55,25 @@ def parse_file(fp: Path):
         data = [line.strip() for line in data]  # Remove newline characters
         return data
 
+def write_to_csv(dict_list: list, output: Path):
+     """
+     Write list of dictionaries to csv
+     :args: [{CLIMB-ID, READ1, READ2}], Path(output)
+     :return: save as csv
+     """
+     csv_filename = os.path.join(output, 'climb-id_sample-sheet.csv')
+     with open(csv_filename, mode="w", newline="") as file:
+        # Define the column names (fieldnames)
+        fieldnames = dict_list[0].keys()  # Extract keys from the first dictionary
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(dict_list)
+
 def main():
     args = get_args()
     climb_id_list = parse_file(args.input)
-    get_record_by_climb_id(climb_id_list)
+    dict_list = get_record_by_climb_id(climb_id_list)
+    write_to_csv(dict_list, args.output)
 
 if __name__ == "__main__":
     main()
