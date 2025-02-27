@@ -29,12 +29,12 @@ def get_args() -> argparse.Namespace:
 def get_record_by_climb_id(climb_id_list: list):
     # for climb_id in climb_id_list:
     #     print(f'Processing: {climb_id}')
-    print(climb_id_list[0])
+    climb_id_list = ["C-514753DBDA"]
     with OnyxClient(config) as client:
-        data = pd.DataFrame(client.filter(
-        project = "mscape",
-        climb_id = f"{climb_id_list[0]}"
-    ))
+            data = pd.DataFrame(client.filter(
+            project = "mscape",
+            climb_id = climb_id_list[0]
+        ))
     # read_1_link = data["human_filtered_reads_1"][0]
     # read_2_link = data["human_filtered_reads_2"][0]
     print(data)
