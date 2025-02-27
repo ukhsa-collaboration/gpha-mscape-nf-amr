@@ -2,6 +2,7 @@ import os
 from onyx import OnyxConfig, OnyxEnv, OnyxClient
 import argparse
 from pathlib import Path
+import pandas as pd
 
 
 
@@ -29,8 +30,10 @@ def get_record_by_climb_id(climb_id_list: list):
     # for climb_id in climb_id_list:
     #     print(f'Processing: {climb_id}')
     with OnyxClient(config) as client:
-        record = client.get("mscape",str('C-514753DBDA'))
-        print(record)
+        data = pd.DataFrame(client.filter(
+        project = "mscape",
+        climb_id = "C-E745C4D928"
+    ))
 
     # with OnyxClient(config) as client:
     #     lookups = client.lookups()
