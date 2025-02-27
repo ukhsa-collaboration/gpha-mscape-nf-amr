@@ -61,8 +61,7 @@ def write_to_csv(dict_list: list, output: Path):
      :args: [{CLIMB-ID, READ1, READ2}], Path(output)
      :return: save as csv
      """
-     csv_filename = os.path.join(output, 'climb-id_sample-sheet.csv')
-     with open(csv_filename, mode="w", newline="") as file:
+     with open(output, mode="w", newline="") as file:
         # Define the column names (fieldnames)
         fieldnames = dict_list[0].keys()  # Extract keys from the first dictionary
         writer = csv.DictWriter(file, fieldnames=fieldnames)
