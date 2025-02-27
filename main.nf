@@ -4,12 +4,18 @@
 // TODO: add include to read in subworkflows
 include { run_abricate } from './subworkflows/run_abricate'
 
-process checkPath {    
-    script:
-    """
-    echo "Current PATH: \$PATH" >temp.txt
-    """
+if (!params.samplesheet) {
+    error "Please provide a samplesheet with --samplesheet"
 }
+
+Channel
+    .fromPath(params.samplesheet)
+    .splitCsv(header: true)
+    .map { row =>
+        def climb_id = row.CLIMB-ID
+        return value(climb_id)
+    }
+    .set { ch_samplesheet }
 
 workflow {
     // handle input parameters
