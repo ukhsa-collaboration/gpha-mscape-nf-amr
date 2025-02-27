@@ -7,6 +7,7 @@ Nextflow process for running AMR detection using Abricate on ONT metagenomic sam
 - [ ] Set up formatting and linting (Ruff)
 - [X] set up Nextflow config files
 - [X] Install depedencies (Abricate, scagaire)
+- [ ] NextFlow: Take CLIMB-ID list, pull URIs from database
 - [ ] Nextflow: Run Abricate 
 - [ ] Nextflow: Run Scagaire 
 - [ ] Nextflow: Set up for multiple input samples
