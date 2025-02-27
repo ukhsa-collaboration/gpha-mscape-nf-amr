@@ -32,8 +32,11 @@ def get_record_by_climb_id(climb_id_list: list):
     with OnyxClient(config) as client:
         data = pd.DataFrame(client.filter(
         project = "mscape",
-        climb_id = "C-E745C4D928"
+        climb_id = climb_id_list[0]
     ))
+    # read_1_link = data["human_filtered_reads_1"][0]
+    # read_2_link = data["human_filtered_reads_2"][0]
+    print(data)
 
     # with OnyxClient(config) as client:
     #     lookups = client.lookups()
