@@ -2,7 +2,7 @@
 // nextflow.enable.dsl=2
 
 // TODO: add include to read in subworkflows
-include { run_abricate } from './subworkflows/run_abricate'
+include { get_sampledata } from './subworkflows/get_sampledata'
 
 if (!params.samplesheet) {
     error "Please provide a samplesheet with --samplesheet"
