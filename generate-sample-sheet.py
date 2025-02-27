@@ -27,8 +27,9 @@ def get_args() -> argparse.Namespace:
 
 def get_record_by_climb_id(climb_id_list: list):
     for climb_id in climb_id_list:
+        print(f'Processing: {climb_id}')
         with OnyxClient(config) as client:
-            record = client.get("project", climb_id)
+            record = client.get("mscape", climb_id)
             print(record)
 
 def parse_file(fp: Path):
