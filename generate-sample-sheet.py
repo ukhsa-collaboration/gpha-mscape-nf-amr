@@ -29,7 +29,7 @@ def get_record_by_climb_id(climb_id_list: list):
     # for climb_id in climb_id_list:
     #     print(f'Processing: {climb_id}')
     with OnyxClient(config) as client:
-        record = client.get("mscape",str(climb_id_list[0]))
+        record = client.get("mscape",str('C-514753DBDA'))
         print(record)
 
     # with OnyxClient(config) as client:
