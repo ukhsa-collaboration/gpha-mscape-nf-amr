@@ -31,6 +31,7 @@ def get_record_by_climb_id(climb_id_list: list):
     #     print(f'Processing: {climb_id}')
     # climb_id_list = ["C-514753DBDA"]
     input_list = climb_id_list
+    print(climb_id_list)
     with OnyxClient(config) as client:
             data = pd.DataFrame(client.filter(
             project = "mscape",
