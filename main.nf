@@ -14,7 +14,7 @@ Channel
     .map { row ->
         def climb_id = row.climb_id
         def fastq1 = row.human_filtered_reads_1
-        def fastq2 = row.containsKey('human_filtered_reads_2') ? row.fastq2 : null // set to null if empty
+        def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null // set to null if empty
         println "DEBUG: sample_id=${climb_id}, fastq1=${fastq1}, fastq2=${fastq2}"
         return fastq2 ? [climb_id, fastq1, fastq2] : [climb_id, fastq1]
     }
