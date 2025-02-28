@@ -18,11 +18,11 @@ Channel
 
         return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
-//     .branch(
-//         paired_end: { it.size() == 3}, // Samples with 2 fastq files
-//         single_end: { it.size() == 2} // Samples with 1 fastq file
+    .branch(
+        paired_end: { it.size() == 3}, // Samples with 2 fastq files
+        single_end: { it.size() == 2} // Samples with 1 fastq file
 
-//     )
+    )
 //     .set { paired_end_samples, single_end_samples }
 
 // // View the separated channels
