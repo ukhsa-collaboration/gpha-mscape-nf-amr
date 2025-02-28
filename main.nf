@@ -3,7 +3,7 @@
 
 // TODO: add include to read in subworkflows
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
-include {ABRICATE} from "../modules/abricate"
+include {ABRICATE} from "./modules/abricate"
 
 if (!params.samplesheet) {
     error "Please provide a samplesheet with --samplesheet"
