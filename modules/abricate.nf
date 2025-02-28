@@ -11,7 +11,7 @@ process ABRICATE{
 
     script:
     """
-    echo "CLIMB-ID: $climbd_id"
+    echo "CLIMB-ID: $climb_id"
     echo "FASTQ 1: $fastq1"
     echo "FASTQ 2: $fastq2"
     """
