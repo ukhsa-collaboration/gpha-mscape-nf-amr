@@ -23,6 +23,7 @@ python generate-sample-sheet.py
 - [ ] Set up formatting and linting (Ruff)
 - [X] set up Nextflow config files
 - [X] Install depedencies (Abricate, scagaire)
+- [X] Develop script to create sample-sheet
 - [ ] NextFlow: Take CLIMB-ID list, pull FASTQ URIs from database (stored as text strings)
 - [ ] Nextflow: Run Abricate 
 - [ ] Nextflow: Run Scagaire 
