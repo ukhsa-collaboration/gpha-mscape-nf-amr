@@ -15,8 +15,8 @@ Channel
         def climb_id = row.climb_id
         def fastq1 = row.human_filtered_reads_1
         def fastq2 = row.human_filtered_reads_2 ?: null // set to null if empty
-
-        return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
+        println "DEBUG: sample_id=${climb_id}, fastq1=${fastq1}, fastq2=${fastq2}"
+        return fastq2 ? [climb_id, fastq1, fastq2] : [climb_id, fastq1]
     }
     .branch(
         paired_end: { it.size() == 3 },  
