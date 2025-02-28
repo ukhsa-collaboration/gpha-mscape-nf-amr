@@ -26,7 +26,7 @@ samples = Channel
         single_end: { it.size() == 2 }
     }
     // Assign the separated channels
-    .set { paired_end, single_end }  // Define separate channels
+    .set { ch_fastqs }  // Define separate channels
 
 workflow {
     // handle input parameters
@@ -35,7 +35,7 @@ workflow {
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     
     // Run subworkflows
-    AMR_ANALYSIS(single_end_samples)
+    AMR_ANALYSIS(ch_fastqs.single_end)
 //     // run_abricate(params.climb_id, params.output)
 
 // }
