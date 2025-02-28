@@ -14,10 +14,15 @@ Channel
     .map { row ->
         def climb_id = row.climb_id
         def fastq1 = row.human_filtered_reads_1
-        def fastq2 = row.human_filtered_reads_2
-        return tuple(climb_id, fastq1, fastq2)
+        def fastq2 = row.human_filtered_reads_2 ?: null // set to null if empty
+        return fastq2? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
-    .set { ch_samplesheet }
+    .branch(
+        paired_end: { it.size() == 3}, // Samples with 2 fastq files
+        single_end: { it.size() == 2} // Samples with 1 fastq file
+
+    )
+    .set { paired_end_samples, single_end_samples }
 
 workflow {
     // handle input parameters
@@ -25,7 +30,7 @@ workflow {
     log.info "Output directory: ${params.output}"
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     // Run subworkflows
-    AMR_ANALYSIS(ch_samplesheet)
+    AMR_ANALYSIS(single_end_samples)
     // run_abricate(params.climb_id, params.output)
 
 }
