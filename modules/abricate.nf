@@ -2,6 +2,14 @@
 
 nextflow.enable.dsl=2
 
+process ABRICATE{
+    tag "${climb_id}"
+    container 'community.wave.seqera.io/library/pip_s3cmd:04c678b1462475bc'
+    
+
+
+}
+
 // // Step 1: Fetch FASTQ files from S3
 // process FETCH_FASTQ {
 //     label "process_low"

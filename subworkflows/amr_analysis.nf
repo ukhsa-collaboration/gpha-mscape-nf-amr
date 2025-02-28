@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 
 include {ABRICATE} from "../modules/abricate"
 
-workflow ILLUMINA_SRA {
+workflow AMR_ANALYSIS {
     take:
     ch_samplesheet
 
@@ -11,3 +11,4 @@ workflow ILLUMINA_SRA {
     // 1 - Run Abricate
     // Abricate can use fastq.gz, so just point to files.
     ABRICATE(ch_samplesheet)
+}
