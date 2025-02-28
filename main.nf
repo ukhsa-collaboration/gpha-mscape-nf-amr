@@ -21,10 +21,10 @@ samples = Channel
 
         return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
-    .branch( v ->
+    .branch{ 
         paired_end: { it.size() == 3 },  
         single_end: { it.size() == 2 }
-    )
+    }
     // Assign the separated channels
     .set { paired_end, single_end }  // Define separate channels
     
