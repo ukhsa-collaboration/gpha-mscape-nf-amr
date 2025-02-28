@@ -22,7 +22,7 @@ Channel
         paired_end: { it && it.size() == 3 },  
         single_end: { it && it.size() == 2 }
     )
-    .set { paired_end_samples, single_end_samples }
+    .set { paired_end, single_end }
 
 // // View the separated channels
 // paired_end_samples.view { it -> "Paired-end: ${it}" }
