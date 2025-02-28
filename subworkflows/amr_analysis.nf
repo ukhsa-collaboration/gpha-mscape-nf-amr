@@ -7,7 +7,7 @@ include {ABRICATE} from "../modules/abricate"
 
 workflow AMR_ANALYSIS {
     take:
-    ch_fastqs.single_end
+    ch_fastqs
 
     main:
     // 1 - Run Abricate
