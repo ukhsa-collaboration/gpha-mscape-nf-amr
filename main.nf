@@ -16,9 +16,6 @@ samples = Channel
         def climb_id = row.climb_id
         def fastq1 = row.human_filtered_reads_1
         def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
-
-        println "DEBUG: climb_id=${climb_id}, fastq1=${fastq1}, fastq2=${fastq2}"
-
         return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
     .branch{ 
@@ -36,6 +33,6 @@ workflow {
     
     // Run subworkflows
     AMR_ANALYSIS(ch_fastqs.single_end)
-//     // run_abricate(params.climb_id, params.output)
+    // run_abricate(params.climb_id, params.output)
 
-// }
+}
