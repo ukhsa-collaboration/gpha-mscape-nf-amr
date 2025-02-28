@@ -18,11 +18,11 @@ Channel
         println "DEBUG: sample_id=${climb_id}, fastq1=${fastq1}, fastq2=${fastq2}"
         return fastq2 ? [climb_id, fastq1, fastq2] : [climb_id, fastq1]
     }
-    // .branch(
-    //     paired_end: { it && it.size() == 3 },  
-    //     single_end: { it && it.size() == 2 }
-    // )
-//     .set { paired_end_samples, single_end_samples }
+    .branch(
+        paired_end: { it && it.size() == 3 },  
+        single_end: { it && it.size() == 2 }
+    )
+    .set { paired_end_samples, single_end_samples }
 
 // // View the separated channels
 // paired_end_samples.view { it -> "Paired-end: ${it}" }
