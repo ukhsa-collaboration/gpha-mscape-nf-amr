@@ -7,13 +7,12 @@ process ABRICATE{
     container 'community.wave.seqera.io/library/pip_s3cmd:04c678b1462475bc'
     
     input:
-    tuple val(climb_id), path(fastq1), path(fastq2)
+    tuple val(climb_id), path(fastq1)
 
     script:
     """
     echo "CLIMB-ID: $climb_id"
     echo "FASTQ 1: $fastq1"
-    echo "FASTQ 2: $fastq2"
     """
 
 }
