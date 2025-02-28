@@ -2,7 +2,7 @@
 // nextflow.enable.dsl=2
 
 // TODO: add include to read in subworkflows
-include { get_sampledata } from './subworkflows/get_sampledata'
+include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
 
 if (!params.samplesheet) {
     error "Please provide a samplesheet with --samplesheet"
@@ -13,7 +13,9 @@ Channel
     .splitCsv(header: true)
     .map { row =>
         def climb_id = row.CLIMB-ID
-        return value(climb_id)
+        def fastq1 = row.human_filtered_reads_1
+        def fastq2 = row.human_filtered_reads_2
+        return tuple(climb_id, fastq1, fastq2)
     }
     .set { ch_samplesheet }
 
@@ -23,7 +25,7 @@ workflow {
     log.info "Output directory: ${params.output}"
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     // Run subworkflows
-    get_sampledata(ch_samplesheet)
+    AMR_ANALYSIS(ch_samplesheet)
     // run_abricate(params.climb_id, params.output)
 
 }
