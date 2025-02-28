@@ -7,7 +7,7 @@ process ABRICATE{
     container 'community.wave.seqera.io/library/pip_s3cmd:04c678b1462475bc'
     
     input:
-    tuple val(climbd_id, fastq1, fastq2)
+    tuple val(climb_id, fastq1, fastq2)
 
     script:
     """
