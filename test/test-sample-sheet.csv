@@ -1,4 +1,4 @@
-climb-id,human_filtered_reads_1,human_filtered_reads_2
+climb_id,human_filtered_reads_1,human_filtered_reads_2
 C-514753DBDA,s3://mscape-published-read-fractions/C-514753DBDA/C-514753DBDA.human_filtered.fastq.gz,
 C-882B60FA9E,s3://mscape-published-read-fractions/C-882B60FA9E/C-882B60FA9E.human_filtered.fastq.gz,
 C-5DE49B0AB4,s3://mscape-published-read-fractions/C-5DE49B0AB4/C-5DE49B0AB4.human_filtered.fastq.gz,
