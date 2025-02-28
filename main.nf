@@ -22,29 +22,20 @@ samples = Channel
         return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
     .branch{ 
-        paired_end: { it.size() == 3 },  
+        paired_end: { it.size() == 3 }
         single_end: { it.size() == 2 }
     }
     // Assign the separated channels
     .set { paired_end, single_end }  // Define separate channels
+
+workflow {
+    // handle input parameters
+    log.info "Samplesheet: ${params.samplesheet}"
+    log.info "Output directory: ${params.output}"
+    log.info "Number of CPUs (Max): ${params.max_cpus}"
     
-
-
-
-// workflow {
-//     // handle input parameters
-//     log.info "Samplesheet: ${params.samplesheet}"
-//     log.info "Output directory: ${params.output}"
-//     log.info "Number of CPUs (Max): ${params.max_cpus}"
-    
-//     .branch(
-//         paired_end: { it && it.size() == 3 },  
-//         single_end: { it && it.size() == 2 }
-//     )
-
-//     .set { paired_end, single_end }
-//     // Run subworkflows
-//     AMR_ANALYSIS(single_end_samples)
+    // Run subworkflows
+    AMR_ANALYSIS(single_end_samples)
 //     // run_abricate(params.climb_id, params.output)
 
 // }
