@@ -16,18 +16,18 @@ Channel
         def fastq1 = row.human_filtered_reads_1
         def fastq2 = row.human_filtered_reads_2 ?: null // set to null if empty
 
-        return fastq2 ? [climb_id, fastq1, fastq2] : [climb_id, fastq1]
+        return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
-    .branch(
-        paired_end: { it.size() == 3}, // Samples with 2 fastq files
-        single_end: { it.size() == 2} // Samples with 1 fastq file
+//     .branch(
+//         paired_end: { it.size() == 3}, // Samples with 2 fastq files
+//         single_end: { it.size() == 2} // Samples with 1 fastq file
 
-    )
-    .set { paired_end_samples, single_end_samples }
+//     )
+//     .set { paired_end_samples, single_end_samples }
 
-// View the separated channels
-paired_end_samples.view { it -> "Paired-end: ${it}" }
-single_end_samples.view { it -> "Single-end: ${it}" }
+// // View the separated channels
+// paired_end_samples.view { it -> "Paired-end: ${it}" }
+// single_end_samples.view { it -> "Single-end: ${it}" }
 
 // workflow {
 //     // handle input parameters
