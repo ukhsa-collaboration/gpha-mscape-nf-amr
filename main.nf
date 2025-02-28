@@ -25,7 +25,9 @@ samples = Channel
         paired_end: { it.size() == 3 },  
         single_end: { it.size() == 2 }
     )
-    .set { paired_end, single_end }  // Define separate channels
+
+// Assign the separated channels
+samples.set { paired_end, single_end }  // Define separate channels
 
 
 
