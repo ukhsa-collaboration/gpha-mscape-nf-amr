@@ -11,7 +11,7 @@ if (!params.samplesheet) {
 Channel
     .fromPath(params.samplesheet)
     .splitCsv(header: true)
-    .map { row =>
+    .map { row ->
         def climb_id = row.CLIMB-ID
         def fastq1 = row.human_filtered_reads_1
         def fastq2 = row.human_filtered_reads_2
