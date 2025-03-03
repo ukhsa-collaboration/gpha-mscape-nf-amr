@@ -7,7 +7,7 @@ process ABRICATE{
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
     input:
-    tuple val(climb_id), path(fastq1)
+    tuple val(climb_id), path(fastq1), ${params.output}
 
     script:
     """
