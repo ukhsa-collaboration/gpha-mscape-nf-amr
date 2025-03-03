@@ -11,10 +11,7 @@ process ABRICATE{
 
     script:
     """
-    echo "CLIMB-ID: $climb_id"
-    echo "FASTQ 1: $fastq1"
-    echo "${params.output}"
-    abricate --quiet --mincov 90 --db vfdb $fastq1 > ${params.output}/$climb_id_abricate.vdf
+    abricate --quiet --mincov 90 --db vfdb ${fastq1} > ${params.output}/${climb_id}_abricate.vdf
     """
 
 }
