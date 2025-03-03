@@ -10,8 +10,8 @@ process ABRICATE{
     tuple val(climb_id), path(fastq1)
 
     script:
-    """
-    abricate --quiet --mincov 90 --db vfdb ${fastq1} > ${params.output}/${climb_id}_abricate.vdf
-    """
+    '''
+    abricate --quiet --mincov 90 --db vfdb ${fastq1} > ${climb_id}_abricate.vdf
+    '''
 
 }
