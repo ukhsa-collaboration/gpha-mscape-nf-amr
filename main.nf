@@ -33,7 +33,7 @@ workflow {
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     
     // Run subworkflows
-    ABRICATE(ch_fastqs.single_end, ${params.output})
+    ABRICATE(ch_fastqs.single_end)
     // run_abricate(params.climb_id, params.output)
 
 }
