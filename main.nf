@@ -19,11 +19,11 @@ samples = Channel
         def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
         return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
     }
+    .branch{ v ->
+        paired_end: v.size() == 3 
+        single_end: v.size() == 2 
+    }
     .view()
-    // .branch{ v ->
-    //     paired_end: v.size() == 3 
-    //     single_end: v.size() == 2 
-    // }
     // // Assign the separated channels
     // .set { ch_fastqs }  // Define separate channels
 
