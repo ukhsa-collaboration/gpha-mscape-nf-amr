@@ -13,13 +13,13 @@ if (!params.samplesheet) {
 samples = Channel
     .fromPath(params.samplesheet)
     .splitCsv(header: true)
+    .map { row ->
+        def climb_id = row.climb_id
+        def fastq1 = row.human_filtered_reads_1
+        def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
+        return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
+    }
     .view()
-    // .map { row ->
-    //     def climb_id = row.climb_id
-    //     def fastq1 = row.human_filtered_reads_1
-    //     def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
-    //     return fastq2 ? tuple(climb_id, fastq1, fastq2) : tuple(climb_id, fastq1)
-    // }
     // .branch{ v ->
     //     paired_end: v.size() == 3 
     //     single_end: v.size() == 2 
