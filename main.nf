@@ -23,10 +23,9 @@ samples = Channel
         paired_end: v.size() == 3 
         single_end: v.size() == 2 
     }
-    .view()
     // // Assign the separated channels
-    // .set { ch_fastqs }  // Define separate channels
-
+    .set { ch_fastqs }  // Define separate channels
+    .view()
 
 // workflow {
 //     // handle input parameters
