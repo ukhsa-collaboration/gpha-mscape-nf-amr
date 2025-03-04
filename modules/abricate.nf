@@ -11,7 +11,7 @@ process ABRICATE{
 
     script:
     """
-    abricate --help
+    abricate --mincov 90 --db vfdb $fastq1 > out_file
     """
     // abricate --quiet --mincov 90 --db vfdb $fastq1 > out_file
 }
