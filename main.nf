@@ -25,16 +25,16 @@ samples = Channel
     }
     // // Assign the separated channels
     .set { ch_fastqs }  // Define separate channels
-    .view()
 
-// workflow {
-//     // handle input parameters
-//     log.info "Samplesheet: ${params.samplesheet}"
-//     log.info "Output directory: ${params.output}"
-//     log.info "Number of CPUs (Max): ${params.max_cpus}"
+workflow {
+    // handle input parameters
+    log.info "Samplesheet: ${params.samplesheet}"
+    log.info "Output directory: ${params.output}"
+    log.info "Number of CPUs (Max): ${params.max_cpus}"
     
-//     // Run subworkflows
-//     ABRICATE(ch_fastqs.single_end)
-//     // run_abricate(params.climb_id, params.output)
+    // Run subworkflows
+    ch_fastqs.single_end.view()
+    // ABRICATE(ch_fastqs.single_end)
+    // run_abricate(params.climb_id, params.output)
 
-// }
+}
