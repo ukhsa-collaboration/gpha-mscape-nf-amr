@@ -11,6 +11,6 @@ process ABRICATE{
 
     script:
     """
-    abricate --quiet --mincov 90 --db vfdb $fastq1 > $climb_id_abricate.vdf
+    abricate --quiet --mincov 90 --db vfdb $fastq1 > out_file
     """
 }
