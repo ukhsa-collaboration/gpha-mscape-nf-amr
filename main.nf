@@ -34,6 +34,7 @@ workflow {
     
     // Run subworkflows
     ch_fastqs.single_end.view()
+    ch_fastqs.paired_end.view()
     // ABRICATE(ch_fastqs.single_end)
     // run_abricate(params.climb_id, params.output)
 
