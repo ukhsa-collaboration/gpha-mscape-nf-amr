@@ -11,10 +11,16 @@ process ABRICATE{
     input:
     tuple val(climb_id), path(fastq1)
 
-    output:
-    tuple val(climb_id), path '${climb_id}.abricate.txt' into abricate_ch
     script:
     """
-    abricate --quiet --mincov 90 --db vfdb '${fastq1}' > '${climb_id}.abricate.txt'
+    echo $climb_id
     """
+
+    // output:
+    // tuple val(climb_id), path '${climb_id}.abricate.txt' into abricate_ch
+
+    // script:
+    // """
+    // abricate --quiet --mincov 90 --db vfdb '${fastq1}' > '${climb_id}.abricate.txt'
+    // """
 }
