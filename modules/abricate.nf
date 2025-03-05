@@ -16,6 +16,6 @@ process ABRICATE{
 
     script:
     """
-    abricate --quiet --db ncbi '${fastq1}' > 'abricate_out.txt'
+    abricate --quiet --mincov 90 --db card '${fastq1}' > 'abricate_out.txt'
     """
 }
