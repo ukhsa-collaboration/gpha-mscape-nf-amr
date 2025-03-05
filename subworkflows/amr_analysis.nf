@@ -12,7 +12,8 @@ workflow AMR_ANALYSIS {
     // 1 - Run Abricate
     // Abricate can use fastq.gz, so just point to files.
     single_end_ch.view()
-    ABRICATE(single_end_ch)
+    GZ_TO_FASTQ(single_end_ch)
+    // ABRICATE(single_end_ch)
     // 2. Extract species IDs for each READ assigned AMR
 
     // 3. Run Scagaire
