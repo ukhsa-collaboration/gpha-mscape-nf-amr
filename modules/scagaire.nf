@@ -12,8 +12,10 @@ process SCAGAIRE{
     // Read in Abricate results
     // What taxa was assigned to a given read?
 
-    // script:
-    // """
+    script:
+    """
+    echo test
+    """
     // t=$(cat {input.top_hit} | paste -sd "," -)
     // scagaire "$t" {input.amr_res} -n card -s {output.summary} -o {output.report}
     // if [ ! -f "{output.summary}" ]; then
