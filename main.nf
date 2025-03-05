@@ -32,6 +32,6 @@ workflow {
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     
     // Run subworkflows
-    AMR_ANALYSIS(ch_fastqs.single_end)
+    AMR_ANALYSIS(ch_fastqs)
 
 }
