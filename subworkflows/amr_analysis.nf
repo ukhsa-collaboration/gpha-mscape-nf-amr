@@ -12,6 +12,6 @@ workflow AMR_ANALYSIS {
     // 1 - Run Abricate
     // Abricate can use fastq.gz, so just point to files.
     single_end_ch.view()
-    ABRICATE(single_end)
+    ABRICATE(single_end_ch)
     // SCAGAIRE(ABRICATE.out.abricate_out)
 }
