@@ -39,9 +39,11 @@ def get_record_by_climb_id(climb_id_list: list):
             ))
         read_1_link = data["human_filtered_reads_1"][0]
         read_2_link = data["human_filtered_reads_2"][0]
+        taxon_reports_dir = data["taxon_reports"][0]
         dict_list.append({'climb_id': id, 
              'human_filtered_reads_1': read_1_link, 
              'human_filtered_reads_2': read_2_link,
+             'taxon_reports_dir': taxon_reports_dir
         })
     return dict_list
 
