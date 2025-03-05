@@ -3,7 +3,6 @@
 
 // TODO: add include to read in subworkflows
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
-include {ABRICATE} from "./modules/abricate"
 
 if (!params.samplesheet) {
     error "Please provide a samplesheet with --samplesheet"
@@ -33,8 +32,6 @@ workflow {
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     
     // Run subworkflows
-    ch_fastqs.single_end.view()
-    // ch_fastqs.paired_end.view()
-    ABRICATE(ch_fastqs.single_end)
+    AMR_ANALYSIS(ch_fastqs.single_end)
 
 }
