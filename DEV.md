@@ -21,10 +21,10 @@ To get fastqs via S3:
 Install Abricate:  
 `mamba install -c conda-forge -c bioconda -c defaults abricate`
 
-Create python script to run Abricate (`src/mscape-amr-nf/abricate.py`)
+Create python script to run Abricate (`mscape-amr-nf/abricate.py`)
 
 ## Testing Nextflow
 Running tests:   
-`nextflow run main.nf -profile test,docker`
+`nextflow run main.nf -profile test,docker -process.echo`
 
 
