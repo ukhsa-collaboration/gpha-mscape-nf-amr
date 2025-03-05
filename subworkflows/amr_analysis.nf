@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 
 include {ABRICATE} from "../modules/abricate"
-
+include {SCAGAIRE} from "../modules/scagaire"
 
 workflow AMR_ANALYSIS {
     take:
@@ -13,5 +13,8 @@ workflow AMR_ANALYSIS {
     // Abricate can use fastq.gz, so just point to files.
     single_end_ch.view()
     ABRICATE(single_end_ch)
-    // SCAGAIRE(ABRICATE.out.abricate_out)
+    // 2. Extract species IDs for each READ assigned AMR
+
+    // 3. Run Scagaire
+    // SCAGAIRE(ABRICATE.out.abricate)
 }
