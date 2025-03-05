@@ -17,6 +17,6 @@ process ABRICATE{
     script:
     """
     echo Running Abricate on $climb_id
-    abricate --quiet --mincov 90 --db ncbi '${fastq1}' > 'abricate_out.txt'
+    abricate --quiet --db ncbi '${fastq1}' > 'abricate_out.txt'
     """
 }
