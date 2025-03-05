@@ -9,11 +9,11 @@ process GZ_TO_FASTQ{
     tuple val(climb_id), path(fastq1)
 
     output:
-    tuple val(climb_id), path(fastq)
+    tuple val(climb_id), path(uncompressed.fastq)
 
     script:
     """
-    gunzip -c "${fastq1}" > "${fastq}"
+    gunzip -c "${fastq1}" > "uncompressed.fastq"
     """
 
 
