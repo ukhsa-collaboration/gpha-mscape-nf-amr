@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 
 process SCAGAIRE{
     // tag "${climb_id}"
-    container 'community.wave.seqera.io/library/scagaire:0.0.4--d340715dde589279'
+    // container 'community.wave.seqera.io/library/scagaire:0.0.4--d340715dde589279'
 
     // input:
     // tuple val(climb_id), path(abricate)
