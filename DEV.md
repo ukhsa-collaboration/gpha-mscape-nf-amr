@@ -27,4 +27,6 @@ Create python script to run Abricate (`mscape-amr-nf/abricate.py`)
 Running tests:   
 `nextflow run main.nf -profile test,docker -process.echo`
 
-
+## Viewing Work Directory
+Can be found here:
+`/home/jovyan/shared-team/nxf_work/${USERNAME}.gpha-ukhsa-mscap/work/`
