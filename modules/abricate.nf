@@ -3,21 +3,21 @@
 nextflow.enable.dsl=2
 
 process ABRICATE{
-    tag "${climb_id}"
+    // tag "${climb_id}"
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
-    publishDir 'abricate'
+    // publishDir 'abricate'
 
     input:
     tuple val(climb_id), path(fastq1)
 
     output:
-    val(climb_id) into abricate_ch
+    val('test.txt') into abricate_ch
     //, path '${climb_id}.abricate.txt'
 
     script:
     """
-    echo $climb_id
+    echo $climb_id >test.txt
     """
 
  
