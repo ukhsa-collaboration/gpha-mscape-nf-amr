@@ -12,7 +12,7 @@ process ABRICATE{
     tuple val(climb_id), path(fastq1)
 
     output:
-    path (climbd_id), path '${climb_id}.abricate.txt' 
+    tuple  val(climb_id), path('${climb_id}.abricate.txt') 
 
     script:
     script:
