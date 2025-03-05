@@ -13,7 +13,7 @@ process GZ_TO_FASTQ{
 
     script:
     """
-    gunzip -c "${fastq_gz}" > "${fastq}"
+    gunzip -c "${fastq1}" > "${fastq}"
     """
 
 
