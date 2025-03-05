@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
+include {GZ_TO_FASTQ} from "../modules/gunzip"
 include {ABRICATE} from "../modules/abricate"
 include {SCAGAIRE} from "../modules/scagaire"
 
