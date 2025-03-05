@@ -16,6 +16,7 @@ process ABRICATE{
 
     script:
     """
+    echo climb_id
     abricate --quiet --mincov 90 --db vfdb '${fastq1}' > 'abricate_out.txt'
     """
 }
