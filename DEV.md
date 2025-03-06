@@ -26,6 +26,8 @@ Create python script to run Abricate (`mscape-amr-nf/abricate.py`)
 ## Testing Nextflow
 Running tests:   
 `nextflow run main.nf -profile test,docker -process.echo`
+Run test, but don't repeat steps that have not changed:
+`nextflow run main.nf -profile test,docker -process.echo`
 
 ## Viewing Work Directory
 Can be found here:
