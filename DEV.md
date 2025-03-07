@@ -32,6 +32,9 @@ Running tests:
 Run test, but don't repeat steps that have not changed:
 `nextflow run main.nf -profile test,docker -process.echo -resume`
 
+Running from GitHub directly (requires permissions)
+`nextflow run ukhsa-collaboration/mscape-amr-nf -r dev -profile test,docker -resume`
+
 ## Viewing Work Directory
 Can be found here:
 `/home/jovyan/shared-team/nxf_work/${USERNAME}.gpha-ukhsa-mscap/work/`
