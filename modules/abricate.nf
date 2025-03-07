@@ -10,7 +10,7 @@ process ABRICATE{
     tuple val(climb_id), path(kraken_assignments), path(kraken_report),  path(fastq1)
 
     output:
-    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.txt')
+    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.txt'), emit: abricate
 
     script:
     """
