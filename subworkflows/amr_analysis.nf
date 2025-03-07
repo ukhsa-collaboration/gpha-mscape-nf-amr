@@ -18,7 +18,6 @@ workflow AMR_ANALYSIS {
     // 2 - Run Abricate
     RUN_ABRICATE(GZ_TO_FASTQ.out)
 
-    RUN_ABRICATE.out.abricate_results.view()
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
         .branch{

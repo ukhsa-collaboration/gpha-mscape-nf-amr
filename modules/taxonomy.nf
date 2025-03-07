@@ -14,7 +14,7 @@ process READ_EXTRACT{
     echo $climb_id
     echo $kraken_assignments
     echo $kraken_report
-    echo $abricate_out  
+    cat $abricate_out  
 
     """
 }
