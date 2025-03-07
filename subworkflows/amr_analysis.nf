@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 
 include {GZ_TO_FASTQ} from "../modules/gunzip"
 include {ABRICATE} from "../modules/abricate"
-include {TAXONOMY} from "../modules/taxonomy"
+include {READ_EXTRACT} from "../modules/taxonomy"
 include {SCAGAIRE} from "../modules/scagaire"
 
 workflow AMR_ANALYSIS {
