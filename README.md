@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 - To create sample-sheet with a list of CLIMB-IDs (exmaple `test/climb_ids.txt`) simply run:   
 ```
-python generate-sample-sheet.py 
+python scripts/generate-sample-sheet.py 
     --input climb_ids.txt 
     --output sample-sheet.csv
 ```
