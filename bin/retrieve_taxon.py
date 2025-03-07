@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env
 
 import pandas as pd
 import json
