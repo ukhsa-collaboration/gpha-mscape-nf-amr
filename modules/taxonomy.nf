@@ -12,7 +12,7 @@ process READ_EXTRACT{
     script:
     """
     echo $climb_id
-    cat $kraken_assignments
+    cat $kraken_report
 
 
     """
