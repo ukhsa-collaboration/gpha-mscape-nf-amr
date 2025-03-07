@@ -26,12 +26,15 @@ workflow AMR_ANALYSIS {
             annotated: abricate_out.readLines().size() > 1
             unannotated: abricate_out.readLines().size() <= 1
         }. set{amr_status}
-    // if not AMR annotations then skip
-    amr_status.unannotated
-        .map{
-            log.info "No AMR annotations where made for ${climb_id}."
-            return null
-        }
+
+    amr_status.annotated.view()
+    amr_status.unannotated.view()
+    // // if not AMR annotations then skip
+    // amr_status.unannotated
+    //     .map{
+    //         log.info "No AMR annotations where made for ${climb_id}."
+    //         return null
+    //     }
 
     // 3. Extract species IDs for each READ assigned AMR
     // READ_EXTRACT(amr_status.annotated)
