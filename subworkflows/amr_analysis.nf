@@ -19,7 +19,7 @@ workflow AMR_ANALYSIS {
     ABRICATE(GZ_TO_FASTQ.out)
 
     // test if any AMR annotations have been made
-    ABRICATE.out
+    ABRICATE.out.abricate
         .branch{
             climb_id, kraken_assignments, kraken_report, abricate_out ->
             // The abricate file will cotnain only headers if no AMR annotations have been made
