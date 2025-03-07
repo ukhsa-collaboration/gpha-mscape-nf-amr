@@ -14,7 +14,11 @@ process READ_EXTRACT{
     echo $climb_id
     echo $kraken_assignments
     echo $kraken_report
-    echo $abricate_out
+    echo $abricate_out  
+
+    """
+}
+
     // tail -n +2 ${abricate_out} | cut -f2 | sort | uniq >read_ids.txt
     // while read i; do \
     //     grep -P '\${i}\t' \
@@ -25,7 +29,4 @@ process READ_EXTRACT{
     // retrieve_taxon \
     //     -t kraken_assignment.tsv \
     //     -j ${kraken_report} \
-    //     -o reads_kraken_taxa.tsv    
-
-    """
-}
+    //     -o reads_kraken_taxa.tsv  
