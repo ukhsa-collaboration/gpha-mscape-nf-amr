@@ -14,7 +14,7 @@ conda activate mscape_amr_nf
 ```
 
 ## Running
-If running on Bryn this repo needs to be installed in `~/shared-team/`
+If running on Bryn this repo needs to be cloned to `~/shared-team/` otherwise containers will not work
 
 ## Get FASTQs
 To get fastqs via S3:   
