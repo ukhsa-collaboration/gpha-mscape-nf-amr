@@ -6,7 +6,7 @@ process READ_EXTRACT{
 
     // 1. Extract Read IDs from Abricate output file
     input:
-    tuple val(climb_id), path(abricate_out), path(kraken_report_folder)
+    tuple val(climb_id), path(kraken_report_folder), path(abricate_out), 
 
     output:
     tuple val(climb_id), path('read_ids.txt')
