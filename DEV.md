@@ -13,6 +13,9 @@ conda create --name mscape_amr_nf
 conda activate mscape_amr_nf
 ```
 
+## Running
+If running on Bryn this repo needs to be cloned to `~/shared-team/` otherwise containers will not work
+
 ## Get FASTQs
 To get fastqs via S3:   
 `s3cmd get s3://mscape-published-read-fractions/<climbid>/<climbid>.human_filtered.fastq.gz`
@@ -21,10 +24,21 @@ To get fastqs via S3:
 Install Abricate:  
 `mamba install -c conda-forge -c bioconda -c defaults abricate`
 
-Create python script to run Abricate (`src/mscape-amr-nf/abricate.py`)
+Create python script to run Abricate (`mscape-amr-nf/abricate.py`)
 
 ## Testing Nextflow
 Running tests:   
-`nextflow run main.nf -profile test,docker`
+`nextflow run main.nf -profile test,docker -process.echo`
+Run test, but don't repeat steps that have not changed:
+`nextflow run main.nf -profile test,docker -process.echo -resume`
 
+Running from GitHub directly (requires permissions)
+`nextflow run ukhsa-collaboration/mscape-amr-nf -r dev -profile test,docker -resume`
 
+## Viewing Work Directory
+Can be found here:
+`/home/jovyan/shared-team/nxf_work/${USERNAME}.gpha-ukhsa-mscap/work/`
+
+## Kraken Output Files Directory
+Can be found here:
+`s3://mscape-published-taxon-reports/${CLIMB_ID}`

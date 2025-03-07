@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 - To create sample-sheet with a list of CLIMB-IDs (exmaple `test/climb_ids.txt`) simply run:   
 ```
-python generate-sample-sheet.py 
+python bin/generate-sample-sheet.py 
     --input climb_ids.txt 
     --output sample-sheet.csv
 ```
@@ -24,8 +24,8 @@ python generate-sample-sheet.py
 - [X] set up Nextflow config files
 - [X] Install depedencies (Abricate, scagaire)
 - [X] Develop script to create sample-sheet
-- [ ] NextFlow: Take CLIMB-ID list, pull FASTQ URIs from database (stored as text strings)
-- [ ] Nextflow: Run Abricate 
+- [X] NextFlow: Take CLIMB-ID list, pull FASTQ URIs from database (stored as text strings)
+- [X] Nextflow: Run Abricate 
 - [ ] Nextflow: Run Scagaire 
 - [ ] Nextflow: Set up for multiple input samples
 - [ ] Nextflow: Set up for multiple species (Scagaire)
