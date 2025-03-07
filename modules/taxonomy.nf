@@ -9,9 +9,6 @@ process READ_EXTRACT{
     input:
     tuple val(climb_id), path(kraken_assignments), path(kraken_report),  path(abricate_out)
 
-    output:
-    tuple val(climb_id)
-
     script:
     """
     tail -n +2 abricate_out.txt | cut -f2 | sort | uniq >read_ids.txt
@@ -21,7 +18,7 @@ process READ_EXTRACT{
         | cut -f 2-3 >>kraken_assignment.tsv; \
     done<read_ids.txt
 
-    retrieve_taxon.py \
+    retrieve_taxon \
         -t kraken_assignment.tsv \
         -j ${kraken_report} \
         -o reads_kraken_taxa.tsv    
