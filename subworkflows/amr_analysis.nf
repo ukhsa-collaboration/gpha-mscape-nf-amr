@@ -32,10 +32,10 @@ workflow AMR_ANALYSIS {
             log.info "No AMR annotations where made for ${climb_id}."
             return null
         }
-    
-    READ_EXTRACT(amr_status.annotated)
-    // 2. Extract species IDs for each READ assigned AMR
 
-    // 3. Run Scagaire
+    // 3. Extract species IDs for each READ assigned AMR
+    READ_EXTRACT(amr_status.annotated)
+
+    // 4. Run Scagaire
     // SCAGAIRE(ABRICATE.out.abricate)
 }
