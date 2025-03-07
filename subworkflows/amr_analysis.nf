@@ -29,7 +29,7 @@ workflow AMR_ANALYSIS {
     // amr_status.unannotated.view()
     // // if not AMR annotations then skip
     amr_status.unannotated
-        .map{ climb_id ->
+        .map{ climb_id, kraken_assignments, kraken_report, abricate_out ->
             log.info "No AMR annotations where made for ${climb_id}."
             return null
         }
