@@ -54,8 +54,12 @@ def get_record_by_climb_id(climb_id_list: list):
              'human_filtered_reads_1': read_1_link, 
              'human_filtered_reads_2': read_2_link,
              'taxon_reports_dir': taxon_reports_dir,
-             'kraken_assignments': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_assignments.tsv')),
-             'kraken_report': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_report.json'))
+             'kraken_assignments': os.path.join(
+                 taxon_reports_dir,
+                 str(id)+str('_PlusPF.kraken_assignments.tsv')),
+             'kraken_report': os.path.join(
+                 taxon_reports_dir, 
+                 str(id)+str('_PlusPF.kraken_report.json'))
         })
     return dict_list
 
@@ -76,7 +80,6 @@ def main():
     args = get_args()
     climb_id_list = parse_file(args.input)
     dict_list = get_record_by_climb_id(climb_id_list)
-    get_kraken_files(dict_list)
     write_to_csv(dict_list, args.output)
 
 if __name__ == "__main__":
