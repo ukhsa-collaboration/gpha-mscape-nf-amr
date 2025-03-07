@@ -53,8 +53,8 @@ def get_record_by_climb_id(climb_id_list: list):
         dict_list.append({'climb_id': id, 
              'human_filtered_reads_1': read_1_link, 
              'human_filtered_reads_2': read_2_link,
-             'taxon_reports_dir': taxon_reports_dir
-             'kraken_assignments': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_assignments.tsv'))
+             'taxon_reports_dir': taxon_reports_dir,
+             'kraken_assignments': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_assignments.tsv')),
              'kraken_report': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_report.json'))
         })
     return dict_list
