@@ -4,12 +4,15 @@ import argparse
 from pathlib import Path
 import pandas as pd
 import csv
-
+import boto3
 
 config = OnyxConfig(
     domain=os.environ[OnyxEnv.DOMAIN],
     token=os.environ[OnyxEnv.TOKEN],
 )
+
+s3 = boto3.client('s3')
+
 
 def get_args() -> argparse.Namespace:
     """
@@ -25,6 +28,16 @@ def get_args() -> argparse.Namespace:
                 required=True, type=Path)
     args = parser.parse_args()
     return args
+
+def parse_file(fp: Path):
+    """
+    Read in text file, seperate climb ids into lis
+    :args: filepath str()
+    """
+    with open(fp, "r", encoding="utf-8-sig") as file:
+        data = file.readlines()  # Reads lines into a list
+        data = [line.strip() for line in data]  # Remove newline characters
+        return data
 
 def get_record_by_climb_id(climb_id_list: list):
     # for climb_id in climb_id_list:
@@ -47,15 +60,15 @@ def get_record_by_climb_id(climb_id_list: list):
         })
     return dict_list
 
-def parse_file(fp: Path):
-    """
-    Read in text file, seperate climb ids into lis
-    :args: filepath str()
-    """
-    with open(fp, "r", encoding="utf-8-sig") as file:
-        data = file.readlines()  # Reads lines into a list
-        data = [line.strip() for line in data]  # Remove newline characters
-        return data
+def get_kraken_files(dict_list: list):
+    '''
+    Using the bucket name (taxon reports dir)
+    '''
+    bucket_name = 'https://s3.climb.ac.uk/'
+    for dictionary in dict_list:
+        response = s3.list_objects_v2(Bucket=bucket_name, Prefix=dictionary['taxon_reports_dir'])
+        print(response)
+
 
 def write_to_csv(dict_list: list, output: Path):
      """
