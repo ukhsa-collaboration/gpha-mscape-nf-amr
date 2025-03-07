@@ -35,7 +35,7 @@ workflow AMR_ANALYSIS {
         }
 
     // 3. Extract species IDs for each READ assigned AMR
-    // READ_EXTRACT(amr_status.annotated)
+    READ_EXTRACT(amr_status.annotated)
 
     // 4. Run Scagaire
     // SCAGAIRE(ABRICATE.out.abricate)
