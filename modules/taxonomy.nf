@@ -6,7 +6,7 @@ process READ_EXTRACT{
 
     // 1. Extract Read IDs from Abricate output file
     input:
-    tuple val(climb_id), path(kraken_report_folder), path(abricate_out), 
+    tuple val(climb_id), path(kraken_report_folder), path(abricate_out)
 
     output:
     tuple val(climb_id), path('read_ids.txt')
@@ -14,16 +14,16 @@ process READ_EXTRACT{
     script:
     """
     tail -n +2 abricate_out.txt | cut -f2 | sort | uniq >read_ids.txt
-    // while read i; do \
-    //     grep -P '\${i}\t' \
-    //     ${kraken_report_folder}/${climb_id}_C-514753DBDA_PlusPF.kraken_assignments.tsv \
-    //     | cut -f 2-3 >>kraken_assignment.tsv; \
-    // done<read_ids.txt
+    while read i; do \
+        grep -P '\${i}\t' \
+        ${kraken_report_folder}/${climb_id}_C-514753DBDA_PlusPF.kraken_assignments.tsv \
+        | cut -f 2-3 >>kraken_assignment.tsv; \
+    done<read_ids.txt
 
-    // retrieve_taxon \
-    //     -t kraken_assignment.tsv \
-    //     -j ${kraken_report_folder}/${climb_id}_PlusPF.kraken_report.json \
-    //     -o reads_kraken_taxa.tsv    
+    retrieve_taxon \
+        -t kraken_assignment.tsv \
+        -j ${kraken_report_folder}/${climb_id}_PlusPF.kraken_report.json \
+        -o reads_kraken_taxa.tsv    
 
     """
 }
