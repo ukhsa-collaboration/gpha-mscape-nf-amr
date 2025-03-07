@@ -14,14 +14,15 @@ samples = Channel
     .splitCsv(header: true)
     .map { row ->
         def climb_id = row.climb_id
-        def taxon_report_dir = row.taxon_reports_dir
+        def kraken_assignments = row.kraken_assignments
+        def kraken_report = row.kraken_report
         def fastq1 = row.human_filtered_reads_1
         def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
-        return fastq2 ? tuple(climb_id, taxon_report_dir, fastq1, fastq2) : tuple(climb_id, taxon_report_dir, fastq1)
+        return fastq2 ? tuple(climb_id, kraken_assignments, kraken_report, fastq1, fastq2) : tuple(climb_id, kraken_assignments, kraken_report, fastq1)
     }
     .branch{ v ->
-        paired_end: v.size() == 4
-        single_end: v.size() == 3 
+        paired_end: v.size() == 5
+        single_end: v.size() == 4 
     }
     // // Assign the separated channels
     .set { ch_fastqs }  // Define separate channels
