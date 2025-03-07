@@ -20,7 +20,7 @@ process READ_EXTRACT{
         | cut -f 2-3 >>kraken_assignment.tsv; \
     done<read_ids.txt
 
-    python ./scripts/retrieve_taxon.py \
+    retrieve_taxon.py \
         -t kraken_assignment.tsv \
         -j ${kraken_report_folder}/${climb_id}_PlusPF.kraken_report.json \
         -o reads_kraken_taxa.tsv    
