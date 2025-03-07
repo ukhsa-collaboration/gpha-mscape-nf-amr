@@ -12,8 +12,7 @@ process READ_EXTRACT{
     script:
     """
     echo $climb_id
-    cat $kraken_report
-
+    tail -n +2 ${abricate_out} | cut -f2 | sort | uniq
 
     """
 }
