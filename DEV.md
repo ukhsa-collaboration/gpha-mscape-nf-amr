@@ -13,6 +13,9 @@ conda create --name mscape_amr_nf
 conda activate mscape_amr_nf
 ```
 
+## Running
+If running on Bryn this repo needs to be installed in `~/shared-team/`
+
 ## Get FASTQs
 To get fastqs via S3:   
 `s3cmd get s3://mscape-published-read-fractions/<climbid>/<climbid>.human_filtered.fastq.gz`
