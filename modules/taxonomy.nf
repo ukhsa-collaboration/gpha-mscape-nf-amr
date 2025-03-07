@@ -18,16 +18,3 @@ process READ_EXTRACT{
     retrieve_taxon -t read_taxid_assignment.tsv -j ${kraken_report} -o reads_kraken_info.tsv
     """
 }
-    //  grep -P '\${i}\t' ${kraken_assignments}; done<unique_amr_reads.txt
-
-    // tail -n +2 ${abricate_out} | cut -f2 | sort | uniq >read_ids.txt
-    // while read i; do \
-    //     grep -P '\${i}\t' \
-    //     ${kraken_assignments} \
-    //     | cut -f 2-3 >>kraken_assignment.tsv; \
-    // done<read_ids.txt
-
-    // retrieve_taxon \
-    //     -t kraken_assignment.tsv \
-    //     -j ${kraken_report} \
-    //     -o reads_kraken_taxa.tsv  
