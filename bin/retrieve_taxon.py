@@ -1,3 +1,5 @@
+#!/usr/bin/env
+
 import pandas as pd
 import json
 import argparse
