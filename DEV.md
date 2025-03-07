@@ -27,8 +27,12 @@ Create python script to run Abricate (`mscape-amr-nf/abricate.py`)
 Running tests:   
 `nextflow run main.nf -profile test,docker -process.echo`
 Run test, but don't repeat steps that have not changed:
-`nextflow run main.nf -profile test,docker -process.echo`
+`nextflow run main.nf -profile test,docker -process.echo -resume`
 
 ## Viewing Work Directory
 Can be found here:
 `/home/jovyan/shared-team/nxf_work/${USERNAME}.gpha-ukhsa-mscap/work/`
+
+## Kraken Output Files Directory
+Can be found here:
+`s3://mscape-published-taxon-reports/${CLIMB_ID}`
