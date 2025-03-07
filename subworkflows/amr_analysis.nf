@@ -11,12 +11,29 @@ workflow AMR_ANALYSIS {
     single_end_ch
 
     main:
-    // 1 - Run Abricate
+    // 1. Gunzip FASTQ
     // Abricate can use fastq.gz, so just point to files.
-    // single_end_ch.view()
     GZ_TO_FASTQ(single_end_ch)
+    
+    // 2 - Run Abricate
     ABRICATE(GZ_TO_FASTQ.out)
-    READ_EXTRACT(ABRICATE.out)
+
+    // test if any AMR annotations have been made
+    ABRICATE.out
+        .branch{
+            climb_id, kraken_assignments, kraken_report, abricate_out ->
+            // The abricate file will cotnain only headers if no AMR annotations have been made
+            annotated: abricate_out.readLines().size() > 1
+            unannotated: abricate_out.readLines().size() <= 1
+        }. set{amr_status}
+    // if not AMR annotations then skip
+    amr_status.unannotated
+        .map{
+            log.info "No AMR annotations where made for ${climb_id}."
+            return null
+        }
+    
+    READ_EXTRACT(amr_status.annotated)
     // 2. Extract species IDs for each READ assigned AMR
 
     // 3. Run Scagaire
