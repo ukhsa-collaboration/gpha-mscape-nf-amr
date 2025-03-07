@@ -64,7 +64,7 @@ def get_kraken_files(dict_list: list):
     '''
     Using the bucket name (taxon reports dir)
     '''
-    bucket_name = 'https://s3.climb.ac.uk/'
+    bucket_name = 's3://mscape-published-taxon-reports'
     for dictionary in dict_list:
         response = s3.list_objects_v2(Bucket=bucket_name, Prefix=dictionary['taxon_reports_dir'])
         print(response)
