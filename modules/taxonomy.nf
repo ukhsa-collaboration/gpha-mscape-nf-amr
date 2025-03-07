@@ -2,6 +2,7 @@
 nextflow.enable.dsl=2
 
 process READ_EXTRACT{
+    tag "${climb_id}"
     container 'community.wave.seqera.io/library/pip_argparse_pandas_pathlib:2f69bdc5b6cf9eae' // Not sure if this works
 
     // 1. Extract Read IDs from Abricate output file
@@ -9,7 +10,7 @@ process READ_EXTRACT{
     tuple val(climb_id), path(kraken_report_folder), path(abricate_out)
 
     output:
-    tuple val(climb_id), path('read_ids.txt')
+    tuple val(climb_id)
 
     script:
     """
