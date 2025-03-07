@@ -11,7 +11,7 @@ process READ_EXTRACT{
 
     script:
     """
-    tail -n +2 abricate_out.txt | cut -f2 | sort | uniq >read_ids.txt
+    tail -n +2 ${abricate_out} | cut -f2 | sort | uniq >read_ids.txt
     while read i; do \
         grep -P '\${i}\t' \
         ${kraken_assignments} \
