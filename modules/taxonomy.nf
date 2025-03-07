@@ -13,7 +13,7 @@ process READ_EXTRACT{
     """
     echo $climb_id
     tail -n +2 ${abricate_out} | cut -f2 | sort | uniq > unique_amr_reads.txt
-    while read i; do grep -P "\$i" ${kraken_assignments}; done< unique_amr_reads.txt
+    while read i; do grep -P "\$i\t" ${kraken_assignments}; done< unique_amr_reads.txt
     """
 }
     //  grep -P '\${i}\t' ${kraken_assignments}; done<unique_amr_reads.txt
