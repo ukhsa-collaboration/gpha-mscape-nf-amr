@@ -4,14 +4,11 @@ import argparse
 from pathlib import Path
 import pandas as pd
 import csv
-import boto3
 
 config = OnyxConfig(
     domain=os.environ[OnyxEnv.DOMAIN],
     token=os.environ[OnyxEnv.TOKEN],
 )
-
-s3 = boto3.client('s3')
 
 
 def get_args() -> argparse.Namespace:
@@ -57,18 +54,10 @@ def get_record_by_climb_id(climb_id_list: list):
              'human_filtered_reads_1': read_1_link, 
              'human_filtered_reads_2': read_2_link,
              'taxon_reports_dir': taxon_reports_dir
+             'kraken_assignments': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_assignments.tsv'))
+             'kraken_report': os.path.join(taxon_reports_dir, str(id)+str('_PlusPF.kraken_report.json'))
         })
     return dict_list
-
-def get_kraken_files(dict_list: list):
-    '''
-    Using the bucket name (taxon reports dir)
-    '''
-    bucket_name = 's3://mscape-published-taxon-reports'
-    for dictionary in dict_list:
-        response = s3.list_objects_v2(Bucket=bucket_name, Prefix=dictionary['taxon_reports_dir'])
-        print(response)
-
 
 def write_to_csv(dict_list: list, output: Path):
      """
