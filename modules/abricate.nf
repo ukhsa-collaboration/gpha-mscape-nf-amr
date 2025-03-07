@@ -7,10 +7,10 @@ process ABRICATE{
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
     input:
-    tuple val(climb_id), path(taxon_report_dir), path(fastq1)
+    tuple val(climb_id), path(kraken_assignments), path(kraken_report),  path(fastq1)
 
     output:
-    tuple  val(climb_id), path(taxon_report_dir), path('abricate_out.txt')
+    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.txt')
 
     script:
     """
