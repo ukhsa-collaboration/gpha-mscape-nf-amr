@@ -15,6 +15,6 @@ process READ_EXTRACT{
     tail -n +2 ${abricate_out} | cut -f2 | sort | uniq > unique_amr_reads.txt
     while read i; do grep -P "\$i\t" ${kraken_assignments} | cut -f 2-3 >>read_taxid_assignment.tsv; done< unique_amr_reads.txt
     
-    retrieve_taxon.py -t read_taxid_assignment.tsv -j ${kraken_report} -o reads_kraken_info.tsv
+    python $launchDir/bin/retrieve_taxon.py -t read_taxid_assignment.tsv -j ${kraken_report} -o reads_kraken_info.tsv
     """
 }
