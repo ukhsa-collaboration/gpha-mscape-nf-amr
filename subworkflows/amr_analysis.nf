@@ -16,8 +16,8 @@ workflow AMR_ANALYSIS {
     single_end_ch.view()
     GZ_TO_FASTQ(single_end_ch)
     GZ_TO_FASTQ.out.view()
-    ABRICATE(GZ_TO_FASTQ.out)
-    ABRICATE.out.view()
+    // ABRICATE(GZ_TO_FASTQ.out)
+    // ABRICATE.out.view()
     // READ_EXTRACT(ABRICATE.out)
     // 2. Extract species IDs for each READ assigned AMR
 
