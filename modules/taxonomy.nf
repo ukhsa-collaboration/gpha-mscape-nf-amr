@@ -14,9 +14,6 @@ process READ_EXTRACT{
 
     script:
     """
-    echo $climb_id
-    echo $taxon_report_dir
-    echo $abricate_out
     tail -n +2 abricate_out.txt | cut -f2 | sort | uniq >read_ids.txt
     while read i; do \
         grep -P '\${i}\t' \
