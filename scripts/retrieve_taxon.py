@@ -57,7 +57,8 @@ def add_species(df_tsv: pd.DataFrame, taxid_dict: dict):
     taxid_df.rename(columns={'index': 'taxid_key'}, inplace=True)
     for df in [df_tsv, taxid_df]:
         df['taxid'] = df['taxid'].astype(str)
-    df_merged  = df_tsv.merge(taxid_df[['taxid','name','raw_rank','rank']], on='taxid', how='left')
+    df_merged  = df_tsv.merge(taxid_df[['taxid','name','raw_rank','rank']], 
+                              on='taxid', how='left')
     return df_merged
 
 def write_tsv(df_merged: pd.DataFrame, output_fn: Path):
