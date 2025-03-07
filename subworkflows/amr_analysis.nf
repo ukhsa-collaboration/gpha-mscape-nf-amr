@@ -3,6 +3,7 @@ nextflow.enable.dsl=2
 
 include {GZ_TO_FASTQ} from "../modules/gunzip"
 include {ABRICATE} from "../modules/abricate"
+include {TAXONOMY} from "../modules/taxonomy"
 include {SCAGAIRE} from "../modules/scagaire"
 
 workflow AMR_ANALYSIS {
@@ -15,6 +16,7 @@ workflow AMR_ANALYSIS {
     single_end_ch.view()
     GZ_TO_FASTQ(single_end_ch)
     ABRICATE(GZ_TO_FASTQ.out)
+    // TAXONOMY(ABRICATE.out, )
     // 2. Extract species IDs for each READ assigned AMR
 
     // 3. Run Scagaire
