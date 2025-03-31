@@ -1,0 +1,137 @@
+Mar-07 15:57:42.267 [main] DEBUG nextflow.cli.Launcher - $> nextflow -c /etc/nextflow.config run main.nf -profile test,docker -process.echo -resume
+Mar-07 15:57:43.139 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+Mar-07 15:57:43.272 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+Mar-07 15:57:43.316 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Mar-07 15:57:43.320 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Mar-07 15:57:43.337 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Mar-07 15:57:43.403 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Mar-07 15:57:43.524 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/jovyan/git/mscape-amr-nf/nextflow.config
+Mar-07 15:57:43.534 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /etc/nextflow.config
+Mar-07 15:57:43.539 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/jovyan/git/mscape-amr-nf/nextflow.config
+Mar-07 15:57:43.541 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /etc/nextflow.config
+Mar-07 15:57:43.663 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/secrets/store.json
+Mar-07 15:57:43.684 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@18fdb6cf] - activable => nextflow.secret.LocalSecretsProvider@18fdb6cf
+Mar-07 15:57:43.727 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
+Mar-07 15:57:48.580 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
+Mar-07 15:57:48.751 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [debug, test, apptainer, docker, slurm, gitpod, shifter, mamba, charliecloud, conda, singularity, arm, podman]
+Mar-07 15:57:48.882 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Mar-07 15:57:48.931 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [adoring_gutenberg] DSL2 - revision: 8084e6b99a
+Mar-07 15:57:48.936 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Mar-07 15:57:48.936 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Mar-07 15:57:49.135 [main] DEBUG nextflow.Session - Session UUID: 7bd7e59b-5306-4111-81eb-5b16806ccb9c
+Mar-07 15:57:49.137 [main] DEBUG nextflow.Session - Run name: adoring_gutenberg
+Mar-07 15:57:49.138 [main] DEBUG nextflow.Session - Executor pool size: 2
+Mar-07 15:57:49.167 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Mar-07 15:57:49.186 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Mar-07 15:57:49.300 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC 
+  System: Linux 5.15.0-1051-kvm
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.21+9-post-Ubuntu-0ubuntu122.04
+  Encoding: UTF-8 (UTF-8)
+  Process: 24801@jupyter-nicholasellaby-2egpha-2dukhsa-2dmscap [10.1.30.5]
+  CPUs: 2 - Mem: 16 GB (2.3 GB) - Swap: 0 (0)
+Mar-07 15:57:49.861 [main] DEBUG nextflow.Session - Work-dir: /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work [ceph]
+Mar-07 15:57:50.009 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Mar-07 15:57:50.085 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Mar-07 15:57:50.513 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Mar-07 15:57:50.589 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 3; maxThreads: 1000
+Mar-07 15:57:51.060 [main] DEBUG nextflow.Session - Session start
+Mar-07 15:57:51.093 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /home/jovyan/git/mscape-amr-nf/output/pipeline_info/2025-03-07_15-57-48/execution_trace_null.txt
+Mar-07 15:57:54.058 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Mar-07 15:57:57.323 [main] INFO  nextflow.Nextflow - Samplesheet: /home/jovyan/git/mscape-amr-nf/test/test-sample-sheet.csv
+Mar-07 15:57:57.351 [main] INFO  nextflow.Nextflow - Output directory: mscape-amr-results
+Mar-07 15:57:57.354 [main] INFO  nextflow.Nextflow - Number of CPUs (Max): 4
+Mar-07 15:57:58.136 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: k8s
+Mar-07 15:57:58.158 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'k8s'
+Mar-07 15:57:58.281 [main] DEBUG nextflow.executor.Executor - [warm up] executor > k8s
+Mar-07 15:57:58.358 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'k8s' > capacity: 100; pollInterval: 5s; dumpInterval: 5m 
+Mar-07 15:57:58.368 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: k8s)
+Mar-07 15:57:58.502 [main] DEBUG nextflow.k8s.client.ConfigDiscovery - K8s config file does not exist: /home/jovyan/.kube/config
+Mar-07 15:57:58.791 [main] DEBUG nextflow.k8s.K8sExecutor - [K8s] config=[runAsUser:1000, computeResourceType:Job]; API client config=ClientConfig[ server=10.152.183.1:443, namespace=ns-gpha-ukhsa-mscap, serviceAccount=null, token=eyJhbGciOiJ.., sslCert=LS0tLS1CRUd.., clientCert=-, clientKey=-, verifySsl=false, fromFile=true, httpReadTimeout=null, httpConnectTimeout=null, maxErrorRetry=4 ]
+Mar-07 15:58:00.810 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: k8s
+Mar-07 15:58:00.823 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'k8s'
+Mar-07 15:58:00.930 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: k8s
+Mar-07 15:58:00.930 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'k8s'
+Mar-07 15:58:01.006 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: READ_EXTRACT, GZ_TO_FASTQ, SCAGAIRE, AMR_ANALYSIS:GZ_TO_FASTQ, AMR_ANALYSIS:READ_EXTRACT, AMR_ANALYSIS:RUN_ABRICATE, RUN_ABRICATE
+Mar-07 15:58:01.033 [main] DEBUG nextflow.Session - Igniting dataflow network (4)
+Mar-07 15:58:01.122 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > AMR_ANALYSIS:GZ_TO_FASTQ
+Mar-07 15:58:01.126 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > AMR_ANALYSIS:RUN_ABRICATE
+Mar-07 15:58:01.127 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > AMR_ANALYSIS:READ_EXTRACT
+Mar-07 15:58:01.132 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_390378afd6cdfbc4: /home/jovyan/git/mscape-amr-nf/./subworkflows/../modules/scagaire.nf
+  Script_a88289afbc8c7f47: /home/jovyan/git/mscape-amr-nf/./subworkflows/amr_analysis.nf
+  Script_dece93e4d4dfba13: /home/jovyan/git/mscape-amr-nf/./subworkflows/../modules/taxonomy.nf
+  Script_99c5abd9b8ebc26c: /home/jovyan/git/mscape-amr-nf/./subworkflows/../modules/abricate.nf
+  Script_fba0c8e5e7ff031b: /home/jovyan/git/mscape-amr-nf/main.nf
+  Script_92a9ac30e1648795: /home/jovyan/git/mscape-amr-nf/./subworkflows/../modules/gunzip.nf
+Mar-07 15:58:01.132 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Mar-07 15:58:01.132 [main] DEBUG nextflow.Session - Session await
+Mar-07 15:58:01.945 [Actor Thread 4] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-amazon version: 2.5.2
+Mar-07 15:58:02.099 [Actor Thread 4] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-amazon@2.5.2' resolved
+Mar-07 15:58:02.114 [Actor Thread 4] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-amazon@2.5.2'
+Mar-07 15:58:02.491 [Actor Thread 4] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-amazon@2.5.2
+Mar-07 15:58:02.665 [Actor Thread 4] DEBUG nextflow.file.FileHelper - > Added 'S3FileSystemProvider' to list of installed providers [s3]
+Mar-07 15:58:02.666 [Actor Thread 4] DEBUG nextflow.file.FileHelper - Started plugin 'nf-amazon' required to handle file: s3://mscape-published-taxon-reports/C-64ECEC3412/C-64ECEC3412_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:02.726 [Actor Thread 4] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider
+Mar-07 15:58:02.805 [Actor Thread 4] DEBUG nextflow.cloud.aws.config.AwsConfig - AWS S3 config properties: {endpoint=https://s3.climb.ac.uk, s_3_path_style_access=true, max_error_retry=5}
+Mar-07 15:58:09.610 [Actor Thread 1] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider
+Mar-07 15:58:09.637 [Actor Thread 1] DEBUG nextflow.cloud.aws.config.AwsConfig - AWS S3 config properties: {endpoint=https://s3.climb.ac.uk, s_3_path_style_access=true, max_error_retry=5}
+Mar-07 15:58:10.023 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-64ECEC3412/C-64ECEC3412_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/34/97a8bdf0904617f6cb8f94e51a1b6c/C-64ECEC3412_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:10.028 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-64ECEC3412/C-64ECEC3412_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/06/b33f0f42db9b049b5af5b0faaa604a/C-64ECEC3412_PlusPF.kraken_report.json
+Mar-07 15:58:10.029 [FileTransfer-3] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-64ECEC3412/C-64ECEC3412.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/93/586fbbe35e3edaaafe8c85bc9cb1f7/C-64ECEC3412.human_filtered.fastq.gz
+Mar-07 15:58:10.043 [FileTransfer-5] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-882B60FA9E/C-882B60FA9E_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/c2/84de8e0223f7f426237f541c49f4a9/C-882B60FA9E_PlusPF.kraken_report.json
+Mar-07 15:58:10.055 [FileTransfer-4] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-882B60FA9E/C-882B60FA9E_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/51/62fcbfdef1e7f75d1717cd67dad227/C-882B60FA9E_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:10.058 [FileTransfer-6] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-882B60FA9E/C-882B60FA9E.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/11/fb3de36e147ce4fd9264366e2df6db/C-882B60FA9E.human_filtered.fastq.gz
+Mar-07 15:58:11.120 [Actor Thread 1] INFO  nextflow.processor.TaskProcessor - [00/dc7d6a] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-882B60FA9E)
+Mar-07 15:58:11.131 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [16/213f0f] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-64ECEC3412)
+Mar-07 15:58:11.634 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [e7/8b680a] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-64ECEC3412)
+Mar-07 15:58:11.644 [Actor Thread 6] INFO  nextflow.processor.TaskProcessor - [28/0cf5e5] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-882B60FA9E)
+Mar-07 15:58:11.731 [Actor Thread 6] INFO  nextflow.Nextflow - No AMR annotations where made for C-882B60FA9E.
+Mar-07 15:58:11.755 [Actor Thread 6] INFO  nextflow.Nextflow - No AMR annotations where made for C-64ECEC3412.
+Mar-07 15:58:12.041 [FileTransfer-7] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-2D10300B10/C-2D10300B10_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/a2/62d001f9e4d1debb0c7c49f206c63f/C-2D10300B10_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:12.041 [FileTransfer-8] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-2D10300B10/C-2D10300B10_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/fc/e66c47253be6486996d61d6cef9f1c/C-2D10300B10_PlusPF.kraken_report.json
+Mar-07 15:58:12.047 [FileTransfer-9] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-2D10300B10/C-2D10300B10.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/02/4f1267e9679f41f25cbac47f2c4ad6/C-2D10300B10.human_filtered.fastq.gz
+Mar-07 15:58:12.059 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-6CAF1EF2B6/C-6CAF1EF2B6_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/91/ec554bfbc79d91a3ac0a3255289f4f/C-6CAF1EF2B6_PlusPF.kraken_report.json
+Mar-07 15:58:12.061 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-6CAF1EF2B6/C-6CAF1EF2B6.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/42/9b19a115e08b5b148e0a3908031f64/C-6CAF1EF2B6.human_filtered.fastq.gz
+Mar-07 15:58:12.079 [FileTransfer-10] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-6CAF1EF2B6/C-6CAF1EF2B6_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/e7/272cc2f0d1f888c2d12bd02c7e634c/C-6CAF1EF2B6_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:12.112 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [d5/cc9994] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-2D10300B10)
+Mar-07 15:58:12.122 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [f8/7d78bf] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-6CAF1EF2B6)
+Mar-07 15:58:12.255 [Actor Thread 6] INFO  nextflow.processor.TaskProcessor - [c5/17938b] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-2D10300B10)
+Mar-07 15:58:12.301 [Actor Thread 4] INFO  nextflow.Nextflow - No AMR annotations where made for C-2D10300B10.
+Mar-07 15:58:12.342 [Actor Thread 8] INFO  nextflow.processor.TaskProcessor - [45/5c7a79] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-6CAF1EF2B6)
+Mar-07 15:58:12.714 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-9A27CC4D8B/C-9A27CC4D8B_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/d8/8a1b68800c35d80b0e15458b6b1748/C-9A27CC4D8B_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:12.715 [FileTransfer-5] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-9A27CC4D8B/C-9A27CC4D8B_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/45/3d1803a379df2b98035180933a2a77/C-9A27CC4D8B_PlusPF.kraken_report.json
+Mar-07 15:58:12.719 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-9A27CC4D8B/C-9A27CC4D8B.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/fc/0b12a7f48f97835fcf54eaba68a0e7/C-9A27CC4D8B.human_filtered.fastq.gz
+Mar-07 15:58:12.734 [FileTransfer-6] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-282B0B9EBF/C-282B0B9EBF_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/31/848009b59a72dbef39f2ed4435dd31/C-282B0B9EBF_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:12.736 [FileTransfer-8] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-282B0B9EBF/C-282B0B9EBF_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/aa/a541440a2e0ebbeac10b729683cbce/C-282B0B9EBF_PlusPF.kraken_report.json
+Mar-07 15:58:12.740 [FileTransfer-7] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-282B0B9EBF/C-282B0B9EBF.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/00/332e302f311659292d923bc2733723/C-282B0B9EBF.human_filtered.fastq.gz
+Mar-07 15:58:12.885 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [ef/76deaf] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-282B0B9EBF)
+Mar-07 15:58:12.898 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [2f/ec5412] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-9A27CC4D8B)
+Mar-07 15:58:13.033 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [7e/591092] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-9A27CC4D8B)
+Mar-07 15:58:13.067 [Actor Thread 1] INFO  nextflow.processor.TaskProcessor - [22/6036e0] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-282B0B9EBF)
+Mar-07 15:58:13.072 [Actor Thread 6] INFO  nextflow.Nextflow - No AMR annotations where made for C-9A27CC4D8B.
+Mar-07 15:58:13.093 [Actor Thread 10] INFO  nextflow.Nextflow - No AMR annotations where made for C-282B0B9EBF.
+Mar-07 15:58:13.295 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-5343A8C77E/C-5343A8C77E_PlusPF.kraken_assignments.tsv at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/7d/495d01041c3f2628f2fd01b532329c/C-5343A8C77E_PlusPF.kraken_assignments.tsv
+Mar-07 15:58:13.297 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-taxon-reports/C-5343A8C77E/C-5343A8C77E_PlusPF.kraken_report.json at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/3c/5cd8552bb429fe889005c69bff6615/C-5343A8C77E_PlusPF.kraken_report.json
+Mar-07 15:58:13.300 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Local cache found for foreign file s3://mscape-published-read-fractions/C-5343A8C77E/C-5343A8C77E.human_filtered.fastq.gz at /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/stage-7bd7e59b-5306-4111-81eb-5b16806ccb9c/da/41f8548a8b9d43c90bb6fe25a79271/C-5343A8C77E.human_filtered.fastq.gz
+Mar-07 15:58:13.367 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [c5/710113] Cached process > AMR_ANALYSIS:GZ_TO_FASTQ (C-5343A8C77E)
+Mar-07 15:58:13.504 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [6a/ca720b] Cached process > AMR_ANALYSIS:RUN_ABRICATE (C-5343A8C77E)
+Mar-07 15:58:14.301 [Task submitter] INFO  nextflow.Session - [b0/6ffca1] Submitted process > AMR_ANALYSIS:READ_EXTRACT (C-6CAF1EF2B6)
+Mar-07 15:58:14.662 [Task submitter] INFO  nextflow.Session - [59/567ed4] Submitted process > AMR_ANALYSIS:READ_EXTRACT (C-5343A8C77E)
+Mar-07 15:58:19.289 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: AMR_ANALYSIS:READ_EXTRACT (C-6CAF1EF2B6); status: COMPLETED; exit: 0; error: -; workDir: /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/b0/6ffca1e9c54b26a48aecab27202468]
+Mar-07 15:58:19.306 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Mar-07 15:58:24.154 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: AMR_ANALYSIS:READ_EXTRACT (C-5343A8C77E); status: COMPLETED; exit: 0; error: -; workDir: /shared/team/nxf_work/nicholasellaby.gpha-ukhsa-mscap/work/59/567ed494a7e3d18f9011dbfdcc0c4b]
+Mar-07 15:58:25.001 [main] DEBUG nextflow.Session - Session await > all processes finished
+Mar-07 15:58:29.312 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: k8s) - terminating tasks monitor poll loop
+Mar-07 15:58:29.331 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Mar-07 15:58:29.503 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Mar-07 15:58:29.752 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=0; ignoredCount=0; cachedCount=14; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=1.6s; failedDuration=0ms; cachedDuration=21m 7s;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=12 GB; ]
+Mar-07 15:58:29.766 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Mar-07 15:58:29.805 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Mar-07 15:58:32.649 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Mar-07 15:58:33.619 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Mar-07 15:58:33.721 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-amazon@2.5.2'
+Mar-07 15:58:33.723 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-amazon
+Mar-07 15:58:33.742 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Mar-07 15:58:33.751 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
