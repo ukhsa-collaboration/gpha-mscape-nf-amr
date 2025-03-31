@@ -1,0 +1,5 @@
+.nextflow*
+*.swp
+*.log
+*.lock
+*.tmp
