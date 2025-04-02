@@ -2,7 +2,7 @@
 Nextflow process for running AMR detection using Abricate on ONT metagenomic samples
 
 ## Usage
-- Provide nextflow with a sample spreadsheet that contains either climb-id and S3 fastq locations, example can be found in `test/test-sample-sheet.csv`.
+- Provide nextflow with a sample spreadsheet that contains either climb-id and S3 fastq locations.
 
 ### Creating Sample Sheet
 - Install dependencies:
