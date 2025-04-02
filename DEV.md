@@ -47,10 +47,10 @@ Run test, but don't repeat steps that have not changed:
 `nextflow run main.nf -profile docker -resume --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv -process.echo`
 
 Running from GitHub directly (requires permissions)
-`nextflow run nfellaby/amr-nf -r dev -profile test,docker -resume --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv`
+`nextflow run ukhsa-collaboration/mscape-amr-nf -r dev -profile test,docker -resume --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv`
 
 Note: You will want to pull the latest version of the repo
-`nextflow pull nfellaby/amr-nf`
+`nextflow pull ukhsa-collaboration/mscape-amr-nf`
 
 ## Viewing Work Directory
 Can be found here:
