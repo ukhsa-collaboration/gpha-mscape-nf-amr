@@ -10,7 +10,7 @@ Nextflow process for running AMR detection using Abricate on ONT metagenomic sam
 pip install -r requirements.txt
 ```
 
-- To create sample-sheet with a list of CLIMB-IDs (exmaple `test/climb_ids.txt`) simply run:   
+- To create sample-sheet with a list of CLIMB-IDs simply run:   
 ```
 python bin/generate-sample-sheet.py 
     --input climb_ids.txt 
