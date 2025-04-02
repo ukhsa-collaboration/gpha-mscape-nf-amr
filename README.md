@@ -17,6 +17,11 @@ python bin/generate-sample-sheet.py
     --output sample-sheet.csv
 ```
 
+### Running on Bryn
+```
+nextflow run ukhsa-collaboration/mscape-amr-nf -profile docker --samplesheet sample-sheet.csv --output test-amr-out
+```
+
 
 ## Dependencies
 - [Abricate](https://github.com/tseemann/abricate):  
