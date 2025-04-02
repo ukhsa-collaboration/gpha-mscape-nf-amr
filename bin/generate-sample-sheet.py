@@ -36,6 +36,7 @@ def parse_file(fp: Path):
     with open(fp, "r", encoding="utf-8-sig") as file:
         data = file.readlines()  # Reads lines into a list
         data = [line.strip() for line in data]  # Remove newline characters
+        data = [s.replace('"', '') for s in data] # remove " from strings
         return data
 
 def get_record_by_climb_id(climb_id_list: list):
