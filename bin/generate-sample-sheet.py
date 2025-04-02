@@ -39,30 +39,32 @@ def parse_file(fp: Path):
         return data
 
 def get_record_by_climb_id(climb_id_list: list):
-    # for climb_id in climb_id_list:
-    #     print(f'Processing: {climb_id}')
-    # climb_id_list = ["C-514753DBDA"]
     dict_list = []
     for id in climb_id_list:
-        with OnyxClient(config) as client:
-                data = pd.DataFrame(client.filter(
-                project = "mscape",
-                climb_id = id
-            ))
-        read_1_link = data["human_filtered_reads_1"][0]
-        read_2_link = data["human_filtered_reads_2"][0]
-        taxon_reports_dir = data["taxon_reports"][0]
-        dict_list.append({'climb_id': id, 
-             'human_filtered_reads_1': read_1_link, 
-             'human_filtered_reads_2': read_2_link,
-             'taxon_reports_dir': taxon_reports_dir,
-             'kraken_assignments': os.path.join(
-                 taxon_reports_dir,
-                 str(id)+str('_PlusPF.kraken_assignments.tsv')),
-             'kraken_report': os.path.join(
-                 taxon_reports_dir, 
-                 str(id)+str('_PlusPF.kraken_report.json'))
+        try:
+            with OnyxClient(config) as client:
+                    data = pd.DataFrame(client.filter(
+                    project = "mscape",
+                    climb_id = id
+                ))
+        
+            read_1_link = data["human_filtered_reads_1"][0]
+            read_2_link = data["human_filtered_reads_2"][0]
+            taxon_reports_dir = data["taxon_reports"][0]
+            dict_list.append({'climb_id': id, 
+                'human_filtered_reads_1': read_1_link, 
+                'human_filtered_reads_2': read_2_link,
+                'taxon_reports_dir': taxon_reports_dir,
+                'kraken_assignments': os.path.join(
+                    taxon_reports_dir,
+                    str(id)+str('_PlusPF.kraken_assignments.tsv')),
+                'kraken_report': os.path.join(
+                taxon_reports_dir, 
+                str(id)+str('_PlusPF.kraken_report.json'))
         })
+        except KeyError:
+            print(f"Sample ${id} not found in database. Skipping.")
+            pass
     return dict_list
 
 def write_to_csv(dict_list: list, output: Path):
