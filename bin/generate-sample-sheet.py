@@ -64,7 +64,7 @@ def get_record_by_climb_id(climb_id_list: list):
                 str(id)+str('_PlusPF.kraken_report.json'))
         })
         except KeyError:
-            print(f"Sample ${id} not found in database. Skipping.")
+            print(f"Sample {id} not found in database. Skipping.")
             pass
     return dict_list
 
