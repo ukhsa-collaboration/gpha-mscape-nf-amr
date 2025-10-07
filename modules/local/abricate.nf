@@ -14,7 +14,6 @@ process RUN_ABRICATE{
 
     script:
     """
-    echo '${fastq1}'
     abricate --quiet --mincov 90 --db card '${fastq1}' > 'abricate_out.tsv'
     """
 }
