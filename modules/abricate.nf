@@ -7,13 +7,14 @@ process RUN_ABRICATE{
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
     input:
-    tuple val(climb_id), path(kraken_assignments), path(kraken_report),  path(fastq1)
+    tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
 
     output:
     tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.tsv'), emit: abricate_results
 
     script:
     """
+    echo '${fastq1}'
     abricate --quiet --mincov 90 --db card '${fastq1}' > 'abricate_out.tsv'
     """
 }

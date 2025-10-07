@@ -1,10 +1,10 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-include {GZ_TO_FASTQ} from "../modules/gunzip"
+// include {GZ_TO_FASTQ} from "../modules/gunzip"
 include {RUN_ABRICATE} from "../modules/abricate"
 include {READ_ANALYSIS} from "../modules/taxonomy"
-include {SCAGAIRE} from "../modules/scagaire"
+// include {SCAGAIRE} from "../modules/scagaire"
 
 
 workflow AMR_ANALYSIS {
@@ -18,7 +18,6 @@ workflow AMR_ANALYSIS {
     
     // 2 - Run Abricate
     RUN_ABRICATE(single_end_ch)
-    log.info(single_end_ch)
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
