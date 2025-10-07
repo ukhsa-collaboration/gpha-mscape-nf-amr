@@ -12,10 +12,27 @@ process RUN_ABRICATE{
     output:
     tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.tsv'), emit: abricate_results
 
-    // database options: card, resfindm megares, ncbi, argannot,plasmidfinder, ecoh, ecoli_vf, vfdb
+    // database options: card, resfindm megares, ncbi, argannot, plasmidfinder, ecoh, ecoli_vf, vfdb
 
     script:
     """
     abricate --quiet --mincov 90 --db card '${fastq1}' > 'abricate_out.tsv'
+    """
+}
+
+
+process RUN_ABRICATE_DB{
+    tag "${climb_id}"
+    container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
+    
+    input:
+    tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1), val(db)
+
+    output:
+    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.tsv'), emit: abricate_results
+
+    script:
+    """
+    abricate --quiet --mincov 90 --db '${db}' '${fastq1}' > 'abricate_${db}_out.tsv'
     """
 }

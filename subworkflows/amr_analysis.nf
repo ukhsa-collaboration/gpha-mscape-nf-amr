@@ -7,8 +7,6 @@ include { READ_ANALYSIS } from "../modules/local/taxonomy"
 // include { ABRICATE_RUN  } from '../modules/nf-core/abricate/run/main'
 //                                 ../modules/nf-core/abricate/run/main.nf
 
-// include {SCAGAIRE} from "../modules/scagaire"
-
 
 workflow AMR_ANALYSIS {
     take:
@@ -22,14 +20,12 @@ workflow AMR_ANALYSIS {
     // 2 - Run Abricate
     RUN_ABRICATE(GZ_TO_FASTQ.out)
 
+    // Run Abricate with multiple databases
+    abricate_db_list = params.abricate_databases?.split(',') as List
+    db_ch = channel.fromList(abricate_db_list)
+    GZ_TO_FASTQ.out.combine(db_ch).view()
+    // RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
 
-    // 3 - Run Abricate as per nf-core, requires val(meta), path(contigs)
-    single_end_ch
-        .map{ climb_id, kraken_assignments, kraken_report, fastq1 ->
-        tuple(climb_id , fastq1 ) 
-    }.set { id_fastq_ch }
-
-    id_fastq_ch.view()
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
