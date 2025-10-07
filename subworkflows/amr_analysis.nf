@@ -20,7 +20,7 @@ workflow AMR_ANALYSIS {
     GZ_TO_FASTQ(single_end_ch)
     
     // 2 - Run Abricate
-    RUN_ABRICATE(single_end_ch)
+    RUN_ABRICATE(GZ_TO_FASTQ.out)
 
 
     // 3 - Run Abricate as per nf-core, requires val(meta), path(contigs)
