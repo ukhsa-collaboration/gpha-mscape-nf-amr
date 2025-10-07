@@ -14,10 +14,10 @@ workflow AMR_ANALYSIS {
     main:
     // 1. Gunzip FASTQ
     // Abricate can use fastq.gz, so just point to files.
-    GZ_TO_FASTQ(single_end_ch)
+    // GZ_TO_FASTQ(single_end_ch)
     
     // 2 - Run Abricate
-    RUN_ABRICATE(GZ_TO_FASTQ.out)
+    RUN_ABRICATE(single_end_ch)
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
@@ -39,12 +39,4 @@ workflow AMR_ANALYSIS {
     READ_ANALYSIS(amr_status.annotated)
     READ_ANALYSIS.out.view()
 
-    // -------------------- V 2 Additions --------------------
-    // 4. Create a list of Bacterial Species for Scagaire
-    // species_list = params.species?.split(',') as List
-    // species_ch = channel.fromList(species_list)
-
-    // // 5. Run SCAGAIRE
-    // // combine channel generated from AMR status, run with each species
-    // SCAGAIRE(amr_status.annotated.combine(species_ch))
 }
