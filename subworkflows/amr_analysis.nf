@@ -22,10 +22,9 @@ workflow AMR_ANALYSIS {
     RUN_ABRICATE(GZ_TO_FASTQ.out)
 
     // Run Abricate with multiple databases
-    abricate_db_list = params.abricate_databases?.split(',') as List
-    db_ch = channel.fromList(abricate_db_list)
-    // GZ_TO_FASTQ.out.combine(db_ch).view()
-    RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
+    // abricate_db_list = params.abricate_databases?.split(',') as List
+    // db_ch = channel.fromList(abricate_db_list)
+    // RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
 
 
     // test if any AMR annotations have been made
