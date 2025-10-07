@@ -1,9 +1,10 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-include { GZ_TO_FASTQ   } from "../modules/local/gunzip"
-include { RUN_ABRICATE  } from "../modules/local/abricate"
-include { READ_ANALYSIS } from "../modules/local/taxonomy"
+include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
+include { RUN_ABRICATE    } from "../modules/local/abricate"
+include { RUN_ABRICATE_DB } from "../modules/local/abricate"
+include { READ_ANALYSIS   } from "../modules/local/taxonomy"
 // include { ABRICATE_RUN  } from '../modules/nf-core/abricate/run/main'
 //                                 ../modules/nf-core/abricate/run/main.nf
 
