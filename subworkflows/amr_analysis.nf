@@ -18,6 +18,7 @@ workflow AMR_ANALYSIS {
     
     // 2 - Run Abricate
     RUN_ABRICATE(single_end_ch)
+    log.info(single_end_ch)
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results

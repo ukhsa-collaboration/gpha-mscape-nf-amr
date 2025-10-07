@@ -19,12 +19,11 @@ python bin/generate-sample-sheet.py
 
 ### Running on Bryn
 ```
-nextflow run ukhsa-collaboration/mscape-amr-nf -profile docker --samplesheet sample-sheet.csv --output test-amr-out
+nextflow run -latest ukhsa-collaboration/gpha-mscape-nf-amr -profile docker --samplesheet test-sample-sheet.csv --output test-amr-out -resume
 ```
 
 
 ## Dependencies
 - [Abricate](https://github.com/tseemann/abricate):  
 Mass screening of contigs for antimicrobial resistance or virulence genes.
-<!-- - [Scagaire](https://github.com/quadram-institute-bioscience/scagaire):  
-Scagaire allows you to take in gene predictions from a metagenomic sample and filter them by bacterial/pathogenic species.  -->
+
