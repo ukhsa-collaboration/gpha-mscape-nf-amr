@@ -1,9 +1,11 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-include {GZ_TO_FASTQ} from "../modules/local/gunzip"
-include {RUN_ABRICATE} from "../modules/local/abricate"
-include {READ_ANALYSIS} from "../modules/local/taxonomy"
+include { GZ_TO_FASTQ   } from "../modules/local/gunzip"
+include { RUN_ABRICATE  } from "../modules/local/abricate"
+include { READ_ANALYSIS } from "../modules/local/taxonomy"
+include { ABRICATE_RUN  } from '../../modules/nf-core/abricate/run/main'
+
 // include {SCAGAIRE} from "../modules/scagaire"
 
 
@@ -18,6 +20,13 @@ workflow AMR_ANALYSIS {
     
     // 2 - Run Abricate
     RUN_ABRICATE(single_end_ch)
+
+
+    // 3 - Run Abricate as per nf-core, requires val(meta), path(contigs)
+    single_end_ch.map{
+        climb_id, kraken_assignments, kraken_report, fastq1 ->
+        climb_id, fastq1 
+    }.view()
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
