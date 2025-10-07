@@ -27,7 +27,7 @@ workflow AMR_ANALYSIS {
     single_end_ch
         .map{ climb_id, kraken_assignments, kraken_report, fastq1 ->
         tuple(climb_id , fastq1 ) 
-    }.view()
+    }.set { id_fastq_ch }
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
