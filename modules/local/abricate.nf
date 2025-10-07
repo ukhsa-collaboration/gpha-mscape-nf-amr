@@ -29,10 +29,10 @@ process RUN_ABRICATE_DB{
     tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1), val(db)
 
     output:
-    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.tsv'), emit: abricate_results
+    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path("abricate_${db}_out.tsv"), emit: abricate_results
 
     script:
     """
-    abricate --quiet --mincov 90 --db '${db}' '${fastq1}' > 'abricate_${db}_out.tsv'
+    abricate --quiet --mincov 90 --db ${db} ${fastq1} > abricate_${db}_out.tsv
     """
 }
