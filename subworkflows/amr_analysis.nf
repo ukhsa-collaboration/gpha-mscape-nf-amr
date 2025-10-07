@@ -23,10 +23,10 @@ workflow AMR_ANALYSIS {
 
 
     // 3 - Run Abricate as per nf-core, requires val(meta), path(contigs)
-    single_end_ch
-        .map{ climb_id, kraken_assignments, kraken_report, fastq1 ->
-        climb_id, fastq1 
-    }.view()
+    // single_end_ch
+    //     .map{ climb_id, kraken_assignments, kraken_report, fastq1 ->
+    //     climb_id, fastq1 
+    // }.view()
 
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
