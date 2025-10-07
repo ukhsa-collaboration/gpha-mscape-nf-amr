@@ -29,6 +29,8 @@ workflow AMR_ANALYSIS {
         tuple(climb_id , fastq1 ) 
     }.set { id_fastq_ch }
 
+    single_end_ch.view()
+
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
         .branch{
