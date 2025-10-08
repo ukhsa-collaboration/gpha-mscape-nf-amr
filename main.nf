@@ -4,7 +4,7 @@
 // TODO: add include to read in subworkflows
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
 
-// Take either a sample sheet or a climb-id
+// TODO: Take either a sample sheet or a climb-id
 
 if (!params.samplesheet) {
     error "Please provide a samplesheet with --samplesheet"
@@ -29,8 +29,8 @@ samples = Channel
     // // Assign the separated channels
     .set { ch_fastqs }  // Define separate channels
 
-// 0.2 Generate sample sheet using climb id
-// python bin/generate-sample-sheet.py
+// TODO: 0.2 Generate sample sheet using climb id
+// TODO: python bin/generate-sample-sheet.py
 
 workflow {
     // handle input parameters
