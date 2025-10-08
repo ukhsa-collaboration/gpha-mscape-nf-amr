@@ -26,7 +26,6 @@ workflow AMR_ANALYSIS {
     // db_ch = channel.fromList(abricate_db_list)
     // RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
 
-
     // test if any AMR annotations have been made
     RUN_ABRICATE.out.abricate_results
         .branch{
