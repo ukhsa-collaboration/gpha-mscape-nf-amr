@@ -19,7 +19,7 @@ workflow AMR_ANALYSIS {
     GZ_TO_FASTQ(single_end_ch)
     
     // 2 - Run Abricate
-    RUN_ABRICATE(GZ_TO_FASTQ.out)
+    RUN_ABRICATE_DB(GZ_TO_FASTQ.out)
 
     // Run Abricate with multiple databases
     // abricate_db_list = params.abricate_databases?.split(',') as List
@@ -27,7 +27,7 @@ workflow AMR_ANALYSIS {
     // RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
 
     // test if any AMR annotations have been made
-    RUN_ABRICATE.out.abricate_results
+    RUN_ABRICATE_DB.out.abricate_results
         .branch{
             climb_id, kraken_assignments, kraken_report, abricate_out ->
             // The abricate file will cotnain only headers if no AMR annotations have been made
