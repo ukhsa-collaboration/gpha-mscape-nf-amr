@@ -1,11 +1,10 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-include {GZ_TO_FASTQ} from "../modules/gunzip"
-include {RUN_ABRICATE} from "../modules/abricate"
-include {READ_ANALYSIS} from "../modules/taxonomy"
-include {SCAGAIRE} from "../modules/scagaire"
-
+include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
+include { RUN_ABRICATE    } from "../modules/local/abricate"
+include { RUN_ABRICATE_DB } from "../modules/local/abricate"
+include { READ_ANALYSIS   } from "../modules/local/taxonomy"
 
 workflow AMR_ANALYSIS {
     take:
@@ -17,13 +16,18 @@ workflow AMR_ANALYSIS {
     GZ_TO_FASTQ(single_end_ch)
     
     // 2 - Run Abricate
-    RUN_ABRICATE(GZ_TO_FASTQ.out)
+    // RUN_ABRICATE(GZ_TO_FASTQ.out)
+
+    // Run Abricate with multiple databases
+    abricate_db_list = params.abricate_databases?.split(',') as List
+    db_ch = channel.fromList(abricate_db_list)
+    RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
 
     // test if any AMR annotations have been made
-    RUN_ABRICATE.out.abricate_results
+    RUN_ABRICATE_DB.out.abricate_results
         .branch{
             climb_id, kraken_assignments, kraken_report, abricate_out ->
-            // The abricate file will cotnain only headers if no AMR annotations have been made
+            // Skips abricate file if it contains only header, i.e. no AMR annotations have been made
             annotated: abricate_out.readLines().size() > 1
             unannotated: abricate_out.readLines().size() <= 1
         }. set{amr_status}
@@ -39,12 +43,4 @@ workflow AMR_ANALYSIS {
     READ_ANALYSIS(amr_status.annotated)
     READ_ANALYSIS.out.view()
 
-    // -------------------- V 2 Additions --------------------
-    // 4. Create a list of Bacterial Species for Scagaire
-    // species_list = params.species?.split(',') as List
-    // species_ch = channel.fromList(species_list)
-
-    // // 5. Run SCAGAIRE
-    // // combine channel generated from AMR status, run with each species
-    // SCAGAIRE(amr_status.annotated.combine(species_ch))
 }
