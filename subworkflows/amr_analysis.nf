@@ -27,7 +27,7 @@ workflow AMR_ANALYSIS {
     RUN_ABRICATE_DB.out.abricate_results
         .branch{
             climb_id, kraken_assignments, kraken_report, abricate_out ->
-            // The abricate file will cotnain only headers if no AMR annotations have been made
+            // Skips abricate file if it contains only header, i.e. no AMR annotations have been made
             annotated: abricate_out.readLines().size() > 1
             unannotated: abricate_out.readLines().size() <= 1
         }. set{amr_status}
