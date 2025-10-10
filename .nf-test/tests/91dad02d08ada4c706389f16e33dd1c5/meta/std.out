@@ -1,0 +1,10 @@
+ERROR ~ Error executing process > 'AMR_ANALYSIS:GZ_TO_FASTQ (1)'
+
+Caused by:
+  Not a valid path value: 'tests/test_data/ERR3077524_GCF_013349085.1_1x_kraken_pluspf_8gb.report.json'
+
+
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '/home/jovyan/git/gpha-mscape-nf-amr/.nf-test/tests/91dad02d08ada4c706389f16e33dd1c5/meta/nextflow.log' file for details
