@@ -11,7 +11,7 @@ process READ_ANALYSIS{
     tuple val(climb_id), path(kraken_assignments), path(kraken_report), val(db), path(abricate_out)
 
     output:
-    path "${climb_id}_abricate_taxa_out.tsv"
+    path "${climb_id}_abricate_${db}_taxa_out.tsv"
     
     script:
     """
