@@ -3,8 +3,9 @@ nextflow_process {
     name "Test Process GZ_TO_FASTQ"
     script "modules/local/gunzip.nf"
     process "GZ_TO_FASTQ"
+    tag "gztofastq"
 
-    test("Should run gunzip without any failures") {
+    test("test_gztofastq_positive") {
 
         when {
             params {
@@ -17,7 +18,7 @@ nextflow_process {
                 input[0] = Channel.of(
                     tuple(
                         "climb-id",
-                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1_1x.fq.gz")
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1_1x.fq.gz", checkIfExists: true)
                     )
                 )
                 """
