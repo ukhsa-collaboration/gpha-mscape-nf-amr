@@ -43,12 +43,12 @@ workflow AMR_ANALYSIS {
     single_end_ch.join(amr_status.annotated).set{ single_end_anno_ch }
     single_end_anno_ch.view()
     
-    // .map{
-    //     climb_id, kraken_assignments, kraken_report, fastq1, db, abricate_out ->
-    //     climb_id, kraken_assignments, kraken_report, abricate_out
-    // }
+    single_end_anno_ch.map{
+        climb_id, kraken_assignments, kraken_report, fastq1, db, abricate_out ->
+        climb_id, kraken_assignments, kraken_report, abricate_out
+    }.set{ single_end_anno_clean_ch }
 
-    // single_end_anno_ch.view()
+    single_end_anno_clean_ch.view()
 
     // READ_ANALYSIS(single_end_anno_ch)
     // READ_ANALYSIS.out.view()
