@@ -16,7 +16,7 @@ workflow AMR_ANALYSIS {
     single_end_ch.map{
         climb_id, kraken_assignments, kraken_report, fastq1 ->
         tuple( climb_id, fastq1 )
-    }.set( fastq_ch)
+    }.set{ fastq_ch }
 
     GZ_TO_FASTQ(fastq_ch)
     
