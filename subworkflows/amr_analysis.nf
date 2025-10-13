@@ -13,12 +13,13 @@ workflow AMR_ANALYSIS {
     main:
     // 1. Gunzip FASTQ
     // Abricate can use fastq.gz, so just point to files.
+    single_end_ch.branch{
+        climb_id, kraken_assignments, kraken_report, fastq1 ->
+        climb_id, fastq1
+    }.view()
     GZ_TO_FASTQ(single_end_ch)
     
-    // 2 - Run Abricate
-    // RUN_ABRICATE(GZ_TO_FASTQ.out)
-
-    // Run Abricate with multiple databases
+    // 2 - Run Abricate with specified databases
     abricate_db_list = params.abricate_databases?.split(',') as List
     db_ch = channel.fromList(abricate_db_list)
     RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
