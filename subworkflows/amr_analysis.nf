@@ -40,8 +40,14 @@ workflow AMR_ANALYSIS {
 
     // 3. Extract species IDs for each READ assigned AMR
     // Combine Channels 
-    single_end_ch.join(amr_status.annotated).view()
-    // READ_ANALYSIS(amr_status.annotated)
+    single_end_ch.join(amr_status.annotated).map{
+        climb_id, kraken_assignments, kraken_report, fastq1, db, abricate_out ->
+        climb_id, kraken_assignments, kraken_report, abricate_out
+    }.set{ single_end_anno_ch }
+
+    single_end_anno_ch.view()
+
+    // READ_ANALYSIS(single_end_anno_ch)
     // READ_ANALYSIS.out.view()
 
 }
