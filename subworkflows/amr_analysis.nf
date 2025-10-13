@@ -30,16 +30,19 @@ workflow AMR_ANALYSIS {
         // Skips if only header (no annotations) 
         annotated: abricate_out.readLines().size() > 1
         unannotated: abricate_out.readLines().size() <= 1
-    }. set{amr_status}
-    
-    // // if no AMR annotations then skip
+    }. set{amr_status}    
+    // if no AMR annotations then skip
     amr_status.unannotated.map{ 
             climb_id, db, abricate_out ->
             log.info "No ${db} database annotations found for ${climb_id}."
             return null
     }
 
-    // // 3. Extract species IDs for each READ assigned AMR
+    // 3. Extract species IDs for each READ assigned AMR
+    // Combine Channels 
+    single_end_ch.combine(
+        amr_status, by: climb_id
+    ).view()
     // READ_ANALYSIS(amr_status.annotated)
     // READ_ANALYSIS.out.view()
 
