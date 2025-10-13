@@ -19,6 +19,7 @@ nextflow_process {
                         val("climb-id"),
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.5k_reads.fq", checkIfExists: true)
                     )
+                )
                 """
             }
         }
