@@ -17,7 +17,7 @@ nextflow_process {
                 input[0] = Channel.of(
                     tuple(
                         "climb-id",
-                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.fq.gz", checkIfExists: true)
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.fq", checkIfExists: true)
                     )
                 """
             }
