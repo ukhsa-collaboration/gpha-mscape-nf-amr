@@ -4,7 +4,7 @@ nextflow_process {
     script "modules/local/gunzip.nf"
     process "GZ_TO_FASTQ"
 
-    test("Should run without failures") {
+    test("Should run gunzip without any failures") {
 
         when {
             params {
@@ -14,7 +14,8 @@ nextflow_process {
             process {
                 """
                 // define inputs of the process here. Example:
-                // input[0] = file("test-file.txt")
+                input[0] = val("test-climb-id")
+                input[1] = file("tests/test_data/ERR3077524_GCF_013349085.1_1x.fq.gz")
                 """
             }
         }
