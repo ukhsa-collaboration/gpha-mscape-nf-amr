@@ -10,7 +10,7 @@ process RUN_ABRICATE_DB{
     tuple val(climb_id), path(fastq1), val(db)
 
     output:
-    tuple  val(climb_id), path("abricate_${db}_out.tsv"), emit: abricate_results
+    tuple  val(climb_id), val(db), path("abricate_${db}_out.tsv"), emit: abricate_results
 
     script:
     """

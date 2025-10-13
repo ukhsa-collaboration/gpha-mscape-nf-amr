@@ -10,13 +10,13 @@ workflow AMR_ANALYSIS {
     single_end_ch
 
     main:
-    // 1. Gunzip FASTQ
-    // Abricate can use fastq.gz, so just point to files.
+    // 0. Simplify Channel, to just fastq for the first processes
     single_end_ch.map{
         climb_id, kraken_assignments, kraken_report, fastq1 ->
         tuple( climb_id, fastq1 )
     }.set{ fastq_ch }
 
+    // 1. Gunzip FASTQ
     GZ_TO_FASTQ(fastq_ch)
     
     // 2 - Run Abricate with specified databases
@@ -24,21 +24,20 @@ workflow AMR_ANALYSIS {
     db_ch = channel.fromList(abricate_db_list)
     RUN_ABRICATE_DB(GZ_TO_FASTQ.out.combine(db_ch))
 
-    // // test if any AMR annotations have been made
-    // RUN_ABRICATE_DB.out.abricate_results
-    //     .branch{
-    //         climb_id, kraken_assignments, kraken_report, abricate_out ->
-    //         // Skips abricate file if it contains only header, i.e. no AMR annotations have been made
-    //         annotated: abricate_out.readLines().size() > 1
-    //         unannotated: abricate_out.readLines().size() <= 1
-    //     }. set{amr_status}
-    // // amr_status.unannotated.view()
-    // // // if not AMR annotations then skip
-    // amr_status.unannotated
-    //     .map{ climb_id, kraken_assignments, kraken_report, abricate_out ->
-    //         log.info "The AMR annotation pipeline was not ran on ${climb_id}."
-    //         return null
-    //     }
+    // 3. Check if AMR annotations have been made
+    RUN_ABRICATE_DB.out.abricate_results.branch{
+        climb_id, db, abricate_out ->
+        // Skips if only header (no annotations) 
+        annotated: abricate_out.readLines().size() > 1
+        unannotated: abricate_out.readLines().size() <= 1
+    }. set{amr_status}
+    
+    // // if no AMR annotations then skip
+    amr_status.unannotated.map{ 
+            climb_id, db, abricate_out ->
+            log.info "No ${db} annotations found for ${climb_id}."
+            return null
+    }
 
     // // 3. Extract species IDs for each READ assigned AMR
     // READ_ANALYSIS(amr_status.annotated)
