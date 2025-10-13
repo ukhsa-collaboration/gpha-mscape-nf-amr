@@ -46,6 +46,5 @@ workflow AMR_ANALYSIS {
     }.set{ single_end_anno_ch }
 
     READ_ANALYSIS(single_end_anno_ch)
-    READ_ANALYSIS.out.view()
-
+    log.info "Complete annotation of ${climb_id}."
 }
