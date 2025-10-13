@@ -1,0 +1,17 @@
+nextflow.trace/v2
+realtime=562
+%cpu=935
+cpu_model=Intel Xeon Processor (Skylake, IBRS)
+rchar=34484840
+wchar=61696965
+syscr=317
+syscw=1896
+read_bytes=155648
+write_bytes=61698048
+%mem=0
+vmem=13628
+rss=5140
+peak_vmem=13628
+peak_rss=5140
+vol_ctxt=3
+inv_ctxt=20

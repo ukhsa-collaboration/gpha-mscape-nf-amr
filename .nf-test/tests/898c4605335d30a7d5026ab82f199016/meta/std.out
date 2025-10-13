@@ -1,0 +1,3 @@
+Process `GZ_TO_FASTQ` declares 1 input channel but 0 were specified
+
+ -- Check script '/home/jovyan/git/gpha-mscape-nf-amr/.nf-test-898c4605335d30a7d5026ab82f199016.nf' at line: 38 or see '/home/jovyan/git/gpha-mscape-nf-amr/.nf-test/tests/898c4605335d30a7d5026ab82f199016/meta/nextflow.log' file for more details

@@ -1,0 +1,2 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	67/f83b6d	104674	GZ_TO_FASTQ (climb-id)	COMPLETED	0	2025-10-13 14:27:51.022	869ms	788ms	89.0%	5.1 MB	13.3 MB	32.9 MB	58.8 MB
