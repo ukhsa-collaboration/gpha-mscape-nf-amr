@@ -16,9 +16,9 @@ nextflow_process {
                 // define inputs of the process here. Example:
                 // input[0] = = Channel.of(
                     tuple(
-                        val("climb-id"), \\ ID
-                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.tsv", checkIfExists: true), \\ Kraken Assignments
-                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.report.json", checkIfExists: true), \\ Kraken Report
+                        val("climb-id"), 
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.tsv", checkIfExists: true),
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.report.json", checkIfExists: true),
                         val('card'),
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.abricate_card_out.tsv", checkIfExists: true)
 
