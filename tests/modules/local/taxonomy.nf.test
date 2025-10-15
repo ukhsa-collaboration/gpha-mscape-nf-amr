@@ -23,6 +23,7 @@ nextflow_process {
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.abricate_card_out.tsv", checkIfExists: true)
 
                     )
+                )
                 """
             }
         }
