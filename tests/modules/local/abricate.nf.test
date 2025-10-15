@@ -4,7 +4,7 @@ nextflow_process {
     script "modules/local/abricate.nf"
     process "RUN_ABRICATE_DB"
 
-    test("Should run without failures") {
+    test("test_abricate-db_positive") {
 
         when {
             params {
