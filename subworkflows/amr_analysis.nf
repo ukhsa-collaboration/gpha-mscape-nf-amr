@@ -14,7 +14,6 @@ workflow AMR_ANALYSIS {
     single_end_ch.map{
         climb_id, kraken_assignments, kraken_report, fastq1 ->
         tuple( climb_id, fastq1 )
-        def id = climb_id
     }.set{ fastq_ch }
 
     
@@ -37,7 +36,7 @@ workflow AMR_ANALYSIS {
     // if no AMR annotations then skip
     amr_status.unannotated.map{ 
             climb_id, db, abricate_out ->
-            log.info "No ${db} database annotations found for ${id}."
+            log.info "No ${db} database annotations found."
             return null
     }
 
@@ -49,5 +48,5 @@ workflow AMR_ANALYSIS {
     }.set{ single_end_anno_ch }
 
     READ_ANALYSIS(single_end_anno_ch)
-    log.info "Completes annotation of ${id}."
+    log.info "Completes annotation."
 }
