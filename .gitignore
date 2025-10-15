@@ -3,4 +3,4 @@
 *.log
 *.lock
 *.tmp
-.nf-test/*
+.nf-test
