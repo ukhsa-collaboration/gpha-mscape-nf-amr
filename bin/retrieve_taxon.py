@@ -60,6 +60,7 @@ def add_species(df_tsv: pd.DataFrame, taxid_dict: dict):
     '''
     # Convert dictionary into pandas dataframe
     taxid_df = pd.DataFrame.from_dict(taxid_dict, orient='index')
+    breakpoint()
     taxid_df.reset_index(inplace=True)
     taxid_df.rename(columns={'index': 'taxid_key'}, inplace=True)
     for df in [df_tsv, taxid_df]:
