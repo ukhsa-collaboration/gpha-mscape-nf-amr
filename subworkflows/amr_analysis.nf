@@ -16,6 +16,8 @@ workflow AMR_ANALYSIS {
         tuple( climb_id, fastq1 )
     }.set{ fastq_ch }
 
+    def climb_id = climb_id
+
     // 1. Gunzip FASTQ
     GZ_TO_FASTQ(fastq_ch)
     
@@ -34,7 +36,7 @@ workflow AMR_ANALYSIS {
     // if no AMR annotations then skip
     amr_status.unannotated.map{ 
             climb_id, db, abricate_out ->
-            // log.info "No ${db} database annotations found for ${climb_id}."
+            log.info "No ${db} database annotations found for ${climb_id}."
             return null
     }
 
@@ -46,5 +48,5 @@ workflow AMR_ANALYSIS {
     }.set{ single_end_anno_ch }
 
     READ_ANALYSIS(single_end_anno_ch)
-    // log.info "Completes annotation of ${climb_id}."
+    log.info "Completes annotation of ${climb_id}."
 }
