@@ -13,14 +13,12 @@ nextflow_workflow {
             }
             workflow {
                 """
-                // define inputs of the workflow here. Example:
                 input[0] = Channel.of(
                     tuple(
-                        "climb-id", 
+                        "climb_id", 
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.tsv", checkIfExists: true),
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.report.json", checkIfExists: true),
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.abricate_card_out.tsv", checkIfExists: true)
-
                     )
                 )
                 """
