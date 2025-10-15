@@ -18,7 +18,7 @@ nextflow_workflow {
                         "climb_id", 
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.tsv", checkIfExists: true),
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.report.json", checkIfExists: true),
-                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.abricate_card_out.tsv", checkIfExists: true)
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.fq.gz", checkIfExists: true)
                     )
                 )
                 """
