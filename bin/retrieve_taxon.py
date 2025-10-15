@@ -60,14 +60,14 @@ def add_species(df_tsv: pd.DataFrame, taxid_dict: dict):
     '''
     # Convert dictionary into pandas dataframe
     print(taxid_dict)
-    # taxid_df = pd.DataFrame.from_dict(taxid_dict, orient='index')
-    # taxid_df.reset_index(inplace=True)
-    # taxid_df.rename(columns={'index': 'taxid_key'}, inplace=True)
-    # for df in [df_tsv, taxid_df]:
-    #     df['taxid'] = df['taxid'].astype(str)
-    # df_merged  = df_tsv.merge(taxid_df[['taxid','name','raw_rank','rank']],
-    #                           on='taxid', how='left')
-    # return df_merged
+    taxid_df = pd.DataFrame.from_dict(taxid_dict, orient='index')
+    taxid_df.reset_index(inplace=True)
+    taxid_df.rename(columns={'index': 'taxid_key'}, inplace=True)
+    for df in [df_tsv, taxid_df]:
+        df['taxid'] = df['taxid'].astype(str)
+    df_merged  = df_tsv.merge(taxid_df[['taxid','name','raw_rank','rank']],
+                              on='taxid', how='left')
+    return df_merged
 
 def link_abricate_results(df_merged: pd.DataFrame, abricate_csv: Path):
     '''

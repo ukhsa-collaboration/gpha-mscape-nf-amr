@@ -1,3826 +1,4782 @@
-[
-  {
-    "count_descendants": 7099,
-    "count": 7099,
-    "raw_rank": "U",
-    "rank": "U",
-    "taxid": 0,
-    "name": "unclassified"
-  },
-  {
-    "count_descendants": 3275,
-    "count": 0,
-    "raw_rank": "R",
-    "rank": "R",
-    "taxid": 1,
-    "name": "root"
-  },
-  {
-    "count_descendants": 3274,
-    "count": 5,
-    "raw_rank": "R1",
-    "rank": "R1",
-    "taxid": 131567,
-    "name": "cellular organisms"
-  },
-  {
-    "count_descendants": 3244,
-    "count": 23,
-    "raw_rank": "R2",
-    "rank": "R2",
-    "taxid": 2,
-    "name": "Bacteria"
-  },
-  {
-    "count_descendants": 3188,
-    "count": 7,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 3379134,
-    "name": "Pseudomonadati"
-  },
-  {
-    "count_descendants": 3175,
-    "count": 24,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 1224,
-    "name": "Pseudomonadota"
-  },
-  {
-    "count_descendants": 3113,
-    "count": 20,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 1236,
-    "name": "Gammaproteobacteria"
-  },
-  {
-    "count_descendants": 3079,
-    "count": 132,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 91347,
-    "name": "Enterobacterales"
-  },
-  {
-    "count_descendants": 2536,
-    "count": 28,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1903411,
-    "name": "Yersiniaceae"
-  },
-  {
-    "count_descendants": 2501,
-    "count": 1439,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 613,
-    "name": "Serratia"
-  },
-  {
-    "count_descendants": 995,
-    "count": 991,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 615,
-    "name": "Serratia marcescens"
-  },
-  {
-    "count_descendants": 3,
-    "count": 3,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 911022,
-    "name": "Serratia marcescens subsp. marcescens ATCC 13880"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 273526,
-    "name": "Serratia marcescens subsp. marcescens Db11"
-  },
-  {
-    "count_descendants": 19,
-    "count": 1,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2647522,
-    "name": "unclassified Serratia (in: enterobacteria)"
-  },
-  {
-    "count_descendants": 5,
-    "count": 5,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2420306,
-    "name": "Serratia sp. FDAARGOS_506"
-  },
-  {
-    "count_descendants": 3,
-    "count": 3,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1327989,
-    "name": "Serratia sp. FS14"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 671990,
-    "name": "Serratia sp. FGI94"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3423946,
-    "name": "Serratia sp. L9"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2447890,
-    "name": "Serratia sp. 1D1416"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1938820,
-    "name": "Serratia sp. JKS000199"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2775909,
-    "name": "Serratia sp. PAMC26656"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2663241,
-    "name": "Serratia sp. HRI"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2754727,
-    "name": "Serratia sp. AXJ-M"
-  },
-  {
-    "count_descendants": 7,
-    "count": 7,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2741499,
-    "name": "Serratia surfactantfaciens"
-  },
-  {
-    "count_descendants": 6,
-    "count": 6,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 28151,
-    "name": "Serratia proteamaculans"
-  },
-  {
-    "count_descendants": 5,
-    "count": 4,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 614,
-    "name": "Serratia liquefaciens"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1346614,
-    "name": "Serratia liquefaciens ATCC 27592"
-  },
-  {
-    "count_descendants": 5,
-    "count": 3,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 138074,
-    "name": "Serratia symbiotica"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 3066236,
-    "name": "Serratia symbiotica (Periphyllus acericola)"
-  },
-  {
-    "count_descendants": 4,
-    "count": 4,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 61652,
-    "name": "Serratia rubidaea"
-  },
-  {
-    "count_descendants": 4,
-    "count": 4,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 82996,
-    "name": "Serratia plymuthica"
-  },
-  {
-    "count_descendants": 4,
-    "count": 4,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 300181,
-    "name": "Serratia ureilytica"
-  },
-  {
-    "count_descendants": 3,
-    "count": 3,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 42906,
-    "name": "Serratia entomophila"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 47917,
-    "name": "Serratia fonticola"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 82995,
-    "name": "Serratia grimesii"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2338073,
-    "name": "Serratia inhibens"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 618,
-    "name": "Serratia odorifera"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 61651,
-    "name": "Serratia ficaria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2703794,
-    "name": "Serratia nevei"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2597702,
-    "name": "Serratia rhizosphaerae"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 629,
-    "name": "Yersinia"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 34037,
-    "name": "Rahnella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 58169,
-    "name": "Rahnella inusitata"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1510570,
-    "name": "Rahnella victoriana"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1565532,
-    "name": "Rouxiella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1646377,
-    "name": "Rouxiella badensis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1745211,
-    "name": "Chania"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1639108,
-    "name": "Chania multitudinisentens"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1441930,
-    "name": "Chania multitudinisentens RB-25"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1964366,
-    "name": "Nissabacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2636213,
-    "name": "unclassified Nissabacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2126321,
-    "name": "Nissabacter sp. SGAir0207"
-  },
-  {
-    "count_descendants": 392,
-    "count": 11,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 543,
-    "name": "Enterobacteriaceae"
-  },
-  {
-    "count_descendants": 356,
-    "count": 0,
-    "raw_rank": "F1",
-    "rank": "F1",
-    "taxid": 2890311,
-    "name": "Klebsiella/Raoultella group"
-  },
-  {
-    "count_descendants": 354,
-    "count": 51,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 570,
-    "name": "Klebsiella"
-  },
-  {
-    "count_descendants": 288,
-    "count": 9,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 3390273,
-    "name": "Klebsiella pneumoniae complex"
-  },
-  {
-    "count_descendants": 260,
-    "count": 234,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 573,
-    "name": "Klebsiella pneumoniae"
-  },
-  {
-    "count_descendants": 25,
-    "count": 22,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 72407,
-    "name": "Klebsiella pneumoniae subsp. pneumoniae"
-  },
-  {
-    "count_descendants": 3,
-    "count": 3,
-    "raw_rank": "S2",
-    "rank": "S2",
-    "taxid": 1193292,
-    "name": "Klebsiella pneumoniae subsp. pneumoniae 1084"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1420013,
-    "name": "Klebsiella pneumoniae 30684/NJST258_2"
-  },
-  {
-    "count_descendants": 12,
-    "count": 11,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1463165,
-    "name": "Klebsiella quasipneumoniae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1463164,
-    "name": "Klebsiella quasipneumoniae subsp. similipneumoniae"
-  },
-  {
-    "count_descendants": 7,
-    "count": 4,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 244366,
-    "name": "Klebsiella variicola"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 2489014,
-    "name": "Klebsiella variicola subsp. tropica"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 2590157,
-    "name": "Klebsiella variicola subsp. variicola"
-  },
-  {
-    "count_descendants": 10,
-    "count": 10,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 571,
-    "name": "Klebsiella oxytoca"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2489010,
-    "name": "Klebsiella africana"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 548,
-    "name": "Klebsiella aerogenes"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1134687,
-    "name": "Klebsiella michiganensis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2608929,
-    "name": "unclassified Klebsiella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2755385,
-    "name": "Klebsiella sp. I138"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 160674,
-    "name": "Raoultella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 575,
-    "name": "Raoultella planticola"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 54291,
-    "name": "Raoultella ornithinolytica"
-  },
-  {
-    "count_descendants": 9,
-    "count": 3,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 547,
-    "name": "Enterobacter"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 354276,
-    "name": "Enterobacter cloacae complex"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 550,
-    "name": "Enterobacter cloacae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 69219,
-    "name": "Enterobacter cloacae subsp. dissolvens"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S2",
-    "rank": "S2",
-    "taxid": 1104326,
-    "name": "Enterobacter cloacae subsp. dissolvens SDM"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 158836,
-    "name": "Enterobacter hormaechei"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1812935,
-    "name": "Enterobacter roggenkampii"
-  },
-  {
-    "count_descendants": 2,
-    "count": 1,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2608935,
-    "name": "unclassified Enterobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2831891,
-    "name": "Enterobacter sp. JBIWA005"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2529381,
-    "name": "Enterobacter wuhouensis"
-  },
-  {
-    "count_descendants": 9,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 561,
-    "name": "Escherichia"
-  },
-  {
-    "count_descendants": 8,
-    "count": 7,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 562,
-    "name": "Escherichia coli"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 696406,
-    "name": "Escherichia coli UMNK88"
-  },
-  {
-    "count_descendants": 2,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 544,
-    "name": "Citrobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2894201,
-    "name": "Citrobacter meridianamericanus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 579,
-    "name": "Kluyvera"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2774055,
-    "name": "Kluyvera genomosp. 3"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 590,
-    "name": "Salmonella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 28901,
-    "name": "Salmonella enterica"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 620,
-    "name": "Shigella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 623,
-    "name": "Shigella flexneri"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 82976,
-    "name": "Buttiauxella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 413496,
-    "name": "Cronobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 413502,
-    "name": "Cronobacter turicensis"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1903410,
-    "name": "Pectobacteriaceae"
-  },
-  {
-    "count_descendants": 6,
-    "count": 5,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 204037,
-    "name": "Dickeya"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 204039,
-    "name": "Dickeya dianthicola"
-  },
-  {
-    "count_descendants": 5,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1903409,
-    "name": "Erwiniaceae"
-  },
-  {
-    "count_descendants": 4,
-    "count": 3,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 53335,
-    "name": "Pantoea"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2630326,
-    "name": "unclassified Pantoea"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3141459,
-    "name": "Pantoea sp. Ep11b"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 551,
-    "name": "Erwinia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 182337,
-    "name": "Erwinia billingiae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 634500,
-    "name": "Erwinia billingiae Eb661"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2812006,
-    "name": "Bruguierivoracaceae"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 84565,
-    "name": "Sodalis"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2636512,
-    "name": "unclassified Sodalis (in: enterobacteria)"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1486991,
-    "name": "Candidatus Sodalis pierantonii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 2342,
-    "name": "Candidatus Sodalis pierantonii str. SOPE"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1903412,
-    "name": "Hafniaceae"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 635,
-    "name": "Edwardsiella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1903414,
-    "name": "Morganellaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 626,
-    "name": "Xenorhabdus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 351671,
-    "name": "Xenorhabdus doucetiae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1903416,
-    "name": "Budviciaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 82980,
-    "name": "Leminorella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 82981,
-    "name": "Leminorella grimontii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 3120698,
-    "name": "Gallaecimonadaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 745410,
-    "name": "Gallaecimonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3029055,
-    "name": "Gallaecimonas kandeliae"
-  },
-  {
-    "count_descendants": 7,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 72274,
-    "name": "Pseudomonadales"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 135621,
-    "name": "Pseudomonadaceae"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 286,
-    "name": "Pseudomonas"
-  },
-  {
-    "count_descendants": 4,
-    "count": 1,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 196821,
-    "name": "unclassified Pseudomonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2726989,
-    "name": "Pseudomonas sp. gcc21"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3048629,
-    "name": "Pseudomonas sp. MH9.2"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3074146,
-    "name": "Pseudomonas sp. SG20056"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 136843,
-    "name": "Pseudomonas fluorescens group"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 29442,
-    "name": "Pseudomonas tolaasii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 136842,
-    "name": "Pseudomonas chlororaphis group"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 587753,
-    "name": "Pseudomonas chlororaphis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2887365,
-    "name": "Marinobacteraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2742,
-    "name": "Marinobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 135618,
-    "name": "Methylococcales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 403,
-    "name": "Methylococcaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 413,
-    "name": "Methylococcus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2618889,
-    "name": "unclassified Methylococcus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2812648,
-    "name": "Methylococcus sp. EFPC2"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 1775403,
-    "name": "Nevskiales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 568386,
-    "name": "Nevskiaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2893022,
-    "name": "Flagellatimonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2806210,
-    "name": "Flagellatimonas centrodinii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 2887326,
-    "name": "Moraxellales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 468,
-    "name": "Moraxellaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 469,
-    "name": "Acinetobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 196816,
-    "name": "unclassified Acinetobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1646498,
-    "name": "Acinetobacter sp. TTH0-4"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 135624,
-    "name": "Aeromonadales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 84642,
-    "name": "Aeromonadaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 642,
-    "name": "Aeromonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 654,
-    "name": "Aeromonas veronii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 135623,
-    "name": "Vibrionales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 641,
-    "name": "Vibrionaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 662,
-    "name": "Vibrio"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2572923,
-    "name": "Vibrio taketomensis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 135619,
-    "name": "Oceanospirillales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 255527,
-    "name": "Saccharospirillaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 231683,
-    "name": "Saccharospirillum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2161747,
-    "name": "Saccharospirillum mangrovi"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 135614,
-    "name": "Lysobacterales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1775411,
-    "name": "Rhodanobacteraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 75309,
-    "name": "Rhodanobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 666685,
-    "name": "Rhodanobacter denitrificans"
-  },
-  {
-    "count_descendants": 25,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 28211,
-    "name": "Alphaproteobacteria"
-  },
-  {
-    "count_descendants": 10,
-    "count": 1,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 356,
-    "name": "Hyphomicrobiales"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 41294,
-    "name": "Nitrobacteraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 374,
-    "name": "Bradyrhizobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2631580,
-    "name": "unclassified Bradyrhizobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3080013,
-    "name": "Bradyrhizobium sp. BWA-3-5"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1033,
-    "name": "Afipia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 290,
-    "name": "[Pseudomonas] carboxydohydrogena"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 82115,
-    "name": "Rhizobiaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F1",
-    "rank": "F1",
-    "taxid": 227290,
-    "name": "Rhizobium/Agrobacterium group"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 379,
-    "name": "Rhizobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2583231,
-    "name": "Rhizobium indicum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F1",
-    "rank": "F1",
-    "taxid": 227292,
-    "name": "Sinorhizobium/Ensifer group"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 28105,
-    "name": "Sinorhizobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 501572,
-    "name": "Sinorhizobium chiapasense"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 45401,
-    "name": "Hyphomicrobiaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 81,
-    "name": "Hyphomicrobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2619925,
-    "name": "unclassified Hyphomicrobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3413936,
-    "name": "Hyphomicrobium sp. 1Nfss2.1"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 69277,
-    "name": "Phyllobacteriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2911176,
-    "name": "Aquibium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1670800,
-    "name": "Aquibium oceanicum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 119045,
-    "name": "Methylobacteriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 407,
-    "name": "Methylobacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 270351,
-    "name": "Methylobacterium aquaticum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 255475,
-    "name": "Aurantimonadaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 293088,
-    "name": "Martelella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2583532,
-    "name": "Martelella lutilitoris"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2036754,
-    "name": "Chelatococcaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 28209,
-    "name": "Chelatococcus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 444444,
-    "name": "Chelatococcus daeguensis"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 204457,
-    "name": "Sphingomonadales"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 41297,
-    "name": "Sphingomonadaceae"
-  },
-  {
-    "count_descendants": 4,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 13687,
-    "name": "Sphingomonas"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 196159,
-    "name": "unclassified Sphingomonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2937787,
-    "name": "Sphingomonas sp. SUN039"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2903960,
-    "name": "Sphingomonas sp. S2-65"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 185951,
-    "name": "Sphingomonas aerolata"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 165695,
-    "name": "Sphingobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 120107,
-    "name": "Sphingobium cloacae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2611147,
-    "name": "unclassified Sphingobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3038927,
-    "name": "Sphingobium sp. V4"
-  },
-  {
-    "count_descendants": 4,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 204441,
-    "name": "Rhodospirillales"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2829815,
-    "name": "Azospirillaceae"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 191,
-    "name": "Azospirillum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1226968,
-    "name": "Azospirillum humicireducens"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2630922,
-    "name": "unclassified Azospirillum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 664962,
-    "name": "Azospirillum sp. TSH58"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2844864,
-    "name": "Thalassobaculaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 526215,
-    "name": "Thalassobaculum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2632499,
-    "name": "unclassified Thalassobaculum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2022740,
-    "name": "Thalassobaculum sp."
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2844866,
-    "name": "Thalassospiraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 168934,
-    "name": "Thalassospira"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 204455,
-    "name": "Rhodobacterales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 31989,
-    "name": "Paracoccaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1931200,
-    "name": "Marinibacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2618227,
-    "name": "unclassified Marinibacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3388424,
-    "name": "Marinibacterium sp. SX1"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2854170,
-    "name": "Roseobacteraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 299261,
-    "name": "Tateyamaria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2645127,
-    "name": "unclassified Tateyamaria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3092147,
-    "name": "Tateyamaria sp. SN3-11"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 3120395,
-    "name": "Acetobacterales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 3385906,
-    "name": "Roseomonadaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 125216,
-    "name": "Roseomonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2897332,
-    "name": "Roseomonas cutis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 204458,
-    "name": "Caulobacterales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 76892,
-    "name": "Caulobacteraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 75,
-    "name": "Caulobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2648921,
-    "name": "unclassified Caulobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3015996,
-    "name": "Caulobacter sp. NIBR2454"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 2800060,
-    "name": "Hyphomonadales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 69657,
-    "name": "Hyphomonadaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 85,
-    "name": "Hyphomonas"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 81032,
-    "name": "Hyphomonas neptunium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 228405,
-    "name": "Hyphomonas neptunium ATCC 15444"
-  },
-  {
-    "count_descendants": 13,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 28216,
-    "name": "Betaproteobacteria"
-  },
-  {
-    "count_descendants": 9,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 80840,
-    "name": "Burkholderiales"
-  },
-  {
-    "count_descendants": 4,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 119060,
-    "name": "Burkholderiaceae"
-  },
-  {
-    "count_descendants": 3,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 32008,
-    "name": "Burkholderia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 337,
-    "name": "Burkholderia glumae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2613784,
-    "name": "unclassified Burkholderia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3237372,
-    "name": "Burkholderia sp. 22PA0099"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1822464,
-    "name": "Paraburkholderia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2615204,
-    "name": "unclassified Paraburkholderia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3141544,
-    "name": "Paraburkholderia sp. PREW-6R"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 75682,
-    "name": "Oxalobacteraceae"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F1",
-    "rank": "F1",
-    "taxid": 2895353,
-    "name": "Telluria group"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 149698,
-    "name": "Massilia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2769491,
-    "name": "Massilia litorea"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1522432,
-    "name": "Pseudoduganella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 506,
-    "name": "Alcaligenaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 80864,
-    "name": "Comamonadaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 174951,
-    "name": "Ramlibacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 94132,
-    "name": "Ramlibacter tataouinensis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 365046,
-    "name": "Ramlibacter tataouinensis TTB310"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2975441,
-    "name": "Sphaerotilaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 391952,
-    "name": "Aquincola"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 391953,
-    "name": "Aquincola tertiaricarbonis"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 206351,
-    "name": "Neisseriales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 481,
-    "name": "Neisseriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 482,
-    "name": "Neisseria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2623750,
-    "name": "unclassified Neisseria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 655307,
-    "name": "Neisseria sp. KEM232"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1499392,
-    "name": "Chromobacteriaceae"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 206389,
-    "name": "Rhodocyclales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 75787,
-    "name": "Rhodocyclaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1769726,
-    "name": "Niveibacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3373598,
-    "name": "Niveibacterium terrae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2008794,
-    "name": "Zoogloeaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 33057,
-    "name": "Thauera"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 96773,
-    "name": "Thauera chlorobenzoica"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "K1",
-    "rank": "K1",
-    "taxid": 1783270,
-    "name": "FCB group"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "K2",
-    "rank": "K2",
-    "taxid": 68336,
-    "name": "Bacteroidota/Chlorobiota group"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 976,
-    "name": "Bacteroidota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 117743,
-    "name": "Flavobacteriia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 200644,
-    "name": "Flavobacteriales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 49546,
-    "name": "Flavobacteriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 52959,
-    "name": "Polaribacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 196858,
-    "name": "unclassified Polaribacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 754397,
-    "name": "Polaribacter sp. SA4-10"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 117747,
-    "name": "Sphingobacteriia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 200666,
-    "name": "Sphingobacteriales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 84566,
-    "name": "Sphingobacteriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 423349,
-    "name": "Mucilaginibacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1176721,
-    "name": "Mucilaginibacter jinjuensis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 29547,
-    "name": "Campylobacterota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 3031852,
-    "name": "Epsilonproteobacteria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 213849,
-    "name": "Campylobacterales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2808963,
-    "name": "Arcobacteraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 28196,
-    "name": "Arcobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2593671,
-    "name": "unclassified Arcobacter"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3374109,
-    "name": "Arcobacter sp. 15-2"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 203691,
-    "name": "Spirochaetota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 203692,
-    "name": "Spirochaetia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 1643686,
-    "name": "Brachyspirales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 143786,
-    "name": "Brachyspiraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 29521,
-    "name": "Brachyspira"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 84378,
-    "name": "Brachyspira murdochii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 526224,
-    "name": "Brachyspira murdochii DSM 12563"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 200940,
-    "name": "Thermodesulfobacteriota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 3031449,
-    "name": "Desulfovibrionia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 213115,
-    "name": "Desulfovibrionales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 194924,
-    "name": "Desulfovibrionaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2910984,
-    "name": "Solidesulfovibrio"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 184917,
-    "name": "Solidesulfovibrio magneticus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 573370,
-    "name": "Solidesulfovibrio magneticus RS-1"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 200930,
-    "name": "Deferribacterota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 68337,
-    "name": "Deferribacteres"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 191393,
-    "name": "Deferribacterales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2945022,
-    "name": "Flexistipitaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2351,
-    "name": "Flexistipes"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2352,
-    "name": "Flexistipes sinusarabici"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 717231,
-    "name": "Flexistipes sinusarabici DSM 4947"
-  },
-  {
-    "count_descendants": 32,
-    "count": 0,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 1783272,
-    "name": "Bacillati"
-  },
-  {
-    "count_descendants": 26,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 201174,
-    "name": "Actinomycetota"
-  },
-  {
-    "count_descendants": 25,
-    "count": 2,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 1760,
-    "name": "Actinomycetes"
-  },
-  {
-    "count_descendants": 10,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85011,
-    "name": "Kitasatosporales"
-  },
-  {
-    "count_descendants": 10,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2062,
-    "name": "Streptomycetaceae"
-  },
-  {
-    "count_descendants": 10,
-    "count": 3,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1883,
-    "name": "Streptomyces"
-  },
-  {
-    "count_descendants": 6,
-    "count": 3,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2593676,
-    "name": "unclassified Streptomyces"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3002640,
-    "name": "Streptomyces sp. 71268"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2903723,
-    "name": "Streptomyces sp. NBC_01022"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1333528,
-    "name": "Streptomyces sp. GMY02"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2880933,
-    "name": "Streptomyces longhuiensis"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85007,
-    "name": "Mycobacteriales"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1762,
-    "name": "Mycobacteriaceae"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1866885,
-    "name": "Mycolicibacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1791,
-    "name": "Mycolicibacterium aurum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1810,
-    "name": "Mycolicibacterium vaccae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1354275,
-    "name": "Mycolicibacterium vaccae 95051"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 67081,
-    "name": "Mycolicibacterium alvei"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 152142,
-    "name": "Mycolicibacterium holsaticum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1226752,
-    "name": "Mycolicibacterium holsaticum DSM 44478 = JCM 12374"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1286180,
-    "name": "Mycolicibacterium sediminis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1799,
-    "name": "Mycolicibacterium aichiense"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85006,
-    "name": "Micrococcales"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 85023,
-    "name": "Microbacteriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2034,
-    "name": "Curtobacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 257496,
-    "name": "unclassified Curtobacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1905847,
-    "name": "Curtobacterium sp. BH-2-1-1"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 96492,
-    "name": "Frigoribacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2627005,
-    "name": "unclassified Frigoribacterium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2994664,
-    "name": "Frigoribacterium sp. SL97"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85012,
-    "name": "Streptosporangiales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2004,
-    "name": "Streptosporangiaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2000,
-    "name": "Streptosporangium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2632669,
-    "name": "unclassified Streptosporangium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 83676,
-    "name": "Nocardiopsidaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2013,
-    "name": "Nocardiopsis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 280236,
-    "name": "Nocardiopsis gilva"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1235441,
-    "name": "Nocardiopsis gilva YIM 90087"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85008,
-    "name": "Micromonosporales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 28056,
-    "name": "Micromonosporaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1865,
-    "name": "Actinoplanes"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1867,
-    "name": "Actinoplanes teichomyceticus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 457423,
-    "name": "Actinoplanes teichomyceticus ATCC 31121"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85009,
-    "name": "Propionibacteriales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 31957,
-    "name": "Propionibacteriaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1278221,
-    "name": "Auraticoccus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 675864,
-    "name": "Auraticoccus monumenti"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 85010,
-    "name": "Pseudonocardiales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 2070,
-    "name": "Pseudonocardiaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1813,
-    "name": "Amycolatopsis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 76021,
-    "name": "Amycolatopsis coloradensis"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 84998,
-    "name": "Coriobacteriia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 84999,
-    "name": "Coriobacteriales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1643824,
-    "name": "Atopobiaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1380,
-    "name": "Atopobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2643817,
-    "name": "unclassified Atopobium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 712157,
-    "name": "Atopobium sp. oral taxon 416"
-  },
-  {
-    "count_descendants": 6,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 1239,
-    "name": "Bacillota"
-  },
-  {
-    "count_descendants": 4,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 91061,
-    "name": "Bacilli"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 1385,
-    "name": "Bacillales"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 186817,
-    "name": "Bacillaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1386,
-    "name": "Bacillus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 2675233,
-    "name": "Metabacillus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G1",
-    "rank": "G1",
-    "taxid": 2675274,
-    "name": "unclassified Metabacillus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2897333,
-    "name": "Metabacillus sp. B2-18"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 186826,
-    "name": "Lactobacillales"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1300,
-    "name": "Streptococcaceae"
-  },
-  {
-    "count_descendants": 2,
-    "count": 2,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1301,
-    "name": "Streptococcus"
-  },
-  {
-    "count_descendants": 2,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 186801,
-    "name": "Clostridia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 3082720,
-    "name": "Peptostreptococcales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 186804,
-    "name": "Peptostreptococcaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1849822,
-    "name": "Paraclostridium"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1505,
-    "name": "Paraclostridium sordellii"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 3085636,
-    "name": "Lachnospirales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 186803,
-    "name": "Lachnospiraceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 572511,
-    "name": "Blautia"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 40520,
-    "name": "Blautia obeum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 3384194,
-    "name": "Thermotogati"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 1297,
-    "name": "Deinococcota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 188787,
-    "name": "Deinococci"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 118964,
-    "name": "Deinococcales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 183710,
-    "name": "Deinococcaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1298,
-    "name": "Deinococcus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2737050,
-    "name": "Deinococcus taeanensis"
-  },
-  {
-    "count_descendants": 22,
-    "count": 0,
-    "raw_rank": "R2",
-    "rank": "R2",
-    "taxid": 2759,
-    "name": "Eukaryota"
-  },
-  {
-    "count_descendants": 21,
-    "count": 0,
-    "raw_rank": "R3",
-    "rank": "R3",
-    "taxid": 33154,
-    "name": "Opisthokonta"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 33208,
-    "name": "Metazoa"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "K1",
-    "rank": "K1",
-    "taxid": 6072,
-    "name": "Eumetazoa"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "K2",
-    "rank": "K2",
-    "taxid": 33213,
-    "name": "Bilateria"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "K3",
-    "rank": "K3",
-    "taxid": 33511,
-    "name": "Deuterostomia"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 7711,
-    "name": "Chordata"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P1",
-    "rank": "P1",
-    "taxid": 89593,
-    "name": "Craniata"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P2",
-    "rank": "P2",
-    "taxid": 7742,
-    "name": "Vertebrata"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P3",
-    "rank": "P3",
-    "taxid": 7776,
-    "name": "Gnathostomata"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P4",
-    "rank": "P4",
-    "taxid": 117570,
-    "name": "Teleostomi"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P5",
-    "rank": "P5",
-    "taxid": 117571,
-    "name": "Euteleostomi"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P6",
-    "rank": "P6",
-    "taxid": 8287,
-    "name": "Sarcopterygii"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P7",
-    "rank": "P7",
-    "taxid": 1338369,
-    "name": "Dipnotetrapodomorpha"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P8",
-    "rank": "P8",
-    "taxid": 32523,
-    "name": "Tetrapoda"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "P9",
-    "rank": "P9",
-    "taxid": 32524,
-    "name": "Amniota"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 40674,
-    "name": "Mammalia"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "C1",
-    "rank": "C1",
-    "taxid": 32525,
-    "name": "Theria"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "C2",
-    "rank": "C2",
-    "taxid": 9347,
-    "name": "Eutheria"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "C3",
-    "rank": "C3",
-    "taxid": 1437010,
-    "name": "Boreoeutheria"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "C4",
-    "rank": "C4",
-    "taxid": 314146,
-    "name": "Euarchontoglires"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 9443,
-    "name": "Primates"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "O1",
-    "rank": "O1",
-    "taxid": 376913,
-    "name": "Haplorrhini"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "O2",
-    "rank": "O2",
-    "taxid": 314293,
-    "name": "Simiiformes"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "O3",
-    "rank": "O3",
-    "taxid": 9526,
-    "name": "Catarrhini"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "O4",
-    "rank": "O4",
-    "taxid": 314295,
-    "name": "Hominoidea"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 9604,
-    "name": "Hominidae"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "F1",
-    "rank": "F1",
-    "taxid": 207598,
-    "name": "Homininae"
-  },
-  {
-    "count_descendants": 20,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 9605,
-    "name": "Homo"
-  },
-  {
-    "count_descendants": 20,
-    "count": 20,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 9606,
-    "name": "Homo sapiens"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 4751,
-    "name": "Fungi"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "K1",
-    "rank": "K1",
-    "taxid": 451864,
-    "name": "Dikarya"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 5204,
-    "name": "Basidiomycota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P1",
-    "rank": "P1",
-    "taxid": 5302,
-    "name": "Agaricomycotina"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 155616,
-    "name": "Tremellomycetes"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 5234,
-    "name": "Tremellales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1884633,
-    "name": "Cryptococcaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 490731,
-    "name": "Kwoniella"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 453459,
-    "name": "Kwoniella pini"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1296096,
-    "name": "Kwoniella pini CBS 10737"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "R3",
-    "rank": "R3",
-    "taxid": 2611352,
-    "name": "Discoba"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 33682,
-    "name": "Euglenozoa"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 5653,
-    "name": "Kinetoplastea"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C1",
-    "rank": "C1",
-    "taxid": 2704647,
-    "name": "Metakinetoplastina"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 2704949,
-    "name": "Trypanosomatida"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 5654,
-    "name": "Trypanosomatidae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F1",
-    "rank": "F1",
-    "taxid": 1286322,
-    "name": "Leishmaniinae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 5658,
-    "name": "Leishmania"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "R2",
-    "rank": "R2",
-    "taxid": 2157,
-    "name": "Archaea"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 3366610,
-    "name": "Methanobacteriati"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 28890,
-    "name": "Methanobacteriota"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "P1",
-    "rank": "P1",
-    "taxid": 2290931,
-    "name": "Stenosarchaea group"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 183963,
-    "name": "Halobacteria"
-  },
-  {
-    "count_descendants": 3,
-    "count": 0,
-    "raw_rank": "O",
-    "rank": "O",
-    "taxid": 2235,
-    "name": "Halobacteriales"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1644056,
-    "name": "Haloferacaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 376170,
-    "name": "Haloplanus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 2949995,
-    "name": "Haloplanus pelagicus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1644061,
-    "name": "Natrialbaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 3383206,
-    "name": "Halovalidus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3075124,
-    "name": "Halovalidus salilacus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "F",
-    "rank": "F",
-    "taxid": 1963268,
-    "name": "Haloarculaceae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 171163,
-    "name": "Halosimplex"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 3026162,
-    "name": "Halosimplex aquaticum"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "R1",
-    "rank": "R1",
-    "taxid": 10239,
-    "name": "Viruses"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "R2",
-    "rank": "R2",
-    "taxid": 2731341,
-    "name": "Duplodnaviria"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "K",
-    "rank": "K",
-    "taxid": 2731360,
-    "name": "Heunggongvirae"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P",
-    "rank": "P",
-    "taxid": 2731618,
-    "name": "Uroviricota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "P1",
-    "rank": "P1",
-    "taxid": 2788786,
-    "name": "unclassified Uroviricota"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "C",
-    "rank": "C",
-    "taxid": 2731619,
-    "name": "Caudoviricetes"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "G",
-    "rank": "G",
-    "taxid": 1980922,
-    "name": "Chiangmaivirus"
-  },
-  {
-    "count_descendants": 1,
-    "count": 0,
-    "raw_rank": "S",
-    "rank": "S",
-    "taxid": 1980926,
-    "name": "Chiangmaivirus RSF1"
-  },
-  {
-    "count_descendants": 1,
-    "count": 1,
-    "raw_rank": "S1",
-    "rank": "S1",
-    "taxid": 1689679,
-    "name": "Ralstonia phage RSF1"
-  }
-]
+{
+    "0": {
+        "percentage": 68.43,
+        "count": 7099,
+        "count_descendants": 7099,
+        "raw_rank": "U",
+        "rank": "U",
+        "name": "unclassified",
+        "taxid": "0",
+        "is_spike_in": false
+    },
+    "1": {
+        "percentage": 31.57,
+        "count": 0,
+        "count_descendants": 3275,
+        "raw_rank": "R",
+        "rank": "R",
+        "name": "root",
+        "taxid": "1",
+        "is_spike_in": false
+    },
+    "131567": {
+        "percentage": 31.56,
+        "count": 5,
+        "count_descendants": 3274,
+        "raw_rank": "R1",
+        "rank": "R",
+        "name": "cellular organisms",
+        "taxid": "131567",
+        "is_spike_in": false
+    },
+    "2": {
+        "percentage": 31.27,
+        "count": 23,
+        "count_descendants": 3244,
+        "raw_rank": "R2",
+        "rank": "R",
+        "name": "Bacteria",
+        "taxid": "2",
+        "is_spike_in": false
+    },
+    "3379134": {
+        "percentage": 30.73,
+        "count": 7,
+        "count_descendants": 3188,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Pseudomonadati",
+        "taxid": "3379134",
+        "is_spike_in": false
+    },
+    "1224": {
+        "percentage": 30.61,
+        "count": 24,
+        "count_descendants": 3175,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Pseudomonadota",
+        "taxid": "1224",
+        "is_spike_in": false
+    },
+    "1236": {
+        "percentage": 30.01,
+        "count": 20,
+        "count_descendants": 3113,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Gammaproteobacteria",
+        "taxid": "1236",
+        "is_spike_in": false
+    },
+    "91347": {
+        "percentage": 29.68,
+        "count": 132,
+        "count_descendants": 3079,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Enterobacterales",
+        "taxid": "91347",
+        "is_spike_in": false
+    },
+    "1903411": {
+        "percentage": 24.45,
+        "count": 28,
+        "count_descendants": 2536,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Yersiniaceae",
+        "taxid": "1903411",
+        "is_spike_in": false
+    },
+    "613": {
+        "percentage": 24.11,
+        "count": 1439,
+        "count_descendants": 2501,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Serratia",
+        "taxid": "613",
+        "is_spike_in": false
+    },
+    "615": {
+        "percentage": 9.59,
+        "count": 991,
+        "count_descendants": 995,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia marcescens",
+        "taxid": "615",
+        "is_spike_in": false
+    },
+    "911022": {
+        "percentage": 0.03,
+        "count": 3,
+        "count_descendants": 3,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Serratia marcescens subsp. marcescens ATCC 13880",
+        "taxid": "911022",
+        "is_spike_in": false
+    },
+    "273526": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Serratia marcescens subsp. marcescens Db11",
+        "taxid": "273526",
+        "is_spike_in": false
+    },
+    "2647522": {
+        "percentage": 0.18,
+        "count": 1,
+        "count_descendants": 19,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Serratia (in: enterobacteria)",
+        "taxid": "2647522",
+        "is_spike_in": false
+    },
+    "2420306": {
+        "percentage": 0.05,
+        "count": 5,
+        "count_descendants": 5,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. FDAARGOS_506",
+        "taxid": "2420306",
+        "is_spike_in": false
+    },
+    "1327989": {
+        "percentage": 0.03,
+        "count": 3,
+        "count_descendants": 3,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. FS14",
+        "taxid": "1327989",
+        "is_spike_in": false
+    },
+    "671990": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. FGI94",
+        "taxid": "671990",
+        "is_spike_in": false
+    },
+    "3423946": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. L9",
+        "taxid": "3423946",
+        "is_spike_in": false
+    },
+    "2447890": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. 1D1416",
+        "taxid": "2447890",
+        "is_spike_in": false
+    },
+    "1938820": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. JKS000199",
+        "taxid": "1938820",
+        "is_spike_in": false
+    },
+    "2775909": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. PAMC26656",
+        "taxid": "2775909",
+        "is_spike_in": false
+    },
+    "2663241": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. HRI",
+        "taxid": "2663241",
+        "is_spike_in": false
+    },
+    "2754727": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia sp. AXJ-M",
+        "taxid": "2754727",
+        "is_spike_in": false
+    },
+    "2741499": {
+        "percentage": 0.07,
+        "count": 7,
+        "count_descendants": 7,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia surfactantfaciens",
+        "taxid": "2741499",
+        "is_spike_in": false
+    },
+    "28151": {
+        "percentage": 0.06,
+        "count": 6,
+        "count_descendants": 6,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia proteamaculans",
+        "taxid": "28151",
+        "is_spike_in": false
+    },
+    "614": {
+        "percentage": 0.05,
+        "count": 4,
+        "count_descendants": 5,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia liquefaciens",
+        "taxid": "614",
+        "is_spike_in": false
+    },
+    "1346614": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Serratia liquefaciens ATCC 27592",
+        "taxid": "1346614",
+        "is_spike_in": false
+    },
+    "138074": {
+        "percentage": 0.05,
+        "count": 3,
+        "count_descendants": 5,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia symbiotica",
+        "taxid": "138074",
+        "is_spike_in": false
+    },
+    "3066236": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Serratia symbiotica (Periphyllus acericola)",
+        "taxid": "3066236",
+        "is_spike_in": false
+    },
+    "61652": {
+        "percentage": 0.04,
+        "count": 4,
+        "count_descendants": 4,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia rubidaea",
+        "taxid": "61652",
+        "is_spike_in": false
+    },
+    "82996": {
+        "percentage": 0.04,
+        "count": 4,
+        "count_descendants": 4,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia plymuthica",
+        "taxid": "82996",
+        "is_spike_in": false
+    },
+    "300181": {
+        "percentage": 0.04,
+        "count": 4,
+        "count_descendants": 4,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia ureilytica",
+        "taxid": "300181",
+        "is_spike_in": false
+    },
+    "42906": {
+        "percentage": 0.03,
+        "count": 3,
+        "count_descendants": 3,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia entomophila",
+        "taxid": "42906",
+        "is_spike_in": false
+    },
+    "47917": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia fonticola",
+        "taxid": "47917",
+        "is_spike_in": false
+    },
+    "82995": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia grimesii",
+        "taxid": "82995",
+        "is_spike_in": false
+    },
+    "2338073": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia inhibens",
+        "taxid": "2338073",
+        "is_spike_in": false
+    },
+    "618": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia odorifera",
+        "taxid": "618",
+        "is_spike_in": false
+    },
+    "61651": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia ficaria",
+        "taxid": "61651",
+        "is_spike_in": false
+    },
+    "2703794": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia nevei",
+        "taxid": "2703794",
+        "is_spike_in": false
+    },
+    "2597702": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Serratia rhizosphaerae",
+        "taxid": "2597702",
+        "is_spike_in": false
+    },
+    "629": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Yersinia",
+        "taxid": "629",
+        "is_spike_in": false
+    },
+    "34037": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Rahnella",
+        "taxid": "34037",
+        "is_spike_in": false
+    },
+    "58169": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Rahnella inusitata",
+        "taxid": "58169",
+        "is_spike_in": false
+    },
+    "1510570": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Rahnella victoriana",
+        "taxid": "1510570",
+        "is_spike_in": false
+    },
+    "1565532": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Rouxiella",
+        "taxid": "1565532",
+        "is_spike_in": false
+    },
+    "1646377": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Rouxiella badensis",
+        "taxid": "1646377",
+        "is_spike_in": false
+    },
+    "1745211": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Chania",
+        "taxid": "1745211",
+        "is_spike_in": false
+    },
+    "1639108": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Chania multitudinisentens",
+        "taxid": "1639108",
+        "is_spike_in": false
+    },
+    "1441930": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Chania multitudinisentens RB-25",
+        "taxid": "1441930",
+        "is_spike_in": false
+    },
+    "1964366": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Nissabacter",
+        "taxid": "1964366",
+        "is_spike_in": false
+    },
+    "2636213": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Nissabacter",
+        "taxid": "2636213",
+        "is_spike_in": false
+    },
+    "2126321": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Nissabacter sp. SGAir0207",
+        "taxid": "2126321",
+        "is_spike_in": false
+    },
+    "543": {
+        "percentage": 3.78,
+        "count": 11,
+        "count_descendants": 392,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Enterobacteriaceae",
+        "taxid": "543",
+        "is_spike_in": false
+    },
+    "2890311": {
+        "percentage": 3.43,
+        "count": 0,
+        "count_descendants": 356,
+        "raw_rank": "F1",
+        "rank": "F",
+        "name": "Klebsiella/Raoultella group",
+        "taxid": "2890311",
+        "is_spike_in": false
+    },
+    "570": {
+        "percentage": 3.41,
+        "count": 51,
+        "count_descendants": 354,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Klebsiella",
+        "taxid": "570",
+        "is_spike_in": false
+    },
+    "3390273": {
+        "percentage": 2.78,
+        "count": 9,
+        "count_descendants": 288,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "Klebsiella pneumoniae complex",
+        "taxid": "3390273",
+        "is_spike_in": false
+    },
+    "573": {
+        "percentage": 2.51,
+        "count": 234,
+        "count_descendants": 260,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella pneumoniae",
+        "taxid": "573",
+        "is_spike_in": false
+    },
+    "72407": {
+        "percentage": 0.24,
+        "count": 22,
+        "count_descendants": 25,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Klebsiella pneumoniae subsp. pneumoniae",
+        "taxid": "72407",
+        "is_spike_in": false
+    },
+    "1193292": {
+        "percentage": 0.03,
+        "count": 3,
+        "count_descendants": 3,
+        "raw_rank": "S2",
+        "rank": "S",
+        "name": "Klebsiella pneumoniae subsp. pneumoniae 1084",
+        "taxid": "1193292",
+        "is_spike_in": false
+    },
+    "1420013": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Klebsiella pneumoniae 30684/NJST258_2",
+        "taxid": "1420013",
+        "is_spike_in": false
+    },
+    "1463165": {
+        "percentage": 0.12,
+        "count": 11,
+        "count_descendants": 12,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella quasipneumoniae",
+        "taxid": "1463165",
+        "is_spike_in": false
+    },
+    "1463164": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Klebsiella quasipneumoniae subsp. similipneumoniae",
+        "taxid": "1463164",
+        "is_spike_in": false
+    },
+    "244366": {
+        "percentage": 0.07,
+        "count": 4,
+        "count_descendants": 7,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella variicola",
+        "taxid": "244366",
+        "is_spike_in": false
+    },
+    "2489014": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Klebsiella variicola subsp. tropica",
+        "taxid": "2489014",
+        "is_spike_in": false
+    },
+    "2590157": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Klebsiella variicola subsp. variicola",
+        "taxid": "2590157",
+        "is_spike_in": false
+    },
+    "571": {
+        "percentage": 0.1,
+        "count": 10,
+        "count_descendants": 10,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella oxytoca",
+        "taxid": "571",
+        "is_spike_in": false
+    },
+    "2489010": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella africana",
+        "taxid": "2489010",
+        "is_spike_in": false
+    },
+    "548": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella aerogenes",
+        "taxid": "548",
+        "is_spike_in": false
+    },
+    "1134687": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella michiganensis",
+        "taxid": "1134687",
+        "is_spike_in": false
+    },
+    "2608929": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Klebsiella",
+        "taxid": "2608929",
+        "is_spike_in": false
+    },
+    "2755385": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Klebsiella sp. I138",
+        "taxid": "2755385",
+        "is_spike_in": false
+    },
+    "160674": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Raoultella",
+        "taxid": "160674",
+        "is_spike_in": false
+    },
+    "575": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Raoultella planticola",
+        "taxid": "575",
+        "is_spike_in": false
+    },
+    "54291": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Raoultella ornithinolytica",
+        "taxid": "54291",
+        "is_spike_in": false
+    },
+    "547": {
+        "percentage": 0.09,
+        "count": 3,
+        "count_descendants": 9,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Enterobacter",
+        "taxid": "547",
+        "is_spike_in": false
+    },
+    "354276": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "Enterobacter cloacae complex",
+        "taxid": "354276",
+        "is_spike_in": false
+    },
+    "550": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Enterobacter cloacae",
+        "taxid": "550",
+        "is_spike_in": false
+    },
+    "69219": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Enterobacter cloacae subsp. dissolvens",
+        "taxid": "69219",
+        "is_spike_in": false
+    },
+    "1104326": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S2",
+        "rank": "S",
+        "name": "Enterobacter cloacae subsp. dissolvens SDM",
+        "taxid": "1104326",
+        "is_spike_in": false
+    },
+    "158836": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Enterobacter hormaechei",
+        "taxid": "158836",
+        "is_spike_in": false
+    },
+    "1812935": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Enterobacter roggenkampii",
+        "taxid": "1812935",
+        "is_spike_in": false
+    },
+    "2608935": {
+        "percentage": 0.02,
+        "count": 1,
+        "count_descendants": 2,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Enterobacter",
+        "taxid": "2608935",
+        "is_spike_in": false
+    },
+    "2831891": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Enterobacter sp. JBIWA005",
+        "taxid": "2831891",
+        "is_spike_in": false
+    },
+    "2529381": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Enterobacter wuhouensis",
+        "taxid": "2529381",
+        "is_spike_in": false
+    },
+    "561": {
+        "percentage": 0.09,
+        "count": 1,
+        "count_descendants": 9,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Escherichia",
+        "taxid": "561",
+        "is_spike_in": false
+    },
+    "562": {
+        "percentage": 0.08,
+        "count": 7,
+        "count_descendants": 8,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Escherichia coli",
+        "taxid": "562",
+        "is_spike_in": false
+    },
+    "696406": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Escherichia coli UMNK88",
+        "taxid": "696406",
+        "is_spike_in": false
+    },
+    "544": {
+        "percentage": 0.02,
+        "count": 1,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Citrobacter",
+        "taxid": "544",
+        "is_spike_in": false
+    },
+    "2894201": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Citrobacter meridianamericanus",
+        "taxid": "2894201",
+        "is_spike_in": false
+    },
+    "579": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Kluyvera",
+        "taxid": "579",
+        "is_spike_in": false
+    },
+    "2774055": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Kluyvera genomosp. 3",
+        "taxid": "2774055",
+        "is_spike_in": false
+    },
+    "590": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Salmonella",
+        "taxid": "590",
+        "is_spike_in": false
+    },
+    "28901": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Salmonella enterica",
+        "taxid": "28901",
+        "is_spike_in": false
+    },
+    "620": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Shigella",
+        "taxid": "620",
+        "is_spike_in": false
+    },
+    "623": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Shigella flexneri",
+        "taxid": "623",
+        "is_spike_in": false
+    },
+    "82976": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Buttiauxella",
+        "taxid": "82976",
+        "is_spike_in": false
+    },
+    "413496": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Cronobacter",
+        "taxid": "413496",
+        "is_spike_in": false
+    },
+    "413502": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Cronobacter turicensis",
+        "taxid": "413502",
+        "is_spike_in": false
+    },
+    "1903410": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Pectobacteriaceae",
+        "taxid": "1903410",
+        "is_spike_in": false
+    },
+    "204037": {
+        "percentage": 0.06,
+        "count": 5,
+        "count_descendants": 6,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Dickeya",
+        "taxid": "204037",
+        "is_spike_in": false
+    },
+    "204039": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Dickeya dianthicola",
+        "taxid": "204039",
+        "is_spike_in": false
+    },
+    "1903409": {
+        "percentage": 0.05,
+        "count": 0,
+        "count_descendants": 5,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Erwiniaceae",
+        "taxid": "1903409",
+        "is_spike_in": false
+    },
+    "53335": {
+        "percentage": 0.04,
+        "count": 3,
+        "count_descendants": 4,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Pantoea",
+        "taxid": "53335",
+        "is_spike_in": false
+    },
+    "2630326": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Pantoea",
+        "taxid": "2630326",
+        "is_spike_in": false
+    },
+    "3141459": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Pantoea sp. Ep11b",
+        "taxid": "3141459",
+        "is_spike_in": false
+    },
+    "551": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Erwinia",
+        "taxid": "551",
+        "is_spike_in": false
+    },
+    "182337": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Erwinia billingiae",
+        "taxid": "182337",
+        "is_spike_in": false
+    },
+    "634500": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Erwinia billingiae Eb661",
+        "taxid": "634500",
+        "is_spike_in": false
+    },
+    "2812006": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Bruguierivoracaceae",
+        "taxid": "2812006",
+        "is_spike_in": false
+    },
+    "84565": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Sodalis",
+        "taxid": "84565",
+        "is_spike_in": false
+    },
+    "2636512": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Sodalis (in: enterobacteria)",
+        "taxid": "2636512",
+        "is_spike_in": false
+    },
+    "1486991": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Candidatus Sodalis pierantonii",
+        "taxid": "1486991",
+        "is_spike_in": false
+    },
+    "2342": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Candidatus Sodalis pierantonii str. SOPE",
+        "taxid": "2342",
+        "is_spike_in": false
+    },
+    "1903412": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Hafniaceae",
+        "taxid": "1903412",
+        "is_spike_in": false
+    },
+    "635": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Edwardsiella",
+        "taxid": "635",
+        "is_spike_in": false
+    },
+    "1903414": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Morganellaceae",
+        "taxid": "1903414",
+        "is_spike_in": false
+    },
+    "626": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Xenorhabdus",
+        "taxid": "626",
+        "is_spike_in": false
+    },
+    "351671": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Xenorhabdus doucetiae",
+        "taxid": "351671",
+        "is_spike_in": false
+    },
+    "1903416": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Budviciaceae",
+        "taxid": "1903416",
+        "is_spike_in": false
+    },
+    "82980": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Leminorella",
+        "taxid": "82980",
+        "is_spike_in": false
+    },
+    "82981": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Leminorella grimontii",
+        "taxid": "82981",
+        "is_spike_in": false
+    },
+    "3120698": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Gallaecimonadaceae",
+        "taxid": "3120698",
+        "is_spike_in": false
+    },
+    "745410": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Gallaecimonas",
+        "taxid": "745410",
+        "is_spike_in": false
+    },
+    "3029055": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Gallaecimonas kandeliae",
+        "taxid": "3029055",
+        "is_spike_in": false
+    },
+    "72274": {
+        "percentage": 0.07,
+        "count": 0,
+        "count_descendants": 7,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Pseudomonadales",
+        "taxid": "72274",
+        "is_spike_in": false
+    },
+    "135621": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Pseudomonadaceae",
+        "taxid": "135621",
+        "is_spike_in": false
+    },
+    "286": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Pseudomonas",
+        "taxid": "286",
+        "is_spike_in": false
+    },
+    "196821": {
+        "percentage": 0.04,
+        "count": 1,
+        "count_descendants": 4,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Pseudomonas",
+        "taxid": "196821",
+        "is_spike_in": false
+    },
+    "2726989": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Pseudomonas sp. gcc21",
+        "taxid": "2726989",
+        "is_spike_in": false
+    },
+    "3048629": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Pseudomonas sp. MH9.2",
+        "taxid": "3048629",
+        "is_spike_in": false
+    },
+    "3074146": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Pseudomonas sp. SG20056",
+        "taxid": "3074146",
+        "is_spike_in": false
+    },
+    "136843": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "Pseudomonas fluorescens group",
+        "taxid": "136843",
+        "is_spike_in": false
+    },
+    "29442": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Pseudomonas tolaasii",
+        "taxid": "29442",
+        "is_spike_in": false
+    },
+    "136842": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "Pseudomonas chlororaphis group",
+        "taxid": "136842",
+        "is_spike_in": false
+    },
+    "587753": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Pseudomonas chlororaphis",
+        "taxid": "587753",
+        "is_spike_in": false
+    },
+    "2887365": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Marinobacteraceae",
+        "taxid": "2887365",
+        "is_spike_in": false
+    },
+    "2742": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Marinobacter",
+        "taxid": "2742",
+        "is_spike_in": false
+    },
+    "135618": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Methylococcales",
+        "taxid": "135618",
+        "is_spike_in": false
+    },
+    "403": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Methylococcaceae",
+        "taxid": "403",
+        "is_spike_in": false
+    },
+    "413": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Methylococcus",
+        "taxid": "413",
+        "is_spike_in": false
+    },
+    "2618889": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Methylococcus",
+        "taxid": "2618889",
+        "is_spike_in": false
+    },
+    "2812648": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Methylococcus sp. EFPC2",
+        "taxid": "2812648",
+        "is_spike_in": false
+    },
+    "1775403": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Nevskiales",
+        "taxid": "1775403",
+        "is_spike_in": false
+    },
+    "568386": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Nevskiaceae",
+        "taxid": "568386",
+        "is_spike_in": false
+    },
+    "2893022": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Flagellatimonas",
+        "taxid": "2893022",
+        "is_spike_in": false
+    },
+    "2806210": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Flagellatimonas centrodinii",
+        "taxid": "2806210",
+        "is_spike_in": false
+    },
+    "2887326": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Moraxellales",
+        "taxid": "2887326",
+        "is_spike_in": false
+    },
+    "468": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Moraxellaceae",
+        "taxid": "468",
+        "is_spike_in": false
+    },
+    "469": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Acinetobacter",
+        "taxid": "469",
+        "is_spike_in": false
+    },
+    "196816": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Acinetobacter",
+        "taxid": "196816",
+        "is_spike_in": false
+    },
+    "1646498": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Acinetobacter sp. TTH0-4",
+        "taxid": "1646498",
+        "is_spike_in": false
+    },
+    "135624": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Aeromonadales",
+        "taxid": "135624",
+        "is_spike_in": false
+    },
+    "84642": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Aeromonadaceae",
+        "taxid": "84642",
+        "is_spike_in": false
+    },
+    "642": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Aeromonas",
+        "taxid": "642",
+        "is_spike_in": false
+    },
+    "654": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Aeromonas veronii",
+        "taxid": "654",
+        "is_spike_in": false
+    },
+    "135623": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Vibrionales",
+        "taxid": "135623",
+        "is_spike_in": false
+    },
+    "641": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Vibrionaceae",
+        "taxid": "641",
+        "is_spike_in": false
+    },
+    "662": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Vibrio",
+        "taxid": "662",
+        "is_spike_in": false
+    },
+    "2572923": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Vibrio taketomensis",
+        "taxid": "2572923",
+        "is_spike_in": false
+    },
+    "135619": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Oceanospirillales",
+        "taxid": "135619",
+        "is_spike_in": false
+    },
+    "255527": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Saccharospirillaceae",
+        "taxid": "255527",
+        "is_spike_in": false
+    },
+    "231683": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Saccharospirillum",
+        "taxid": "231683",
+        "is_spike_in": false
+    },
+    "2161747": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Saccharospirillum mangrovi",
+        "taxid": "2161747",
+        "is_spike_in": false
+    },
+    "135614": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Lysobacterales",
+        "taxid": "135614",
+        "is_spike_in": false
+    },
+    "1775411": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Rhodanobacteraceae",
+        "taxid": "1775411",
+        "is_spike_in": false
+    },
+    "75309": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Rhodanobacter",
+        "taxid": "75309",
+        "is_spike_in": false
+    },
+    "666685": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Rhodanobacter denitrificans",
+        "taxid": "666685",
+        "is_spike_in": false
+    },
+    "28211": {
+        "percentage": 0.24,
+        "count": 0,
+        "count_descendants": 25,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Alphaproteobacteria",
+        "taxid": "28211",
+        "is_spike_in": false
+    },
+    "356": {
+        "percentage": 0.1,
+        "count": 1,
+        "count_descendants": 10,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Hyphomicrobiales",
+        "taxid": "356",
+        "is_spike_in": false
+    },
+    "41294": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Nitrobacteraceae",
+        "taxid": "41294",
+        "is_spike_in": false
+    },
+    "374": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Bradyrhizobium",
+        "taxid": "374",
+        "is_spike_in": false
+    },
+    "2631580": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Bradyrhizobium",
+        "taxid": "2631580",
+        "is_spike_in": false
+    },
+    "3080013": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Bradyrhizobium sp. BWA-3-5",
+        "taxid": "3080013",
+        "is_spike_in": false
+    },
+    "1033": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Afipia",
+        "taxid": "1033",
+        "is_spike_in": false
+    },
+    "290": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "[Pseudomonas] carboxydohydrogena",
+        "taxid": "290",
+        "is_spike_in": false
+    },
+    "82115": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Rhizobiaceae",
+        "taxid": "82115",
+        "is_spike_in": false
+    },
+    "227290": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F1",
+        "rank": "F",
+        "name": "Rhizobium/Agrobacterium group",
+        "taxid": "227290",
+        "is_spike_in": false
+    },
+    "379": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Rhizobium",
+        "taxid": "379",
+        "is_spike_in": false
+    },
+    "2583231": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Rhizobium indicum",
+        "taxid": "2583231",
+        "is_spike_in": false
+    },
+    "227292": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F1",
+        "rank": "F",
+        "name": "Sinorhizobium/Ensifer group",
+        "taxid": "227292",
+        "is_spike_in": false
+    },
+    "28105": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Sinorhizobium",
+        "taxid": "28105",
+        "is_spike_in": false
+    },
+    "501572": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Sinorhizobium chiapasense",
+        "taxid": "501572",
+        "is_spike_in": false
+    },
+    "45401": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Hyphomicrobiaceae",
+        "taxid": "45401",
+        "is_spike_in": false
+    },
+    "81": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Hyphomicrobium",
+        "taxid": "81",
+        "is_spike_in": false
+    },
+    "2619925": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Hyphomicrobium",
+        "taxid": "2619925",
+        "is_spike_in": false
+    },
+    "3413936": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Hyphomicrobium sp. 1Nfss2.1",
+        "taxid": "3413936",
+        "is_spike_in": false
+    },
+    "69277": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Phyllobacteriaceae",
+        "taxid": "69277",
+        "is_spike_in": false
+    },
+    "2911176": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Aquibium",
+        "taxid": "2911176",
+        "is_spike_in": false
+    },
+    "1670800": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Aquibium oceanicum",
+        "taxid": "1670800",
+        "is_spike_in": false
+    },
+    "119045": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Methylobacteriaceae",
+        "taxid": "119045",
+        "is_spike_in": false
+    },
+    "407": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Methylobacterium",
+        "taxid": "407",
+        "is_spike_in": false
+    },
+    "270351": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Methylobacterium aquaticum",
+        "taxid": "270351",
+        "is_spike_in": false
+    },
+    "255475": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Aurantimonadaceae",
+        "taxid": "255475",
+        "is_spike_in": false
+    },
+    "293088": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Martelella",
+        "taxid": "293088",
+        "is_spike_in": false
+    },
+    "2583532": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Martelella lutilitoris",
+        "taxid": "2583532",
+        "is_spike_in": false
+    },
+    "2036754": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Chelatococcaceae",
+        "taxid": "2036754",
+        "is_spike_in": false
+    },
+    "28209": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Chelatococcus",
+        "taxid": "28209",
+        "is_spike_in": false
+    },
+    "444444": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Chelatococcus daeguensis",
+        "taxid": "444444",
+        "is_spike_in": false
+    },
+    "204457": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Sphingomonadales",
+        "taxid": "204457",
+        "is_spike_in": false
+    },
+    "41297": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Sphingomonadaceae",
+        "taxid": "41297",
+        "is_spike_in": false
+    },
+    "13687": {
+        "percentage": 0.04,
+        "count": 1,
+        "count_descendants": 4,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Sphingomonas",
+        "taxid": "13687",
+        "is_spike_in": false
+    },
+    "196159": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Sphingomonas",
+        "taxid": "196159",
+        "is_spike_in": false
+    },
+    "2937787": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Sphingomonas sp. SUN039",
+        "taxid": "2937787",
+        "is_spike_in": false
+    },
+    "2903960": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Sphingomonas sp. S2-65",
+        "taxid": "2903960",
+        "is_spike_in": false
+    },
+    "185951": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Sphingomonas aerolata",
+        "taxid": "185951",
+        "is_spike_in": false
+    },
+    "165695": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Sphingobium",
+        "taxid": "165695",
+        "is_spike_in": false
+    },
+    "120107": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Sphingobium cloacae",
+        "taxid": "120107",
+        "is_spike_in": false
+    },
+    "2611147": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Sphingobium",
+        "taxid": "2611147",
+        "is_spike_in": false
+    },
+    "3038927": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Sphingobium sp. V4",
+        "taxid": "3038927",
+        "is_spike_in": false
+    },
+    "204441": {
+        "percentage": 0.04,
+        "count": 0,
+        "count_descendants": 4,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Rhodospirillales",
+        "taxid": "204441",
+        "is_spike_in": false
+    },
+    "2829815": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Azospirillaceae",
+        "taxid": "2829815",
+        "is_spike_in": false
+    },
+    "191": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Azospirillum",
+        "taxid": "191",
+        "is_spike_in": false
+    },
+    "1226968": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Azospirillum humicireducens",
+        "taxid": "1226968",
+        "is_spike_in": false
+    },
+    "2630922": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Azospirillum",
+        "taxid": "2630922",
+        "is_spike_in": false
+    },
+    "664962": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Azospirillum sp. TSH58",
+        "taxid": "664962",
+        "is_spike_in": false
+    },
+    "2844864": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Thalassobaculaceae",
+        "taxid": "2844864",
+        "is_spike_in": false
+    },
+    "526215": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Thalassobaculum",
+        "taxid": "526215",
+        "is_spike_in": false
+    },
+    "2632499": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Thalassobaculum",
+        "taxid": "2632499",
+        "is_spike_in": false
+    },
+    "2022740": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Thalassobaculum sp.",
+        "taxid": "2022740",
+        "is_spike_in": false
+    },
+    "2844866": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Thalassospiraceae",
+        "taxid": "2844866",
+        "is_spike_in": false
+    },
+    "168934": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Thalassospira",
+        "taxid": "168934",
+        "is_spike_in": false
+    },
+    "204455": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Rhodobacterales",
+        "taxid": "204455",
+        "is_spike_in": false
+    },
+    "31989": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Paracoccaceae",
+        "taxid": "31989",
+        "is_spike_in": false
+    },
+    "1931200": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Marinibacterium",
+        "taxid": "1931200",
+        "is_spike_in": false
+    },
+    "2618227": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Marinibacterium",
+        "taxid": "2618227",
+        "is_spike_in": false
+    },
+    "3388424": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Marinibacterium sp. SX1",
+        "taxid": "3388424",
+        "is_spike_in": false
+    },
+    "2854170": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Roseobacteraceae",
+        "taxid": "2854170",
+        "is_spike_in": false
+    },
+    "299261": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Tateyamaria",
+        "taxid": "299261",
+        "is_spike_in": false
+    },
+    "2645127": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Tateyamaria",
+        "taxid": "2645127",
+        "is_spike_in": false
+    },
+    "3092147": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Tateyamaria sp. SN3-11",
+        "taxid": "3092147",
+        "is_spike_in": false
+    },
+    "3120395": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Acetobacterales",
+        "taxid": "3120395",
+        "is_spike_in": false
+    },
+    "3385906": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Roseomonadaceae",
+        "taxid": "3385906",
+        "is_spike_in": false
+    },
+    "125216": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Roseomonas",
+        "taxid": "125216",
+        "is_spike_in": false
+    },
+    "2897332": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Roseomonas cutis",
+        "taxid": "2897332",
+        "is_spike_in": false
+    },
+    "204458": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Caulobacterales",
+        "taxid": "204458",
+        "is_spike_in": false
+    },
+    "76892": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Caulobacteraceae",
+        "taxid": "76892",
+        "is_spike_in": false
+    },
+    "75": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Caulobacter",
+        "taxid": "75",
+        "is_spike_in": false
+    },
+    "2648921": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Caulobacter",
+        "taxid": "2648921",
+        "is_spike_in": false
+    },
+    "3015996": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Caulobacter sp. NIBR2454",
+        "taxid": "3015996",
+        "is_spike_in": false
+    },
+    "2800060": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Hyphomonadales",
+        "taxid": "2800060",
+        "is_spike_in": false
+    },
+    "69657": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Hyphomonadaceae",
+        "taxid": "69657",
+        "is_spike_in": false
+    },
+    "85": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Hyphomonas",
+        "taxid": "85",
+        "is_spike_in": false
+    },
+    "81032": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Hyphomonas neptunium",
+        "taxid": "81032",
+        "is_spike_in": false
+    },
+    "228405": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Hyphomonas neptunium ATCC 15444",
+        "taxid": "228405",
+        "is_spike_in": false
+    },
+    "28216": {
+        "percentage": 0.13,
+        "count": 0,
+        "count_descendants": 13,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Betaproteobacteria",
+        "taxid": "28216",
+        "is_spike_in": false
+    },
+    "80840": {
+        "percentage": 0.09,
+        "count": 0,
+        "count_descendants": 9,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Burkholderiales",
+        "taxid": "80840",
+        "is_spike_in": false
+    },
+    "119060": {
+        "percentage": 0.04,
+        "count": 0,
+        "count_descendants": 4,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Burkholderiaceae",
+        "taxid": "119060",
+        "is_spike_in": false
+    },
+    "32008": {
+        "percentage": 0.03,
+        "count": 1,
+        "count_descendants": 3,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Burkholderia",
+        "taxid": "32008",
+        "is_spike_in": false
+    },
+    "337": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Burkholderia glumae",
+        "taxid": "337",
+        "is_spike_in": false
+    },
+    "2613784": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Burkholderia",
+        "taxid": "2613784",
+        "is_spike_in": false
+    },
+    "3237372": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Burkholderia sp. 22PA0099",
+        "taxid": "3237372",
+        "is_spike_in": false
+    },
+    "1822464": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Paraburkholderia",
+        "taxid": "1822464",
+        "is_spike_in": false
+    },
+    "2615204": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Paraburkholderia",
+        "taxid": "2615204",
+        "is_spike_in": false
+    },
+    "3141544": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Paraburkholderia sp. PREW-6R",
+        "taxid": "3141544",
+        "is_spike_in": false
+    },
+    "75682": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Oxalobacteraceae",
+        "taxid": "75682",
+        "is_spike_in": false
+    },
+    "2895353": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F1",
+        "rank": "F",
+        "name": "Telluria group",
+        "taxid": "2895353",
+        "is_spike_in": false
+    },
+    "149698": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Massilia",
+        "taxid": "149698",
+        "is_spike_in": false
+    },
+    "2769491": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Massilia litorea",
+        "taxid": "2769491",
+        "is_spike_in": false
+    },
+    "1522432": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Pseudoduganella",
+        "taxid": "1522432",
+        "is_spike_in": false
+    },
+    "506": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Alcaligenaceae",
+        "taxid": "506",
+        "is_spike_in": false
+    },
+    "80864": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Comamonadaceae",
+        "taxid": "80864",
+        "is_spike_in": false
+    },
+    "174951": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Ramlibacter",
+        "taxid": "174951",
+        "is_spike_in": false
+    },
+    "94132": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Ramlibacter tataouinensis",
+        "taxid": "94132",
+        "is_spike_in": false
+    },
+    "365046": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Ramlibacter tataouinensis TTB310",
+        "taxid": "365046",
+        "is_spike_in": false
+    },
+    "2975441": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Sphaerotilaceae",
+        "taxid": "2975441",
+        "is_spike_in": false
+    },
+    "391952": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Aquincola",
+        "taxid": "391952",
+        "is_spike_in": false
+    },
+    "391953": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Aquincola tertiaricarbonis",
+        "taxid": "391953",
+        "is_spike_in": false
+    },
+    "206351": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Neisseriales",
+        "taxid": "206351",
+        "is_spike_in": false
+    },
+    "481": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Neisseriaceae",
+        "taxid": "481",
+        "is_spike_in": false
+    },
+    "482": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Neisseria",
+        "taxid": "482",
+        "is_spike_in": false
+    },
+    "2623750": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Neisseria",
+        "taxid": "2623750",
+        "is_spike_in": false
+    },
+    "655307": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Neisseria sp. KEM232",
+        "taxid": "655307",
+        "is_spike_in": false
+    },
+    "1499392": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Chromobacteriaceae",
+        "taxid": "1499392",
+        "is_spike_in": false
+    },
+    "206389": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Rhodocyclales",
+        "taxid": "206389",
+        "is_spike_in": false
+    },
+    "75787": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Rhodocyclaceae",
+        "taxid": "75787",
+        "is_spike_in": false
+    },
+    "1769726": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Niveibacterium",
+        "taxid": "1769726",
+        "is_spike_in": false
+    },
+    "3373598": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Niveibacterium terrae",
+        "taxid": "3373598",
+        "is_spike_in": false
+    },
+    "2008794": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Zoogloeaceae",
+        "taxid": "2008794",
+        "is_spike_in": false
+    },
+    "33057": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Thauera",
+        "taxid": "33057",
+        "is_spike_in": false
+    },
+    "96773": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Thauera chlorobenzoica",
+        "taxid": "96773",
+        "is_spike_in": false
+    },
+    "1783270": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "K1",
+        "rank": "K",
+        "name": "FCB group",
+        "taxid": "1783270",
+        "is_spike_in": false
+    },
+    "68336": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "K2",
+        "rank": "K",
+        "name": "Bacteroidota/Chlorobiota group",
+        "taxid": "68336",
+        "is_spike_in": false
+    },
+    "976": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Bacteroidota",
+        "taxid": "976",
+        "is_spike_in": false
+    },
+    "117743": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Flavobacteriia",
+        "taxid": "117743",
+        "is_spike_in": false
+    },
+    "200644": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Flavobacteriales",
+        "taxid": "200644",
+        "is_spike_in": false
+    },
+    "49546": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Flavobacteriaceae",
+        "taxid": "49546",
+        "is_spike_in": false
+    },
+    "52959": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Polaribacter",
+        "taxid": "52959",
+        "is_spike_in": false
+    },
+    "196858": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Polaribacter",
+        "taxid": "196858",
+        "is_spike_in": false
+    },
+    "754397": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Polaribacter sp. SA4-10",
+        "taxid": "754397",
+        "is_spike_in": false
+    },
+    "117747": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Sphingobacteriia",
+        "taxid": "117747",
+        "is_spike_in": false
+    },
+    "200666": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Sphingobacteriales",
+        "taxid": "200666",
+        "is_spike_in": false
+    },
+    "84566": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Sphingobacteriaceae",
+        "taxid": "84566",
+        "is_spike_in": false
+    },
+    "423349": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Mucilaginibacter",
+        "taxid": "423349",
+        "is_spike_in": false
+    },
+    "1176721": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mucilaginibacter jinjuensis",
+        "taxid": "1176721",
+        "is_spike_in": false
+    },
+    "29547": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Campylobacterota",
+        "taxid": "29547",
+        "is_spike_in": false
+    },
+    "3031852": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Epsilonproteobacteria",
+        "taxid": "3031852",
+        "is_spike_in": false
+    },
+    "213849": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Campylobacterales",
+        "taxid": "213849",
+        "is_spike_in": false
+    },
+    "2808963": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Arcobacteraceae",
+        "taxid": "2808963",
+        "is_spike_in": false
+    },
+    "28196": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Arcobacter",
+        "taxid": "28196",
+        "is_spike_in": false
+    },
+    "2593671": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Arcobacter",
+        "taxid": "2593671",
+        "is_spike_in": false
+    },
+    "3374109": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Arcobacter sp. 15-2",
+        "taxid": "3374109",
+        "is_spike_in": false
+    },
+    "203691": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Spirochaetota",
+        "taxid": "203691",
+        "is_spike_in": false
+    },
+    "203692": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Spirochaetia",
+        "taxid": "203692",
+        "is_spike_in": false
+    },
+    "1643686": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Brachyspirales",
+        "taxid": "1643686",
+        "is_spike_in": false
+    },
+    "143786": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Brachyspiraceae",
+        "taxid": "143786",
+        "is_spike_in": false
+    },
+    "29521": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Brachyspira",
+        "taxid": "29521",
+        "is_spike_in": false
+    },
+    "84378": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Brachyspira murdochii",
+        "taxid": "84378",
+        "is_spike_in": false
+    },
+    "526224": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Brachyspira murdochii DSM 12563",
+        "taxid": "526224",
+        "is_spike_in": false
+    },
+    "200940": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Thermodesulfobacteriota",
+        "taxid": "200940",
+        "is_spike_in": false
+    },
+    "3031449": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Desulfovibrionia",
+        "taxid": "3031449",
+        "is_spike_in": false
+    },
+    "213115": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Desulfovibrionales",
+        "taxid": "213115",
+        "is_spike_in": false
+    },
+    "194924": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Desulfovibrionaceae",
+        "taxid": "194924",
+        "is_spike_in": false
+    },
+    "2910984": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Solidesulfovibrio",
+        "taxid": "2910984",
+        "is_spike_in": false
+    },
+    "184917": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Solidesulfovibrio magneticus",
+        "taxid": "184917",
+        "is_spike_in": false
+    },
+    "573370": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Solidesulfovibrio magneticus RS-1",
+        "taxid": "573370",
+        "is_spike_in": false
+    },
+    "200930": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Deferribacterota",
+        "taxid": "200930",
+        "is_spike_in": false
+    },
+    "68337": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Deferribacteres",
+        "taxid": "68337",
+        "is_spike_in": false
+    },
+    "191393": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Deferribacterales",
+        "taxid": "191393",
+        "is_spike_in": false
+    },
+    "2945022": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Flexistipitaceae",
+        "taxid": "2945022",
+        "is_spike_in": false
+    },
+    "2351": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Flexistipes",
+        "taxid": "2351",
+        "is_spike_in": false
+    },
+    "2352": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Flexistipes sinusarabici",
+        "taxid": "2352",
+        "is_spike_in": false
+    },
+    "717231": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Flexistipes sinusarabici DSM 4947",
+        "taxid": "717231",
+        "is_spike_in": false
+    },
+    "1783272": {
+        "percentage": 0.31,
+        "count": 0,
+        "count_descendants": 32,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Bacillati",
+        "taxid": "1783272",
+        "is_spike_in": false
+    },
+    "201174": {
+        "percentage": 0.25,
+        "count": 0,
+        "count_descendants": 26,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Actinomycetota",
+        "taxid": "201174",
+        "is_spike_in": false
+    },
+    "1760": {
+        "percentage": 0.24,
+        "count": 2,
+        "count_descendants": 25,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Actinomycetes",
+        "taxid": "1760",
+        "is_spike_in": false
+    },
+    "85011": {
+        "percentage": 0.1,
+        "count": 0,
+        "count_descendants": 10,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Kitasatosporales",
+        "taxid": "85011",
+        "is_spike_in": false
+    },
+    "2062": {
+        "percentage": 0.1,
+        "count": 0,
+        "count_descendants": 10,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Streptomycetaceae",
+        "taxid": "2062",
+        "is_spike_in": false
+    },
+    "1883": {
+        "percentage": 0.1,
+        "count": 3,
+        "count_descendants": 10,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Streptomyces",
+        "taxid": "1883",
+        "is_spike_in": false
+    },
+    "2593676": {
+        "percentage": 0.06,
+        "count": 3,
+        "count_descendants": 6,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Streptomyces",
+        "taxid": "2593676",
+        "is_spike_in": false
+    },
+    "3002640": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Streptomyces sp. 71268",
+        "taxid": "3002640",
+        "is_spike_in": false
+    },
+    "2903723": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Streptomyces sp. NBC_01022",
+        "taxid": "2903723",
+        "is_spike_in": false
+    },
+    "1333528": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Streptomyces sp. GMY02",
+        "taxid": "1333528",
+        "is_spike_in": false
+    },
+    "2880933": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Streptomyces longhuiensis",
+        "taxid": "2880933",
+        "is_spike_in": false
+    },
+    "85007": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Mycobacteriales",
+        "taxid": "85007",
+        "is_spike_in": false
+    },
+    "1762": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Mycobacteriaceae",
+        "taxid": "1762",
+        "is_spike_in": false
+    },
+    "1866885": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Mycolicibacterium",
+        "taxid": "1866885",
+        "is_spike_in": false
+    },
+    "1791": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mycolicibacterium aurum",
+        "taxid": "1791",
+        "is_spike_in": false
+    },
+    "1810": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mycolicibacterium vaccae",
+        "taxid": "1810",
+        "is_spike_in": false
+    },
+    "1354275": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Mycolicibacterium vaccae 95051",
+        "taxid": "1354275",
+        "is_spike_in": false
+    },
+    "67081": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mycolicibacterium alvei",
+        "taxid": "67081",
+        "is_spike_in": false
+    },
+    "152142": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mycolicibacterium holsaticum",
+        "taxid": "152142",
+        "is_spike_in": false
+    },
+    "1226752": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Mycolicibacterium holsaticum DSM 44478 = JCM 12374",
+        "taxid": "1226752",
+        "is_spike_in": false
+    },
+    "1286180": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mycolicibacterium sediminis",
+        "taxid": "1286180",
+        "is_spike_in": false
+    },
+    "1799": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Mycolicibacterium aichiense",
+        "taxid": "1799",
+        "is_spike_in": false
+    },
+    "85006": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Micrococcales",
+        "taxid": "85006",
+        "is_spike_in": false
+    },
+    "85023": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Microbacteriaceae",
+        "taxid": "85023",
+        "is_spike_in": false
+    },
+    "2034": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Curtobacterium",
+        "taxid": "2034",
+        "is_spike_in": false
+    },
+    "257496": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Curtobacterium",
+        "taxid": "257496",
+        "is_spike_in": false
+    },
+    "1905847": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Curtobacterium sp. BH-2-1-1",
+        "taxid": "1905847",
+        "is_spike_in": false
+    },
+    "96492": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Frigoribacterium",
+        "taxid": "96492",
+        "is_spike_in": false
+    },
+    "2627005": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Frigoribacterium",
+        "taxid": "2627005",
+        "is_spike_in": false
+    },
+    "2994664": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Frigoribacterium sp. SL97",
+        "taxid": "2994664",
+        "is_spike_in": false
+    },
+    "85012": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Streptosporangiales",
+        "taxid": "85012",
+        "is_spike_in": false
+    },
+    "2004": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Streptosporangiaceae",
+        "taxid": "2004",
+        "is_spike_in": false
+    },
+    "2000": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Streptosporangium",
+        "taxid": "2000",
+        "is_spike_in": false
+    },
+    "2632669": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Streptosporangium",
+        "taxid": "2632669",
+        "is_spike_in": false
+    },
+    "83676": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Nocardiopsidaceae",
+        "taxid": "83676",
+        "is_spike_in": false
+    },
+    "2013": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Nocardiopsis",
+        "taxid": "2013",
+        "is_spike_in": false
+    },
+    "280236": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Nocardiopsis gilva",
+        "taxid": "280236",
+        "is_spike_in": false
+    },
+    "1235441": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Nocardiopsis gilva YIM 90087",
+        "taxid": "1235441",
+        "is_spike_in": false
+    },
+    "85008": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Micromonosporales",
+        "taxid": "85008",
+        "is_spike_in": false
+    },
+    "28056": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Micromonosporaceae",
+        "taxid": "28056",
+        "is_spike_in": false
+    },
+    "1865": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Actinoplanes",
+        "taxid": "1865",
+        "is_spike_in": false
+    },
+    "1867": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Actinoplanes teichomyceticus",
+        "taxid": "1867",
+        "is_spike_in": false
+    },
+    "457423": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Actinoplanes teichomyceticus ATCC 31121",
+        "taxid": "457423",
+        "is_spike_in": false
+    },
+    "85009": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Propionibacteriales",
+        "taxid": "85009",
+        "is_spike_in": false
+    },
+    "31957": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Propionibacteriaceae",
+        "taxid": "31957",
+        "is_spike_in": false
+    },
+    "1278221": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Auraticoccus",
+        "taxid": "1278221",
+        "is_spike_in": false
+    },
+    "675864": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Auraticoccus monumenti",
+        "taxid": "675864",
+        "is_spike_in": false
+    },
+    "85010": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Pseudonocardiales",
+        "taxid": "85010",
+        "is_spike_in": false
+    },
+    "2070": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Pseudonocardiaceae",
+        "taxid": "2070",
+        "is_spike_in": false
+    },
+    "1813": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Amycolatopsis",
+        "taxid": "1813",
+        "is_spike_in": false
+    },
+    "76021": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Amycolatopsis coloradensis",
+        "taxid": "76021",
+        "is_spike_in": false
+    },
+    "84998": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Coriobacteriia",
+        "taxid": "84998",
+        "is_spike_in": false
+    },
+    "84999": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Coriobacteriales",
+        "taxid": "84999",
+        "is_spike_in": false
+    },
+    "1643824": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Atopobiaceae",
+        "taxid": "1643824",
+        "is_spike_in": false
+    },
+    "1380": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Atopobium",
+        "taxid": "1380",
+        "is_spike_in": false
+    },
+    "2643817": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Atopobium",
+        "taxid": "2643817",
+        "is_spike_in": false
+    },
+    "712157": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Atopobium sp. oral taxon 416",
+        "taxid": "712157",
+        "is_spike_in": false
+    },
+    "1239": {
+        "percentage": 0.06,
+        "count": 0,
+        "count_descendants": 6,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Bacillota",
+        "taxid": "1239",
+        "is_spike_in": false
+    },
+    "91061": {
+        "percentage": 0.04,
+        "count": 0,
+        "count_descendants": 4,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Bacilli",
+        "taxid": "91061",
+        "is_spike_in": false
+    },
+    "1385": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Bacillales",
+        "taxid": "1385",
+        "is_spike_in": false
+    },
+    "186817": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Bacillaceae",
+        "taxid": "186817",
+        "is_spike_in": false
+    },
+    "1386": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Bacillus",
+        "taxid": "1386",
+        "is_spike_in": false
+    },
+    "2675233": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Metabacillus",
+        "taxid": "2675233",
+        "is_spike_in": false
+    },
+    "2675274": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G1",
+        "rank": "G",
+        "name": "unclassified Metabacillus",
+        "taxid": "2675274",
+        "is_spike_in": false
+    },
+    "2897333": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Metabacillus sp. B2-18",
+        "taxid": "2897333",
+        "is_spike_in": false
+    },
+    "186826": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Lactobacillales",
+        "taxid": "186826",
+        "is_spike_in": false
+    },
+    "1300": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Streptococcaceae",
+        "taxid": "1300",
+        "is_spike_in": false
+    },
+    "1301": {
+        "percentage": 0.02,
+        "count": 2,
+        "count_descendants": 2,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Streptococcus",
+        "taxid": "1301",
+        "is_spike_in": false
+    },
+    "186801": {
+        "percentage": 0.02,
+        "count": 0,
+        "count_descendants": 2,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Clostridia",
+        "taxid": "186801",
+        "is_spike_in": false
+    },
+    "3082720": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Peptostreptococcales",
+        "taxid": "3082720",
+        "is_spike_in": false
+    },
+    "186804": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Peptostreptococcaceae",
+        "taxid": "186804",
+        "is_spike_in": false
+    },
+    "1849822": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Paraclostridium",
+        "taxid": "1849822",
+        "is_spike_in": false
+    },
+    "1505": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Paraclostridium sordellii",
+        "taxid": "1505",
+        "is_spike_in": false
+    },
+    "3085636": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Lachnospirales",
+        "taxid": "3085636",
+        "is_spike_in": false
+    },
+    "186803": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Lachnospiraceae",
+        "taxid": "186803",
+        "is_spike_in": false
+    },
+    "572511": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Blautia",
+        "taxid": "572511",
+        "is_spike_in": false
+    },
+    "40520": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Blautia obeum",
+        "taxid": "40520",
+        "is_spike_in": false
+    },
+    "3384194": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Thermotogati",
+        "taxid": "3384194",
+        "is_spike_in": false
+    },
+    "1297": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Deinococcota",
+        "taxid": "1297",
+        "is_spike_in": false
+    },
+    "188787": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Deinococci",
+        "taxid": "188787",
+        "is_spike_in": false
+    },
+    "118964": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Deinococcales",
+        "taxid": "118964",
+        "is_spike_in": false
+    },
+    "183710": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Deinococcaceae",
+        "taxid": "183710",
+        "is_spike_in": false
+    },
+    "1298": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Deinococcus",
+        "taxid": "1298",
+        "is_spike_in": false
+    },
+    "2737050": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Deinococcus taeanensis",
+        "taxid": "2737050",
+        "is_spike_in": false
+    },
+    "2759": {
+        "percentage": 0.21,
+        "count": 0,
+        "count_descendants": 22,
+        "raw_rank": "R2",
+        "rank": "R",
+        "name": "Eukaryota",
+        "taxid": "2759",
+        "is_spike_in": false
+    },
+    "33154": {
+        "percentage": 0.2,
+        "count": 0,
+        "count_descendants": 21,
+        "raw_rank": "R3",
+        "rank": "R",
+        "name": "Opisthokonta",
+        "taxid": "33154",
+        "is_spike_in": false
+    },
+    "33208": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Metazoa",
+        "taxid": "33208",
+        "is_spike_in": false
+    },
+    "6072": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "K1",
+        "rank": "K",
+        "name": "Eumetazoa",
+        "taxid": "6072",
+        "is_spike_in": false
+    },
+    "33213": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "K2",
+        "rank": "K",
+        "name": "Bilateria",
+        "taxid": "33213",
+        "is_spike_in": false
+    },
+    "33511": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "K3",
+        "rank": "K",
+        "name": "Deuterostomia",
+        "taxid": "33511",
+        "is_spike_in": false
+    },
+    "7711": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Chordata",
+        "taxid": "7711",
+        "is_spike_in": false
+    },
+    "89593": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P1",
+        "rank": "P",
+        "name": "Craniata",
+        "taxid": "89593",
+        "is_spike_in": false
+    },
+    "7742": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P2",
+        "rank": "P",
+        "name": "Vertebrata",
+        "taxid": "7742",
+        "is_spike_in": false
+    },
+    "7776": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P3",
+        "rank": "P",
+        "name": "Gnathostomata",
+        "taxid": "7776",
+        "is_spike_in": false
+    },
+    "117570": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P4",
+        "rank": "P",
+        "name": "Teleostomi",
+        "taxid": "117570",
+        "is_spike_in": false
+    },
+    "117571": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P5",
+        "rank": "P",
+        "name": "Euteleostomi",
+        "taxid": "117571",
+        "is_spike_in": false
+    },
+    "8287": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P6",
+        "rank": "P",
+        "name": "Sarcopterygii",
+        "taxid": "8287",
+        "is_spike_in": false
+    },
+    "1338369": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P7",
+        "rank": "P",
+        "name": "Dipnotetrapodomorpha",
+        "taxid": "1338369",
+        "is_spike_in": false
+    },
+    "32523": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P8",
+        "rank": "P",
+        "name": "Tetrapoda",
+        "taxid": "32523",
+        "is_spike_in": false
+    },
+    "32524": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "P9",
+        "rank": "P",
+        "name": "Amniota",
+        "taxid": "32524",
+        "is_spike_in": false
+    },
+    "40674": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Mammalia",
+        "taxid": "40674",
+        "is_spike_in": false
+    },
+    "32525": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "C1",
+        "rank": "C",
+        "name": "Theria",
+        "taxid": "32525",
+        "is_spike_in": false
+    },
+    "9347": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "C2",
+        "rank": "C",
+        "name": "Eutheria",
+        "taxid": "9347",
+        "is_spike_in": false
+    },
+    "1437010": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "C3",
+        "rank": "C",
+        "name": "Boreoeutheria",
+        "taxid": "1437010",
+        "is_spike_in": false
+    },
+    "314146": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "C4",
+        "rank": "C",
+        "name": "Euarchontoglires",
+        "taxid": "314146",
+        "is_spike_in": false
+    },
+    "9443": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Primates",
+        "taxid": "9443",
+        "is_spike_in": false
+    },
+    "376913": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "O1",
+        "rank": "O",
+        "name": "Haplorrhini",
+        "taxid": "376913",
+        "is_spike_in": false
+    },
+    "314293": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "O2",
+        "rank": "O",
+        "name": "Simiiformes",
+        "taxid": "314293",
+        "is_spike_in": false
+    },
+    "9526": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "O3",
+        "rank": "O",
+        "name": "Catarrhini",
+        "taxid": "9526",
+        "is_spike_in": false
+    },
+    "314295": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "O4",
+        "rank": "O",
+        "name": "Hominoidea",
+        "taxid": "314295",
+        "is_spike_in": false
+    },
+    "9604": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Hominidae",
+        "taxid": "9604",
+        "is_spike_in": false
+    },
+    "207598": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "F1",
+        "rank": "F",
+        "name": "Homininae",
+        "taxid": "207598",
+        "is_spike_in": false
+    },
+    "9605": {
+        "percentage": 0.19,
+        "count": 0,
+        "count_descendants": 20,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Homo",
+        "taxid": "9605",
+        "is_spike_in": false
+    },
+    "9606": {
+        "percentage": 0.19,
+        "count": 20,
+        "count_descendants": 20,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Homo sapiens",
+        "taxid": "9606",
+        "is_spike_in": false
+    },
+    "4751": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Fungi",
+        "taxid": "4751",
+        "is_spike_in": false
+    },
+    "451864": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "K1",
+        "rank": "K",
+        "name": "Dikarya",
+        "taxid": "451864",
+        "is_spike_in": false
+    },
+    "5204": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Basidiomycota",
+        "taxid": "5204",
+        "is_spike_in": false
+    },
+    "5302": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P1",
+        "rank": "P",
+        "name": "Agaricomycotina",
+        "taxid": "5302",
+        "is_spike_in": false
+    },
+    "155616": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Tremellomycetes",
+        "taxid": "155616",
+        "is_spike_in": false
+    },
+    "5234": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Tremellales",
+        "taxid": "5234",
+        "is_spike_in": false
+    },
+    "1884633": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Cryptococcaceae",
+        "taxid": "1884633",
+        "is_spike_in": false
+    },
+    "490731": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Kwoniella",
+        "taxid": "490731",
+        "is_spike_in": false
+    },
+    "453459": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Kwoniella pini",
+        "taxid": "453459",
+        "is_spike_in": false
+    },
+    "1296096": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Kwoniella pini CBS 10737",
+        "taxid": "1296096",
+        "is_spike_in": false
+    },
+    "2611352": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "R3",
+        "rank": "R",
+        "name": "Discoba",
+        "taxid": "2611352",
+        "is_spike_in": false
+    },
+    "33682": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Euglenozoa",
+        "taxid": "33682",
+        "is_spike_in": false
+    },
+    "5653": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Kinetoplastea",
+        "taxid": "5653",
+        "is_spike_in": false
+    },
+    "2704647": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C1",
+        "rank": "C",
+        "name": "Metakinetoplastina",
+        "taxid": "2704647",
+        "is_spike_in": false
+    },
+    "2704949": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Trypanosomatida",
+        "taxid": "2704949",
+        "is_spike_in": false
+    },
+    "5654": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Trypanosomatidae",
+        "taxid": "5654",
+        "is_spike_in": false
+    },
+    "1286322": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F1",
+        "rank": "F",
+        "name": "Leishmaniinae",
+        "taxid": "1286322",
+        "is_spike_in": false
+    },
+    "5658": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Leishmania",
+        "taxid": "5658",
+        "is_spike_in": false
+    },
+    "2157": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "R2",
+        "rank": "R",
+        "name": "Archaea",
+        "taxid": "2157",
+        "is_spike_in": false
+    },
+    "3366610": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Methanobacteriati",
+        "taxid": "3366610",
+        "is_spike_in": false
+    },
+    "28890": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Methanobacteriota",
+        "taxid": "28890",
+        "is_spike_in": false
+    },
+    "2290931": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "P1",
+        "rank": "P",
+        "name": "Stenosarchaea group",
+        "taxid": "2290931",
+        "is_spike_in": false
+    },
+    "183963": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Halobacteria",
+        "taxid": "183963",
+        "is_spike_in": false
+    },
+    "2235": {
+        "percentage": 0.03,
+        "count": 0,
+        "count_descendants": 3,
+        "raw_rank": "O",
+        "rank": "O",
+        "name": "Halobacteriales",
+        "taxid": "2235",
+        "is_spike_in": false
+    },
+    "1644056": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Haloferacaceae",
+        "taxid": "1644056",
+        "is_spike_in": false
+    },
+    "376170": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Haloplanus",
+        "taxid": "376170",
+        "is_spike_in": false
+    },
+    "2949995": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Haloplanus pelagicus",
+        "taxid": "2949995",
+        "is_spike_in": false
+    },
+    "1644061": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Natrialbaceae",
+        "taxid": "1644061",
+        "is_spike_in": false
+    },
+    "3383206": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Halovalidus",
+        "taxid": "3383206",
+        "is_spike_in": false
+    },
+    "3075124": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Halovalidus salilacus",
+        "taxid": "3075124",
+        "is_spike_in": false
+    },
+    "1963268": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "F",
+        "rank": "F",
+        "name": "Haloarculaceae",
+        "taxid": "1963268",
+        "is_spike_in": false
+    },
+    "171163": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Halosimplex",
+        "taxid": "171163",
+        "is_spike_in": false
+    },
+    "3026162": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Halosimplex aquaticum",
+        "taxid": "3026162",
+        "is_spike_in": false
+    },
+    "10239": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "R1",
+        "rank": "R",
+        "name": "Viruses",
+        "taxid": "10239",
+        "is_spike_in": false
+    },
+    "2731341": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "R2",
+        "rank": "R",
+        "name": "Duplodnaviria",
+        "taxid": "2731341",
+        "is_spike_in": false
+    },
+    "2731360": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "K",
+        "rank": "K",
+        "name": "Heunggongvirae",
+        "taxid": "2731360",
+        "is_spike_in": false
+    },
+    "2731618": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P",
+        "rank": "P",
+        "name": "Uroviricota",
+        "taxid": "2731618",
+        "is_spike_in": false
+    },
+    "2788786": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "P1",
+        "rank": "P",
+        "name": "unclassified Uroviricota",
+        "taxid": "2788786",
+        "is_spike_in": false
+    },
+    "2731619": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "C",
+        "rank": "C",
+        "name": "Caudoviricetes",
+        "taxid": "2731619",
+        "is_spike_in": false
+    },
+    "1980922": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "G",
+        "rank": "G",
+        "name": "Chiangmaivirus",
+        "taxid": "1980922",
+        "is_spike_in": false
+    },
+    "1980926": {
+        "percentage": 0.01,
+        "count": 0,
+        "count_descendants": 1,
+        "raw_rank": "S",
+        "rank": "S",
+        "name": "Chiangmaivirus RSF1",
+        "taxid": "1980926",
+        "is_spike_in": false
+    },
+    "1689679": {
+        "percentage": 0.01,
+        "count": 1,
+        "count_descendants": 1,
+        "raw_rank": "S1",
+        "rank": "S",
+        "name": "Ralstonia phage RSF1",
+        "taxid": "1689679",
+        "is_spike_in": false
+    }
+}
