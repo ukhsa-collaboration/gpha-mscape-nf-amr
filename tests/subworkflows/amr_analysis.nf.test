@@ -4,7 +4,7 @@ nextflow_workflow {
     script "subworkflows/amr_analysis.nf"
     workflow "AMR_ANALYSIS"
 
-    test("Should run without failures") {
+    test("test_amr-analysis_positive") {
 
         when {
             params {
@@ -22,6 +22,7 @@ nextflow_workflow {
                         file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.abricate_card_out.tsv", checkIfExists: true)
 
                     )
+                )
                 """
             }
         }
