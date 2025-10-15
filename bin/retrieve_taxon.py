@@ -59,7 +59,6 @@ def add_species(df_tsv: pd.DataFrame, taxid_dict: dict):
     :return: df_tsv with left joined 'name'
     '''
     # Convert dictionary into pandas dataframe
-    print(taxid_dict)
     taxid_df = pd.DataFrame.from_dict(taxid_dict, orient='index')
     taxid_df.reset_index(inplace=True)
     taxid_df.rename(columns={'index': 'taxid_key'}, inplace=True)
@@ -96,8 +95,8 @@ def main():
     args = commandline()
     df_tsv, taxid_dict = load_files(args.tsv, args.json)
     df_merged = add_species(df_tsv, taxid_dict)
-    # abricate_merge_df = link_abricate_results(df_merged, args.abricate)
-    # write_tsv(abricate_merge_df, args.output)
+    abricate_merge_df = link_abricate_results(df_merged, args.abricate)
+    write_tsv(abricate_merge_df, args.output)
 
 if __name__ == "__main__":
     main()
