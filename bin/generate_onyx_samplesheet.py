@@ -57,7 +57,8 @@ def main():
     args = get_args()
     col_names = args.columns.split(',')
     df = get_record(args.id, col_names)
-    df.to_csv(args.output)
+    print(df)
+    # df.to_csv(args.output)
 
 if __name__ == "__main__":
     main()
