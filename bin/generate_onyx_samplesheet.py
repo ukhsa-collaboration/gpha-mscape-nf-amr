@@ -2,7 +2,7 @@
 
 import os
 from onyx import OnyxConfig, OnyxEnv, OnyxClient
-from onyx_analysis_helper import onyx_analysis_helper_functions as oa
+# from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 import argparse
 from pathlib import Path
 import pandas as pd
@@ -35,12 +35,11 @@ def get_args() -> argparse.Namespace:
     return args
 
 
-@oa.call_to_onyx
+# @oa.call_to_onyx
 def get_record(sample_id: str, columns: list):
     """
     Using unique sample ID, query Onyx database to get appropriate columns
     """
-    sample_id = str("'")+str(sample_id)+str("'")
     try:
         with OnyxClient(config) as client:
                 df = pd.DataFrame(client.filter(
