@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-// nextflow.enable.dsl=2
+nextflow.enable.dsl=2
 
 // TODO: add include to read in subworkflows
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
@@ -45,11 +45,12 @@ workflow {
             }
             .set { ch_fastqs }  
 
+    samples.out.view()
     // // handle input parameters
     log.info "Output directory: ${params.output}"
     log.info "Number of CPUs (Max): ${params.max_cpus}"
     
     // // Run subworkflows
-    AMR_ANALYSIS(ch_fastqs.single_end)
+    // AMR_ANALYSIS(ch_fastqs.single_end)
 
 }
