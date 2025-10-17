@@ -45,20 +45,20 @@ def get_args() -> argparse.Namespace:
 #         data = [line.strip() for line in data]  # Remove newline characters
 #         data = [s.replace('"', '') for s in data] # remove " from strings
 #         return data
-@oa.call_to_onyx
-def get_record_by_climb_id(sample_id: str, id_column: str, columns: list):
-    dict_list = []
-    try:
-        with OnyxClient(config) as client:
-                data = pd.DataFrame(client.filter(
-                project = "mscape",
-                id_column = sample_id
-                include = columns,
-            ))
-    except KeyError:
-        print(f"Sample {id} not found in database. Skipping.")
-        pass
-    return dict_list
+# @oa.call_to_onyx
+# def get_record_by_climb_id(sample_id: str, id_column: str, columns: list):
+#     dict_list = []
+#     try:
+#         with OnyxClient(config) as client:
+#                 data = pd.DataFrame(client.filter(
+#                 project = "mscape",
+#                 id_column = sample_id
+#                 include = columns,
+#             ))
+#     except KeyError:
+#         print(f"Sample {id} not found in database. Skipping.")
+#         pass
+#     return dict_list
 
 # def write_to_csv(dict_list: list, output: Path):
 #      """
