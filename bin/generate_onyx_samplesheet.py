@@ -48,7 +48,7 @@ def get_record(sample_id: str, columns: list):
                 include = columns
             ))
     except KeyError:
-        print(f"Sample {id} not found in database. Skipping.")
+        print(f"Sample {sample_id} not found in database. Skipping.")
         pass
     return data
 
