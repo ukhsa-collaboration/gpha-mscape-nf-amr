@@ -68,8 +68,6 @@ workflow {
             }
             .set { ch_fastqs }  
 
-    ch_fastqs.view()
-
     // // handle input parameters
     // log.info "Output directory: ${params.output}"
     // log.info "Number of CPUs (Max): ${params.max_cpus}"
