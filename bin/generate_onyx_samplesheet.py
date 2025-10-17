@@ -58,9 +58,7 @@ def main():
     args = get_args()
     col_names = args.columns.split(',')
     df, exit_code = get_record(args.id, col_names)
-    print(df)
-    print(exit_code)
-    df.to_csv(args.output)
+    df.to_csv(args.output, index=False)
 
 
 if __name__ == "__main__":
