@@ -37,13 +37,13 @@ workflow {
         log.info "Sample ID: ${unique_id}"
         // GENERATE_SAMPLESHEET(unique_id) // generate samplesheet from unique_id
         samplesheet = GENERATE_SAMPLESHEET.out
-        else if (params.samplesheet) {
-            samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)
-            log.info "Samplesheet: ${samplesheet}"
-        }
-        else{
-            exit(1, "Please specify either --unique_id or --samplesheet")
-        }
+    }
+    else if (params.samplesheet) {
+        samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)
+        log.info "Samplesheet: ${samplesheet}"
+    }
+    else{
+        exit(1, "Please specify either --unique_id or --samplesheet")
     }
 
     // Check if samplesheet has any rows
