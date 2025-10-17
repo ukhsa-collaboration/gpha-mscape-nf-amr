@@ -38,7 +38,7 @@ workflow {
         log.info "ID Type: ${params.samplesheet_id_column}"
         log.info "Onyx Fields: ${params.samplesheet_columns}"
         sample_ch = Channel.of( 
-            unique_id, "${params.samplesheet_id_column}", "${params.samplesheet_columns}"        
+            tuple (unique_id, "${params.samplesheet_id_column}", "${params.samplesheet_columns}" )
         )
         sample_ch.view()
         // GENERATE_SAMPLESHEET(sample_ch)
