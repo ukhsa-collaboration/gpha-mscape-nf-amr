@@ -3,7 +3,7 @@
 
 // TODO: add include to read in subworkflows
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
-include { GENERATE_SAMPLESHEET } from './modules/generate_samplesheet'
+// include { GENERATE_SAMPLESHEET } from './modules/generate_samplesheet'
 
 
 
