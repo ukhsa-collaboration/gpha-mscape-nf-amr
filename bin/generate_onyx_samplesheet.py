@@ -65,10 +65,11 @@ def write_to_csv(data: list, id: str,  output: Path):
 def main():
     args = get_args()
     col_names = args.columns.split(',')
+    print(col_names)
     data = get_record(args.id, col_names)
-
+    print(data)
     # dict_list = get_record_by_climb_id(climb_id_list)
-    write_to_csv(data, args.id, args.output)
+    # write_to_csv(data, args.id, args.output)
 
 if __name__ == "__main__":
     main()
