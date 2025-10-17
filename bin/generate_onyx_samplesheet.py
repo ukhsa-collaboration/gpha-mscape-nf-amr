@@ -20,13 +20,13 @@ def get_args() -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(description="generate-sample-sheet")
     parser.add_argument("-i", "--id",
-                help="ID string",
+                help="Sample ID.",
                 required=True, type=str)
-    parser.add_argument("-t", "--id_type",
-                help="ID type (CLIMB, UUID?)",
+    parser.add_argument("-t", "--id_column",
+                help="Column ID can be found in.",
                 required=True, type=str)
     parser.add_argument("-c", "--columns",
-                help="Columns from Onyx",
+                help="Columns from Onyx, should be column seperated string.",
                 required=True, type=str)
     parser.add_argument("-o", "--output",
                 help="Output directory for downloaded data",
@@ -89,6 +89,7 @@ def get_args() -> argparse.Namespace:
 
 def main():
     args = get_args()
+    print(args)
     # climb_id_list = parse_file(args.input)
     # dict_list = get_record_by_climb_id(climb_id_list)
     # write_to_csv(dict_list, args.output)
