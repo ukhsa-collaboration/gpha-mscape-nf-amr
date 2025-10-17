@@ -40,7 +40,8 @@ workflow {
             tuple (unique_id, "${params.samplesheet_columns}" )
         )
         GENERATE_SAMPLESHEET(sample_ch)
-        // samplesheet = GENERATE_SAMPLESHEET.out
+        samplesheet = GENERATE_SAMPLESHEET.out
+        samplesheet.view()
     }
     else if (params.samplesheet) {
         samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)

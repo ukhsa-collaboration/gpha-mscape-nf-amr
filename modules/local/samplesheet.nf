@@ -5,7 +5,6 @@ process GENERATE_SAMPLESHEET{
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2' // TODO: needs changing!
 
-    // 1. Extract Read IDs from Abricate output file
     input:
     tuple val(unique_id), val(columns)
 
