@@ -69,7 +69,6 @@ workflow {
             }
             .set { ch_fastqs }  
 
-    }
 
     // // handle input parameters
     // log.info "Output directory: ${params.output}"
