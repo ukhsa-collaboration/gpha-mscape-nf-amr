@@ -47,10 +47,11 @@ def get_record(sample_id: str, columns: list):
                 climb_id = sample_id,
                 include = columns
             ))
+        exit_code = 0
     except KeyError:
         print(f"Sample {sample_id} not found in database. Skipping.")
         pass
-    return df
+    return df, exit_code
 
 
 def main():
