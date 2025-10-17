@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 process GENERATE_SAMPLESHEET{
-    tag "${climb_id}"
+    tag "${unique_id}"
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-sample-qc:latest' // TODO: needs changing!
 
