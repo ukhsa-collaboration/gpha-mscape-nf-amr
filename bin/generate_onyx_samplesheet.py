@@ -45,8 +45,8 @@ def get_record(sample_id: str, id_column: str, columns: list):
         with OnyxClient(config) as client:
                 data = pd.DataFrame(client.filter(
                 project = "mscape",
-                id_column = sample_id
-                include = columns,
+                id_column = sample_id,
+                include = columns
             ))
     except KeyError:
         print(f"Sample {id} not found in database. Skipping.")
