@@ -45,7 +45,7 @@ def get_record(sample_id: str, id_column: str, columns: list):
                 data = pd.DataFrame(client.filter(
                 project = "mscape",
                 id_column = sample_id,
-                include = [columns]
+                include = columns
             ))
     except KeyError:
         print(f"Sample {id} not found in database. Skipping.")
@@ -73,7 +73,8 @@ def write_to_csv(data: list, id: str,  output: Path):
 def main():
     args = get_args()
     print(args)
-    data = get_record(args.id, args.id_column, args.columns)
+    col_names = args.columns.split(',')
+    data = get_record(args.id, args.id_column, col_names)
 
     # dict_list = get_record_by_climb_id(climb_id_list)
     write_to_csv(data, args.id, args.output)
