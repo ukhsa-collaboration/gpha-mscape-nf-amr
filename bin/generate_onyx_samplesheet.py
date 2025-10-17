@@ -2,7 +2,7 @@
 
 import os
 from onyx import OnyxConfig, OnyxEnv, OnyxClient
-# from onyx_analysis_helper import onyx_analysis_helper_functions as oa
+from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 import argparse
 from pathlib import Path
 import pandas as pd
