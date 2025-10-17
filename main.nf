@@ -39,8 +39,7 @@ workflow {
             tuple (unique_id, "${params.samplesheet_columns}" )
         )
         GENERATE_SAMPLESHEET(sample_ch)
-        GENERATE_SAMPLESHEET.out.view()
-        // samplesheet = file("${params.output}/${unique_id}_samplesheet.tsv", type:"file", checkIfExists: true)
+        samplesheet = file("${params.output}/${unique_id}_samplesheet.tsv", type:"file", checkIfExists: true)
     }
     else if (params.samplesheet) {
         samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)
