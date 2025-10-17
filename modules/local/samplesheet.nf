@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 process GENERATE_SAMPLESHEET{
     tag "${unique_id}"
-    publishDir "${params.output}/", mode: 'copy'
+    publishDir "${params.output}/", mode: 'copy', patterh: "*.tsv"
 
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
