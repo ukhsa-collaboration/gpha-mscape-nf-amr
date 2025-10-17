@@ -72,10 +72,8 @@ def write_to_csv(data: list, id: str,  output: Path):
 
 def main():
     args = get_args()
-    print(args)
     col_names = args.columns.split(',')
-    print(col_names)
-    # data = get_record(args.id, args.id_column, col_names)
+    data = get_record(args.id, args.id_column, col_names)
 
     # dict_list = get_record_by_climb_id(climb_id_list)
     # write_to_csv(data, args.id, args.output)
