@@ -67,6 +67,7 @@ def get_record(sample_id: str, id_column: str, columns: list):
 
 def main():
     args = get_args()
+    print(args)
     data = get_record(args.id, args.id_column, args.columns)
     print(data)
     # dict_list = get_record_by_climb_id(climb_id_list)
