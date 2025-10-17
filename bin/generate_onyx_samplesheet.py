@@ -59,7 +59,7 @@ def write_to_csv(data: list, id: str,  output: Path):
     :return: save as csv
     """
     with open(output, mode="w", newline="") as file:
-        file.write(data)
+        file.write(str(data))
 
 
 def main():
