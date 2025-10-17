@@ -56,9 +56,11 @@ def get_record(sample_id: str, columns: list):
 def main():
     args = get_args()
     col_names = args.columns.split(',')
-    df = get_record(args.id, col_names)
+    df, exit_code = get_record(args.id, col_names)
     print(df)
+    print(exit_code)
     df.to_csv(args.output)
+
 
 if __name__ == "__main__":
     main() 
