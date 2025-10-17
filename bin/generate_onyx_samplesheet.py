@@ -40,7 +40,6 @@ def get_record(sample_id: str, id_column: str, columns: list):
     """
     Using unique sample ID, query Onyx database to get appropriate columns
     """
-    dict_list = []
     try:
         with OnyxClient(config) as client:
                 data = pd.DataFrame(client.filter(
@@ -51,7 +50,7 @@ def get_record(sample_id: str, id_column: str, columns: list):
     except KeyError:
         print(f"Sample {id} not found in database. Skipping.")
         pass
-    return dict_list
+    return data
 
 # def write_to_csv(dict_list: list, output: Path):
 #      """
@@ -68,8 +67,8 @@ def get_record(sample_id: str, id_column: str, columns: list):
 
 def main():
     args = get_args()
-    print(args)
-    # climb_id_list = parse_file(args.input)
+    data = get_record(args.id, args.id_column, args.columns)
+    print(data)
     # dict_list = get_record_by_climb_id(climb_id_list)
     # write_to_csv(dict_list, args.output)
 
