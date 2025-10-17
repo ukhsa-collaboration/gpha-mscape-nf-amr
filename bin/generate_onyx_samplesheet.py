@@ -5,6 +5,7 @@ from onyx import OnyxConfig, OnyxEnv, OnyxClient
 from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 import argparse
 from pathlib import Path
+import pandas as pd
 
 config = OnyxConfig(
     domain=os.environ[OnyxEnv.DOMAIN],
@@ -33,30 +34,24 @@ def get_args() -> argparse.Namespace:
     args = parser.parse_args()
     return args
 
-# def parse_file(fp: Path):
-#     """
-#     Read in text file, seperate climb ids into lis
-#     :args: filepath str()
-#     """
-#     with open(fp, "r", encoding="utf-8-sig") as file:
-#         data = file.readlines()  # Reads lines into a list
-#         data = [line.strip() for line in data]  # Remove newline characters
-#         data = [s.replace('"', '') for s in data] # remove " from strings
-#         return data
-# @oa.call_to_onyx
-# def get_record_by_climb_id(sample_id: str, id_column: str, columns: list):
-#     dict_list = []
-#     try:
-#         with OnyxClient(config) as client:
-#                 data = pd.DataFrame(client.filter(
-#                 project = "mscape",
-#                 id_column = sample_id
-#                 include = columns,
-#             ))
-#     except KeyError:
-#         print(f"Sample {id} not found in database. Skipping.")
-#         pass
-#     return dict_list
+
+@oa.call_to_onyx
+def get_record(sample_id: str, id_column: str, columns: list):
+    """
+    Using unique sample ID, query Onyx database to get appropriate columns
+    """
+    dict_list = []
+    try:
+        with OnyxClient(config) as client:
+                data = pd.DataFrame(client.filter(
+                project = "mscape",
+                id_column = sample_id
+                include = columns,
+            ))
+    except KeyError:
+        print(f"Sample {id} not found in database. Skipping.")
+        pass
+    return dict_list
 
 # def write_to_csv(dict_list: list, output: Path):
 #      """
