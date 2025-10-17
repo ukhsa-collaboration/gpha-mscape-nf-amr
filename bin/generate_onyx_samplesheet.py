@@ -35,7 +35,7 @@ def get_args() -> argparse.Namespace:
     return args
 
 
-# @oa.call_to_onyx
+@oa.call_to_onyx
 def get_record(sample_id: str, columns: list):
     """
     Using unique sample ID, query Onyx database to get appropriate columns
