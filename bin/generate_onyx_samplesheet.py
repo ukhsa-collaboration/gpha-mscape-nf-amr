@@ -42,10 +42,10 @@ def get_record(sample_id: str, columns: list):
     """
     try:
         with OnyxClient(config) as client:
-                data = pd.DataFrame(client.filter(
+                df = pd.DataFrame(client.filter(
                 project = "mscape",
-                climb_id = f"{sample_id}",
-                include = f"{columns}"
+                climb_id = sample_id,
+                include = columns
             ))
     except KeyError:
         print(f"Sample {sample_id} not found in database. Skipping.")
@@ -58,17 +58,16 @@ def write_to_csv(data: list, id: str,  output: Path):
     :args: [{CLIMB-ID, READ1, READ2}], Path(output)
     :return: save as csv
     """
-    with open(output, mode="w", newline="") as file:
-        file.write(str(data))
+
+    # with open(output, mode="w", newline="") as file:
+    #     file.write(str(data))
 
 
 def main():
     args = get_args()
     col_names = args.columns.split(',')
-    print(col_names)
-    data = get_record(args.id, col_names)
-    print(data)
-    write_to_csv(data, args.id, args.output)
+    df = get_record(args.id, col_names)
+    df.to_csv(args.output)
 
 if __name__ == "__main__":
     main()
