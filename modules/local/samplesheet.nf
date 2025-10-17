@@ -15,6 +15,6 @@ process GENERATE_SAMPLESHEET{
     script:
     """
     echo $unique_id
-    generate_onyx_samplesheet.py -i ${unique_id} -t ${id_type} -c ${columns} -o ${samplesheet}.tsv
+    generate_onyx_samplesheet.py -i ${unique_id} -t ${id_type} -c ${columns} -o ${unique_id}_samplesheet.tsv
     """
 }
