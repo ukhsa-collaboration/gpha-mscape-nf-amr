@@ -2,7 +2,8 @@
 nextflow.enable.dsl=2
 process GENERATE_SAMPLESHEET{
     tag "${climb_id}"
-    container 'community.wave.seqera.io/library/pip_pandas:40d2e76c16c136f0'
+    // Onyx and Onyx Helper
+    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-sample-qc:latest' // TODO: needs changing!
     // publishDir "${params.output}/abricate", mode: 'copy'
 
     // 1. Extract Read IDs from Abricate output file

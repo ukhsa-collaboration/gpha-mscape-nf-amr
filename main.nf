@@ -3,7 +3,7 @@
 
 // TODO: add include to read in subworkflows
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
-// include { GENERATE_SAMPLESHEET } from './modules/generate_samplesheet'
+include { GENERATE_SAMPLESHEET } from './modules/samplesheet'
 
 
 
@@ -35,7 +35,7 @@ workflow {
 
     if (unique_id != "null"){
         log.info "Sample ID: ${unique_id}"
-        // GENERATE_SAMPLESHEET(unique_id, ${params.samplesheet_id_column}, ${params.samplesheet_columns}) // generate samplesheet from unique_id
+        GENERATE_SAMPLESHEET(unique_id, ${params.samplesheet_id_column}, ${params.samplesheet_columns}) // generate samplesheet from unique_id
         // samplesheet = GENERATE_SAMPLESHEET.out
     }
     else if (params.samplesheet) {

@@ -2,6 +2,7 @@
 
 import os
 from onyx import OnyxConfig, OnyxEnv, OnyxClient
+from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 import argparse
 from pathlib import Path
 import pandas as pd
@@ -44,35 +45,20 @@ def get_args() -> argparse.Namespace:
 #         data = [line.strip() for line in data]  # Remove newline characters
 #         data = [s.replace('"', '') for s in data] # remove " from strings
 #         return data
-
-# def get_record_by_climb_id(climb_id_list: list):
-#     dict_list = []
-#     for id in climb_id_list:
-#         try:
-#             with OnyxClient(config) as client:
-#                     data = pd.DataFrame(client.filter(
-#                     project = "mscape",
-#                     climb_id = id
-#                 ))
-        
-#             read_1_link = data["human_filtered_reads_1"][0]
-#             read_2_link = data["human_filtered_reads_2"][0]
-#             taxon_reports_dir = data["taxon_reports"][0]
-#             dict_list.append({'climb_id': id, 
-#                 'human_filtered_reads_1': read_1_link, 
-#                 'human_filtered_reads_2': read_2_link,
-#                 'taxon_reports_dir': taxon_reports_dir,
-#                 'kraken_assignments': os.path.join(
-#                     taxon_reports_dir,
-#                     str(id)+str('_PlusPF.kraken_assignments.tsv')),
-#                 'kraken_report': os.path.join(
-#                 taxon_reports_dir, 
-#                 str(id)+str('_PlusPF.kraken_report.json'))
-#         })
-#         except KeyError:
-#             print(f"Sample {id} not found in database. Skipping.")
-#             pass
-#     return dict_list
+@oa.call_to_onyx
+def get_record_by_climb_id(sample_id: str, id_column: str, columns: list):
+    dict_list = []
+    try:
+        with OnyxClient(config) as client:
+                data = pd.DataFrame(client.filter(
+                project = "mscape",
+                id_column = sample_id
+                include = columns,
+            ))
+    except KeyError:
+        print(f"Sample {id} not found in database. Skipping.")
+        pass
+    return dict_list
 
 # def write_to_csv(dict_list: list, output: Path):
 #      """
