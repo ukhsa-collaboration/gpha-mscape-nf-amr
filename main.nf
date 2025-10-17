@@ -13,8 +13,7 @@ include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 //     .splitCsv(header: true)
 //     .map { row ->
 //         def climb_id = row.climb_id
-//         def kraken_assignments = row.kraken_assignments
-//         def kraken_report = row.kraken_report
+//         def taxon_reports = row.taxon_reports
 //         def fastq1 = row.human_filtered_reads_1
 //         def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
 //         return fastq2 ? tuple(climb_id, kraken_assignments, kraken_report, fastq1, fastq2) : tuple(climb_id, kraken_assignments, kraken_report, fastq1)
@@ -41,18 +40,35 @@ workflow {
         )
         GENERATE_SAMPLESHEET(sample_ch)
         samplesheet = GENERATE_SAMPLESHEET.out
-        samplesheet.view()
     }
     else if (params.samplesheet) {
         samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)
         log.info "Samplesheet: ${samplesheet}"
+        samples = Channel
+            
     }
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
 
-    // Check if samplesheet has any rows
-    
+    // Parse samplesheet
+    samples = Channel
+            .fromPath(samplesheet)
+            .splitCsv(header: true)
+            .map { row ->
+                def climb_id = row.climb_id
+                def taxon_reports = row.taxon_reports
+                def fastq1 = row.human_filtered_reads_1
+                def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
+                return fastq2 ? tuple(climb_id, taxon_reports, fastq1, fastq2) : tuple(climb_id, taxon_reports, fastq1)
+            }
+            .branch{ v ->
+                paired_end: v.size() == 4
+                single_end: v.size() == 3
+            }
+            .set { ch_fastqs }  
+
+//     }
 
     // // handle input parameters
     // log.info "Output directory: ${params.output}"
