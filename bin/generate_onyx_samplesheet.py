@@ -50,17 +50,7 @@ def get_record(sample_id: str, columns: list):
     except KeyError:
         print(f"Sample {sample_id} not found in database. Skipping.")
         pass
-    return data
-
-def write_to_csv(data: list, id: str,  output: Path):
-    """
-    Write list of dictionaries to csv
-    :args: [{CLIMB-ID, READ1, READ2}], Path(output)
-    :return: save as csv
-    """
-
-    # with open(output, mode="w", newline="") as file:
-    #     file.write(str(data))
+    return df
 
 
 def main():
