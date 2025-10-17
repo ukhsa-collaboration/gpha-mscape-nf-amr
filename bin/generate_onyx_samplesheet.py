@@ -52,26 +52,32 @@ def get_record(sample_id: str, id_column: str, columns: list):
         pass
     return data
 
-# def write_to_csv(dict_list: list, output: Path):
-#      """
-#      Write list of dictionaries to csv
-#      :args: [{CLIMB-ID, READ1, READ2}], Path(output)
-#      :return: save as csv
-#      """
-#      with open(output, mode="w", newline="") as file:
-#         # Define the column names (fieldnames)
-#         fieldnames = dict_list[0].keys()  # Extract keys from the first dictionary
-#         writer = csv.DictWriter(file, fieldnames=fieldnames)
-#         writer.writeheader()
-#         writer.writerows(dict_list)
+
+
+
+def write_to_csv(data: list, id: str,  output: Path):
+    """
+    Write list of dictionaries to csv
+    :args: [{CLIMB-ID, READ1, READ2}], Path(output)
+    :return: save as csv
+    """
+    output_file = os.join(output, id, '.txt')
+    with open(output_file, mode="w", newline="") as file:
+        file.write(data)
+
+    #     # Define the column names (fieldnames)
+    #     fieldnames = dict_list[0].keys()  # Extract keys from the first dictionary
+    #     writer = csv.DictWriter(file, fieldnames=fieldnames)
+    #     writer.writeheader()
+    #     writer.writerows(dict_list)
 
 def main():
     args = get_args()
     print(args)
     data = get_record(args.id, args.id_column, args.columns)
-    print(data)
+
     # dict_list = get_record_by_climb_id(climb_id_list)
-    # write_to_csv(dict_list, args.output)
+    write_to_csv(data, args.id, args.output)
 
 if __name__ == "__main__":
     main()
