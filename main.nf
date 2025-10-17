@@ -5,29 +5,6 @@
 include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
 include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 
-
-
-// // 0.1 Define a channel from the sample sheet
-// samples = Channel
-//     .fromPath(params.samplesheet)
-//     .splitCsv(header: true)
-//     .map { row ->
-//         def climb_id = row.climb_id
-//         def taxon_reports = row.taxon_reports
-//         def fastq1 = row.human_filtered_reads_1
-//         def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
-//         return fastq2 ? tuple(climb_id, kraken_assignments, kraken_report, fastq1, fastq2) : tuple(climb_id, kraken_assignments, kraken_report, fastq1)
-//     }
-//     .branch{ v ->
-//         paired_end: v.size() == 5
-//         single_end: v.size() == 4 
-//     }
-//     // // Assign the separated channels
-//     .set { ch_fastqs }  // Define separate channels
-
-// TODO: 0.2 Generate sample sheet using climb id
-// TODO: python bin/generate-sample-sheet.py
-
 workflow {
     // TODO: Take either a sample sheet or a climb-id
     unique_id = "${params.unique_id}"
@@ -69,10 +46,10 @@ workflow {
             .set { ch_fastqs }  
 
     // // handle input parameters
-    // log.info "Output directory: ${params.output}"
-    // log.info "Number of CPUs (Max): ${params.max_cpus}"
+    log.info "Output directory: ${params.output}"
+    log.info "Number of CPUs (Max): ${params.max_cpus}"
     
     // // Run subworkflows
-    // AMR_ANALYSIS(ch_fastqs.single_end)
+    AMR_ANALYSIS(ch_fastqs.single_end)
 
 }
