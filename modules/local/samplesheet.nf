@@ -10,7 +10,7 @@ process GENERATE_SAMPLESHEET{
     tuple val(unique_id), val(id_type), val(columns)
 
     output:
-    path("${samplesheet}.tsv")
+    path("${unique_id}_samplesheet.tsv")
     
     script:
     """
