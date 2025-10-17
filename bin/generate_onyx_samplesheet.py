@@ -40,17 +40,14 @@ def get_record(sample_id: str, columns: list):
     """
     Using unique sample ID, query Onyx database to get appropriate columns
     """
-    try:
-        with OnyxClient(config) as client:
-                df = pd.DataFrame(client.filter(
-                project = "mscape",
-                climb_id = sample_id,
-                include = columns
-            ))
-        exit_code = 0
-    except KeyError:
-        print(f"Sample {sample_id} not found in database. Skipping.")
-        pass
+    with OnyxClient(config) as client:
+            df = pd.DataFrame(client.filter(
+            project = "mscape",
+            climb_id = sample_id,
+            include = columns
+        ))
+    exit_code = 0
+
     return df, exit_code
 
 
