@@ -7,7 +7,7 @@ process GENERATE_SAMPLESHEET{
 
     // 1. Extract Read IDs from Abricate output file
     input:
-    val(id), val(id_type), val(columns)
+    tuple val(unique_id), val(id_type), val(columns)
 
     output:
     path("${samplesheet}.tsv")
@@ -15,6 +15,6 @@ process GENERATE_SAMPLESHEET{
     script:
     """
     echo $climb_id
-    generate_onyx_samplesheet.py -i ${id} -t ${id_type} -c ${columns} -o ${samplesheet}.tsv
+    generate_onyx_samplesheet.py -i ${unique_id} -t ${id_type} -c ${columns} -o ${samplesheet}.tsv
     """
 }
