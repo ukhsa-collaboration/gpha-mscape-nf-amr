@@ -61,8 +61,7 @@ def write_to_csv(data: list, id: str,  output: Path):
     :args: [{CLIMB-ID, READ1, READ2}], Path(output)
     :return: save as csv
     """
-    output_file = os.join(output, id, '.txt')
-    with open(output_file, mode="w", newline="") as file:
+    with open(output, mode="w", newline="") as file:
         file.write(data)
 
     #     # Define the column names (fieldnames)
