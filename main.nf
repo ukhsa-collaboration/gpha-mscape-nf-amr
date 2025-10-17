@@ -35,10 +35,9 @@ workflow {
 
     if (unique_id != "null"){
         log.info "Sample ID: ${unique_id}"
-        log.info "ID Type: ${params.samplesheet_id_column}"
         log.info "Onyx Fields: ${params.samplesheet_columns}"
         sample_ch = Channel.of( 
-            tuple (unique_id, "${params.samplesheet_id_column}", "${params.samplesheet_columns}" )
+            tuple (unique_id, "${params.samplesheet_columns}" )
         )
         GENERATE_SAMPLESHEET(sample_ch)
         // samplesheet = GENERATE_SAMPLESHEET.out

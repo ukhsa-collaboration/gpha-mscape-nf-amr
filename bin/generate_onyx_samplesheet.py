@@ -22,9 +22,9 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("-i", "--id",
                 help="Sample ID.",
                 required=True, type=str)
-    parser.add_argument("-t", "--id_column",
-                help="Column ID can be found in.",
-                required=True, type=str)
+    # parser.add_argument("-t", "--id_column",
+    #             help="Column ID can be found in.",
+    #             required=True, type=str)
     parser.add_argument("-c", "--columns",
                 help="Columns from Onyx, should be column seperated string.",
                 required=True, type=str)
@@ -65,7 +65,7 @@ def write_to_csv(data: list, id: str,  output: Path):
 def main():
     args = get_args()
     col_names = args.columns.split(',')
-    data = get_record(args.id, args.id_column, col_names)
+    data = get_record(args.id, col_names)
 
     # dict_list = get_record_by_climb_id(climb_id_list)
     write_to_csv(data, args.id, args.output)
