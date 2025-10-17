@@ -40,7 +40,8 @@ workflow {
         sample_ch = Channel.of( 
             unique_id, "${params.samplesheet_id_column}", "${params.samplesheet_columns}"        
         )
-        GENERATE_SAMPLESHEET(sample_ch)
+        sample_ch.view()
+        // GENERATE_SAMPLESHEET(sample_ch)
         // samplesheet = GENERATE_SAMPLESHEET.out
     }
     else if (params.samplesheet) {
