@@ -7,7 +7,7 @@ process GENERATE_SAMPLESHEET{
 
     // 1. Extract Read IDs from Abricate output file
     input:
-    tuple val("${id}_samplesheet.tsv"), val("${id_type}"), val("${columns}")
+    tuple val(id), val(id_type), val(columns)
 
     output:
     path("${samplesheet}.tsv")

@@ -35,7 +35,7 @@ workflow {
 
     if (unique_id != "null"){
         log.info "Sample ID: ${unique_id}"
-        GENERATE_SAMPLESHEET(unique_id, ${params.samplesheet_id_column}, ${params.samplesheet_columns}) // generate samplesheet from unique_id
+        GENERATE_SAMPLESHEET(unique_id, ${params.samplesheet_id_column}, ${params.samplesheet_columns})
         // samplesheet = GENERATE_SAMPLESHEET.out
     }
     else if (params.samplesheet) {
