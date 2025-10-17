@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 process GENERATE_SAMPLESHEET{
     tag "${unique_id}"
     // Onyx and Onyx Helper
-    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper@sha256:ad7e2054e3a33121c51931446b203a8542d68eba2b9079b75a4f45a65d5123f2' // TODO: needs changing!
+    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2' // TODO: needs changing!
 
     // 1. Extract Read IDs from Abricate output file
     input:
