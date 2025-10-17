@@ -74,10 +74,11 @@ def main():
     args = get_args()
     print(args)
     col_names = args.columns.split(',')
-    data = get_record(args.id, args.id_column, col_names)
+    print(col_names)
+    # data = get_record(args.id, args.id_column, col_names)
 
     # dict_list = get_record_by_climb_id(climb_id_list)
-    write_to_csv(data, args.id, args.output)
+    # write_to_csv(data, args.id, args.output)
 
 if __name__ == "__main__":
     main()
