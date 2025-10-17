@@ -14,7 +14,7 @@ process GENERATE_SAMPLESHEET{
     
     script:
     """
-    echo $climb_id
+    echo $unique_id
     generate_onyx_samplesheet.py -i ${unique_id} -t ${id_type} -c ${columns} -o ${samplesheet}.tsv
     """
 }
