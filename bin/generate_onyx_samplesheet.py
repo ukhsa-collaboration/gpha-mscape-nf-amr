@@ -40,6 +40,7 @@ def get_record(sample_id: str, columns: list):
     """
     Using unique sample ID, query Onyx database to get appropriate columns
     """
+    sample_id = str("'")+str(sample_id)+str("'")
     try:
         with OnyxClient(config) as client:
                 df = pd.DataFrame(client.filter(
@@ -61,4 +62,4 @@ def main():
     # df.to_csv(args.output)
 
 if __name__ == "__main__":
-    main()
+    main()tg  
