@@ -44,16 +44,13 @@ def get_record(sample_id: str, id_column: str, columns: list):
         with OnyxClient(config) as client:
                 data = pd.DataFrame(client.filter(
                 project = "mscape",
-                id_column = sample_id,
+                climb_id = sample_id,
                 include = columns
             ))
     except KeyError:
         print(f"Sample {id} not found in database. Skipping.")
         pass
     return data
-
-
-
 
 def write_to_csv(data: list, id: str,  output: Path):
     """
@@ -64,11 +61,6 @@ def write_to_csv(data: list, id: str,  output: Path):
     with open(output, mode="w", newline="") as file:
         file.write(data)
 
-    #     # Define the column names (fieldnames)
-    #     fieldnames = dict_list[0].keys()  # Extract keys from the first dictionary
-    #     writer = csv.DictWriter(file, fieldnames=fieldnames)
-    #     writer.writeheader()
-    #     writer.writerows(dict_list)
 
 def main():
     args = get_args()
