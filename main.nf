@@ -6,7 +6,7 @@ include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
 
 
 workflow {
-    // TODO: Take either a sample sheet or a climb-id
+    // Handle either samplesheet or climb id
     if (params.samplesheet){
         log.info "Samplesheet input: ${params.samplesheet}"
         samplesheet_ch = channel.fromPath(params.samplesheet)
@@ -18,6 +18,7 @@ workflow {
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
+    // Split csv into channgels
     samples = samplesheet_ch.splitCsv(header: true, quote: '\"')
         .map { row ->
             def climb_id = row.climb_id
@@ -28,12 +29,11 @@ workflow {
             def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
             return fastq2 ? tuple(climb_id, kraken_assignments, kraken_report, fastq1, fastq2) : tuple(climb_id, kraken_assignments, kraken_report, fastq1)
         }
-        .branch{ v ->
+        // Split channel by the number of reads
+        .branch{ v -> 
             paired_end: v.size() == 5
             single_end: v.size() == 4
-        // Assign the separated channels
         }
-        .set { ch_fastqs }  // Define separate channels
+        .set { ch_fastqs } 
     AMR_ANALYSIS(ch_fastqs.single_end)
-
 }
