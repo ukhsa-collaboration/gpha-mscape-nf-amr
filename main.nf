@@ -30,6 +30,7 @@ workflow {
             paired_end: v.size() == 4
             single_end: v.size() == 3
         // Assign the separated channels
+        }
         .set { ch_fastqs }  // Define separate channels
     ch_fastqs.single_end.view()
 }   
