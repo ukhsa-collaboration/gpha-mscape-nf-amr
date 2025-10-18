@@ -10,6 +10,8 @@ workflow {
     // TODO: Take either a sample sheet or a climb-id
     if (params.samplesheet){
         log.info "Samplesheet input"
+        samplesheet_ch = file(params.samplesheet, type:"file", checkIfExists: true)
+        samplesheet_ch.view()
     }
 }
     // else if (params.unique_id) {
