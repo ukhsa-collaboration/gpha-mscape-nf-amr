@@ -8,7 +8,7 @@ process READ_ANALYSIS{
 
     // 1. Extract Read IDs from Abricate output file
     input:
-    tuple val(climb_id), path(taxon_report_dir),  path(abricate_out)
+    tuple val(climb_id),  path(kraken_assignments), path(kraken_report),  path(abricate_out)
 
     output:
     path "${climb_id}_abricate_taxa_out.tsv"

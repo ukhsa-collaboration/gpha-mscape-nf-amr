@@ -34,7 +34,6 @@ workflow {
         // Assign the separated channels
         }
         .set { ch_fastqs }  // Define separate channels
-    ch_fastqs.single_end.view()
-    // AMR_ANALYSIS(ch_fastqs.single_end)
+    AMR_ANALYSIS(ch_fastqs.single_end)
 
 }

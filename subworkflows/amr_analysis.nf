@@ -33,7 +33,7 @@ workflow AMR_ANALYSIS {
     // amr_status.unannotated.view()
     // // if not AMR annotations then skip
     amr_status.unannotated
-        .map{ climb_id, taxon_report_dir, abricate_out ->
+        .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
             log.info "The AMR annotation pipeline was not ran on ${climb_id}."
             return null
         }
