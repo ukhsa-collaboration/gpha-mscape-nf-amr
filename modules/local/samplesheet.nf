@@ -11,7 +11,7 @@ process GENERATE_SAMPLESHEET{
     tuple val(unique_id), val(columns)
 
     output:
-    path("${unique_id}_samplesheet.tsv")
+    path("${unique_id}_samplesheet.tsv"), emit: samplesheet
     
     script:
     """
