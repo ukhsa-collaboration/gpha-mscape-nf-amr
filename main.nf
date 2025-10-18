@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 
 // TODO: add include to read in subworkflows
 // include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
-// include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
+include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 
 
 workflow {
