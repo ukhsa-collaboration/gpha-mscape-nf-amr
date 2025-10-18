@@ -11,10 +11,9 @@ workflow {
     if (params.samplesheet){
         log.info "Samplesheet input"
         samplesheet_ch = file(params.samplesheet, type:"file", checkIfExists: true)
-    }
-    else if (params.unique_id) {
+    } else if (params.unique_id) {
         log.info "Unique ID input"
-        sample_ch = Channel.of(tuple (params.unique_id, params.samplesheet_columns))
+
     }
 }
     // else if (params.unique_id) {
