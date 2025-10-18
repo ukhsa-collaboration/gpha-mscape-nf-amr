@@ -18,7 +18,6 @@ workflow {
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
-    samplesheet_ch.view()
     samples = samplesheet_ch.splitCsv(header: true, quote: '\"')
         .map { row ->
             def climb_id = row.climb_id
@@ -32,7 +31,7 @@ workflow {
             single_end: v.size() == 3
         // Assign the separated channels
         }
-        // .set { ch_fastqs }  // Define separate channels
+        .set { ch_fastqs }  // Define separate channels
     samples.view()
     // ch_fastqs.view()
 }   
