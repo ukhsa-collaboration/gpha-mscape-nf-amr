@@ -15,6 +15,7 @@ workflow {
     else if (params.unique_id) {
         log.info "Unique ID input"
         sample_ch = Channel.of(tuple (params.unique_id, params.samplesheet_columns))
+    }
 }
     // else if (params.unique_id) {
     //     sample_ch = Channel.of(tuple (${params.unique_id}, "${params.samplesheet_columns}"))
