@@ -32,15 +32,7 @@ workflow {
         // Assign the separated channels
         }
         .set { ch_fastqs }  // Define separate channels
-    ch_fastqs.single_end.view()
-    // ch_fastqs.view()
-}   
 
-    // // // handle input parameters
-    // log.info "Output directory: ${params.output}"
-    // log.info "Number of CPUs (Max): ${params.max_cpus}"
-    
-    // // Run subworkflows
-    // AMR_ANALYSIS(ch_fastqs.single_end)
+    AMR_ANALYSIS(ch_fastqs.single_end)
 
-// }
+}
