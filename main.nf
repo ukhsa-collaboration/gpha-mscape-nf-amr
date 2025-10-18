@@ -8,10 +8,10 @@ nextflow.enable.dsl=2
 
 workflow {
     // TODO: Take either a sample sheet or a climb-id
-    if (params.samplesheet){
+    if (params.samplesheet != 'null'){
         log.info "Samplesheet input"
         // samplesheet_ch = file(params.samplesheet, type:"file", checkIfExists: true)
-    } else if (params.unique_id) {
+    } else if (params.unique_id != 'null') {
         log.info "Unique ID input"
 
     }
