@@ -18,14 +18,9 @@ workflow {
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
+    samplesheet_ch.view()
 }
-    // else if (params.unique_id) {
-    //     sample_ch = Channel.of(tuple (${params.unique_id}, "${params.samplesheet_columns}"))
-    //     samplesheet_channel = GENERATE_SAMPLESHEET(sample_ch)
-    // }
-    // else{
-    //     exit(1, "Please specify either --unique_id or --samplesheet")
-    // }
+
     // if (unique_id != "null"){
     //     log.info "Sample ID: ${unique_id}"
     //     log.info "Onyx Fields: ${params.samplesheet_columns}"
