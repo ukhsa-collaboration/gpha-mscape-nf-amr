@@ -8,7 +8,7 @@ include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 
 workflow {
     // TODO: Take either a sample sheet or a climb-id
-    if ${params.spreadsheet}{
+    if (${params.spreadsheet}){
         samplesheet_channel = channel.fromPath(${params.spreadsheet})
     } else if (params.unique_id) {
         sample_ch = Channel.of(tuple (${params.unique_id}, "${params.samplesheet_columns}"))
