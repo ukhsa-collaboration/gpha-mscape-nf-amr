@@ -8,42 +8,40 @@ include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 
 workflow {
     // TODO: Take either a sample sheet or a climb-id
-    unique_id = "${params.unique_id}"
-
-    if (unique_id != "null"){
-        log.info "Sample ID: ${unique_id}"
-        log.info "Onyx Fields: ${params.samplesheet_columns}"
-        sample_ch = Channel.of( 
-            tuple (unique_id, "${params.samplesheet_columns}" )
-        )
-        GENERATE_SAMPLESHEET(sample_ch)
-        GENERATE_SAMPLESHEET.out.view()
-        // samplesheet = file("${params.output}/${unique_id}_samplesheet.tsv", type:"file", checkIfExists: true)
-    }
-    else if (params.samplesheet) {
-        samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)
-        log.info "Samplesheet: ${samplesheet}"
-            // Parse samplesheet
-        samples = Channel
-                .fromPath(samplesheet)
-                .splitCsv(header: true)
-                .map { row ->
-                    def climb_id = row.climb_id
-                    def taxon_reports = row.taxon_reports
-                    def fastq1 = row.human_filtered_reads_1
-                    def fastq2 = row.containsKey('human_filtered_reads_2') ? row.human_filtered_reads_2 : null
-                    return fastq2 ? tuple(climb_id, taxon_reports, fastq1, fastq2) : tuple(climb_id, taxon_reports, fastq1)
-                }
-                .branch{ v ->
-                    paired_end: v.size() == 4
-                    single_end: v.size() == 3
-                }
-                .set { ch_fastqs }  
-                
+    if params.spreadsheet{
+        samplesheet_channel = channel.fromPath(params.samplesheet)
+    } else if (params.unique_id) {
+        sample_ch = Channel.of(tuple (unique_id, "${params.samplesheet_columns}"))
+        samplesheet_channel = GENERATE_SAMPLESHEET(sample_ch)
     }
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
+    unique_id = "${params.unique_id}"
+
+    // if (unique_id != "null"){
+    //     log.info "Sample ID: ${unique_id}"
+    //     log.info "Onyx Fields: ${params.samplesheet_columns}"
+    //     sample_ch = Channel.of( 
+    //         tuple (unique_id, "${params.samplesheet_columns}" )
+    //     )
+    //     GENERATE_SAMPLESHEET(sample_ch)
+    //     GENERATE_SAMPLESHEET.out.view()
+    //     // samplesheet = file("${params.output}/${unique_id}_samplesheet.tsv", type:"file", checkIfExists: true)
+    // }
+    // else if (params.samplesheet) {
+    //     samplesheet = file(params.samplesheet, type:"file", checkIfExists: true)
+    //     log.info "Samplesheet: ${samplesheet}"
+    //         // Parse samplesheet
+    //     samples = Channel
+    //             .fromPath(samplesheet)
+    //             .splitCsv(header: true)
+    //             .splitCsv(header: true) 
+                
+    // }
+    // else{
+    //     exit(1, "Please specify either --unique_id or --samplesheet")
+    // }
 
 
 
