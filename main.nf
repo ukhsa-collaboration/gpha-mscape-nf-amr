@@ -8,9 +8,10 @@ include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 
 workflow {
     // TODO: Take either a sample sheet or a climb-id
-    if ${params.spreadsheet}{
+    if (${params.spreadsheet} != 'null'){
         samplesheet_channel = channel.fromPath(${params.spreadsheet})
-    } 
+    }
+}
     // else if (params.unique_id) {
     //     sample_ch = Channel.of(tuple (${params.unique_id}, "${params.samplesheet_columns}"))
     //     samplesheet_channel = GENERATE_SAMPLESHEET(sample_ch)
@@ -18,7 +19,6 @@ workflow {
     // else{
     //     exit(1, "Please specify either --unique_id or --samplesheet")
     // }
-}
     // if (unique_id != "null"){
     //     log.info "Sample ID: ${unique_id}"
     //     log.info "Onyx Fields: ${params.samplesheet_columns}"
