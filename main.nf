@@ -11,14 +11,13 @@ workflow {
     if params.spreadsheet{
         samplesheet_channel = channel.fromPath(params.samplesheet)
     } else if (params.unique_id) {
-        sample_ch = Channel.of(tuple (unique_id, "${params.samplesheet_columns}"))
+        sample_ch = Channel.of(tuple (${params.unique_id}, "${params.samplesheet_columns}"))
         samplesheet_channel = GENERATE_SAMPLESHEET(sample_ch)
     }
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
-    unique_id = "${params.unique_id}"
-
+}
     // if (unique_id != "null"){
     //     log.info "Sample ID: ${unique_id}"
     //     log.info "Onyx Fields: ${params.samplesheet_columns}"
@@ -53,4 +52,4 @@ workflow {
     // // Run subworkflows
     // AMR_ANALYSIS(ch_fastqs.single_end)
 
-}
+// }
