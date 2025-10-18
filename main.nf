@@ -8,7 +8,7 @@ nextflow.enable.dsl=2
 
 workflow {
     // TODO: Take either a sample sheet or a climb-id
-    if (${params.spreadsheet}){
+    if (params.spreadsheet){
         log.info "Samplesheet: ${params.spreadsheet}"
     }
 }
