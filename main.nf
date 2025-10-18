@@ -19,6 +19,8 @@ workflow {
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
     samplesheet_ch.view()
+    samples = samplesheet_ch.splitCsv(header: true)
+    samples.view()
 }
 
     // if (unique_id != "null"){
