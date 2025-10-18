@@ -11,6 +11,9 @@ workflow {
     if (${params.spreadsheet} != 'null'){
         samplesheet_channel = channel.fromPath(${params.spreadsheet})
     }
+    else{
+        exit(1, "Please specify either --unique_id or --samplesheet")
+    }
 }
     // else if (params.unique_id) {
     //     sample_ch = Channel.of(tuple (${params.unique_id}, "${params.samplesheet_columns}"))
