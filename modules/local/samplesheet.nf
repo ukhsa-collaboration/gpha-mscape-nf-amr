@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 process GENERATE_SAMPLESHEET{
     tag "${unique_id}"
-    publishDir "${params.output}/", mode: 'copy', patterh: "*.tsv"
+    publishDir "${params.output}/", mode: 'copy', pattern: "*.csv"
 
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
@@ -11,7 +11,7 @@ process GENERATE_SAMPLESHEET{
     tuple val(unique_id), val(columns)
 
     output:
-    path("${unique_id}_samplesheet.tsv"), emit: samplesheet
+    path("${unique_id}_samplesheet.csv"), emit: samplesheet
     
     script:
     """
