@@ -15,8 +15,6 @@ workflow AMR_ANALYSIS {
     GZ_TO_FASTQ(single_end_ch)
     
     // 2 - Run Abricate
-    // RUN_ABRICATE(GZ_TO_FASTQ.out)
-
     // Run Abricate with multiple databases
     abricate_db_list = params.abricate_databases?.split(',') as List
     db_ch = channel.fromList(abricate_db_list)
@@ -25,7 +23,7 @@ workflow AMR_ANALYSIS {
     // test if any AMR annotations have been made
     RUN_ABRICATE_DB.out.abricate_results
         .branch{
-            climb_id, taxon_report_dir, abricate_out ->
+            climb_id,  kraken_assignments, kraken_report, abricate_out ->
             // Skips abricate file if it contains only header, i.e. no AMR annotations have been made
             annotated: abricate_out.readLines().size() > 1
             unannotated: abricate_out.readLines().size() <= 1
@@ -42,5 +40,4 @@ workflow AMR_ANALYSIS {
     // TODO: pull out filepaths from directory
     // READ_ANALYSIS(amr_status.annotated)
     // READ_ANALYSIS.out.view()
-
 }
