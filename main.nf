@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 
 include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
-// include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
+include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
 
 
 workflow {
