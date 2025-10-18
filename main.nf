@@ -9,7 +9,8 @@ include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 workflow {
     // TODO: Take either a sample sheet or a climb-id
     if (${params.spreadsheet} != 'null'){
-        samplesheet_channel = channel.fromPath(${params.spreadsheet})
+        log.info "Samplesheet: ${params.spreadsheet}"
+        // samplesheet_channel = channel.fromPath(${params.spreadsheet})
     }
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
