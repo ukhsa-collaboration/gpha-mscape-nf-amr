@@ -32,7 +32,7 @@ workflow {
         // Assign the separated channels
         }
         .set { ch_fastqs }  // Define separate channels
-    samples.view()
+    ch_fastqs.view()
     // ch_fastqs.view()
 }   
 
