@@ -27,8 +27,8 @@ workflow {
             return fastq2 ? tuple(climb_id, taxon_report_dir, fastq1, fastq2) : tuple(climb_id, taxon_report_dir, fastq1)
         }
         .branch{ v ->
-            paired_end: v.size() == 4
-            single_end: v.size() == 3
+            paired_end: v.size() == 3
+            single_end: v.size() == 2
         // Assign the separated channels
         }
         .set { ch_fastqs }  // Define separate channels
