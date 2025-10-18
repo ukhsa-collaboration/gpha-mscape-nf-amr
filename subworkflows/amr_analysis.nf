@@ -2,7 +2,6 @@
 nextflow.enable.dsl=2
 
 include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
-include { RUN_ABRICATE    } from "../modules/local/abricate"
 include { RUN_ABRICATE_DB } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
 
