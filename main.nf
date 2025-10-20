@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 
 include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
-include { AMR_ANALYSIS } from './subworkflows/amr_analysis'
+include { SE_AMR_ANALYSIS } from './subworkflows/amr_analysis'
 
 
 workflow {
@@ -35,5 +35,5 @@ workflow {
             single_end: v.size() == 4
         }
         .set { ch_fastqs } 
-    AMR_ANALYSIS(ch_fastqs.single_end)
+    SE_AMR_ANALYSIS(ch_fastqs.single_end)
 }
