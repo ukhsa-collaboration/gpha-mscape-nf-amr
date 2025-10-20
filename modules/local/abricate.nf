@@ -2,34 +2,15 @@
 
 nextflow.enable.dsl=2
 
-process RUN_ABRICATE{
-    tag "${climb_id}"
-    container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
-    
-    input:
-    tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
-
-    output:
-    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path('abricate_out.tsv'), emit: abricate_results
-
-    // database options: card, resfindm megares, ncbi, argannot, plasmidfinder, ecoh, ecoli_vf, vfdb
-
-    script:
-    """
-    abricate --quiet --mincov 90 --db card '${fastq1}' > 'abricate_out.tsv'
-    """
-}
-
-
 process RUN_ABRICATE_DB{
     tag "${climb_id}"
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
     input:
-    tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1), val(db)
+    tuple val(climb_id), path(fastq1), val(db)
 
     output:
-    tuple  val(climb_id), path(kraken_assignments), path(kraken_report),  path("abricate_${db}_out.tsv"), emit: abricate_results
+    tuple  val(climb_id), val(db), path("abricate_${db}_out.tsv"), emit: abricate_results
 
     script:
     """
