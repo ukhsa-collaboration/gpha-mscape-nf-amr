@@ -37,7 +37,5 @@ workflow SE_AMR_ANALYSIS {
         }
 
     // 3. Extract species IDs for each READ assigned AMR
-    // TODO: pull out filepaths from directory
     READ_ANALYSIS(amr_status.annotated)
-    READ_ANALYSIS.out.view()
 }
