@@ -1,4 +1,0 @@
-climb_id,human_filtered_reads_1,human_filtered_reads_2,taxon_reports_dir,kraken_assignments,kraken_report
-test_pos,tests/test_data/GCF_013349085.1_ASM1334908v1_genomic_1x_reads.fq.gz,,tests/test_data/,tests/test_data/ERR3077524_GCF_013349085.1_1x_kraken_pluspf_8gb.report.tsv,tests/test_data/ERR3077524_GCF_013349085.1_1x_kraken_pluspf_8gb.report.json
-test_fastq_neg,tests/test_data/empty.fastq.gz,,tests/test_data/,,
-test_not_fastq,tests/test_data/test.txt.gz,,tests/test_data/,,
