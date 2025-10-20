@@ -36,5 +36,4 @@ workflow {
         }
         .set { ch_fastqs } 
     SE_AMR_ANALYSIS(ch_fastqs.single_end)
-    log.info "Workflow Finished."
 }
