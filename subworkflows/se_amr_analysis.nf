@@ -35,10 +35,7 @@ workflow SE_AMR_ANALYSIS {
             return null
         }
 
-    // 3. Extract species IDs for each READ assigned AMR
-
-
-    
+    // 3. Extract species IDs for each READ assigned AMR  
     READ_ANALYSIS(amr_status.annotated)
     log.info "Completes annotation."
 
