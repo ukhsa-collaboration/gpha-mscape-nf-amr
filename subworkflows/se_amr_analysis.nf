@@ -39,7 +39,7 @@ workflow SE_AMR_ANALYSIS {
     // Combine Channels 
     single_end_ch.join(amr_status.annotated).map{
         climb_id, kraken_assignments, kraken_report, fastq1, db, abricate_out ->
-        tuple(climb_id, kraken_assignments, kraken_report, db, abricate_out)
+        tuple(climb_id, kraken_assignments, kraken_report, abricate_out)
     }.set{ single_end_anno_ch }
 
 
