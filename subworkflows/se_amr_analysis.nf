@@ -37,4 +37,6 @@ workflow SE_AMR_ANALYSIS {
 
     // 3. Extract species IDs for each READ assigned AMR
     READ_ANALYSIS(amr_status.annotated)
+    log.info "Finished Analysis"
+    
 }
