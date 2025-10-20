@@ -17,11 +17,10 @@ process READ_ANALYSIS{
     """
     echo $climb_id
     tail -n +2 ${abricate_out} | cut -f2 | sort | uniq > unique_amr_reads.txt
-    while read i; do \
-        grep -P "\$i\t" ${kraken_assignments} | \
-        cut -f 2-3 >>read_taxid_assignment.tsv; \
-    done< unique_amr_reads.txt
     
+    grep -Ff unique_amr_reads.txt "${kraken_assignments}" | \
+        cut -f2-3 > read_taxid_assignment.tsv
+
     retrieve_taxon.py \
         -t read_taxid_assignment.tsv \
         -j ${kraken_report} \
