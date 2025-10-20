@@ -5,7 +5,7 @@ include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
 include { RUN_ABRICATE_DB } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
 
-workflow SS_AMR_ANALYSIS {
+workflow SE_AMR_ANALYSIS {
     take:
     single_end_ch
 
