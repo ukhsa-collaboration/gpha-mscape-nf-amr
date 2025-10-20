@@ -28,7 +28,6 @@ workflow SE_AMR_ANALYSIS {
             annotated: abricate_out.readLines().size() > 1
             unannotated: abricate_out.readLines().size() <= 1
         }. set{amr_status}
-    // amr_status.unannotated.view()
     // // if not AMR annotations then skip
     amr_status.unannotated
         .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
