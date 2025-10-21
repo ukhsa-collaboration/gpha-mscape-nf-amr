@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-process GENERATE_SAMPLESHEET{
+process ONYX_UPLOAD{
     tag "${unique_id}"
     publishDir "${params.output}/", mode: 'copy', pattern: "*.csv"
 
