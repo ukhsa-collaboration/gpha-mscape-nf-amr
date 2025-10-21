@@ -169,9 +169,9 @@ def main():
     # Parse pipeline information
     pipeline_info_list = args.pipeline_info.split(',')
     pipeline_info_dict = {
-        pipeline_info_list[0].split(':')[0]: pipeline_info_list[0].split(':')[1],
-        pipeline_info_list[1].split(':')[0]: pipeline_info_list[1].split(':')[1],
-        pipeline_info_list[2].split(':')[0]: pipeline_info_list[2].split(':')[1],
+        pipeline_info_list[0].split(':')[0]: pipeline_info_list[0].split(':')[1], # Name
+        pipeline_info_list[1].split(':')[0]: pipeline_info_list[1].split(':')[1], # Version
+        pipeline_info_list[2].split(':')[0]: ':'.join(pipeline_info_list[2].split(':')[1:]), # WebURL
     }
 
     #TODO: How to prep files for S3 location?
