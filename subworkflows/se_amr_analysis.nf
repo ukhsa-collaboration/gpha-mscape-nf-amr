@@ -2,9 +2,9 @@
 nextflow.enable.dsl=2
 
 include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
-include { RUN_ABRICATE } from "../modules/local/abricate"
+include { RUN_ABRICATE    } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
-include { ONYX_UPLOAD } from "../modules/local/onyx_upload"
+// include { ONYX_UPLOAD     } from "../modules/local/onyx_upload"
 
 workflow SE_AMR_ANALYSIS {
     take:
