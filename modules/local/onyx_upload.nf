@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 process ONYX_UPLOAD{
     tag "${unique_id}"
-    publishDir "${params.output}/", mode: 'copy', pattern: "*.csv"
+    publishDir "${params.output}/", mode: 'copy', pattern: "*.json"
 
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
