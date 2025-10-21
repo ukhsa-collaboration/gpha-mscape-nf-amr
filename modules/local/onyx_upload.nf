@@ -15,7 +15,7 @@ process ONYX_UPLOAD{
     
     script:
     """
-    printf "{'db': '${params.arg_abricate_db}', 'minid': '${params.arg_abricate_minid}', 'mincov': '${params.arg_abricate_mincov}'}"
+    params=$(printf \"{'db': '${params.arg_abricate_db}', 'minid': '${params.arg_abricate_minid}', 'mincov': '${params.arg_abricate_mincov}'}\")
 
     onyx_upload.py \
         -i C-${unique_id} \
