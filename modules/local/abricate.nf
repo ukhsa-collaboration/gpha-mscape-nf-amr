@@ -18,7 +18,6 @@ process RUN_ABRICATE_DB{
 
     script:
     def args = task.ext.args ?: ''
-    println "args: $args"
 
     """
     abricate \\
