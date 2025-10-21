@@ -145,7 +145,7 @@ def main():
     set_up_logger(log_file)
     
     #TODO: How to prep files for S3 location?
-    if args.pipeline_status is 'Annotated': # include tsv file
+    if args.pipeline_status == str('Annotated'): # include tsv file
         results_file = args.tsv
     else:
         results_file = str('')
