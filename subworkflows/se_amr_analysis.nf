@@ -16,9 +16,6 @@ workflow SE_AMR_ANALYSIS {
     GZ_TO_FASTQ(single_end_ch)
     
     // 2 - Run Abricate
-    // Run Abricate with multiple databases
-    // abricate_db_list = params.abricate_databases?.split(',') as List
-    // db_ch = channel.fromList(abricate_db_list)
     RUN_ABRICATE(GZ_TO_FASTQ.out)
 
     // test if any AMR annotations have been made
@@ -33,6 +30,7 @@ workflow SE_AMR_ANALYSIS {
     amr_status.unannotated
         .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
             log.info "The AMR annotation pipeline was not ran on ${climb_id}."
+             ONYX_UPLOAD(READ_ANALYSIS.out)
             return null
         }
 
