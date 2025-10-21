@@ -15,13 +15,13 @@ process ONYX_UPLOAD{
     
     script:
     """
-
-    onyx_upload.py \
-        -i C-${unique_id} \
-        -t ${abricate_taxa_out} \
-        -o ./ \
-        -p Annotated \
-        -s mscape \
+    onyx_upload.py \\
+        -i C-${unique_id} \\
+        -t ${abricate_taxa_out} \\
+        -o ./ \\
+        --pipeline_status Annotated \\
+        --amr_params \"{'db': '${params.arg_abricate_db}', 'minid': '${params.arg_abricate_minid}', 'mincov': '${params.arg_abricate_mincov}'}\" \\
+        -s mscape \\
         --store-onyx
  
     """
