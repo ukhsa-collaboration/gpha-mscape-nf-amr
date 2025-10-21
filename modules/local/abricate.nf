@@ -16,6 +16,8 @@ process RUN_ABRICATE_DB{
     script:
     def args = task.ext.args ?: ''
     """
-    abricate $args ${fastq1} > abricate_${db}_out.tsv
+    abricate \\
+        ${args} \\
+        ${fastq1} > abricate_${db}_out.tsv
     """
 }
