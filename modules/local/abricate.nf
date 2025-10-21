@@ -7,15 +7,11 @@ process RUN_ABRICATE{
     label 'process_medium'
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
 
-    publishDir "${params.output}/", mode: 'copy'
-
-
     input:
     tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
 
     output:
     tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_out.tsv"), emit: abricate_results
-    path('abricate_params.txt'), emit: abricate_params
 
     when:
     task.ext.when == null || task.ext.when
@@ -28,7 +24,5 @@ process RUN_ABRICATE{
         $args \\
         --threads $task.cpus \\
         ${fastq1} > abricate_out.tsv
-    
-    echo $args > abricate_params.txt
     """
 }
