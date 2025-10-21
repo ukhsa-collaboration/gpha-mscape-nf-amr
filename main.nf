@@ -35,7 +35,5 @@ workflow {
         }
         .set { ch_fastqs } 
     
-    println "args $args"
-
-    // SE_AMR_ANALYSIS(ch_fastqs.single_end)
+    SE_AMR_ANALYSIS(ch_fastqs.single_end)
 }
