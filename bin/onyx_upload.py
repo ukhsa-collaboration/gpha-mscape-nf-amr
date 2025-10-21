@@ -45,7 +45,13 @@ def get_args():
         "--amr_params",
         type=str,
         required=True,
-        help="Dictionary containing parameters used for running AMR annotation."
+        help="String of comma separated abricate configs: database,min_id,min_cov."
+    )
+    parser.add_argument(
+        "--pipeline_info",
+        type=str,
+        required=True,
+        help="String of comma separated pipeline_info: pipeline_name,pipeline_version,pipeline_url."
     )
     parser.add_argument(
         "--server",
@@ -101,7 +107,8 @@ def set_up_logger(stdout_file):
 
 def create_analysis_fields(
     record_id: str,
-    thresholds: dict, # Optional, GPHA required?
+    thresholds: dict,
+    pipeline_info_dict, 
     results: dict, # Optional, needs to be a dictionary
     server: str,
     headline_result: str, # Required
@@ -125,9 +132,9 @@ def create_analysis_fields(
     )
     # onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
     #TODO: read this from argsparse
-    onyx_analysis.pipeline_name = "gpha-mscape-nf-amr"
-    onyx_analysis.pipeline_version = 0.1
-    onyx_analysis.pipeline_url = "https://github.com/ukhsa-collaboration/gpha-mscape-nf-amr"
+    onyx_analysis.pipeline_name = str(pipeline_info_dict[0])
+    onyx_analysis.pipeline_version = str(pipeline_info_dict[1])
+    onyx_analysis.pipeline_url = str(pipeline_info_dict[2])
     
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
@@ -158,6 +165,14 @@ def main():
         'mincov': amr_params_list[2],
     }
 
+    # Parse pipeline information
+    pipeline_info_list = args.pipeline_info.split(',')
+    pipeline_info_dict = {
+        'name': amr_params_list[0],
+        'version': amr_params_list[1],
+        'homePage': amr_params_list[2],
+    }
+
     #TODO: How to prep files for S3 location?
     if args.pipeline_status == str('Annotated'): # include tsv file
         results_file = args.tsv
@@ -167,6 +182,7 @@ def main():
     onyx_analysis, exitcode = create_analysis_fields(
         args.input, # record_id
         amr_dict, # Thresholds
+        pipeline_info_dict, # pipleine info
         {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
         str(args.server), # server
         str(args.pipeline_status), #headline_result
