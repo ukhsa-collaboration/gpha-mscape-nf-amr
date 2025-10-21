@@ -17,13 +17,6 @@ process ONYX_UPLOAD{
     """
     printf "{'db': '${params.arg_abricate_db}', 'minid': '${params.arg_abricate_minid}', 'mincov': '${params.arg_abricate_mincov}'}"
 
-    // onyx_upload.py \
-    //     -i C-${unique_id} \
-    //     -t ${abricate_taxa_out} \
-    //     -o ./ \
-    //     -p Annotated \
-    //     -s mscape \
-    //     --store-onyx
- 
+
     """
 }
