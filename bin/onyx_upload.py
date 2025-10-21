@@ -45,13 +45,13 @@ def get_args():
         "--amr_params",
         type=str,
         required=True,
-        help="String of comma separated abricate configs: database,min_id,min_cov."
+        help="String of comma separated abricate configs: database:value,min_id:value,min_cov:value."
     )
     parser.add_argument(
         "--pipeline_info",
         type=str,
         required=True,
-        help="String of comma separated pipeline_info: pipeline_name,pipeline_version,pipeline_url."
+        help="String of comma separated pipeline_info: pipeline_name:value,pipeline_version:value,pipeline_url:value."
     )
     parser.add_argument(
         "--server",
