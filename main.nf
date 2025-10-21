@@ -5,7 +5,7 @@ include { SE_AMR_ANALYSIS } from './subworkflows/se_amr_analysis'
 
 
 workflow {
-    log.info "${manifest.name}"
+    log.info "${workflow.manifest.name}"
 
     // Handle either samplesheet or climb id
     if (params.samplesheet){
