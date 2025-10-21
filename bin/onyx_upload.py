@@ -11,7 +11,7 @@ import logging
 import sys
 from importlib import resources
 from pathlib import Path
-
+import os
 from onyx import OnyxClient, OnyxConfig, OnyxEnv
 from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 
@@ -166,7 +166,7 @@ def main():
         exitcode = 0
         return exitcode
 
-    
+
 
 if __name__ == "__main__":
     sys.exit(main())
