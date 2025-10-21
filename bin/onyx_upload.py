@@ -168,9 +168,9 @@ def main():
     # Parse pipeline information
     pipeline_info_list = args.pipeline_info.split(',')
     pipeline_info_dict = {
-        'name': amr_params_list[0],
-        'version': amr_params_list[1],
-        'homePage': amr_params_list[2],
+        'name': pipeline_info_list[0],
+        'version': pipeline_info_list[1],
+        'homePage': pipeline_info_list[2],
     }
 
     #TODO: How to prep files for S3 location?
