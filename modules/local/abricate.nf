@@ -4,6 +4,7 @@ nextflow.enable.dsl=2
 
 process RUN_ABRICATE_DB{
     tag "${climb_id}"
+    label 'process_medium'
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
     input:
@@ -13,7 +14,8 @@ process RUN_ABRICATE_DB{
     tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_${db}_out.tsv"), emit: abricate_results
 
     script:
+    def args = task.ext.args ?: ''
     """
-    abricate --quiet --mincov 90 --db ${db} ${fastq1} > abricate_${db}_out.tsv
+    abricate $args ${fastq1} > abricate_${db}_out.tsv
     """
 }
