@@ -21,7 +21,7 @@ process ONYX_UPLOAD{
         -o ./ \\
         --pipeline_status Annotated \\
         --amr_params \"${params.arg_abricate_db},${params.arg_abricate_minid},${params.arg_abricate_mincov}\" \\
-        --pipeline_info \"${workflow.manifest.name},${workflow.manifest.version},${workflow.manifest.homePage}\"
+        --pipeline_info \"${workflow.manifest.name},${workflow.manifest.version},${workflow.manifest.homePage}\" \\
         -s mscape \\
         --store-onyx
  
