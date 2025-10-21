@@ -10,12 +10,13 @@ process ONYX_UPLOAD{
     input:
     tuple val(unique_id), path(abricate_taxa_out)
 
-    // output:
+    output:
+    path("temp.txt")
     // path("${unique_id}_amr_analysis_fields.json"), emit: onyx_json
     
     script:
     """
-    printf "{'db': '${params.arg_abricate_db}', 'minid': '${params.arg_abricate_minid}', 'mincov': '${params.arg_abricate_mincov}'}"
+    printf "{'db': '${params.arg_abricate_db}', 'minid': '${params.arg_abricate_minid}', 'mincov': '${params.arg_abricate_mincov}'}" >temp.txt
 
 
     """
