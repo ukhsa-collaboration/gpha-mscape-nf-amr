@@ -62,5 +62,5 @@ Can be found here:
 
 # Testing:
 ```
-(test) jovyan:~/git/gpha-mscape-nf-amr$ nextflow run -latest -r feature/in-input ukhsa-collaboration/gpha-mscape-nf-amr -profile docker --unique_id /<CLIMB_ID> --output test-amr-out -resume -e.ONYX_DOMAIN=$ONYX_DOMAIN -e.ONYX_TOKEN=$ONYX_TOKEN
+nextflow run -latest -r feature/in-input ukhsa-collaboration/gpha-mscape-nf-amr -profile docker --unique_id /<CLIMB_ID> --output test-amr-out -resume -e.ONYX_DOMAIN=$ONYX_DOMAIN -e.ONYX_TOKEN=$ONYX_TOKEN
 ```
