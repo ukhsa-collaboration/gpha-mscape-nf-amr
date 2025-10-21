@@ -36,10 +36,16 @@ def get_args():
     )
     parser.add_argument(
         "--pipeline_status",
-        "-p",
-        type=str, choices=["Failed","Annotated","None"],
+        type=str,
+        choices=["Failed","Annotated","None"],
         required=True,
         help="Pipeline Status. Choices: 'Failed', 'Annotated', 'None'"
+    )
+    parser.add_argument(
+        "--amr_params",
+        type=str,
+        required=True,
+        help="Dictionary containing parameters used for running AMR annotation."
     )
     parser.add_argument(
         "--server",
