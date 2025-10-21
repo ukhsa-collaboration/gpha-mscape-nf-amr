@@ -6,12 +6,13 @@ process RUN_ABRICATE_DB{
     tag "${climb_id}"
     label 'process_medium'
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
-    
+
     input:
     tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
 
     output:
     tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_out.tsv"), emit: abricate_results
+    path('abricate_params.txt'), emit: abricate_params
 
     when:
     task.ext.when == null || task.ext.when
