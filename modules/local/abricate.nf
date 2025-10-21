@@ -7,6 +7,9 @@ process RUN_ABRICATE_DB{
     label 'process_medium'
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
 
+    publishDir "${params.output}/", mode: 'copy'
+
+
     input:
     tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
 
