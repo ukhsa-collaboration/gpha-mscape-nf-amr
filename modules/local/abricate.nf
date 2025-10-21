@@ -22,6 +22,9 @@ process RUN_ABRICATE_DB{
     """
     abricate \\
         $args \\
+        --threads $task.cpus \\
         ${fastq1} > abricate_out.tsv
+    
+    echo $args > abricate_params.txt
     """
 }
