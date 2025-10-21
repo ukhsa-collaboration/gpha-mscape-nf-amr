@@ -153,9 +153,9 @@ def main():
     # Parse Abricate parameters
     amr_params_list = args.amr_params.split(',')
     amr_dict = {
-        'database': amr_params_list[1],
-        'minid': amr_params_list[2],
-        'mincov': amr_params_list[3],
+        'database': amr_params_list[0],
+        'minid': amr_params_list[1],
+        'mincov': amr_params_list[2],
     }
 
     #TODO: How to prep files for S3 location?
