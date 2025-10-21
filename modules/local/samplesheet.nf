@@ -5,7 +5,7 @@ process GENERATE_SAMPLESHEET{
     publishDir "${params.output}/", mode: 'copy', pattern: "*.csv"
 
     // Onyx and Onyx Helper
-    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
+    container 'ghcr.io/ukhsa-collaboration/onyx-analysis-helper@sha256:80429e36f92be75033432d601739c554f6011a4b9dde9c28ad6e562e629b2400'
 
     input:
     tuple val(unique_id), val(columns)
