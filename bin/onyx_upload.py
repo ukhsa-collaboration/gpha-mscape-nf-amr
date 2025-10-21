@@ -175,7 +175,7 @@ def main():
         result_file = onyx_analysis.write_analysis_to_json(result_file=onyx_json_file)
         logging.info("Onyx analysis fields written to file %s", result_file)
         exitcode = 0
-        return exitcode
+
     
 if __name__ == "__main__":
     sys.exit(main())
