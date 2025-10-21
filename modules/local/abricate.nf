@@ -22,7 +22,7 @@ process RUN_ABRICATE_DB{
 
     """
     abricate \\
-        ${args} \\
+        $args \\
         ${fastq1} > abricate_out.tsv
     """
 }
