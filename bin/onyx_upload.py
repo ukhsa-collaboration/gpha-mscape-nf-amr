@@ -108,7 +108,7 @@ def set_up_logger(stdout_file):
 def create_analysis_fields(
     record_id: str,
     thresholds: dict,
-    pipeline_info_dict, 
+    pipeline_info: dict, 
     results: dict, # Optional, needs to be a dictionary
     server: str,
     headline_result: str, # Required
@@ -118,7 +118,8 @@ def create_analysis_fields(
     AMR Pipeline Outputs.
     Arguments:
         record_id -- Climb ID for sample
-        amr_pipeline_status -- Status of AMR pipeline analysis
+        thresholds -- AMR parameters used
+
         amr_annotations -- AMR annotations tsv file, if present
         server -- Server code is running on, one of "mscape" or "synthscape"
     Returns:
@@ -132,9 +133,9 @@ def create_analysis_fields(
     )
     # onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
     #TODO: read this from argsparse
-    onyx_analysis.pipeline_name = str(pipeline_info_dict[0])
-    onyx_analysis.pipeline_version = str(pipeline_info_dict[1])
-    onyx_analysis.pipeline_url = str(pipeline_info_dict[2])
+    onyx_analysis.pipeline_name = str(pipeline_info[0])
+    onyx_analysis.pipeline_version = str(pipeline_info[1])
+    onyx_analysis.pipeline_url = str(pipeline_info[2])
     
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
@@ -160,17 +161,17 @@ def main():
     # Parse Abricate parameters
     amr_params_list = args.amr_params.split(',')
     amr_dict = {
-        'database': amr_params_list[0],
-        'minid': amr_params_list[1],
-        'mincov': amr_params_list[2],
+        amr_params_list[0].split(':')[0]: amr_params_list[0].split(':')[1],
+        amr_params_list[1].split(':')[0]: amr_params_list[1].split(':')[1],
+        amr_params_list[2].split(':')[0]: amr_params_list[2].split(':')[1],
     }
 
     # Parse pipeline information
     pipeline_info_list = args.pipeline_info.split(',')
     pipeline_info_dict = {
-        'name': pipeline_info_list[0],
-        'version': pipeline_info_list[1],
-        'homePage': pipeline_info_list[2],
+        pipeline_info_list[0].split(':')[0]: pipeline_info_list[0].split(':')[1],
+        pipeline_info_list[1].split(':')[0]: pipeline_info_list[1].split(':')[1],
+        pipeline_info_list[2].split(':')[0]: pipeline_info_list[2].split(':')[1],
     }
 
     #TODO: How to prep files for S3 location?
