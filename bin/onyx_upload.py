@@ -125,7 +125,7 @@ def create_analysis_fields(
     
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
-    onyx_analysis.add_server_records(sample_id=record_id, server_name="synthscape")
+    onyx_analysis.add_server_records(sample_id=record_id, server_name=server)
     output_fail = onyx_analysis.add_output_location(result_file)
     required_field_fail, attribute_fail = onyx_analysis.check_analysis_object()
 
@@ -170,6 +170,8 @@ def main():
         logging.info("Onyx analysis fields written to file %s", result_file)
         exitcode = 0
         return exitcode
+    
+
 
 
 
