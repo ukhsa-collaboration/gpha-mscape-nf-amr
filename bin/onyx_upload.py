@@ -18,9 +18,8 @@ from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 def get_args():
     """Get command line arguments"""
     parser = argparse.ArgumentParser(
-        prog="QC sample",
-        description="""Wrapper used to quality
-        check mscape samples against a set of pre-defined criteria.
+        prog="AMR pipeline info Onyx upload",
+        description="""Wrapper used to process AMR pipeline outputs. 
         Results are returned in a json format.
         """,
     )
@@ -99,7 +98,7 @@ def main():
     args = get_args()
 
     # Set up log file#
-    log_file = Path(args.output) / f"{args.input}_qc_metrics_log.txt"
+    log_file = Path(args.output) / f"{args.input}_amr_upload_log.txt"
     set_up_logger(log_file)
     
     print(args)
