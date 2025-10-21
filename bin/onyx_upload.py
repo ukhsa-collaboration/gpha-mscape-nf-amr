@@ -166,7 +166,7 @@ def main():
     
     onyx_analysis, exitcode = create_analysis_fields(
         args.input, # record_id
-        amr_dict,, # Thresholds
+        amr_dict, # Thresholds
         {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
         str(args.server), # server
         str(args.pipeline_status), #headline_result
