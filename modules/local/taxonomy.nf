@@ -15,7 +15,6 @@ process READ_ANALYSIS{
     
     script:
     """
-    echo $climb_id
     tail -n +2 ${abricate_out} | cut -f2 | sort | uniq > unique_amr_reads.txt
     
     grep -Ff unique_amr_reads.txt "${kraken_assignments}" | \
