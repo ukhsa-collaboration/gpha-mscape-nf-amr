@@ -133,9 +133,9 @@ def create_analysis_fields(
     )
     # onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
     #TODO: read this from argsparse
-    onyx_analysis.pipeline_name = str(pipeline_info[0])
-    onyx_analysis.pipeline_version = str(pipeline_info[1])
-    onyx_analysis.pipeline_url = str(pipeline_info[2])
+    onyx_analysis.pipeline_name = pipeline_info['name']
+    onyx_analysis.pipeline_version = pipeline_info['version']
+    onyx_analysis.pipeline_url = pipeline_info['homePage']
     
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
