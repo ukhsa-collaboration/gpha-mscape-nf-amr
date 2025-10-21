@@ -117,7 +117,12 @@ def create_analysis_fields(
         analysis_name="ukhsa-classifier-qc-metrics",
         analysis_description="This is an analysis to generate AMR results for individual samples",
     )
-    onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
+    # onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
+    #TODO: read this from argsparse
+    onyx_analysis.pipeline_name = "gpha-mscape-nf-amr"
+    onyx_analysis.pipeline_version = 0.1
+    onyx_analysis.pipeline_url = "https://github.com/ukhsa-collaboration/gpha-mscape-nf-amr"
+    
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
     onyx_analysis.add_server_records(sample_id=record_id, server_name="synthscape")
