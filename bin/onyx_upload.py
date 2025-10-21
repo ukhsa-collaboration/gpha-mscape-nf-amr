@@ -95,9 +95,11 @@ def set_up_logger(stdout_file):
 
 def create_analysis_fields(
     record_id: str,
-    amr_pipeline_status: str,
-    amr_annotations: os.path, # Not sure if this works with Null value
+    thresholds: dict, # Optional, GPHA required?
+    results: dict, # Optional, needs to be a dictionary
     server: str,
+    headline_result: str, # Required
+    result_file: os.path,
 ) -> dict:
     """Set up fields dictionary used to populate analysis table containing
     AMR Pipeline Outputs.
@@ -106,7 +108,6 @@ def create_analysis_fields(
         amr_pipeline_status -- Status of AMR pipeline analysis
         amr_annotations -- AMR annotations tsv file, if present
         server -- Server code is running on, one of "mscape" or "synthscape"
-        result_file -- location of QC metrics results
     Returns:
         onyx_analysis -- Class containing required fields for input to onyx
                          analysis table
@@ -114,16 +115,16 @@ def create_analysis_fields(
     onyx_analysis = oa.OnyxAnalysis()
     onyx_analysis.add_analysis_details(
         analysis_name="ukhsa-classifier-qc-metrics",
-        analysis_description="This is an analysis to generate QC statistics for individual samples",
+        analysis_description="This is an analysis to generate AMR results for individual samples",
     )
     onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
-    methods_fail = onyx_analysis.add_methods(methods_dict=qc_thresholds)
-    results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=qc_results)
-    onyx_analysis.add_server_records(sample_id=record_id, server_name="synthscape") #TODO: Check this is correct, should it be variable?
+    methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
+    results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
+    onyx_analysis.add_server_records(sample_id=record_id, server_name="synthscape")
     output_fail = onyx_analysis.add_output_location(result_file)
     required_field_fail, attribute_fail = onyx_analysis.check_analysis_object()
 
-    if any([methods_fail, results_fail, output_fail, required_field_fail, attribute_fail]):
+    if any([results_fail, output_fail, required_field_fail, attribute_fail]):
         exitcode = 1
     else:
         exitcode = 0
@@ -140,12 +141,32 @@ def main():
     
     #TODO: How to prep files for S3 location?
     if args.pipeline_status is 'Annotated': # include tsv file
-        onyx_amr_dict = {'record_id': args.input, 'amr_pipeline_status': args.pipeline_status, 'amr_annotations': args.tsv}
-    else: # No tsv file
-        onyx_amr_dict = {'record_id': args.input, 'amr_pipeline_status': args.pipeline_status, 'amr_annotations': None}
+        results_file = args.tsv
+    else:
+        results_file = str('')
+    
+    onyx_analysis, exitcode = create_analysis_fields(
+        args.input, # record_id
+        {'pct_id': 90}, # Thresholds #TODO: pull this from nextflow..
+        {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
+        str(args.server), # server
+        str(args.pipeline_status), #headline_result
+        results_file # result_file
+    )
 
+    if exitcode == 1:
+        logging.error("Invalid attribute in analysis fields submitted, check logs for details")
+        return exitcode
 
+        # Add data to analysis table
+    if args.store_onyx:
+        onyx_json_file = Path(args.output) / f"{args.input}_amr_analysis_fields.json"
+        result_file = onyx_analysis.write_analysis_to_json(result_file=onyx_json_file)
+        logging.info("Onyx analysis fields written to file %s", result_file)
+        exitcode = 0
+        return exitcode
 
+    
 
 if __name__ == "__main__":
     sys.exit(main())
