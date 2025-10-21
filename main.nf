@@ -34,5 +34,8 @@ workflow {
             single_end: v.size() == 4
         }
         .set { ch_fastqs } 
-    SE_AMR_ANALYSIS(ch_fastqs.single_end)
+    
+    println "args $args"
+
+    // SE_AMR_ANALYSIS(ch_fastqs.single_end)
 }
