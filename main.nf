@@ -1,5 +1,4 @@
 #!/usr/bin/env nextflow
-nextflow.enable.dsl=2
 
 include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 include { SE_AMR_ANALYSIS } from './subworkflows/se_amr_analysis'
