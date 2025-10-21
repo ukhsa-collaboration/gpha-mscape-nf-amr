@@ -20,7 +20,7 @@ process ONYX_UPLOAD{
         -t ${abricate_taxa_out} \\
         -o ./ \\
         --pipeline_status Annotated \\
-        --amr_params \"db:${params.arg_abricate_db},minid:${params.arg_abricate_minid},mincov:${params.arg_abricate_mincov}\" \\
+        --amr_params \"tool:abricate,db:${params.arg_abricate_db},minid:${params.arg_abricate_minid},mincov:${params.arg_abricate_mincov}\" \\
         --pipeline_info \"name:${workflow.manifest.name},version:${workflow.manifest.version},homePage:${workflow.manifest.homePage}\" \\
         -s mscape \\
         --store-onyx
