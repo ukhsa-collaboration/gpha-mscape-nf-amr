@@ -12,7 +12,6 @@ process RUN_ABRICATE_DB{
 
     output:
     tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_out.tsv"), emit: abricate_results
-    path('abricate_params.txt'), emit: abricate_params
 
     when:
     task.ext.when == null || task.ext.when
