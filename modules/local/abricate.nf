@@ -13,6 +13,9 @@ process RUN_ABRICATE_DB{
     output:
     // tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_$out.tsv"), emit: abricate_results
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
     def args = task.ext.args ?: ''
     println "args: $args"
