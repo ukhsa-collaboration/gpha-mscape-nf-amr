@@ -40,5 +40,5 @@ workflow SE_AMR_ANALYSIS {
     READ_ANALYSIS(amr_status.annotated)
 
     // 4. Output to Onyx
-    
+    ONYX_UPLOAD(READ_ANALYSIS.out)
 }
