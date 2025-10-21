@@ -1,7 +1,4 @@
 #!/usr/bin/env nextflow
-
-nextflow.enable.dsl=2
-
 process RUN_ABRICATE{
     tag "${climb_id}"
     label 'process_medium'
