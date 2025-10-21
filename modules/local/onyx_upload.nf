@@ -16,7 +16,7 @@ process ONYX_UPLOAD{
     script:
     """
     onyx_upload.py \\
-        -i C-${unique_id} \\
+        -i ${unique_id} \\
         -t ${abricate_taxa_out} \\
         -o ./ \\
         --pipeline_status Annotated \\
