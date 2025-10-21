@@ -129,7 +129,7 @@ def create_analysis_fields(
     output_fail = onyx_analysis.add_output_location(result_file)
     required_field_fail, attribute_fail = onyx_analysis.check_analysis_object()
 
-    if any([results_fail, output_fail, required_field_fail, attribute_fail]):
+    if any([methods_fail, results_fail, output_fail, required_field_fail, attribute_fail]):
         exitcode = 1
     else:
         exitcode = 0
