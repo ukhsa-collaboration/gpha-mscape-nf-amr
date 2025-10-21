@@ -17,13 +17,13 @@ process READ_ANALYSIS{
     """
     tail -n +2 ${abricate_out} | cut -f2 | sort | uniq > unique_amr_reads.txt
     
-    grep -Ff unique_amr_reads.txt "${kraken_assignments}" | \
+    grep -Ff unique_amr_reads.txt "${kraken_assignments}" | \\
         cut -f2-3 > read_taxid_assignment.tsv
 
-    retrieve_taxon.py \
-        -t read_taxid_assignment.tsv \
-        -j ${kraken_report} \
-        -a ${abricate_out} \
+    retrieve_taxon.py \\
+        -t read_taxid_assignment.tsv \\
+        -j ${kraken_report} \\
+        -a ${abricate_out} \\
         -o ${climb_id}_abricate_taxa_out.tsv
     """
 }
