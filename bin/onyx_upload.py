@@ -103,3 +103,7 @@ def main():
     set_up_logger(log_file)
     
     print(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
