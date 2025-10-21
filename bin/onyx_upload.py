@@ -37,7 +37,7 @@ def get_args():
     )
     parser.add_argument(
         "--pipeline_status",
-        "-s",
+        "-p",
         type=str, choices=["Failed","Annotated","None"],
         required=True,
         help="Pipeline Status. Choices: 'Failed', 'Annotated', 'None'"
