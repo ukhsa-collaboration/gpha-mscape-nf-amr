@@ -171,9 +171,5 @@ def main():
         exitcode = 0
         return exitcode
     
-
-
-
-
 if __name__ == "__main__":
     sys.exit(main())
