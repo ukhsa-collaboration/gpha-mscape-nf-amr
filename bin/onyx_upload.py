@@ -150,6 +150,14 @@ def main():
     log_file = Path(args.output) / f"{args.input}_amr_upload_log.txt"
     set_up_logger(log_file)
     
+    # Parse Abricate parameters
+    amr_params_list = args.amr_params.split(',')
+    amr_dict = {
+        'database': amr_params_list[0],
+        'minid': amr_params_list[1],
+        'mincov': amr_params_list[2],
+    }
+
     #TODO: How to prep files for S3 location?
     if args.pipeline_status == str('Annotated'): # include tsv file
         results_file = args.tsv
@@ -158,7 +166,7 @@ def main():
     
     onyx_analysis, exitcode = create_analysis_fields(
         args.input, # record_id
-        args.amr_params, # Thresholds
+        amr_dict,, # Thresholds
         {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
         str(args.server), # server
         str(args.pipeline_status), #headline_result
