@@ -8,16 +8,18 @@ process RUN_ABRICATE_DB{
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
     
     input:
-    tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1), val(db)
+    tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
 
     output:
-    tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_${db}_out.tsv"), emit: abricate_results
+    // tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_$out.tsv"), emit: abricate_results
 
     script:
     def args = task.ext.args ?: ''
+    println "args: ${args}"
+
     """
     abricate \\
         ${args} \\
-        ${fastq1} > abricate_${db}_out.tsv
+        ${fastq1} > abricate_out.tsv
     """
 }
