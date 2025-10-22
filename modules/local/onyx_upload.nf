@@ -17,7 +17,7 @@ process ONYX_UPLOAD{
     """
     onyx_upload.py \\
         -i ${unique_id} \\
-        -f ${params.output}/${unique_id} \\
+        -f ${params.output}/${unique_id}/ \\
         -o ./ \\
         --pipeline_status ${pipeline_status} \\
         --amr_params \"tool:${tool},db:${params.arg_abricate_db},minid:${params.arg_abricate_minid},mincov:${params.arg_abricate_mincov}\" \\
