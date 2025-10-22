@@ -26,19 +26,22 @@ workflow SE_AMR_ANALYSIS {
             annotated: abricate_out.readLines().size() > 1
             unannotated: abricate_out.readLines().size() <= 1
         }. set{amr_status}
-    // if not AMR annotations then skip
+    // Remap channels
     if (amr_status.unannotated){
         amr_status.unannotated
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
                 tuple( climb_id, abricate_out, val('None'))
         }
+        .set{ unannotated_ch }
+    }
+
+    if (amr_status.annotated){
+        amr_status.annotated
+            .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
+                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, val('Annotated'))
+        }
         .view()
     }
-    // else{
-    //     amr_status.annotated.map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-    //         tuple( climb_id, kraken_assignments, kraken_report, abricate_out val('None'))
-    //     }.view()
-    // }
 
 
 
