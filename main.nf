@@ -45,7 +45,6 @@ workflow {
             //  log.info  "${climb_id} is paired-end, analysis not ran."
             // ONYX_UPLOAD( failed_ch )
             }
-    }
         
     // SE_AMR_ANALYSIS(ch_fastqs.single_end)
 }
