@@ -39,7 +39,7 @@ workflow {
     if (ch_fastqs.paired_end) {
         ch_fastqs.paired_end
             .map{ climb_id, kraken_assignments, kraken_report, fastq1, fastq2  ->
-                    tuple( climb_id, "${params.output}/${climb_id}", 'failed', 'None')
+                    tuple( climb_id, "${params.output}/", 'Failed', 'None')
             }
             .set{ failed_ch }
             ONYX_UPLOAD( failed_ch )
