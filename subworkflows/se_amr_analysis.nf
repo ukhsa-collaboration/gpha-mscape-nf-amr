@@ -32,9 +32,8 @@ workflow SE_AMR_ANALYSIS {
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
                 tuple( climb_id, abricate_out, 'None')
         }
-        .set{ unannotated_ch }
-        // 4. Output to Onyx
-        ONYX_UPLOAD(unannotated_ch)
+        .set{ abricate_ch }
+ 
     }
 
     if (amr_status.annotated){
@@ -45,8 +44,10 @@ workflow SE_AMR_ANALYSIS {
         .set{ annotated_ch }
         // 3. Extract species IDs for each READ assigned AMR  
         READ_ANALYSIS( annotated_ch )
-        // 4. Output to Onyx
-        ONYX_UPLOAD(READ_ANALYSIS.out)
+        // Rename for input to onyx
+        READ_ANALYSIS.out.set{abricate_ch}
     }
+    // 4. Output to Onyx
+    ONYX_UPLOAD(abricate_ch)
 
 }
