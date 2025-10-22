@@ -28,15 +28,17 @@ workflow SE_AMR_ANALYSIS {
         }. set{amr_status}
     // if not AMR annotations then skip
     if (amr_status.unannotated){
-        amr_status.unannotated.map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-            tuple( climb_id, abricate_out, val('None'))
-        }.view()
+        amr_status.unannotated
+            .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
+                tuple( climb_id, abricate_out, val('None'))
+        }
+        .view()
     }
-    else{
-        amr_status.annotated.map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-            tuple( climb_id, kraken_assignments, kraken_report, abricate_out val('None'))
-        }.view()
-    }
+    // else{
+    //     amr_status.annotated.map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
+    //         tuple( climb_id, kraken_assignments, kraken_report, abricate_out val('None'))
+    //     }.view()
+    // }
 
 
 
