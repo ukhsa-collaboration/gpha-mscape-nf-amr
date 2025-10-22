@@ -5,7 +5,7 @@ process ONYX_UPLOAD{
     publishDir "${params.output}/${unique_id}", mode: 'copy', pattern: "*.json"
 
     // Onyx and Onyx Helper
-    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
+    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:latest'
 
     input:
     tuple val(unique_id), path(abricate_taxa_out), val(pipeline_status), val(tool)
