@@ -36,14 +36,14 @@ workflow {
         }
         .set { ch_fastqs }
     
-    if (ch_fastqs.paired_end) {
-        ch_fastqs.paired_end
-            .map{ climb_id, kraken_assignments, kraken_report, fastq1, fastq2  ->
-                    tuple( climb_id, '', 'failed', 'None')
-            }
-            .set{ failed_ch }
-            ONYX_UPLOAD( failed_ch )
-            }
+    // if (ch_fastqs.paired_end) {
+    //     ch_fastqs.paired_end
+    //         .map{ climb_id, kraken_assignments, kraken_report, fastq1, fastq2  ->
+    //                 tuple( climb_id, '', 'failed', 'None')
+    //         }
+    //         .set{ failed_ch }
+    //         ONYX_UPLOAD( failed_ch )
+    //         }
         
-    // SE_AMR_ANALYSIS(ch_fastqs.single_end)
+    SE_AMR_ANALYSIS(ch_fastqs.single_end)
 }
