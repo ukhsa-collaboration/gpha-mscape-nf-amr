@@ -8,7 +8,7 @@ process ONYX_UPLOAD{
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
 
     input:
-    tuple val(unique_id), path(abricate_taxa_out), val(pipeline_status),
+    tuple val(unique_id), path(abricate_taxa_out), val(pipeline_status)
 
     output:
     path("${unique_id}_amr_analysis_fields.json"), emit: onyx_json
