@@ -10,10 +10,11 @@
 - [X] NextFlow: Take CLIMB-ID list, pull FASTQ URIs from database (stored as text strings)
 - [X] Nextflow: Run Abricate 
 - [X] Nextflow: Set up for multiple input samples
-- [X]] Nextflow: Set up for multiple species (Scagaire)
+- [X] Nextflow: Set up for multiple species (Scagaire)
+- [] Report: Generate reports
 
 
-## Creat Env
+## Create Env
 Create an environment for testing
 - With micromamba
 ```
