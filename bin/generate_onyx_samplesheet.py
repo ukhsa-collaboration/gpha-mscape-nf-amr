@@ -40,6 +40,10 @@ def get_record(sample_id: str, columns: list) -> tuple[dict, int]:
     """
     Using unique sample ID, query Onyx database to get appropriate columns
     """
+    # Ensure climb_id is included in columns list
+    if "climb_id" not in columns:
+        columns.append("climb_id")
+
     with OnyxClient(config) as client:
             df = pd.DataFrame(client.filter(
             project = "mscape",
