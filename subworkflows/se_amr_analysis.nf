@@ -30,9 +30,11 @@ workflow SE_AMR_ANALYSIS {
     if (amr_status.unannotated){
         amr_status.unannotated
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'None')
+                tuple( climb_id, abricate_out, 'None')
         }
         .set{ unannotated_ch }
+        // 4. Output to Onyx
+        ONYX_UPLOAD(unannotated_ch)
     }
 
     if (amr_status.annotated){
@@ -41,21 +43,10 @@ workflow SE_AMR_ANALYSIS {
                 tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'Annotated')
         }
         .set{ annotated_ch }
+        // 3. Extract species IDs for each READ assigned AMR  
+        READ_ANALYSIS( annotated_ch )
+        // 4. Output to Onyx
+        ONYX_UPLOAD(READ_ANALYSIS.out)
     }
 
-
-
-    // 3. Extract species IDs for each READ assigned AMR  
-    READ_ANALYSIS( annotated_ch )
-    // if amr_status.annotated
-    //     .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-    //         tuple( climb_id, abricate_out, val('None'))
-    //         // log.info "The AMR annotation pipeline was not ran on ${climb_id}."
-    //         // return null
-    //     }.view()
-
-
-
-    // // 4. Output to Onyx
-    // ONYX_UPLOAD(READ_ANALYSIS.out)
 }
