@@ -29,7 +29,7 @@ workflow SE_AMR_ANALYSIS {
     if (amr_status.unannotated){
         amr_status.unannotated
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-                tuple( climb_id, abricate_out, 'None')
+                tuple( climb_id, abricate_out, 'None', 'abricate')
         }
         .set{ abricate_ch }
  
@@ -38,7 +38,7 @@ workflow SE_AMR_ANALYSIS {
     if (amr_status.annotated){
         amr_status.annotated
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'Annotated')
+                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'Annotated', 'abricate')
         }
         .set{ annotated_ch }
         // 3. Extract species IDs for each READ assigned AMR  
