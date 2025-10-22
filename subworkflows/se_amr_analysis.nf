@@ -42,14 +42,14 @@ workflow SE_AMR_ANALYSIS {
 
 
 
-    // 3. Extract species IDs for each READ assigned AMR  
-    // READ_ANALYSIS(amr_status.annotated)
-    if amr_status.annotated
-        .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-            tuple( climb_id, abricate_out, val('None'))
-            // log.info "The AMR annotation pipeline was not ran on ${climb_id}."
-            // return null
-        }.view()
+    // // 3. Extract species IDs for each READ assigned AMR  
+    // // READ_ANALYSIS(amr_status.annotated)
+    // if amr_status.annotated
+    //     .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
+    //         tuple( climb_id, abricate_out, val('None'))
+    //         // log.info "The AMR annotation pipeline was not ran on ${climb_id}."
+    //         // return null
+    //     }.view()
 
 
 
