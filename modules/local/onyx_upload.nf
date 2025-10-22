@@ -15,6 +15,10 @@ process ONYX_UPLOAD{
     
     script:
     """
+    if [ ! -d "${params.output}/${unique_id}" ]; then
+        mkdir -p "${params.output}/${unique_id}"
+    fi
+
     onyx_upload.py \\
         -i ${unique_id} \\
         -f ${params.output}/${unique_id} \\
