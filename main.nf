@@ -38,7 +38,7 @@ workflow {
     
     if (ch_fastqs.paired_end) {
         ch_fastqs.paired_end
-            .map{ val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1) ->
+            .map{ val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1), path(fastq2)  ->
                     tuple( val(climb_id), '', 'failed', 'None')
              }.view()
             //  .set{ failed_ch }
