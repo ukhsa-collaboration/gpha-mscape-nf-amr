@@ -34,7 +34,7 @@ workflow SE_AMR_ANALYSIS {
         }
         .set{ unannotated_ch }
         // 4. Output to Onyx
-        ONYX_UPLOAD(unannotated_ch)
+        // ONYX_UPLOAD(unannotated_ch)
     }
 
     if (amr_status.annotated){
@@ -46,7 +46,7 @@ workflow SE_AMR_ANALYSIS {
         // 3. Extract species IDs for each READ assigned AMR  
         READ_ANALYSIS( annotated_ch )
         // 4. Output to Onyx
-        ONYX_UPLOAD(READ_ANALYSIS.out)
+        // ONYX_UPLOAD(READ_ANALYSIS.out)
     }
 
 }
