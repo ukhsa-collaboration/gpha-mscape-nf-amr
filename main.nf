@@ -40,10 +40,9 @@ workflow {
         ch_fastqs.paired_end
             .map{ climb_id, kraken_assignments, kraken_report, fastq1, fastq2  ->
                     tuple( climb_id, '', 'failed', 'None')
-             }
-             .set{ failed_ch }
-             log.info  "${params.climb_id} is paired-end, analysis not ran."
-            // ONYX_UPLOAD( failed_ch )
+            }
+            .set{ failed_ch }
+            ONYX_UPLOAD( failed_ch )
             }
         
     // SE_AMR_ANALYSIS(ch_fastqs.single_end)
