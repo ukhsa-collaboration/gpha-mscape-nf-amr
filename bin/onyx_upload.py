@@ -164,6 +164,7 @@ def main():
         amr_params_list[0].split(':')[0]: amr_params_list[0].split(':')[1],
         amr_params_list[1].split(':')[0]: amr_params_list[1].split(':')[1],
         amr_params_list[2].split(':')[0]: amr_params_list[2].split(':')[1],
+        amr_params_list[3].split(':')[0]: amr_params_list[3].split(':')[1],
     }
 
     # Parse pipeline information
