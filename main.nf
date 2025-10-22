@@ -9,7 +9,10 @@ include { PE_AMR_ANALYSIS      } from './subworkflows/pe_amr_analysis'
 
 workflow {
     // Handle either samplesheet or climb id
-    if (params.samplesheet){
+    if (params.samplesheet && params.unique_id){
+        exit(1, "Please specify one of --unique_id or --samplesheet. Not both.")
+    }
+    else if(params.samplesheet){
         log.info "Samplesheet input: ${params.samplesheet}"
         samplesheet_ch = channel.fromPath(params.samplesheet)
     } else if (params.unique_id) {
