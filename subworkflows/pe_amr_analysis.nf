@@ -13,6 +13,5 @@ workflow PE_AMR_ANALYSIS {
         }
         .set{ failed_ch }
         ONYX_UPLOAD( failed_ch )
-        }
 
 }
