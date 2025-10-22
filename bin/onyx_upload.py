@@ -181,7 +181,7 @@ def main():
         {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
         str(args.server), # server
         str(args.pipeline_status), #headline_result
-        Path(args.results_folder) # result_folder
+        args.results_folder # result_folder
     )
 
     if exitcode == 1:
