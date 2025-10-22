@@ -22,14 +22,11 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("-i", "--id",
                 help="Sample ID.",
                 required=True, type=str)
-    # parser.add_argument("-t", "--id_column",
-    #             help="Column ID can be found in.",
-    #             required=True, type=str)
     parser.add_argument("-c", "--columns",
                 help="Columns from Onyx, should be comma seperated string.",
                 required=True, type=str)
     parser.add_argument("-o", "--output",
-                help="Output directory for downloaded data",
+                help="Output filepath.",
                 required=True, type=Path)
     args = parser.parse_args()
     return args
