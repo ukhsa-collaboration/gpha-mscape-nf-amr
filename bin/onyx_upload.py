@@ -25,11 +25,11 @@ def get_args():
     )
     parser.add_argument("--input", "-i", type=str, required=True, help="Sample ID")
     parser.add_argument(
-        "--tsv",
-        "-t",
+        "--results_folder",
+        "-f",
         type=str,
-        required=False,
-        help="Path to AMR results TSV output file, if available."
+        required=True,
+        help="Path to AMR results folder."
     )
     parser.add_argument(
         "--output", "-o", type=str, required=True, help="Folder to save logs to."
@@ -112,7 +112,7 @@ def create_analysis_fields(
     results: dict, # Optional, needs to be a dictionary
     server: str,
     headline_result: str, # Required
-    result_file: os.path,
+    result_folder: os.path,
 ) -> dict:
     """Set up fields dictionary used to populate analysis table containing
     AMR Pipeline Outputs.
@@ -140,7 +140,7 @@ def create_analysis_fields(
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
     onyx_analysis.add_server_records(sample_id=record_id, server_name=server)
-    output_fail = onyx_analysis.add_output_location(result_file)
+    output_fail = onyx_analysis.add_output_location(result_folder)
     required_field_fail, attribute_fail = onyx_analysis.check_analysis_object()
 
     if any([methods_fail, results_fail, output_fail, required_field_fail, attribute_fail]):
@@ -174,12 +174,6 @@ def main():
         pipeline_info_list[2].split(':')[0]: ':'.join(pipeline_info_list[2].split(':')[1:]), # WebURL
     }
 
-    #TODO: How to prep files for S3 location?
-    if args.pipeline_status == str('Annotated'): # include tsv file
-        results_file = args.tsv
-    else:
-        results_file = str('')
-    
     onyx_analysis, exitcode = create_analysis_fields(
         args.input, # record_id
         amr_dict, # Thresholds
@@ -187,7 +181,7 @@ def main():
         {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
         str(args.server), # server
         str(args.pipeline_status), #headline_result
-        results_file # result_file
+        args.results_folder # result_folder
     )
 
     if exitcode == 1:
