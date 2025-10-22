@@ -18,6 +18,7 @@ workflow {
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
+    ${params.output} = dir.resolve(${params.output})
     // Split csv into channgels
     samples = samplesheet_ch.splitCsv(header: true, quote: '\"')
         .map { row ->
