@@ -2,7 +2,7 @@
 nextflow.enable.dsl=2
 process ONYX_UPLOAD{
     tag "${unique_id}"
-    publishDir "${params.output}/", mode: 'copy', pattern: "*.json"
+    publishDir "${params.output}/${unique_id}", mode: 'copy', pattern: "*.json"
 
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
@@ -17,7 +17,7 @@ process ONYX_UPLOAD{
     """
     onyx_upload.py \\
         -i ${unique_id} \\
-        -t ${abricate_taxa_out} \\
+        -f ${params.output}/${unique_id} \\
         -o ./ \\
         --pipeline_status ${pipeline_status} \\
         --amr_params \"tool:${tool},db:${params.arg_abricate_db},minid:${params.arg_abricate_minid},mincov:${params.arg_abricate_mincov}\" \\
