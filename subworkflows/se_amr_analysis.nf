@@ -30,7 +30,6 @@ workflow SE_AMR_ANALYSIS {
     amr_status.unannotated
         .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
             log.info "The AMR annotation pipeline was not ran on ${climb_id}."
-             ONYX_UPLOAD(READ_ANALYSIS.out)
             return null
         }
 
