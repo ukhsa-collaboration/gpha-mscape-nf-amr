@@ -26,7 +26,7 @@ def get_args() -> argparse.Namespace:
     #             help="Column ID can be found in.",
     #             required=True, type=str)
     parser.add_argument("-c", "--columns",
-                help="Columns from Onyx, should be column seperated string.",
+                help="Columns from Onyx, should be comma seperated string.",
                 required=True, type=str)
     parser.add_argument("-o", "--output",
                 help="Output directory for downloaded data",
