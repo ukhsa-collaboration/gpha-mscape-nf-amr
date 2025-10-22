@@ -15,7 +15,6 @@ process ONYX_UPLOAD{
     
     script:
     """
-    //  For samples failed samples, need to create an empty directory
     mkdir -p "${params.output}/${unique_id}"
     
     onyx_upload.py \\
