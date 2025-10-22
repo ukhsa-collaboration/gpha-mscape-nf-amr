@@ -128,7 +128,7 @@ def create_analysis_fields(
     """
     onyx_analysis = oa.OnyxAnalysis()
     onyx_analysis.add_analysis_details(
-        analysis_name="ukhsa-classifier-qc-metrics",
+        analysis_name=pipeline_info['name'],
         analysis_description="This is an analysis to generate AMR results for individual samples",
     )
     # onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
