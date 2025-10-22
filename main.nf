@@ -42,7 +42,7 @@ workflow {
                     tuple( climb_id, '', 'failed', 'None')
              }
              .set{ failed_ch }
-             log.info  '${climb_id} is paired-end, analysis not ran.'
+             log.info  "${params.climb_id} is paired-end, analysis not ran."
             // ONYX_UPLOAD( failed_ch )
             }
         
