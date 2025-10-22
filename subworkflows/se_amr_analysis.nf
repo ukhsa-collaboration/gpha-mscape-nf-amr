@@ -38,7 +38,7 @@ workflow SE_AMR_ANALYSIS {
     if (amr_status.annotated){
         amr_status.annotated
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, val('Annotated'))
+                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'Annotated')
         }
         .view()
     }
