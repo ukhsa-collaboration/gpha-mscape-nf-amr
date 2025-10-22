@@ -18,7 +18,6 @@ workflow {
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
-    ${params.output} = dir.resolve(${params.output})
     // Split csv into channgels
     samples = samplesheet_ch.splitCsv(header: true, quote: '\"')
         .map { row ->
@@ -37,14 +36,14 @@ workflow {
         }
         .set { ch_fastqs }
     
-    // if (ch_fastqs.paired_end) {
-    //     ch_fastqs.paired_end
-    //         .map{ climb_id, kraken_assignments, kraken_report, fastq1, fastq2  ->
-    //                 tuple( climb_id, '', 'failed', 'None')
-    //         }
-    //         .set{ failed_ch }
-    //         ONYX_UPLOAD( failed_ch )
-    //         }
+    if (ch_fastqs.paired_end) {
+        ch_fastqs.paired_end
+            .map{ climb_id, kraken_assignments, kraken_report, fastq1, fastq2  ->
+                    tuple( climb_id, "${params.output}/${climb_id}", 'failed', 'None')
+            }
+            .set{ failed_ch }
+            ONYX_UPLOAD( failed_ch )
+            }
         
     SE_AMR_ANALYSIS(ch_fastqs.single_end)
 }
