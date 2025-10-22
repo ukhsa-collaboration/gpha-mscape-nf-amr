@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 from onyx import OnyxConfig, OnyxEnv, OnyxClient
