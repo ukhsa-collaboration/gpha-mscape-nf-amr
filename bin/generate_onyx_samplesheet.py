@@ -52,6 +52,7 @@ def get_record(sample_id: str, columns: list) -> tuple[dict, int]:
         ))
     exit_code = 0
 
+    #TODO: handle no records returned
     return df, exit_code
 
 
