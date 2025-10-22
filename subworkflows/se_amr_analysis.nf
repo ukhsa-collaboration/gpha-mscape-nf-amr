@@ -30,7 +30,7 @@ workflow SE_AMR_ANALYSIS {
     if (amr_status.unannotated){
         amr_status.unannotated
             .map{ climb_id,  kraken_assignments, kraken_report, abricate_out ->
-                tuple( climb_id, abricate_out, val('None'))
+                tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'None')
         }
         .set{ unannotated_ch }
     }
