@@ -2,7 +2,7 @@
 
 include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
 include { SE_AMR_ANALYSIS      } from './subworkflows/se_amr_analysis'
-include { ONYX_UPLOAD          } from "../modules/local/onyx_upload"
+include { ONYX_UPLOAD          } from "./modules/local/onyx_upload"
 
 
 workflow {
