@@ -38,7 +38,7 @@ workflow {
     if (ch_fastqs.paired_end){
         ch_fastqs.paired_end
             .map{ val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1) ->
-                    tuple( val(climb_id), '', 'failed')
+                    tuple( val(climb_id), '', 'failed', 'None')
              }
              .set{ failed_ch }
              log.info  "${climb_id} is paired-end, analysis not ran."
