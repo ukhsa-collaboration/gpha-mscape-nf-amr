@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 from onyx import OnyxConfig, OnyxEnv, OnyxClient
@@ -22,24 +22,25 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("-i", "--id",
                 help="Sample ID.",
                 required=True, type=str)
-    # parser.add_argument("-t", "--id_column",
-    #             help="Column ID can be found in.",
-    #             required=True, type=str)
     parser.add_argument("-c", "--columns",
-                help="Columns from Onyx, should be column seperated string.",
+                help="Columns from Onyx, should be comma seperated string.",
                 required=True, type=str)
     parser.add_argument("-o", "--output",
-                help="Output directory for downloaded data",
+                help="Output filepath.",
                 required=True, type=Path)
     args = parser.parse_args()
     return args
 
 
 @oa.call_to_onyx
-def get_record(sample_id: str, columns: list):
+def get_record(sample_id: str, columns: list) -> tuple[dict, int]:
     """
     Using unique sample ID, query Onyx database to get appropriate columns
     """
+    # Ensure climb_id is included in columns list
+    if "climb_id" not in columns:
+        columns.append("climb_id")
+
     with OnyxClient(config) as client:
             df = pd.DataFrame(client.filter(
             project = "mscape",
@@ -48,6 +49,7 @@ def get_record(sample_id: str, columns: list):
         ))
     exit_code = 0
 
+    #TODO: handle no records returned
     return df, exit_code
 
 

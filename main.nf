@@ -1,13 +1,18 @@
 #!/usr/bin/env nextflow
-nextflow.enable.dsl=2
 
 include { GENERATE_SAMPLESHEET } from './modules/local/samplesheet'
-include { SE_AMR_ANALYSIS } from './subworkflows/se_amr_analysis'
+include { SE_AMR_ANALYSIS      } from './subworkflows/se_amr_analysis'
+include { ONYX_UPLOAD          } from "./modules/local/onyx_upload"
+include { PE_AMR_ANALYSIS      } from './subworkflows/pe_amr_analysis'
+
 
 
 workflow {
     // Handle either samplesheet or climb id
-    if (params.samplesheet){
+    if (params.samplesheet && params.unique_id){
+        exit(1, "Please specify one of --unique_id or --samplesheet. Not both.")
+    }
+    else if(params.samplesheet){
         log.info "Samplesheet input: ${params.samplesheet}"
         samplesheet_ch = channel.fromPath(params.samplesheet)
     } else if (params.unique_id) {
@@ -34,6 +39,8 @@ workflow {
             paired_end: v.size() == 5
             single_end: v.size() == 4
         }
-        .set { ch_fastqs } 
+        .set { ch_fastqs }
+            
     SE_AMR_ANALYSIS(ch_fastqs.single_end)
+    PE_AMR_ANALYSIS(ch_fastqs.paired_end)
 }

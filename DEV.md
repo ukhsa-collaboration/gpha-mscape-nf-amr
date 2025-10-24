@@ -9,12 +9,12 @@
 - [X] Develop script to create sample-sheet
 - [X] NextFlow: Take CLIMB-ID list, pull FASTQ URIs from database (stored as text strings)
 - [X] Nextflow: Run Abricate 
-- [ ] Nextflow: Run Scagaire 
 - [X] Nextflow: Set up for multiple input samples
-- [ ] Nextflow: Set up for multiple species (Scagaire)
+- [X] Nextflow: Set up for multiple species (Scagaire)
+- [] Report: Generate reports
 
 
-## Creat Env
+## Create Env
 Create an environment for testing
 - With micromamba
 ```
@@ -41,26 +41,71 @@ Install Abricate:
 Create python script to run Abricate (`mscape-amr-nf/abricate.py`)
 
 ## Testing Nextflow
-Running tests:   
-`nextflow run main.nf -profile docker --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv -process.echo`
-Run test, but don't repeat steps that have not changed:
-`nextflow run main.nf -profile docker -resume --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv -process.echo`
+- Running tests:   
+```
+nextflow \
+    run \
+    main.nf \
+    -profile docker \
+    --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv \
+    -process.echo
 
-Running from GitHub directly (requires permissions)
-`nextflow run ukhsa-collaboration/mscape-amr-nf -r dev -profile test,docker -resume --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv`
+```
+
+- Run test, but don't repeat steps that have not changed:
+```
+nextflow \
+    run \
+    main.nf \
+    -profile docker \
+    -resume \
+    --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv \
+    -process.echo
+```
+
+- Running from GitHub directly (requires permissions)
+```
+nextflow \
+    run \
+    ukhsa-collaboration/gpha-mscape-nf-amr \
+    -r dev \
+    -profile docker \
+    -resume \
+    --samplesheet /shared/team/amr/nextflow/test_data/test-sample-sheet.csv
+```
 
 Note: You will want to pull the latest version of the repo
-`nextflow pull ukhsa-collaboration/mscape-amr-nf`
+`nextflow pull ukhsa-collaboration/gpha-mscape-nf-amr`
 
 ## Viewing Work Directory
 Can be found here:
 `/home/jovyan/shared-team/nxf_work/${USERNAME}.gpha-ukhsa-mscap/work/`
 
-## Kraken Output Files Directory
-Can be found here:
-`s3://mscape-published-taxon-reports/${CLIMB_ID}`
 
 # Testing:
+- For a single sample:
 ```
-(test) jovyan:~/git/gpha-mscape-nf-amr$ nextflow run -latest -r feature/in-input ukhsa-collaboration/gpha-mscape-nf-amr -profile docker --unique_id /<CLIMB_ID> --output test-amr-out -resume -e.ONYX_DOMAIN=$ONYX_DOMAIN -e.ONYX_TOKEN=$ONYX_TOKEN
+nextflow                        \
+    run                         \
+    -latest                     \
+    ukhsa-collaboration/gpha-mscape-nf-amr \
+    -profile docker             \
+    --unique_id <CLIMB_ID>     \
+    --output test-amr-out       \
+    -resume                     \
+    -e.ONYX_DOMAIN=$ONYX_DOMAIN \
+    -e.ONYX_TOKEN=$ONYX_TOKEN
+```
+- For a samplesheet:
+```
+nextflow                        \
+    run                         \
+    -latest                     \
+    ukhsa-collaboration/gpha-mscape-nf-amr \
+    -profile docker             \
+    --samplesheet test-sample-sheet.csv     \
+    --output test-amr-out       \
+    -resume                     \
+    -e.ONYX_DOMAIN=$ONYX_DOMAIN \
+    -e.ONYX_TOKEN=$ONYX_TOKEN
 ```
