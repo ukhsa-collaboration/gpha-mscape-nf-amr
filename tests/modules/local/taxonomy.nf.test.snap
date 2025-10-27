@@ -1,0 +1,16 @@
+{
+    "test_read-analysis_positive": {
+        "content": [
+            {
+                "0": [
+                    "climb-id_abricate_card_taxa_out.tsv:md5,06044970b57f90818aa13b9afbadec2b"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-15T09:57:38.262874193"
+    }
+}

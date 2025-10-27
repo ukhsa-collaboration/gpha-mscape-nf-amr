@@ -1,0 +1,27 @@
+{
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "climb-id",
+                        "card",
+                        "abricate_card_out.tsv:md5,4473c7cbe8f16d7c88089bc0b5e15149"
+                    ]
+                ],
+                "abricate_results": [
+                    [
+                        "climb-id",
+                        "card",
+                        "abricate_card_out.tsv:md5,4473c7cbe8f16d7c88089bc0b5e15149"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-15T08:38:47.459156134"
+    }
+}
