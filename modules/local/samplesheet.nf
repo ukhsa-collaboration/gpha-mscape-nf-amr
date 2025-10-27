@@ -1,5 +1,4 @@
 #!/usr/bin/env nextflow
-nextflow.enable.dsl=2
 process GENERATE_SAMPLESHEET{
     tag "${unique_id}"
     publishDir "${params.output}/${unique_id}/", mode: 'copy', pattern: "*.csv"
