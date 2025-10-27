@@ -7,7 +7,7 @@ process GZ_TO_FASTQ{
     container 'community.wave.seqera.io/library/pip_gunzip:1ea8ddc0b75355cd'
 
     input:
-    val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
+    tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
 
     output:
     tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path("${climb_id}.fastq")
