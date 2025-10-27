@@ -11,9 +11,9 @@ workflow SE_AMR_ANALYSIS {
 
     main:
     single_end_ch.view()
-    // // 1. Gunzip FASTQ
-    // // Abricate can use fastq.gz, so just point to files.
-    // GZ_TO_FASTQ(single_end_ch)
+    // 1. Gunzip FASTQ
+    // Abricate can use fastq.gz, so just point to files.
+    GZ_TO_FASTQ(single_end_ch)
     
     // // 2 - Run Abricate
     // RUN_ABRICATE(GZ_TO_FASTQ.out)
