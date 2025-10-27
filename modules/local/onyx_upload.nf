@@ -5,11 +5,8 @@ process ONYX_UPLOAD{
     publishDir "${params.output}/${unique_id}", mode: 'copy', pattern: "*.json"
 
     // Onyx and Onyx Helper
-<<<<<<< HEAD
-    container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:latest'
-=======
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
->>>>>>> main
+
 
     input:
     tuple val(unique_id), path(abricate_taxa_out), val(pipeline_status), val(tool)
@@ -19,10 +16,6 @@ process ONYX_UPLOAD{
     
     script:
     """
-<<<<<<< HEAD
-=======
-    //  For samples failed samples, need to create an empty directory
->>>>>>> main
     mkdir -p "${params.output}/${unique_id}"
     
     onyx_upload.py \\
