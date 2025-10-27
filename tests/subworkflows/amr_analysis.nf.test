@@ -1,0 +1,34 @@
+nextflow_workflow {
+
+    name "Test Workflow AMR_ANALYSIS"
+    script "subworkflows/amr_analysis.nf"
+    workflow "AMR_ANALYSIS"
+
+    test("test_amr-analysis_positive") {
+
+        when {
+            params {
+                // define parameters here. Example:
+                // outdir = "tests/results"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    tuple(
+                        "climb_id", 
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.tsv", checkIfExists: true),
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.kraken_pluspf_8gb.report.json", checkIfExists: true),
+                        file("${projectDir}/tests/test_data/ERR3077524_GCF_013349085.1.test_data.fq.gz", checkIfExists: true)
+                    )
+                )
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}

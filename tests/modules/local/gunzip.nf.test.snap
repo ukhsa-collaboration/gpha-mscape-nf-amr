@@ -1,0 +1,36 @@
+{
+    "Should run gunzip without any failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "climb-id",
+                        "climb-id.fastq:md5,d04c18908ad4f8aaeda24239a9bf5dc8"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-13T14:08:43.850436762"
+    },
+    "test_gztofastq_positive": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "climb-id",
+                        "climb-id.fastq:md5,d04c18908ad4f8aaeda24239a9bf5dc8"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-13T14:27:53.463831543"
+    }
+}
