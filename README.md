@@ -5,6 +5,8 @@ Nextflow process for running AMR detection using Abricate on ONT metagenomic sam
 - Provide nextflow with a sample spreadsheet that contains either climb-id and S3 fastq locations.
 
 ### Running on Bryn
+Note that the full filepath for output directory is required.
+
 - Running with a samplesheet:
 ```
 nextflow run \
