@@ -4,26 +4,28 @@ Nextflow process for running AMR detection using Abricate on ONT metagenomic sam
 ## Usage
 - Provide nextflow with a sample spreadsheet that contains either climb-id and S3 fastq locations.
 
-### Creating Sample Sheet
-- Install dependencies:
-```
-pip install -r requirements.txt
-```
-
-- To create sample-sheet with a list of CLIMB-IDs simply run:   
-```
-python bin/generate-sample-sheet.py 
-    --input climb_ids.txt 
-    --output sample-sheet.csv
-```
-
 ### Running on Bryn
+- Running with a samplesheet:
 ```
-nextflow run -latest ukhsa-collaboration/gpha-mscape-nf-amr -profile docker --samplesheet test-sample-sheet.csv --output test-amr-out -resume
+nextflow run \
+    -latest \
+    -r main \
+    ukhsa-collaboration/gpha-mscape-nf-amr \
+    -profile docker \
+    --samplesheet <SAMPLESHEET.csv> \
+    --output <OUTDIR> \
+    -e.ONYX_DOMAIN=$ONYX_DOMAIN \
+    -e.ONYX_TOKEN=$ONYX_TOKEN \
 ```
-
-
-## Dependencies
-- [Abricate](https://github.com/tseemann/abricate):  
-Mass screening of contigs for antimicrobial resistance or virulence genes.
-
+- Running with unique id:
+```
+nextflow run \
+    -latest \
+    -r main \
+    ukhsa-collaboration/gpha-mscape-nf-amr \
+    -profile docker \
+    --unique_id <UNIQUE_ID> \
+    --output <OUTDIR> \
+    -e.ONYX_DOMAIN=$ONYX_DOMAIN \
+    -e.ONYX_TOKEN=$ONYX_TOKEN \
+```
