@@ -570,7 +570,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
     fp = os.path.join(output_path, str('res_counts_by_species.csv'))
     res_counts_by_species.to_csv(fp, index=True)
 
-    print(res_counts_by_species)
+    print(res_counts_by_species.columns)
 
     # # Summary information for paragraphs:
     # def most_common_string(top5):
