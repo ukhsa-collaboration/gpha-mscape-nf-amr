@@ -11,6 +11,7 @@ dependencies = [
     "onyx-analysis-helper",
     "pandas>=2.3.3",
     "plotly>=6.3.1",
+    "pytest>=8.4.2",
 ]
 
 [tool.uv.sources]
