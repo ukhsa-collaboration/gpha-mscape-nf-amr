@@ -9,7 +9,6 @@
 import argparse
 import logging
 import sys
-from importlib import resources
 from pathlib import Path
 import os
 from onyx import OnyxClient, OnyxConfig, OnyxEnv
