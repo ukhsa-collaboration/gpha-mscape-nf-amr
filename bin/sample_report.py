@@ -158,58 +158,60 @@ def plot_class_bar(df, output_path):
     #               'macrolide','penam','penem','peptide','fosfomycin','monobactam',
     #               'glycylcycline','phenicol','rifamycin','tetracycline','triclosan']
 
-    # ---- Build grouped (side-by-side) bars ----
-    species = df["species_name"].tolist()
-    n_groups = len(species)
-    n_series = len(value_cols)
+    print(df)
 
-    x = np.arange(n_groups, dtype=float)  # group centers
-    group_width = 0.84                     # total width occupied by all bars in a group
-    bar_width = group_width / n_series
-    offsets = (np.arange(n_series) - (n_series - 1) / 2.0) * bar_width
+    # # ---- Build grouped (side-by-side) bars ----
+    # species = df["species_name"].tolist()
+    # n_groups = len(species)
+    # n_series = len(value_cols)
 
-    # A nice categorical colour palette (larger than needed to avoid repeats)
-    # You can replace with plt.cm.get_cmap('tab20') for more categories.
-    palette = plt.cm.tab20.colors if n_series > 10 else plt.cm.Set3.colors
-    colors = [palette[i % len(palette)] for i in range(n_series)]
+    # x = np.arange(n_groups, dtype=float)  # group centers
+    # group_width = 0.84                     # total width occupied by all bars in a group
+    # bar_width = group_width / n_series
+    # offsets = (np.arange(n_series) - (n_series - 1) / 2.0) * bar_width
 
-    fig, ax = plt.subplots(figsize=(14, 6), constrained_layout=True)
+    # # A nice categorical colour palette (larger than needed to avoid repeats)
+    # # You can replace with plt.cm.get_cmap('tab20') for more categories.
+    # palette = plt.cm.tab20.colors if n_series > 10 else plt.cm.Set3.colors
+    # colors = [palette[i % len(palette)] for i in range(n_series)]
 
-    for i, col in enumerate(value_cols):
-        y = df[col].values
-        ax.bar(x + offsets[i], y, width=bar_width, label=col, color=colors[i], edgecolor='white', linewidth=0.7)
+    # fig, ax = plt.subplots(figsize=(14, 6), constrained_layout=True)
 
-    # ---- Cosmetics ----
-    ax.set_xlabel(None)
-    ax.set_ylabel("# of Reads", fontsize=11)
-    ax.set_title("Reads Counts Grouped by Species and Class of Resistance", fontsize=13, pad=10)
+    # for i, col in enumerate(value_cols):
+    #     y = df[col].values
+    #     ax.bar(x + offsets[i], y, width=bar_width, label=col, color=colors[i], edgecolor='white', linewidth=0.7)
 
-    # Wrap long species labels to keep them readable
-    wrapped_labels = [textwrap.fill(s, width=18) for s in species]
-    ax.set_xticks(x)
-    ax.set_xticklabels(wrapped_labels, rotation=0, ha='center')
+    # # ---- Cosmetics ----
+    # ax.set_xlabel(None)
+    # ax.set_ylabel("# of Reads", fontsize=11)
+    # ax.set_title("Reads Counts Grouped by Species and Class of Resistance", fontsize=13, pad=10)
 
-    # Light grid and clean spines
-    ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.6)
-    for spine in ["top", "right"]:
-        ax.spines[spine].set_visible(False)
+    # # Wrap long species labels to keep them readable
+    # wrapped_labels = [textwrap.fill(s, width=18) for s in species]
+    # ax.set_xticks(x)
+    # ax.set_xticklabels(wrapped_labels, rotation=0, ha='center')
 
-    # Legend outside the plot to the right
-    leg = ax.legend(title="Class", bbox_to_anchor=(1.02, 1), loc="upper left", borderaxespad=0.)
-    plt.setp(leg.get_title(), fontsize=10)
+    # # Light grid and clean spines
+    # ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.6)
+    # for spine in ["top", "right"]:
+    #     ax.spines[spine].set_visible(False)
 
-    # Optional: add value labels for small numbers
-    def autolabel(ax):
-        for container in ax.containers:
-            ax.bar_label(container, fmt="%.0f", padding=2, fontsize=8)
-    # Uncomment to show labels:
-    # autolabel(ax)
+    # # Legend outside the plot to the right
+    # leg = ax.legend(title="Class", bbox_to_anchor=(1.02, 1), loc="upper left", borderaxespad=0.)
+    # plt.setp(leg.get_title(), fontsize=10)
 
-    # Save and/or show
-    fp = os.path.join(output_path, str('resistance_grouped_barplot.png'))
-    plt.savefig(fp, dpi=300)
+    # # Optional: add value labels for small numbers
+    # def autolabel(ax):
+    #     for container in ax.containers:
+    #         ax.bar_label(container, fmt="%.0f", padding=2, fontsize=8)
+    # # Uncomment to show labels:
+    # # autolabel(ax)
 
-    return fig
+    # # Save and/or show
+    # fp = os.path.join(output_path, str('resistance_grouped_barplot.png'))
+    # plt.savefig(fp, dpi=300)
+
+    # return fig
 
 def heatplot(df: pd.DataFrame, output_path: str):
     # Sanity check: make sure required columns exist
@@ -583,50 +585,50 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
 
     # create figures
     fig1 = plot_class_bar(res_counts_by_species, output_path)
-    fig2 = heatplot(df, output_path)
+    # fig2 = heatplot(df, output_path)
 
-    species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
-                                      include_plotlyjs="cdn", full_html=False)
+    # species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
+    #                                   include_plotlyjs="cdn", full_html=False)
     
-    genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE",
-                                      include_plotlyjs="cdn", full_html=False)
+    # genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE",
+    #                                   include_plotlyjs="cdn", full_html=False)
 
-    bar_class_b64 = fig_to_base64(fig1)
-    heatplot_b64 = fig_to_base64(fig2)
+    # bar_class_b64 = fig_to_base64(fig1)
+    # heatplot_b64 = fig_to_base64(fig2)
 
-    # tables to HTML
-    summary_html = df_to_html_table(res_counts_by_species)
+    # # tables to HTML
+    # summary_html = df_to_html_table(res_counts_by_species)
 
-    read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
+    # read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
 
-    html = HTML_TEMPLATE.format(
-        title=sample_id,
-        timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
-        summary_table=summary_html,
-        total_amr_count = len(df['SEQUENCE']),
-        no_of_taxa = len(df['species_name'].unique()),
-        taxa_string = most_common_taxa_str,
-        total_unique_genes = len(df['GENE'].unique()),
-        gene_string = most_common_genes_str,
-        resistance_string = ', '.join(unique_resistance_classes),
-        bar_class_img=bar_class_b64,
-        heatmap_img=heatplot_b64,
-        species_sankey_html=species_sankey_html,
-        genes_sankey_html = genes_sankey_html,
-        median_read_amr_count = read_amr_summary_dict['median_read_amr_count'],
-        max_read_amr_count = read_amr_summary_dict['max_read_amr_count'],
-        reads_w_max_amr_count = read_amr_summary_dict['reads_w_max_amr_count'],
-        median_read_class_count = read_amr_summary_dict['median_read_class_count'],
-        max_read_class_count = read_amr_summary_dict['max_read_class_count'],
-        reads_w_max_class_count = read_amr_summary_dict['reads_w_max_class_count'],
-        coocc_fig = coocc_fig,
-        source_file=amr_tsv
-    )
+    # html = HTML_TEMPLATE.format(
+    #     title=sample_id,
+    #     timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
+    #     summary_table=summary_html,
+    #     total_amr_count = len(df['SEQUENCE']),
+    #     no_of_taxa = len(df['species_name'].unique()),
+    #     taxa_string = most_common_taxa_str,
+    #     total_unique_genes = len(df['GENE'].unique()),
+    #     gene_string = most_common_genes_str,
+    #     resistance_string = ', '.join(unique_resistance_classes),
+    #     bar_class_img=bar_class_b64,
+    #     heatmap_img=heatplot_b64,
+    #     species_sankey_html=species_sankey_html,
+    #     genes_sankey_html = genes_sankey_html,
+    #     median_read_amr_count = read_amr_summary_dict['median_read_amr_count'],
+    #     max_read_amr_count = read_amr_summary_dict['max_read_amr_count'],
+    #     reads_w_max_amr_count = read_amr_summary_dict['reads_w_max_amr_count'],
+    #     median_read_class_count = read_amr_summary_dict['median_read_class_count'],
+    #     max_read_class_count = read_amr_summary_dict['max_read_class_count'],
+    #     reads_w_max_class_count = read_amr_summary_dict['reads_w_max_class_count'],
+    #     coocc_fig = coocc_fig,
+    #     source_file=amr_tsv
+    # )
 
-    fp = os.path.join(output_path, str(f'{sample_id}_sample_amr_report.html'))
-    with open(fp, 'w', encoding='utf-8') as fh:
-        fh.write(html)
-    print(f"Saved HTML report to: {output_path}")
+    # fp = os.path.join(output_path, str(f'{sample_id}_sample_amr_report.html'))
+    # with open(fp, 'w', encoding='utf-8') as fh:
+    #     fh.write(html)
+    # print(f"Saved HTML report to: {output_path}")
 
 def main():
     args = get_args()
@@ -638,8 +640,7 @@ def main():
     df = load_table(amr_tsv)
     df = simplify_taxa(email, df)
     
-    print(df)
-    # generate_html_report(df, output_path, sample_id, amr_tsv)
+    generate_html_report(df, output_path, sample_id, amr_tsv)
 
 if __name__ == "__main__":
     main() 
