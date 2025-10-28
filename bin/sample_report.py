@@ -572,68 +572,67 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
     fp = os.path.join(output_path, str('res_counts_by_species.csv'))
     res_counts_by_species.to_csv(fp, index=True)
 
-    print(res_counts_by_species.columns)
 
-    # # Summary information for paragraphs:
-    # def most_common_string(top5):
-    #     most_common_list = []
-    #     most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
-    #     for item in top5[1:]:
-    #         most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
-    #     return str(', '.join(most_common_list))
+    # Summary information for paragraphs:
+    def most_common_string(top5):
+        most_common_list = []
+        most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
+        for item in top5[1:]:
+            most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
+        return str(', '.join(most_common_list))
 
-    # top5_spp = most_common(df['species_name'], top_n=5)
-    # most_common_taxa_str = most_common_string(top5_spp)
+    top5_spp = most_common(df['species_name'], top_n=5)
+    most_common_taxa_str = most_common_string(top5_spp)
 
-    # top5_genes = most_common(df['GENE'], top_n=5)
-    # most_common_genes_str = most_common_string(top5_genes)
+    top5_genes = most_common(df['GENE'], top_n=5)
+    most_common_genes_str = most_common_string(top5_genes)
 
-    # # create figures
-    # fig1 = plot_class_bar(res_counts_by_species, output_path)
-    # fig2 = heatplot(df, output_path)
+    # create figures
+    fig1 = plot_class_bar(res_counts_by_species, output_path)
+    fig2 = heatplot(df, output_path)
 
-    # species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
-    #                                   include_plotlyjs="cdn", full_html=False)
+    species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
+                                      include_plotlyjs="cdn", full_html=False)
     
-    # genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE",
-    #                                   include_plotlyjs="cdn", full_html=False)
+    genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE",
+                                      include_plotlyjs="cdn", full_html=False)
 
-    # bar_class_b64 = fig_to_base64(fig1)
-    # heatplot_b64 = fig_to_base64(fig2)
+    bar_class_b64 = fig_to_base64(fig1)
+    heatplot_b64 = fig_to_base64(fig2)
 
-    # # tables to HTML
-    # summary_html = df_to_html_table(res_counts_by_species)
+    # tables to HTML
+    summary_html = df_to_html_table(res_counts_by_species)
 
-    # read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
+    read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
 
-    # html = HTML_TEMPLATE.format(
-    #     title=sample_id,
-    #     timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
-    #     summary_table=summary_html,
-    #     total_amr_count = len(df['SEQUENCE']),
-    #     no_of_taxa = len(df['species_name'].unique()),
-    #     taxa_string = most_common_taxa_str,
-    #     total_unique_genes = len(df['GENE'].unique()),
-    #     gene_string = most_common_genes_str,
-    #     resistance_string = ', '.join(unique_resistance_classes),
-    #     bar_class_img=bar_class_b64,
-    #     heatmap_img=heatplot_b64,
-    #     species_sankey_html=species_sankey_html,
-    #     genes_sankey_html = genes_sankey_html,
-    #     median_read_amr_count = read_amr_summary_dict['median_read_amr_count'],
-    #     max_read_amr_count = read_amr_summary_dict['max_read_amr_count'],
-    #     reads_w_max_amr_count = read_amr_summary_dict['reads_w_max_amr_count'],
-    #     median_read_class_count = read_amr_summary_dict['median_read_class_count'],
-    #     max_read_class_count = read_amr_summary_dict['max_read_class_count'],
-    #     reads_w_max_class_count = read_amr_summary_dict['reads_w_max_class_count'],
-    #     coocc_fig = coocc_fig,
-    #     source_file=amr_tsv
-    # )
+    html = HTML_TEMPLATE.format(
+        title=sample_id,
+        timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
+        summary_table=summary_html,
+        total_amr_count = len(df['SEQUENCE']),
+        no_of_taxa = len(df['species_name'].unique()),
+        taxa_string = most_common_taxa_str,
+        total_unique_genes = len(df['GENE'].unique()),
+        gene_string = most_common_genes_str,
+        resistance_string = ', '.join(unique_resistance_classes),
+        bar_class_img=bar_class_b64,
+        heatmap_img=heatplot_b64,
+        species_sankey_html=species_sankey_html,
+        genes_sankey_html = genes_sankey_html,
+        median_read_amr_count = read_amr_summary_dict['median_read_amr_count'],
+        max_read_amr_count = read_amr_summary_dict['max_read_amr_count'],
+        reads_w_max_amr_count = read_amr_summary_dict['reads_w_max_amr_count'],
+        median_read_class_count = read_amr_summary_dict['median_read_class_count'],
+        max_read_class_count = read_amr_summary_dict['max_read_class_count'],
+        reads_w_max_class_count = read_amr_summary_dict['reads_w_max_class_count'],
+        coocc_fig = coocc_fig,
+        source_file=amr_tsv
+    )
 
-    # fp = os.path.join(output_path, str(f'{sample_id}_sample_amr_report.html'))
-    # with open(fp, 'w', encoding='utf-8') as fh:
-    #     fh.write(html)
-    # print(f"Saved HTML report to: {output_path}")
+    fp = os.path.join(output_path, str(f'{sample_id}_sample_amr_report.html'))
+    with open(fp, 'w', encoding='utf-8') as fh:
+        fh.write(html)
+    print(f"Saved HTML report to: {output_path}")
 
 def main():
     args = get_args()
