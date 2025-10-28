@@ -638,7 +638,8 @@ def main():
     df = load_table(amr_tsv)
     df = simplify_taxa(email, df)
     
-    generate_html_report(df, output_path, sample_id, amr_tsv)
+    print(df)
+    # generate_html_report(df, output_path, sample_id, amr_tsv)
 
 if __name__ == "__main__":
     main() 
