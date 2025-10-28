@@ -16,7 +16,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from datetime import datetime, UTC
-from textwrap import shorten
+import textwrap
 from Bio import Entrez
 import xml.etree.ElementTree as ET
 import time
@@ -147,24 +147,8 @@ def summarize_by_class(df, unique_resistance_classes):
     res_counts_by_species = res_counts_by_species.reset_index()  # moves index to a column named 'index' by default
     # If you want to rename it and ensure it's the first column:
     res_counts_by_species = res_counts_by_species.rename(columns={'index': 'species_name'})
-
-
+    
     return res_counts_by_species
-
-def top_genes(df, top_n=15):
-    # compute a simple score identity * coverage if both present
-    dfc = df.copy()
-    if '%IDENTITY' in dfc.columns and '%COVERAGE' in dfc.columns:
-        dfc['Score'] = dfc['%IDENTITY'].fillna(0) * dfc['%COVERAGE'].fillna(0) / 100.0
-    else:
-        dfc['Score'] = 1
-    cols = ['GENE', '%COVERAGE', '%IDENTITY', 'PRODUCT', 'RESISTANCE', 'name', 'Score']
-    cols = [c for c in cols if c in dfc.columns]
-    top = dfc.sort_values('Score', ascending=False).head(top_n)[cols]
-    # shorten long product descriptions for display
-    if 'PRODUCT' in top.columns:
-        top['PRODUCT'] = top['PRODUCT'].apply(lambda s: shorten(str(s), width=200, placeholder='...'))
-    return top
 
 def plot_class_bar(df, output_path):     
     # ---- Choose which columns to plot (exclude metadata columns) ----
@@ -176,58 +160,60 @@ def plot_class_bar(df, output_path):
     #               'macrolide','penam','penem','peptide','fosfomycin','monobactam',
     #               'glycylcycline','phenicol','rifamycin','tetracycline','triclosan']
 
-    # ---- Build grouped (side-by-side) bars ----
-    species = df["species_name"].tolist()
-    n_groups = len(species)
-    n_series = len(value_cols)
+    print(df["species_name"])
 
-    x = np.arange(n_groups, dtype=float)  # group centers
-    group_width = 0.84                     # total width occupied by all bars in a group
-    bar_width = group_width / n_series
-    offsets = (np.arange(n_series) - (n_series - 1) / 2.0) * bar_width
+    # # ---- Build grouped (side-by-side) bars ----
+    # species = df["species_name"].tolist()
+    # n_groups = len(species)
+    # n_series = len(value_cols)
 
-    # A nice categorical colour palette (larger than needed to avoid repeats)
-    # You can replace with plt.cm.get_cmap('tab20') for more categories.
-    palette = plt.cm.tab20.colors if n_series > 10 else plt.cm.Set3.colors
-    colors = [palette[i % len(palette)] for i in range(n_series)]
+    # x = np.arange(n_groups, dtype=float)  # group centers
+    # group_width = 0.84                     # total width occupied by all bars in a group
+    # bar_width = group_width / n_series
+    # offsets = (np.arange(n_series) - (n_series - 1) / 2.0) * bar_width
 
-    fig, ax = plt.subplots(figsize=(14, 6), constrained_layout=True)
+    # # A nice categorical colour palette (larger than needed to avoid repeats)
+    # # You can replace with plt.cm.get_cmap('tab20') for more categories.
+    # palette = plt.cm.tab20.colors if n_series > 10 else plt.cm.Set3.colors
+    # colors = [palette[i % len(palette)] for i in range(n_series)]
 
-    for i, col in enumerate(value_cols):
-        y = df[col].values
-        ax.bar(x + offsets[i], y, width=bar_width, label=col, color=colors[i], edgecolor='white', linewidth=0.7)
+    # fig, ax = plt.subplots(figsize=(14, 6), constrained_layout=True)
 
-    # ---- Cosmetics ----
-    ax.set_xlabel(None)
-    ax.set_ylabel("# of Reads", fontsize=11)
-    ax.set_title("Reads Counts Grouped by Species and Class of Resistance", fontsize=13, pad=10)
+    # for i, col in enumerate(value_cols):
+    #     y = df[col].values
+    #     ax.bar(x + offsets[i], y, width=bar_width, label=col, color=colors[i], edgecolor='white', linewidth=0.7)
 
-    # Wrap long species labels to keep them readable
-    wrapped_labels = [textwrap.fill(s, width=18) for s in species]
-    ax.set_xticks(x)
-    ax.set_xticklabels(wrapped_labels, rotation=0, ha='center')
+    # # ---- Cosmetics ----
+    # ax.set_xlabel(None)
+    # ax.set_ylabel("# of Reads", fontsize=11)
+    # ax.set_title("Reads Counts Grouped by Species and Class of Resistance", fontsize=13, pad=10)
 
-    # Light grid and clean spines
-    ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.6)
-    for spine in ["top", "right"]:
-        ax.spines[spine].set_visible(False)
+    # # Wrap long species labels to keep them readable
+    # wrapped_labels = [textwrap.fill(s, width=18) for s in species]
+    # ax.set_xticks(x)
+    # ax.set_xticklabels(wrapped_labels, rotation=0, ha='center')
 
-    # Legend outside the plot to the right
-    leg = ax.legend(title="Class", bbox_to_anchor=(1.02, 1), loc="upper left", borderaxespad=0.)
-    plt.setp(leg.get_title(), fontsize=10)
+    # # Light grid and clean spines
+    # ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.6)
+    # for spine in ["top", "right"]:
+    #     ax.spines[spine].set_visible(False)
 
-    # Optional: add value labels for small numbers
-    def autolabel(ax):
-        for container in ax.containers:
-            ax.bar_label(container, fmt="%.0f", padding=2, fontsize=8)
-    # Uncomment to show labels:
-    # autolabel(ax)
+    # # Legend outside the plot to the right
+    # leg = ax.legend(title="Class", bbox_to_anchor=(1.02, 1), loc="upper left", borderaxespad=0.)
+    # plt.setp(leg.get_title(), fontsize=10)
 
-    # Save and/or show
-    fp = os.path.join(output_path, str('resistance_grouped_barplot.png'))
-    plt.savefig(fp, dpi=300)
+    # # Optional: add value labels for small numbers
+    # def autolabel(ax):
+    #     for container in ax.containers:
+    #         ax.bar_label(container, fmt="%.0f", padding=2, fontsize=8)
+    # # Uncomment to show labels:
+    # # autolabel(ax)
 
-    return fig
+    # # Save and/or show
+    # fp = os.path.join(output_path, str('resistance_grouped_barplot.png'))
+    # plt.savefig(fp, dpi=300)
+
+    # return fig
 
 def heatplot(df: pd.DataFrame, output_path: str):
     # Sanity check: make sure required columns exist
@@ -286,24 +272,6 @@ def heatplot(df: pd.DataFrame, output_path: str):
     fig.savefig(fp, dpi=300)
 
     return fig
-
-def plot_top_genes_bar(top_df):
-    fig, ax = plt.subplots(figsize=(8, max(4, 0.4*len(top_df))))
-    x = top_df['Score'] if 'Score' in top_df.columns else range(len(top_df))
-    y = top_df['GENE']
-    ax.barh(y[::-1], x[::-1])
-    ax.set_xlabel('Score (identity × coverage / 100)')
-    ax.set_title('Top Genes by Score')
-    plt.tight_layout()
-    return fig
-
-def taxa_summary_string(df: pd.DataFrame):
-    """Using pandas dataframe generate a string for report that describes the
-    taxa name, number of reads, % of AMR annotated reads
-    """
-    taxa = df['species_name'].unique()
-    print(taxa)
-    print(df['species_name'].value_counts())
 
 def most_common(
     data: Union[pd.Series, Iterable],
@@ -419,7 +387,7 @@ def sankey_html_from_counts(
 
 def coocc_heatmap_div(
     coocc: str = "class_pair_cooccurrence_counts.csv",
-    include_plotlyjs: str = "inline",  # inline → fully self-contained
+    include_plotlyjs="cdn",
     full_html: bool = False
 ) -> str:
     labels = coocc.index.tolist()
@@ -586,7 +554,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
     # Create boolean columns for each resistance class
     res_expanded_df = explode_resistance(df)
     fp = os.path.join(output_path, str('output_with_booleans.csv'))
-    # res_expanded_df.to_csv(fp, index=False)
     
     unique_resistance_classes = (
         df['RESISTANCE']
@@ -599,70 +566,74 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
         .unique()
     )
 
+
+
     res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
     fp = os.path.join(output_path, str('res_counts_by_species.csv'))
     res_counts_by_species.to_csv(fp, index=True)
 
-    # Summary information for paragraphs:
-    def most_common_string(top5):
-        most_common_list = []
-        most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
-        for item in top5[1:]:
-            most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
-        return str(', '.join(most_common_list))
+    print(res_counts_by_species.columns)
 
-    top5_spp = most_common(df['species_name'], top_n=5)
-    most_common_taxa_str = most_common_string(top5_spp)
+    # # Summary information for paragraphs:
+    # def most_common_string(top5):
+    #     most_common_list = []
+    #     most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
+    #     for item in top5[1:]:
+    #         most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
+    #     return str(', '.join(most_common_list))
 
-    top5_genes = most_common(df['GENE'], top_n=5)
-    most_common_genes_str = most_common_string(top5_genes)
+    # top5_spp = most_common(df['species_name'], top_n=5)
+    # most_common_taxa_str = most_common_string(top5_spp)
 
-    # create figures
-    fig1 = plot_class_bar(res_counts_by_species, output_path)
-    fig2 = heatplot(df, output_path)
+    # top5_genes = most_common(df['GENE'], top_n=5)
+    # most_common_genes_str = most_common_string(top5_genes)
 
-    species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
-                                      include_plotlyjs="cdn", full_html=False)
+    # # create figures
+    # fig1 = plot_class_bar(res_counts_by_species, output_path)
+    # fig2 = heatplot(df, output_path)
+
+    # species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
+    #                                   include_plotlyjs="cdn", full_html=False)
     
-    genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE",
-                                      include_plotlyjs="cdn", full_html=False)
+    # genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE",
+    #                                   include_plotlyjs="cdn", full_html=False)
 
-    bar_class_b64 = fig_to_base64(fig1)
-    heatplot_b64 = fig_to_base64(fig2)
+    # bar_class_b64 = fig_to_base64(fig1)
+    # heatplot_b64 = fig_to_base64(fig2)
 
-    # tables to HTML
-    summary_html = df_to_html_table(res_counts_by_species)
+    # # tables to HTML
+    # summary_html = df_to_html_table(res_counts_by_species)
 
-    read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
+    # read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
 
-    html = HTML_TEMPLATE.format(
-        title=shorten(sample_id, width=60, placeholder='...'),
-        timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
-        summary_table=summary_html,
-        total_amr_count = len(df['SEQUENCE']),
-        no_of_taxa = len(df['species_name'].unique()),
-        taxa_string = most_common_taxa_str,
-        total_unique_genes = len(df['GENE'].unique()),
-        gene_string = most_common_genes_str,
-        resistance_string = ', '.join(unique_resistance_classes),
-        bar_class_img=bar_class_b64,
-        heatmap_img=heatplot_b64,
-        species_sankey_html=species_sankey_html,
-        genes_sankey_html = genes_sankey_html,
-        median_read_amr_count = read_amr_summary_dict['median_read_amr_count'],
-        max_read_amr_count = read_amr_summary_dict['max_read_amr_count'],
-        reads_w_max_amr_count = read_amr_summary_dict['reads_w_max_amr_count'],
-        median_read_class_count = read_amr_summary_dict['median_read_class_count'],
-        max_read_class_count = read_amr_summary_dict['max_read_class_count'],
-        reads_w_max_class_count = read_amr_summary_dict['reads_w_max_class_count'],
-        coocc_fig = coocc_fig,
-        source_file=amr_tsv
-    )
+    # html = HTML_TEMPLATE.format(
+    #     title=sample_id,
+    #     timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
+    #     summary_table=summary_html,
+    #     total_amr_count = len(df['SEQUENCE']),
+    #     no_of_taxa = len(df['species_name'].unique()),
+    #     taxa_string = most_common_taxa_str,
+    #     total_unique_genes = len(df['GENE'].unique()),
+    #     gene_string = most_common_genes_str,
+    #     resistance_string = ', '.join(unique_resistance_classes),
+    #     bar_class_img=bar_class_b64,
+    #     heatmap_img=heatplot_b64,
+    #     species_sankey_html=species_sankey_html,
+    #     genes_sankey_html = genes_sankey_html,
+    #     median_read_amr_count = read_amr_summary_dict['median_read_amr_count'],
+    #     max_read_amr_count = read_amr_summary_dict['max_read_amr_count'],
+    #     reads_w_max_amr_count = read_amr_summary_dict['reads_w_max_amr_count'],
+    #     median_read_class_count = read_amr_summary_dict['median_read_class_count'],
+    #     max_read_class_count = read_amr_summary_dict['max_read_class_count'],
+    #     reads_w_max_class_count = read_amr_summary_dict['reads_w_max_class_count'],
+    #     coocc_fig = coocc_fig,
+    #     source_file=amr_tsv
+    # )
 
-    fp = os.path.join(output_path, str(f'{sample_id}_sample_amr_report.html'))
-    with open(fp, 'w', encoding='utf-8') as fh:
-        fh.write(html)
-    print(f"Saved HTML report to: {output_path}")
+    # fp = os.path.join(output_path, str(f'{sample_id}_sample_amr_report.html'))
+    # with open(fp, 'w', encoding='utf-8') as fh:
+    #     fh.write(html)
+    # print(f"Saved HTML report to: {output_path}")
 
 def main():
     args = get_args()
