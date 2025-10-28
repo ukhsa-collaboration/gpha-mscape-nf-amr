@@ -162,58 +162,58 @@ def plot_class_bar(df, output_path):
 
     print(df["species_name"])
 
-    # # ---- Build grouped (side-by-side) bars ----
-    # species = df["species_name"].tolist()
-    # n_groups = len(species)
-    # n_series = len(value_cols)
+    # ---- Build grouped (side-by-side) bars ----
+    species = df["species_name"].tolist()
+    n_groups = len(species)
+    n_series = len(value_cols)
 
-    # x = np.arange(n_groups, dtype=float)  # group centers
-    # group_width = 0.84                     # total width occupied by all bars in a group
-    # bar_width = group_width / n_series
-    # offsets = (np.arange(n_series) - (n_series - 1) / 2.0) * bar_width
+    x = np.arange(n_groups, dtype=float)  # group centers
+    group_width = 0.84                     # total width occupied by all bars in a group
+    bar_width = group_width / n_series
+    offsets = (np.arange(n_series) - (n_series - 1) / 2.0) * bar_width
 
-    # # A nice categorical colour palette (larger than needed to avoid repeats)
-    # # You can replace with plt.cm.get_cmap('tab20') for more categories.
-    # palette = plt.cm.tab20.colors if n_series > 10 else plt.cm.Set3.colors
-    # colors = [palette[i % len(palette)] for i in range(n_series)]
+    # A nice categorical colour palette (larger than needed to avoid repeats)
+    # You can replace with plt.cm.get_cmap('tab20') for more categories.
+    palette = plt.cm.tab20.colors if n_series > 10 else plt.cm.Set3.colors
+    colors = [palette[i % len(palette)] for i in range(n_series)]
 
-    # fig, ax = plt.subplots(figsize=(14, 6), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(14, 6), constrained_layout=True)
 
-    # for i, col in enumerate(value_cols):
-    #     y = df[col].values
-    #     ax.bar(x + offsets[i], y, width=bar_width, label=col, color=colors[i], edgecolor='white', linewidth=0.7)
+    for i, col in enumerate(value_cols):
+        y = df[col].values
+        ax.bar(x + offsets[i], y, width=bar_width, label=col, color=colors[i], edgecolor='white', linewidth=0.7)
 
-    # # ---- Cosmetics ----
-    # ax.set_xlabel(None)
-    # ax.set_ylabel("# of Reads", fontsize=11)
-    # ax.set_title("Reads Counts Grouped by Species and Class of Resistance", fontsize=13, pad=10)
+    # ---- Cosmetics ----
+    ax.set_xlabel(None)
+    ax.set_ylabel("# of Reads", fontsize=11)
+    ax.set_title("Reads Counts Grouped by Species and Class of Resistance", fontsize=13, pad=10)
 
-    # # Wrap long species labels to keep them readable
-    # wrapped_labels = [textwrap.fill(s, width=18) for s in species]
-    # ax.set_xticks(x)
-    # ax.set_xticklabels(wrapped_labels, rotation=0, ha='center')
+    # Wrap long species labels to keep them readable
+    wrapped_labels = [textwrap.fill(s, width=18) for s in species]
+    ax.set_xticks(x)
+    ax.set_xticklabels(wrapped_labels, rotation=0, ha='center')
 
-    # # Light grid and clean spines
-    # ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.6)
-    # for spine in ["top", "right"]:
-    #     ax.spines[spine].set_visible(False)
+    # Light grid and clean spines
+    ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.6)
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
 
-    # # Legend outside the plot to the right
-    # leg = ax.legend(title="Class", bbox_to_anchor=(1.02, 1), loc="upper left", borderaxespad=0.)
-    # plt.setp(leg.get_title(), fontsize=10)
+    # Legend outside the plot to the right
+    leg = ax.legend(title="Class", bbox_to_anchor=(1.02, 1), loc="upper left", borderaxespad=0.)
+    plt.setp(leg.get_title(), fontsize=10)
 
-    # # Optional: add value labels for small numbers
-    # def autolabel(ax):
-    #     for container in ax.containers:
-    #         ax.bar_label(container, fmt="%.0f", padding=2, fontsize=8)
-    # # Uncomment to show labels:
-    # # autolabel(ax)
+    # Optional: add value labels for small numbers
+    def autolabel(ax):
+        for container in ax.containers:
+            ax.bar_label(container, fmt="%.0f", padding=2, fontsize=8)
+    # Uncomment to show labels:
+    # autolabel(ax)
 
-    # # Save and/or show
-    # fp = os.path.join(output_path, str('resistance_grouped_barplot.png'))
-    # plt.savefig(fp, dpi=300)
+    # Save and/or show
+    fp = os.path.join(output_path, str('resistance_grouped_barplot.png'))
+    plt.savefig(fp, dpi=300)
 
-    # return fig
+    return fig
 
 def heatplot(df: pd.DataFrame, output_path: str):
     # Sanity check: make sure required columns exist
@@ -566,12 +566,9 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
         .unique()
     )
 
-
-
     res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
     fp = os.path.join(output_path, str('res_counts_by_species.csv'))
     res_counts_by_species.to_csv(fp, index=True)
-
 
     # Summary information for paragraphs:
     def most_common_string(top5):
