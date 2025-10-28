@@ -1,0 +1,17 @@
+[project]
+name = "gpha-mscape-nf-amr"
+version = "1.1.0"
+description = "Nextflow process for running AMR detection using Abricate on ONT metagenomic samples."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bio>=1.8.1",
+    "climb-onyx-client>=4.8.2",
+    "matplotlib>=3.10.7",
+    "onyx-analysis-helper",
+    "pandas>=2.3.3",
+    "plotly>=6.3.1",
+]
+
+[tool.uv.sources]
+onyx-analysis-helper = { git = "https://github.com/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper.git" }
