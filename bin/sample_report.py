@@ -16,7 +16,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from datetime import datetime, UTC
-from textwrap import shorten
+import textwrap
 from Bio import Entrez
 import xml.etree.ElementTree as ET
 import time
@@ -36,7 +36,7 @@ def get_args() -> argparse.Namespace:
     Command Line
     :return: argParse variable
     """
-    parser = argparse.ArgumentParser(description="generate-sample-sheet")
+    parser = argparse.ArgumentParser(description="Generate a sample HTML report for Abricate and Kraken annotations.")
     parser.add_argument("-i", "--input_tsv",
                 help="Abricate AMR table with read taxonomic information included.",
                 required=True, type=Path)
@@ -110,17 +110,13 @@ def fig_to_base64(fig: Figure):
 # Data loading and processing
 # -------------------------
 def load_table(path):
-    # Try TSV first, then CSV
+    # Try TSV first, then auto-detect
     try:
-        df = pd.read_csv(path, sep='\t', dtype=str)
+        df = pd.read_csv(path, sep='\t')
     except Exception:
-        df = pd.read_csv(path, dtype=str)
+        df = pd.read_csv(path, sep=None)
     # normalize column names (strip whitespace)
     df.columns = [c.strip() for c in df.columns]
-    # convert numeric columns if present
-    for col in ['%COVERAGE', '%IDENTITY', 'START', 'END']:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors='coerce')
     return df
 
 def explode_resistance(df):
@@ -148,27 +144,9 @@ def summarize_by_class(df, unique_resistance_classes):
     res_counts_by_species['total_TRUE'] = res_counts_by_species[unique_resistance_classes].sum(axis=1)
 
     
-    res_counts_by_species = res_counts_by_species.reset_index()  # moves index to a column named 'index' by default
-    # If you want to rename it and ensure it's the first column:
-    res_counts_by_species = res_counts_by_species.rename(columns={'index': 'species_name'})
-
+    res_counts_by_species.reset_index(names='species_name')  # moves index to a column named 'index' by default
 
     return res_counts_by_species
-
-def top_genes(df, top_n=15):
-    # compute a simple score identity * coverage if both present
-    dfc = df.copy()
-    if '%IDENTITY' in dfc.columns and '%COVERAGE' in dfc.columns:
-        dfc['Score'] = dfc['%IDENTITY'].fillna(0) * dfc['%COVERAGE'].fillna(0) / 100.0
-    else:
-        dfc['Score'] = 1
-    cols = ['GENE', '%COVERAGE', '%IDENTITY', 'PRODUCT', 'RESISTANCE', 'name', 'Score']
-    cols = [c for c in cols if c in dfc.columns]
-    top = dfc.sort_values('Score', ascending=False).head(top_n)[cols]
-    # shorten long product descriptions for display
-    if 'PRODUCT' in top.columns:
-        top['PRODUCT'] = top['PRODUCT'].apply(lambda s: shorten(str(s), width=200, placeholder='...'))
-    return top
 
 def plot_class_bar(df, output_path):     
     # ---- Choose which columns to plot (exclude metadata columns) ----
@@ -291,24 +269,6 @@ def heatplot(df: pd.DataFrame, output_path: str):
 
     return fig
 
-def plot_top_genes_bar(top_df):
-    fig, ax = plt.subplots(figsize=(8, max(4, 0.4*len(top_df))))
-    x = top_df['Score'] if 'Score' in top_df.columns else range(len(top_df))
-    y = top_df['GENE']
-    ax.barh(y[::-1], x[::-1])
-    ax.set_xlabel('Score (identity × coverage / 100)')
-    ax.set_title('Top Genes by Score')
-    plt.tight_layout()
-    return fig
-
-def taxa_summary_string(df: pd.DataFrame):
-    """Using pandas dataframe generate a string for report that describes the
-    taxa name, number of reads, % of AMR annotated reads
-    """
-    taxa = df['species_name'].unique()
-    print(taxa)
-    print(df['species_name'].value_counts())
-
 def most_common(
     data: Union[pd.Series, Iterable],
     dropna: bool = True,
@@ -423,7 +383,7 @@ def sankey_html_from_counts(
 
 def coocc_heatmap_div(
     coocc: str = "class_pair_cooccurrence_counts.csv",
-    include_plotlyjs: str = "inline",  # inline → fully self-contained
+    include_plotlyjs="cdn",
     full_html: bool = False
 ) -> str:
     labels = coocc.index.tolist()
@@ -640,7 +600,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
     read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
 
     html = HTML_TEMPLATE.format(
-        title=shorten(sample_id, width=60, placeholder='...'),
+        title=sample_id,
         timestamp=datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC'),
         summary_table=summary_html,
         total_amr_count = len(df['SEQUENCE']),
