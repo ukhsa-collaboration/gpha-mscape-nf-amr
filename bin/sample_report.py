@@ -10,17 +10,13 @@ Produces:
  - single HTML file with embedded images (base64) and tables
 """
 
-import sys
 import io
 import base64
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
-from matplotlib.sankey import Sankey
-
 from datetime import datetime, UTC
 from textwrap import shorten
-import seaborn as sns
 from Bio import Entrez
 import xml.etree.ElementTree as ET
 import time
@@ -28,9 +24,7 @@ import os
 from pathlib import Path
 import argparse
 import numpy as np
-import io
-import textwrap
-from typing import Sequence, Union, Iterable, Tuple, List, Optional
+from typing import Union, Iterable, Tuple, List
 import plotly.graph_objects as go
 
 
