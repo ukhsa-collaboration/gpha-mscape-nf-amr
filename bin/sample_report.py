@@ -552,7 +552,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
     # Create boolean columns for each resistance class
     res_expanded_df = explode_resistance(df)
     fp = os.path.join(output_path, str('output_with_booleans.csv'))
-    # res_expanded_df.to_csv(fp, index=False)
     
     unique_resistance_classes = (
         df['RESISTANCE']
@@ -565,26 +564,30 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id:str, amr_
         .unique()
     )
 
+
+
     res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
     fp = os.path.join(output_path, str('res_counts_by_species.csv'))
     res_counts_by_species.to_csv(fp, index=True)
 
-    # Summary information for paragraphs:
-    def most_common_string(top5):
-        most_common_list = []
-        most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
-        for item in top5[1:]:
-            most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
-        return str(', '.join(most_common_list))
+    print(res_counts_by_species)
 
-    top5_spp = most_common(df['species_name'], top_n=5)
-    most_common_taxa_str = most_common_string(top5_spp)
+    # # Summary information for paragraphs:
+    # def most_common_string(top5):
+    #     most_common_list = []
+    #     most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
+    #     for item in top5[1:]:
+    #         most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
+    #     return str(', '.join(most_common_list))
 
-    top5_genes = most_common(df['GENE'], top_n=5)
-    most_common_genes_str = most_common_string(top5_genes)
+    # top5_spp = most_common(df['species_name'], top_n=5)
+    # most_common_taxa_str = most_common_string(top5_spp)
 
-    # create figures
-    fig1 = plot_class_bar(res_counts_by_species, output_path)
+    # top5_genes = most_common(df['GENE'], top_n=5)
+    # most_common_genes_str = most_common_string(top5_genes)
+
+    # # create figures
+    # fig1 = plot_class_bar(res_counts_by_species, output_path)
     # fig2 = heatplot(df, output_path)
 
     # species_sankey_html = sankey_html_from_counts(df, "Total reads", "species_name",
