@@ -158,7 +158,7 @@ def plot_class_bar(df, output_path):
     #               'macrolide','penam','penem','peptide','fosfomycin','monobactam',
     #               'glycylcycline','phenicol','rifamycin','tetracycline','triclosan']
 
-    print(df)
+    print(df["species_name"])
 
     # # ---- Build grouped (side-by-side) bars ----
     # species = df["species_name"].tolist()
