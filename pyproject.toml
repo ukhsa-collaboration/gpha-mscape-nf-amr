@@ -3,6 +3,9 @@ name = "gpha-mscape-nf-amr"
 version = "1.1.0"
 description = "Nextflow process for running AMR detection using Abricate on ONT metagenomic samples."
 readme = "README.md"
+authors = [
+    { name = "Nicholas Ellaby", email = "nfellaby@gmail.com" }
+]
 requires-python = ">=3.12"
 dependencies = [
     "bio>=1.8.1",
@@ -11,7 +14,34 @@ dependencies = [
     "onyx-analysis-helper",
     "pandas>=2.3.3",
     "plotly>=6.3.1",
+    "pytest>=8.4.2",
 ]
 
 [tool.uv.sources]
 onyx-analysis-helper = { git = "https://github.com/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper.git" }
+
+[build-system]
+requires = ["uv_build>=0.8.11,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "SIM", "I", "C4", "PTH", "G", "T20", "PT", "N", "ANN", "LOG", "UP", "FBT"]
+ignore = ["ANN401"]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501", "ANN"]
+"scripts/*" = ["ALL"]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.2",
+    "ruff>=0.13.1",
+]

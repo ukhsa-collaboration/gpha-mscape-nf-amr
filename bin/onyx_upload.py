@@ -11,7 +11,6 @@ import logging
 import sys
 from pathlib import Path
 import os
-from onyx import OnyxClient, OnyxConfig, OnyxEnv
 from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 
 def get_args():
