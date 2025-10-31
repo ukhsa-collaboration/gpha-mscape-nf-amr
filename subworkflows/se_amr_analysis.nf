@@ -53,7 +53,7 @@ workflow SE_AMR_ANALYSIS {
             .map{climb_id, amr_table, pipeline_status, amr_tool ->
                 tuple ( climb_id, amr_table, amr_too, ${params.email} )
         }
-        .set(read_analysis_ch)
+        .set{ read_analysis_ch }
         SAMPLE_REPORT(read_analysis_ch)
 
 
