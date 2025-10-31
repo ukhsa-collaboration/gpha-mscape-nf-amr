@@ -136,21 +136,18 @@ def create_analysis_fields(
     output_fail = onyx_analysis.add_output_location(result_folder)
     required_field_fail, attribute_fail = onyx_analysis.check_analysis_object()
 
-    if any([methods_fail, results_fail, output_fail, required_field_fail, attribute_fail]):
-        exitcode = 1
-    else:
-        exitcode = 0
+    exitcode = 1 if any([methods_fail, results_fail, output_fail, required_field_fail, attribute_fail]) else 0
 
     return onyx_analysis, exitcode
 
 
-def main():
+def main() -> None:
     "Main function to process a given sample through QC."
     args = get_args()
 
     # Set up log file#
     log_file = Path(args.output) / f"{args.input}_amr_upload_log.txt"
-    set_up_logger(log_file)
+    logger = set_up_logger(log_file)
 
     # Parse Abricate parameters
     amr_params_list = args.amr_params.split(",")
@@ -180,14 +177,14 @@ def main():
     )
 
     if exitcode == 1:
-        logging.error("Invalid attribute in analysis fields submitted, check logs for details")
+        logger.error("Invalid attribute in analysis fields submitted, check logs for details")
         return exitcode
 
         # Add data to analysis table
     if args.store_onyx:
         onyx_json_file = Path(args.output) / f"{args.input}_amr_analysis_fields.json"
         result_file = onyx_analysis.write_analysis_to_json(result_file=onyx_json_file)
-        logging.info("Onyx analysis fields written to file %s", result_file)
+        logger.info("Onyx analysis fields written to file %s", result_file)
         exitcode = 0
 
 
