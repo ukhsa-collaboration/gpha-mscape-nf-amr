@@ -10,7 +10,7 @@ process SAMPLE_REPORT{
     tuple  val(climb_id), path(amr_table), val(amr_tool), val(email)
 
     output:
-    tuple  val(climb_id), val(pipeline_status), val(amr_tool)
+    tuple  val(climb_id), path(amr_table), val(amr_tool), val(email)
     
     script:
     """
