@@ -29,7 +29,7 @@ def load_files(tsv_fp: Path, json_fp: Path) -> tuple[pd.DataFrame, dict]:
     df_tsv = pd.read_csv(tsv_fp, sep="\t", header=None, names=["read_id", "taxid"])
 
     # Load JSON file
-    with open(json_fp, "r") as f:
+    with Path.open(json_fp, "r") as f:
         taxid_dict = json.load(f)
 
     return df_tsv, taxid_dict
@@ -65,7 +65,7 @@ def link_abricate_results(df_merged: pd.DataFrame, abricate_csv: Path) -> pd.Dat
     return abricate_merge_df
 
 
-def write_tsv(df_merged: pd.DataFrame, output_fn: Path):
+def write_tsv(df_merged: pd.DataFrame, output_fn: Path) -> None:
     """
     Write pandas dataframe to tsv
     :params: pandas dataframe, output file path
@@ -73,7 +73,7 @@ def write_tsv(df_merged: pd.DataFrame, output_fn: Path):
     df_merged.to_csv(output_fn, sep="\t", index=False)
 
 
-def main():
+def main() -> None:
     args = commandline()
     df_tsv, taxid_dict = load_files(args.tsv, args.json)
     df_merged = add_species(df_tsv, taxid_dict)
