@@ -51,7 +51,7 @@ workflow SE_AMR_ANALYSIS {
         // sample report requires climb_id, READ_ANALYSIS.out, params.email
         abricate_ch
             .map{climb_id, amr_table, pipeline_status, amr_tool ->
-                tuple ( climb_id, amr_table, amr_too, ${params.email} )
+                tuple ( climb_id, amr_table, amr_tool, ${params.email} )
         }
         .set{ read_analysis_ch }
         SAMPLE_REPORT(read_analysis_ch)
