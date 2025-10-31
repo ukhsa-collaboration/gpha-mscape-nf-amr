@@ -9,12 +9,12 @@ process SAMPLE_REPORT{
     input:
     tuple  val(climb_id), path(amr_table), val(amr_tool), val(email)
 
-    // output:
-    // tuple ${climb_id}_sample_amr_report.html, \\
-    //     resistance_grouped_barplot.png, \\
-    //     gene_species_sequence_heatmap.png, \\
-    //     res_counts_by_species.csv, \\
-    //     gene_species_sequence_counts.csv, emit: report_ch
+    output:
+    tuple file("${climb_id}_sample_amr_report.html"), \\
+        file("resistance_grouped_barplot.png"), \\
+        file("gene_species_sequence_heatmap.png"), \\
+        file("res_counts_by_species.csv"), \\
+        file("gene_species_sequence_counts.csv"), emit: report_ch
     
     script:
     """
