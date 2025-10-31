@@ -11,7 +11,7 @@ process READ_ANALYSIS{
     tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(abricate_out), val(pipeline_status), val(tool)
 
     output:
-    tuple  val(climb_id), path("${climb_id}_abricate_taxa_out.tsv"), val(pipeline_status), val(tool)
+    tuple  val(climb_id), path("${climb_id}_${tool}_taxa_out.tsv"), val(pipeline_status), val(tool)
     
     script:
     """
@@ -24,6 +24,6 @@ process READ_ANALYSIS{
         -t read_taxid_assignment.tsv \\
         -j ${kraken_report} \\
         -a ${abricate_out} \\
-        -o ${climb_id}_abricate_taxa_out.tsv
+        -o ${climb_id}_${tool}_taxa_out.tsv
     """
 }
