@@ -1,4 +1,5 @@
 .nextflow*
+*.vscode
 *.swp
 *.log
 *.tmp
