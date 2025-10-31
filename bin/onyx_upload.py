@@ -8,12 +8,14 @@
 
 import argparse
 import logging
+import os
 import sys
 from pathlib import Path
-import os
+
 from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 
-def get_args():
+
+def get_args() -> argparse.Namespace:
     """Get command line arguments"""
     parser = argparse.ArgumentParser(
         prog="AMR pipeline info Onyx upload",
@@ -22,34 +24,26 @@ def get_args():
         """,
     )
     parser.add_argument("--input", "-i", type=str, required=True, help="Sample ID")
-    parser.add_argument(
-        "--results_folder",
-        "-f",
-        type=str,
-        required=True,
-        help="Path to AMR results folder."
-    )
-    parser.add_argument(
-        "--output", "-o", type=str, required=True, help="Folder to save logs to."
-    )
+    parser.add_argument("--results_folder", "-f", type=str, required=True, help="Path to AMR results folder.")
+    parser.add_argument("--output", "-o", type=str, required=True, help="Folder to save logs to.")
     parser.add_argument(
         "--pipeline_status",
         type=str,
-        choices=["Failed","Annotated","None"],
+        choices=["Failed", "Annotated", "None"],
         required=True,
-        help="Pipeline Status. Choices: 'Failed', 'Annotated', 'None'"
+        help="Pipeline Status. Choices: 'Failed', 'Annotated', 'None'",
     )
     parser.add_argument(
         "--amr_params",
         type=str,
         required=True,
-        help="String of comma separated abricate configs: database:value,min_id:value,min_cov:value."
+        help="String of comma separated abricate configs: database:value,min_id:value,min_cov:value.",
     )
     parser.add_argument(
         "--pipeline_info",
         type=str,
         required=True,
-        help="String of comma separated pipeline_info: pipeline_name:value,pipeline_version:value,pipeline_url:value."
+        help="String of comma separated pipeline_info: pipeline_name:value,pipeline_version:value,pipeline_url:value.",
     )
     parser.add_argument(
         "--server",
@@ -87,7 +81,8 @@ def get_args():
 
     return parser.parse_args()
 
-def set_up_logger(stdout_file):
+
+def set_up_logger(stdout_file: str) -> logging.Logger:
     """Creates logger for component - all logging messages go to stdout
     log file, error messages also go to stderr log. If component runs
     correctly, stderr is empty.
@@ -106,10 +101,10 @@ def set_up_logger(stdout_file):
 def create_analysis_fields(
     record_id: str,
     thresholds: dict,
-    pipeline_info: dict, 
-    results: dict, # Optional, needs to be a dictionary
+    pipeline_info: dict,
+    results: dict,  # Optional, needs to be a dictionary
     server: str,
-    headline_result: str, # Required
+    headline_result: str,  # Required
     result_folder: os.path,
 ) -> dict:
     """Set up fields dictionary used to populate analysis table containing
@@ -126,15 +121,15 @@ def create_analysis_fields(
     """
     onyx_analysis = oa.OnyxAnalysis()
     onyx_analysis.add_analysis_details(
-        analysis_name=pipeline_info['name'],
+        analysis_name=pipeline_info["name"],
         analysis_description="This is an analysis to generate AMR results for individual samples",
     )
     # onyx_analysis.add_package_metadata(package_name="mscape-sample-qc")
-    #TODO: read this from argsparse
-    onyx_analysis.pipeline_name = pipeline_info['name']
-    onyx_analysis.pipeline_version = pipeline_info['version']
-    onyx_analysis.pipeline_url = pipeline_info['homePage']
-    
+    # TODO: read this from argsparse
+    onyx_analysis.pipeline_name = pipeline_info["name"]
+    onyx_analysis.pipeline_version = pipeline_info["version"]
+    onyx_analysis.pipeline_url = pipeline_info["homePage"]
+
     methods_fail = onyx_analysis.add_methods(methods_dict=thresholds)
     results_fail = onyx_analysis.add_results(top_result=headline_result, results_dict=results)
     onyx_analysis.add_server_records(sample_id=record_id, server_name=server)
@@ -148,6 +143,7 @@ def create_analysis_fields(
 
     return onyx_analysis, exitcode
 
+
 def main():
     "Main function to process a given sample through QC."
     args = get_args()
@@ -155,32 +151,32 @@ def main():
     # Set up log file#
     log_file = Path(args.output) / f"{args.input}_amr_upload_log.txt"
     set_up_logger(log_file)
-    
+
     # Parse Abricate parameters
-    amr_params_list = args.amr_params.split(',')
+    amr_params_list = args.amr_params.split(",")
     amr_dict = {
-        amr_params_list[0].split(':')[0]: amr_params_list[0].split(':')[1],
-        amr_params_list[1].split(':')[0]: amr_params_list[1].split(':')[1],
-        amr_params_list[2].split(':')[0]: amr_params_list[2].split(':')[1],
-        amr_params_list[3].split(':')[0]: amr_params_list[3].split(':')[1],
+        amr_params_list[0].split(":")[0]: amr_params_list[0].split(":")[1],
+        amr_params_list[1].split(":")[0]: amr_params_list[1].split(":")[1],
+        amr_params_list[2].split(":")[0]: amr_params_list[2].split(":")[1],
+        amr_params_list[3].split(":")[0]: amr_params_list[3].split(":")[1],
     }
 
     # Parse pipeline information
-    pipeline_info_list = args.pipeline_info.split(',')
+    pipeline_info_list = args.pipeline_info.split(",")
     pipeline_info_dict = {
-        pipeline_info_list[0].split(':')[0]: pipeline_info_list[0].split(':')[1], # Name
-        pipeline_info_list[1].split(':')[0]: pipeline_info_list[1].split(':')[1], # Version
-        pipeline_info_list[2].split(':')[0]: ':'.join(pipeline_info_list[2].split(':')[1:]), # WebURL
+        pipeline_info_list[0].split(":")[0]: pipeline_info_list[0].split(":")[1],  # Name
+        pipeline_info_list[1].split(":")[0]: pipeline_info_list[1].split(":")[1],  # Version
+        pipeline_info_list[2].split(":")[0]: ":".join(pipeline_info_list[2].split(":")[1:]),  # WebURL
     }
 
     onyx_analysis, exitcode = create_analysis_fields(
-        args.input, # record_id
-        amr_dict, # Thresholds
-        pipeline_info_dict, # pipleine info
-        {'Number of Genes Annotated': ''}, # results #TODO: parse this from nextflow outputs 
-        str(args.server), # server
-        str(args.pipeline_status), #headline_result
-        args.results_folder # result_folder
+        args.input,  # record_id
+        amr_dict,  # Thresholds
+        pipeline_info_dict,  # pipleine info
+        {"Number of Genes Annotated": ""},  # results #TODO: parse this from nextflow outputs
+        str(args.server),  # server
+        str(args.pipeline_status),  # headline_result
+        args.results_folder,  # result_folder
     )
 
     if exitcode == 1:
@@ -194,6 +190,6 @@ def main():
         logging.info("Onyx analysis fields written to file %s", result_file)
         exitcode = 0
 
-    
+
 if __name__ == "__main__":
     sys.exit(main())
