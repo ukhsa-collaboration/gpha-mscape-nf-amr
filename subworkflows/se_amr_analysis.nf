@@ -4,6 +4,7 @@ include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
 include { RUN_ABRICATE    } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
 include { ONYX_UPLOAD     } from "../modules/local/onyx_upload"
+include { SAMPLE_REPORT   } form "../modules/local/report"
 
 workflow SE_AMR_ANALYSIS {
     take:
@@ -45,7 +46,20 @@ workflow SE_AMR_ANALYSIS {
         READ_ANALYSIS( annotated_ch )
         // Rename for input to onyx
         READ_ANALYSIS.out.set{abricate_ch}
+
+        // 4. Generate Sample Report output
+        // sample report requires climb_id, READ_ANALYSIS.out, params.email
+        abricate_ch
+            .map{climb_id, amr_table, pipeline_status, amr_tool ->
+                tuple ( climb_id, amr_table, amr_too, ${params.email} )
+        }
+        .set(read_analysis_ch)
+        SAMPLE_REPORT(read_analysis_ch)
+
+
     }
+
+
     // 4. Output to Onyx
     ONYX_UPLOAD(abricate_ch)
 
