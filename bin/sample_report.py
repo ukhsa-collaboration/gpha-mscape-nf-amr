@@ -636,7 +636,7 @@ def main() -> None:
     amr_tsv = args.input_tsv
     output_path = args.output
     email = args.email
-    sample_id = Path.basename(amr_tsv).split("_")[0]
+    sample_id = Path(amr_tsv).name.split("_")[0]
 
     df = load_table(amr_tsv)
     df = simplify_taxa(email, df)
