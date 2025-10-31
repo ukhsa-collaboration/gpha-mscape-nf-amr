@@ -220,6 +220,7 @@ def plot_class_bar(df: pd.DataFrame, output_path: str) -> Figure:
     return fig
 
 
+# TODO: Replace with plotly
 def heatplot(df: pd.DataFrame, output_path: str) -> Figure:
     # Sanity check: make sure required columns exist
     required = {"GENE", "species_name", "SEQUENCE"}
