@@ -9,8 +9,8 @@ process SAMPLE_REPORT{
     input:
     tuple  val(climb_id), path(amr_table), val(amr_tool), val(email)
 
-    // output:
-    // tuple  val(climb_id), path("${climb_id}_abricate_taxa_out.tsv"), val(pipeline_status), val(tool)
+    output:
+    tuple  val(climb_id), val(pipeline_status), val(amr_tool)
     
     script:
     """
