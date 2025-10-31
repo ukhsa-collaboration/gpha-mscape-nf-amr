@@ -13,7 +13,6 @@ Produces:
 import argparse
 import base64
 import io
-import os
 import textwrap
 import time
 import xml.etree.ElementTree as ET
