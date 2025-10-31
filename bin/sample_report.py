@@ -20,7 +20,6 @@ import xml.etree.ElementTree as ET
 from collections.abc import Iterable
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Union
 
 import matplotlib.pyplot as plt  # type: ignore
 import numpy as np  # type: ignore
@@ -271,16 +270,21 @@ def heatplot(df: pd.DataFrame, output_path: str) -> Figure:
     ax.tick_params(which="minor", bottom=False, left=False)
 
     # Save (optional)
-    fp = os.path.join(output_path, str("gene_species_sequence_counts.csv"))
-    pivot.to_csv("gene_species_sequence_counts.csv")
-    fp = os.path.join(output_path, str("gene_species_sequence_heatmap.png"))
+    fp = Path(output_path, "gene_species_sequence_counts.csv")
+    pivot.to_csv(fp)
+    fp = Path(output_path, "gene_species_sequence_heatmap.png")
     fig.savefig(fp, dpi=300)
 
     return fig
 
 
 def most_common(
-    data: Union[pd.Series, Iterable], dropna: bool = True, top_n: int = 1, as_percent: bool = True, round_dp: int = 2
+    data: pd.Series | Iterable,
+    top_n: int = 1,
+    *,
+    dropna: bool = True,
+    as_percent: bool = True,
+    round_dp: int = 2,
 ) -> tuple[object, int, float] | list[tuple[object, int, float]]:
     """
     Return the most common item(s) in a pandas Series (or any iterable),
@@ -351,6 +355,7 @@ def sankey_html_from_counts(
     other_label: str = "Other",
     title: str | None = None,
     include_plotlyjs: str = "cdn",  # 'cdn' | 'directory' | 'inline' | False
+    *,
     full_html: bool = False,  # return a <div> snippet if False
 ) -> str:
     """
@@ -385,7 +390,7 @@ def sankey_html_from_counts(
 
 
 def coocc_heatmap_div(
-    coocc: str = "class_pair_cooccurrence_counts.csv", include_plotlyjs="cdn", full_html: bool = False
+    coocc: str = "class_pair_cooccurrence_counts.csv", include_plotlyjs: str = "cdn", *, full_html: bool = False
 ) -> str:
     labels = coocc.index.tolist()
     fig = go.Figure(
@@ -394,7 +399,7 @@ def coocc_heatmap_div(
             x=labels,
             y=labels,
             colorscale="Viridis",
-            colorbar=dict(title="Co-occurrence<br>(count of sequences)"),
+            colorbar={"title": "Co-occurrence<br>(count of sequences)"},
             hovertemplate="Row %{y} × Col %{x}<br>Count: %{z}<extra></extra>",
         )
     )
@@ -402,9 +407,9 @@ def coocc_heatmap_div(
         title=None,
         xaxis_title="Class",
         yaxis_title="Class",
-        xaxis=dict(tickangle=45),
-        yaxis=dict(autorange="reversed"),
-        margin=dict(l=60, r=20, t=20, b=80),
+        xaxis={"tickangle": 45},
+        yaxis={"autorange": "reversed"},
+        margin={"l": 60, "r": 20, "t": 20, "b": 80},
     )
     # Return a DIV snippet you can paste into any HTML document
     return fig.to_html(include_plotlyjs=include_plotlyjs, full_html=full_html)
@@ -538,16 +543,16 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 </div>
 </body>
 </html>
-"""
+"""  # noqa: E501
 
 
 # -------------------------
 # Main
 # -------------------------
-def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr_tsv: str):
+def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr_tsv: str) -> None:
     # Create boolean columns for each resistance class
     res_expanded_df = explode_resistance(df)
-    fp = os.path.join(output_path, str("output_with_booleans.csv"))
+    fp = Path(output_path, "output_with_booleans.csv")
 
     unique_resistance_classes = (
         df["RESISTANCE"]
@@ -561,11 +566,11 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     )
 
     res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
-    fp = os.path.join(output_path, str("res_counts_by_species.csv"))
+    fp = Path(output_path, "res_counts_by_species.csv")
     res_counts_by_species.to_csv(fp, index=True)
 
     # Summary information for paragraphs:
-    def most_common_string(top5):
+    def most_common_string(top5: tuple[object, int, float] | list[tuple[object, int, float]]) -> str:
         most_common_list = []
         most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
         for item in top5[1:]:
@@ -620,18 +625,18 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         source_file=amr_tsv,
     )
 
-    fp = os.path.join(output_path, str(f"{sample_id}_sample_amr_report.html"))
-    with open(fp, "w", encoding="utf-8") as fh:
+    fp = Path(output_path, str(f"{sample_id}_sample_amr_report.html"))
+    with Path.open(fp, "w", encoding="utf-8") as fh:
         fh.write(html)
-    print(f"Saved HTML report to: {output_path}")
+    print(f"Saved HTML report to: {output_path}")  # noqa: T201
 
 
-def main():
+def main() -> None:
     args = get_args()
     amr_tsv = args.input_tsv
     output_path = args.output
     email = args.email
-    sample_id = os.path.basename(amr_tsv).split("_")[0]
+    sample_id = Path.basename(amr_tsv).split("_")[0]
 
     df = load_table(amr_tsv)
     df = simplify_taxa(email, df)
