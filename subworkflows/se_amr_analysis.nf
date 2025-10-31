@@ -4,7 +4,7 @@ include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
 include { RUN_ABRICATE    } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
 include { ONYX_UPLOAD     } from "../modules/local/onyx_upload"
-include { SAMPLE_REPORT   } form "../modules/local/report"
+include { SAMPLE_REPORT   } from "../modules/local/report"
 
 workflow SE_AMR_ANALYSIS {
     take:
