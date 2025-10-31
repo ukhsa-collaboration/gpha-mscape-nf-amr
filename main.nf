@@ -9,7 +9,7 @@ include { PE_AMR_ANALYSIS      } from './subworkflows/pe_amr_analysis'
 
 workflow {
     // Ensure email is supplied
-    if !params.email{
+    if (!params.email){
         exit(1, "A valid email address is required to run this Nextflow. pelase supply with --email.")
     }
     // Handle either samplesheet or climb id
