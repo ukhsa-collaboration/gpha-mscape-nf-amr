@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-import pandas as pd
+import pandas as pd  # type: ignore
 
 
 def commandline() -> argparse.Namespace:

@@ -12,7 +12,7 @@ import os
 import sys
 from pathlib import Path
 
-from onyx_analysis_helper import onyx_analysis_helper_functions as oa
+from onyx_analysis_helper import onyx_analysis_helper_functions as oa  # type: ignore
 
 
 def get_args() -> argparse.Namespace:
