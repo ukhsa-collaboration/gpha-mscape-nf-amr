@@ -1,6 +1,6 @@
 .nextflow*
+*.vscode
 *.swp
 *.log
-*.lock
 *.tmp
 .nf-test
