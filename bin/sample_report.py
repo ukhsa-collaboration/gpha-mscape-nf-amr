@@ -13,6 +13,7 @@ Produces:
 import argparse
 import base64
 import io
+import sys
 import textwrap
 import time
 import xml.etree.ElementTree as ET
@@ -47,6 +48,7 @@ def get_args() -> argparse.Namespace:
     )
     parser.add_argument("-o", "--output", help="Output folder.", required=True, type=Path)
     parser.add_argument("-e", "--email", help="Email address to query Enterez.", required=True, type=str)
+    parser.add_argument("-t", "--taxon_id", help="Taxon ID to filter reads on.", required=False, type=int)
     args = parser.parse_args()
     return args
 
@@ -220,6 +222,7 @@ def plot_class_bar(df: pd.DataFrame, output_path: str) -> Figure:
     return fig
 
 
+# TODO: Replace with plotly
 def heatplot(df: pd.DataFrame, output_path: str) -> Figure:
     # Sanity check: make sure required columns exist
     required = {"GENE", "species_name", "SEQUENCE"}
@@ -638,6 +641,12 @@ def main() -> None:
     sample_id = Path(amr_tsv).name.split("_")[0]
 
     df = load_table(amr_tsv)
+    if args.taxon_id:
+        df = df[df["taxid"] == args.taxon_id]
+        if df.empty:
+            print(f"Dataframe is empty. No results match Taxon ID {args.taxon_id}")
+            sys.exit()
+
     df = simplify_taxa(email, df)
 
     generate_html_report(df, output_path, sample_id, amr_tsv)
