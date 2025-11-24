@@ -49,11 +49,10 @@ workflow SE_AMR_ANALYSIS {
         // 3.1 Produce HTML report
         amr_status.annotated
             .map{ climb_id,  abricate_taxa_out, piepline_Status, tool ->
-                tuple( climb_id, abricate_taxa_out, tool, params.email)
+                tuple( climb_id, abricate_taxa_out, tool, params.email )
             }
             .set{ report_ch }
         GENERATE_REPORT( report_ch )
-        }
     }
     // 4. Output to Onyx
     ONYX_UPLOAD(abricate_ch)
