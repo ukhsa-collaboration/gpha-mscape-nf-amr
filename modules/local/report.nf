@@ -7,7 +7,7 @@ process GENERATE_REPORT{
     container 'community.wave.seqera.io/library/pip_bio_matplotlib_numpy_pruned:489abe68b90e0d56'
 
     input:
-    tuple  val(climb_id), path(abricate_taxa_out), val(email)
+    tuple  val(climb_id), path(abricate_taxa_out), val(tool), val(email)
 
     // output:
     // path("${unique_id}_samplesheet.csv"), emit: samplesheet

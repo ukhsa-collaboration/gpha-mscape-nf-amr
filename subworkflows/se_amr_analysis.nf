@@ -3,6 +3,7 @@
 include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
 include { RUN_ABRICATE    } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
+inclide { GENERATE_REPORT } from "../modules/local/report"}
 include { ONYX_UPLOAD     } from "../modules/local/onyx_upload"
 
 workflow SE_AMR_ANALYSIS {
@@ -41,10 +42,18 @@ workflow SE_AMR_ANALYSIS {
                 tuple( climb_id, kraken_assignments, kraken_report, abricate_out, 'Annotated', 'abricate')
         }
         .set{ annotated_ch }
-        // 3. Extract species IDs for each READ assigned AMR  
+        // 3.0 Extract species IDs for each READ assigned AMR  
         READ_ANALYSIS( annotated_ch )
         // Rename for input to onyx
         READ_ANALYSIS.out.set{abricate_ch}
+        // 3.1 Produce HTML report
+        amr_status.annotated
+            .map{ climb_id,  abricate_taxa_out, piepline_Status, tool ->
+                tuple( climb_id, abricate_taxa_out, tool, params.email)
+            }
+            .set{ report_ch }
+        GENERATE_REPORT( report_ch )
+        }
     }
     // 4. Output to Onyx
     ONYX_UPLOAD(abricate_ch)
