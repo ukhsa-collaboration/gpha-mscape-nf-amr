@@ -19,7 +19,7 @@ process GENERATE_REPORT{
     
     script:
     """
-    dt=$(date +"%Y%m%d%H%M%S")
+    dt=\$(date +"%Y%m%d%H%M%S")
 
     sample_report.py \\
         -i '${abricate_taxa_out}' \\
