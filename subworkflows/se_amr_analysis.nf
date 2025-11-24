@@ -3,7 +3,7 @@
 include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
 include { RUN_ABRICATE    } from "../modules/local/abricate"
 include { READ_ANALYSIS   } from "../modules/local/taxonomy"
-inclide { GENERATE_REPORT } from "../modules/local/report"}
+inclide { GENERATE_REPORT } from "../modules/local/report"
 include { ONYX_UPLOAD     } from "../modules/local/onyx_upload"
 
 workflow SE_AMR_ANALYSIS {
