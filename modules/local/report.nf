@@ -9,12 +9,12 @@ process GENERATE_REPORT{
     input:
     tuple  val(climb_id), path(abricate_taxa_out), val(tool), val(email)
 
-    output:
-    tuple path("res_counts_by_species_${dt}.csv"),
-        path("resistance_grouped_barplot_${dt}.png"),
-        path("gene_species_sequence_counts_${dt}.csv"),
-        path("gene_species_sequence_heatmap_${dt}.png"),
-        path("${climb_id}_sample_amr_report_${dt}.html")
+    // output:
+    // tuple path("res_counts_by_species_${dt}.csv"),
+    //     path("resistance_grouped_barplot_${dt}.png"),
+    //     path("gene_species_sequence_counts_${dt}.csv"),
+    //     path("gene_species_sequence_heatmap_${dt}.png"),
+    //     path("${climb_id}_sample_amr_report_${dt}.html")
 
     
     script:
