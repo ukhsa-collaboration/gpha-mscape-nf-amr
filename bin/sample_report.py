@@ -55,7 +55,7 @@ def get_args() -> argparse.Namespace:
 
 
 # Logger set up
-def set_up_logger(stdout_file):
+def set_up_logger(stdout_file: str) -> logging.Logger:
     """Example logger set up which can be amended as required. In this example,
     all logging messages go to a stdout log file, and error messages also go to
     stderr log. If the component runs correctly, stderr is empty. The logger is
