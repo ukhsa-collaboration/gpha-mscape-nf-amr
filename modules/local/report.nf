@@ -26,11 +26,11 @@ process GENERATE_REPORT{
         -e '${email}' \\
         -o ./
     
-    mv res_counts_by_species.csv res_counts_by_species_${dt}.csv
-    mv resistance_grouped_barplot.png resistance_grouped_barplot_${dt}.png
-    mv gene_species_sequence_counts.csv gene_species_sequence_counts_${dt}.csv
-    mv gene_species_sequence_heatmap.png gene_species_sequence_heatmap_${dt}.png
-    mv ${climb_id}_sample_amr_report.html ${climb_id}_sample_amr_report_${dt}.html
+    mv res_counts_by_species.csv res_counts_by_species_\${dt}.csv
+    mv resistance_grouped_barplot.png resistance_grouped_barplot_\${dt}.png
+    mv gene_species_sequence_counts.csv gene_species_sequence_counts_\${dt}.csv
+    mv gene_species_sequence_heatmap.png gene_species_sequence_heatmap_\${dt}.png
+    mv ${climb_id}_sample_amr_report.html ${climb_id}_sample_amr_report_\${dt}.html
 
     """
 }
