@@ -21,13 +21,13 @@ from collections.abc import Iterable
 from datetime import UTC, datetime
 from pathlib import Path
 
-import matplotlib.pyplot as plt  # type: ignore
-import numpy as np  # type: ignore
-import pandas as pd  # type: ignore
-import plotly.graph_objects as go  # type: ignore
-from Bio import Entrez  # type: ignore
-from matplotlib.axes import Axes  # type: ignore
-from matplotlib.figure import Figure  # type: ignore
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+from Bio import Entrez
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 
 
 # -------------------------
