@@ -47,7 +47,7 @@ workflow SE_AMR_ANALYSIS {
         // Rename for input to onyx
         READ_ANALYSIS.out.set{abricate_ch}
         // 3.1 Produce HTML report
-        amr_status.annotated
+        abricate_ch
             .map{ climb_id,  abricate_taxa_out, piepline_Status, tool ->
                 tuple( climb_id, abricate_taxa_out, tool, params.email )
             }
