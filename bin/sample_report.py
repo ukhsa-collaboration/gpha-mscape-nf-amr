@@ -13,6 +13,7 @@ Produces:
 import argparse
 import base64
 import io
+import logging
 import sys
 import textwrap
 import time
@@ -51,6 +52,24 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("-t", "--taxon_id", help="Taxon ID to filter reads on.", required=False, type=int)
     args = parser.parse_args()
     return args
+
+
+# Logger set up
+def set_up_logger(stdout_file):
+    """Example logger set up which can be amended as required. In this example,
+    all logging messages go to a stdout log file, and error messages also go to
+    stderr log. If the component runs correctly, stderr is empty. The logger is
+    set to append mode so logs from older runs are not overwritten.
+    """
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
+
+    out_handler = logging.FileHandler(stdout_file, mode="a")
+    out_handler.setFormatter(formatter)
+    logger.addHandler(out_handler)
+
+    return logger
 
 
 def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
@@ -634,22 +653,34 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
 
 def main() -> None:
+    # Retrieve commandline arguments
     args = get_args()
     amr_tsv = args.input_tsv
     output_path = args.output
     email = args.email
     sample_id = Path(amr_tsv).name.split("_")[0]
 
+    # Set up log file:
+    log_file = Path(output_path, "amr_html_report_log.txt")
+    set_up_logger(log_file)
+    logger = logging.getLogger(__name__)
+
+    # Add in rest of code including logging messages:
+    logger.info("AMR report generation started.")  # Example only - add more informative logging messages
+
     df = load_table(amr_tsv)
     if args.taxon_id:
         df = df[df["taxid"] == args.taxon_id]
         if df.empty:
-            print(f"Dataframe is empty. No results match Taxon ID {args.taxon_id}")
+            logger.info("Dataframe is empty. No results match Taxon ID %s", args.taxon_id)
             sys.exit()
 
     df = simplify_taxa(email, df)
 
     generate_html_report(df, output_path, sample_id, amr_tsv)
+
+    # Write to logs if component finished successfully (or not):
+    logger.info("AMR report generation successfully completed")
 
 
 if __name__ == "__main__":
