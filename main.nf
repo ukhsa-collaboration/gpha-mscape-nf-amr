@@ -23,6 +23,10 @@ workflow {
     else{
         exit(1, "Please specify either --unique_id or --samplesheet")
     }
+    // Check email param for report generation
+    if (!params.email){
+        exit(1, "Please specify --email for report generation")
+    }
     // Split csv into channgels
     samples = samplesheet_ch.splitCsv(header: true, quote: '\"')
         .map { row ->
