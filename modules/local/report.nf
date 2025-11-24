@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 process GENERATE_REPORT{
-    tag "${unique_id}"
-    publishDir "${params.output}/${unique_id}/", mode: 'copy'
+    tag "${climb_id}"
+    publishDir "${params.output}/${climb_id}/", mode: 'copy'
 
     // Onyx and Onyx Helper
     container 'community.wave.seqera.io/library/pip_bio_matplotlib_numpy_pruned:489abe68b90e0d56'
