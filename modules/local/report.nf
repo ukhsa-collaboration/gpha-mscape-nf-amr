@@ -14,7 +14,7 @@ process GENERATE_REPORT{
     path("resistance_grouped_barplot.png"),
     path("gene_species_sequence_counts.csv"),
     path("gene_species_sequence_heatmap.png"),
-    path("${unique_id}_sample_amr_report.html")
+    path("${climb_id}_sample_amr_report.html")
 
     
     script:
