@@ -543,7 +543,6 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-        {domain_counts_html}
     </li>}
     <li> Classes of resistance observed are summarized below:
     </li>
