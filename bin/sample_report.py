@@ -97,7 +97,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
         try:
             handle = Entrez.efetch(db="taxonomy", id=taxid)
             record = ET.fromstring(handle.read())
-
+            print(record)
             # Extract lineage
             lineage_info = record.find(".//LineageEx")
             species_name = None
@@ -682,11 +682,12 @@ def main() -> None:
             sys.exit()
 
     df = simplify_taxa(email, df)
-
+    breakpoint()
     generate_html_report(df, output_path, sample_id, amr_tsv)
 
     # Write to logs if component finished successfully (or not):
     logger.info("AMR report generation successfully completed")
+
 
 if __name__ == "__main__":
     main()
