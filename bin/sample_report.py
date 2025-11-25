@@ -99,10 +99,10 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
             record = ET.fromstring(handle.read())
             # Extract lineage
             lineage_info = record.find(".//LineageEx")
-            print(lineage_info)
             species_name = None
             if lineage_info is not None:
                 for taxon in lineage_info:
+                    print(taxon)
                     rank = taxon.find("Rank").text
                     name = taxon.find("ScientificName").text
                     if rank == "species":
