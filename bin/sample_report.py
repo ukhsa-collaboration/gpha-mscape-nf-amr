@@ -543,7 +543,8 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-    </li>}
+            {domain_counts_html}
+    </li>
     <li> Classes of resistance observed are summarized below:
     </li>
 </ul>
@@ -644,7 +645,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
         # Read counts
         total_reads_w_amr=total_reads_w_amr,
-        # domain_counts_html=domain_counts_html,
+        domain_counts_html=domain_counts_html,
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
