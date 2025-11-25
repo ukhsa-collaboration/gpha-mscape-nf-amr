@@ -660,7 +660,7 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
 
     # return "\n".join(html_blocks)
 
-    return tables, gene_figures
+    # return tables, gene_figures
 
 
 # -------------------------
@@ -743,7 +743,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     # Summarise Gene Content
 
-    gene_content_html = generate_gene_summary_html(df)
+    generate_gene_summary_html(df)
 
     # Summarise reads
     # min, max, median number of AMR annotations per read
