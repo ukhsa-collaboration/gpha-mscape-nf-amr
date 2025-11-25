@@ -645,7 +645,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
         # Read counts
         total_reads_w_amr=total_reads_w_amr,
-        domain_counts_html=domain_counts_html,
+        domain_counts_html=str(domain_counts_html),
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
