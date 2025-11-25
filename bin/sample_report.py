@@ -62,12 +62,19 @@ def set_up_logger(stdout_file: str) -> logging.Logger:
     set to append mode so logs from older runs are not overwritten.
     """
     logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
 
     out_handler = logging.FileHandler(stdout_file, mode="a")
     out_handler.setFormatter(formatter)
+    out_handler.setLevel(logging.INFO)
     logger.addHandler(out_handler)
+
+    stderr_file = stdout_file.replace(".txt", "_stderr.txt")
+    err_handler = logging.FileHandler(stderr_file, mode="a")
+    err_handler.setFormatter(formatter)
+    err_handler.setLevel(logging.ERROR)
+    logger.addHandler(err_handler)
 
     return logger
 
