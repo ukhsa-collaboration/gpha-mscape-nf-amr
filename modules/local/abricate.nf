@@ -11,8 +11,6 @@ process RUN_ABRICATE{
     tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_out.tsv"), emit: abricate_results
 
     script:
-    def args = task.ext.args ?: ''
-
     """
     abricate \\
         --db ${params.arg_abricate_db} \\
