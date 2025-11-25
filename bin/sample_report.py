@@ -607,6 +607,8 @@ def build_gene_coverage_tables(df):
         # Process each read
         for cov in group["COVERAGE"]:
             match = re.match(r"(\\d+)-(\\d+)/(\\d+)", cov)
+            print(match)
+            breakpoint()
             if match:
                 start, end = int(match.group(1)), int(match.group(2))
                 coverage_array[start - 1 : end] += 1  # Increment coverage for positions
