@@ -61,8 +61,7 @@ def set_up_logger(stdout_file: str) -> logging.Logger:
     stderr log. If the component runs correctly, stderr is empty. The logger is
     set to append mode so logs from older runs are not overwritten.
     """
-    print(stdout_file)
-    breakpoint()
+
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
@@ -72,7 +71,7 @@ def set_up_logger(stdout_file: str) -> logging.Logger:
     out_handler.setLevel(logging.INFO)
     logger.addHandler(out_handler)
 
-    stderr_file = stdout_file.replace(".txt", "_stderr.txt")
+    stderr_file = str(stdout_file).replace(".txt", "_stderr.txt")
     err_handler = logging.FileHandler(stderr_file, mode="a")
     err_handler.setFormatter(formatter)
     err_handler.setLevel(logging.ERROR)
