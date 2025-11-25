@@ -548,7 +548,7 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     <li> Classes of resistance observed are summarized below:
         {domain_profiles_html}
     </li>
-    <li> AMR genes observed are summarized below:
+    <li> AMR genes observed are summarized below (# reads):
         {domain_genes_html}
     </li>
 </ul>
@@ -624,7 +624,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     # Domain read counts in html
     domain_counts_html = ""
     for domain, count in domain_read_count_dict.items():
-        domain_counts_html += f"<ul>{domain}: {count}</ul>\n"
+        domain_counts_html += f"<ul><b>{domain}</b>: {count}</ul>\n"
 
     # Get resistance profiles by domain
     def get_resistance_profile(domain: str) -> str:
@@ -643,7 +643,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     domain_profiles_html = ""
     for domain, profile in domain_profiles_dict.items():
-        domain_profiles_html += f"<ul>{domain}: {profile}</ul>\n"
+        domain_profiles_html += f"<ul><b>{domain}</b>: {profile}</ul>\n"
 
     # AMR Genes by domain
     def get_gene_profile(domain: str) -> str:
@@ -666,7 +666,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     domain_genes_html = ""
     for domain, genes in domain_gene_profiles_dict.items():
-        domain_genes_html += f"<ul>{domain}: {genes}</ul>\n"
+        domain_genes_html += f"<ul><b>{domain}</b>: {genes}</ul>\n"
 
     html = HTML_TEMPLATE.format(
         title=sample_id,
