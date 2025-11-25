@@ -543,9 +543,7 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     <li> AMR genes observed are summarized below (# reads):
         {domain_genes_html}
     </li>
-    <li> Taxa with AMR annotations are summarized in the Taxa Summary section below.
-    
-    </li>
+
 </ul>
 </div>
 </body>
@@ -627,7 +625,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     for domain in df["domain"].unique():
         reads = domain_read_count_dict.get(domain, 0)
         species = domain_species_list_dict.get(domain, 0)
-        domain_counts_html += f"<ul><b>{domain}</b>:<ul>read counts: {reads}</ul><ul>species: {species}</ul></ul>\n"
+        domain_counts_html += f"<ul><b>{domain}</b>:<ul>Read Counts: {reads}</ul><ul>Species: {species}</ul></ul>\n"
 
     # Get resistance profiles by domain
     def get_resistance_profile(domain: str) -> str:
