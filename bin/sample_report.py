@@ -614,14 +614,14 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_read_count_dict[domain] = domain_read_count
 
         # Count unique species
-        species_count = domain_df["species_name"].nunique() if "species_name" in df.columns else 0
-        domain_species_count_dict[domain] = species_count
+        species_list = domain_df["species_name"].nunique() if "species_name" in df.columns else 0
+        domain_species_list_dict[domain] = species_list.join(", ")
 
     # Build HTML dynamically
     domain_counts_html = ""
     for domain in df["domain"].unique():
         reads = domain_read_count_dict.get(domain, 0)
-        species = domain_species_count_dict.get(domain, 0)
+        species = domain_species_list_dict.get(domain, 0)
         domain_counts_html += f"<ul><b>{domain}</b>: Reads = {reads}, Species = {species}</ul>\n"
 
     # Get resistance profiles by domain
