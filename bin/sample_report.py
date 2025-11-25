@@ -698,9 +698,7 @@ def main() -> None:
             sys.exit()
 
     df = simplify_taxa(email, df)
-    print(df)
 
-    breakpoint()
     generate_html_report(df, output_path, sample_id, amr_tsv)
 
     # Write to logs if component finished successfully (or not):
