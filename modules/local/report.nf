@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 process GENERATE_REPORT{
     tag "${climb_id}"
+    label 'process_low'
     publishDir "${params.output}/${climb_id}/", mode: 'copy'
 
     // Onyx and Onyx Helper

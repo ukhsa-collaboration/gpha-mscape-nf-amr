@@ -653,14 +653,12 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
 
 def main() -> None:
-    # Retrieve commandline arguments
     args = get_args()
     amr_tsv = args.input_tsv
     output_path = args.output
     email = args.email
     sample_id = Path(amr_tsv).name.split("_")[0]
 
-    # Set up log file:
     log_file = Path(output_path, "amr_html_report_log.txt")
     set_up_logger(log_file)
     logger = logging.getLogger(__name__)
