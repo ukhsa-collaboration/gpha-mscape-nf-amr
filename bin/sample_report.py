@@ -543,9 +543,7 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-        <ul>
-            {domain_counts_html}
-        </ul>
+        {domain_counts_html}
     </li>}
     <li> Classes of resistance observed are summarized below:
     </li>
@@ -623,8 +621,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     domain_counts_html = ""
     for domain, count in domain_read_count_dict.items():
         domain_counts_html += f"<ul>{domain}: {count}</ul>\n"
-    print(domain_counts_html)
-    breakpoint()
 
     # # Get resistance profiles by domain
     # def get_resistance_profile(domain: str) -> str:
