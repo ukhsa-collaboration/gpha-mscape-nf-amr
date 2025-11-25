@@ -619,12 +619,12 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_read_count = df[df["domain"] == domain]["SEQUENCE"].nunique()
         domain_read_count_dict[domain] = domain_read_count
 
-    print(domain_read_count_dict)
-    breakpoint()
     # Domain read counts in html
     domain_counts_html = ""
     for domain, count in domain_read_count_dict.items():
         domain_counts_html += f"<ul>{domain}: {count}</ul>\n"
+    print(domain_counts_html)
+    breakpoint()
 
     # # Get resistance profiles by domain
     # def get_resistance_profile(domain: str) -> str:
