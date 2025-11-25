@@ -110,7 +110,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
                     name = taxon.find("ScientificName").text
 
                     # Capture domain (superkingdom)
-                    if rank == "superkingdom":
+                    if rank == "domain":
                         domain_name = name
 
                     # Capture species
@@ -699,6 +699,7 @@ def main() -> None:
 
     df = simplify_taxa(email, df)
     print(df)
+
     breakpoint()
     generate_html_report(df, output_path, sample_id, amr_tsv)
 
