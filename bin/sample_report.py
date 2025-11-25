@@ -627,7 +627,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     for domain in df["domain"].unique():
         reads = domain_read_count_dict.get(domain, 0)
         species = domain_species_list_dict.get(domain, 0)
-        domain_counts_html += f"<ul><b>{domain}</b>:<\r>read counts: {reads}<\r>species: {species}</ul>\n"
+        domain_counts_html += f"<ul><b>{domain}</b>:<ul>read counts: {reads}</ul><ul>species: {species}</ul></ul>\n"
 
     # Get resistance profiles by domain
     def get_resistance_profile(domain: str) -> str:
