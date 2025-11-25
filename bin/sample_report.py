@@ -594,7 +594,8 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 
 
 # Function to build coverage table per gene
-def build_gene_coverage_tables(df):
+def generate_gene_summary_html(df: pd.DataFrame) -> str:
+    """Generate gene coverage summary HTML blocks."""
     tables = {}
 
     for gene_species, group in df.groupby(["GENE", "species_name"]):
@@ -613,9 +614,53 @@ def build_gene_coverage_tables(df):
         # Create DataFrame for this gene
         coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
 
-        tables[gene_species] = coverage_df
+        print(gene_species)
 
-    return tables
+    # # ✅ Group by gene and create plots
+    # genes = set([key[0] for key in tables.keys()])
+
+    # gene_figures = []
+    # for gene in genes:
+    #     fig = go.Figure()
+
+    #     # Add a line for each species for this gene
+    #     for (g, species), df in tables.items():
+    #         if g == gene:
+    #             fig.add_trace(go.Scatter(x=df["Position"], y=df["Coverage"], mode="lines", name=species))
+
+    #     # Customize layout
+    #     fig.update_layout(
+    #         title=f"Coverage Plot for Gene: {gene}",
+    #         xaxis_title="Position",
+    #         yaxis_title="Coverage",
+    #         template="plotly_white",
+    #     )
+
+    #     # Show or save figure
+    #     gene_figures.append(fig)  # Use fig.write_image("coverage_plot_{gene}.png") to save
+
+    # html_blocks = []
+
+    # for gene, group in df.groupby("GENE"):
+    #     read_count = group["SEQUENCE"].nunique()
+    #     avg_coverage = round(group["coverage_length"].mean(), 2)
+    #     min_coverage = group["coverage_length"].min()
+    #     max_coverage = group["coverage_length"].max()
+
+    #     block = f"""
+    #     <div class="card">
+    #         <h2>Gene {gene} Summary</h2>
+    #         <ul> Number of reads the gene is present in: {read_count}</ul>
+    #         <ul> Average coverage of the gene across reads: {avg_coverage}</ul>
+    #         <ul> Minimum coverage of the gene across reads: {min_coverage}</ul>
+    #         <ul> Maximum coverage of the gene across reads: {max_coverage}</ul>
+    #     </div>
+    #     """
+    #     html_blocks.append(block)
+
+    # return "\n".join(html_blocks)
+
+    return tables, gene_figures
 
 
 # -------------------------
@@ -697,39 +742,8 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_genes_html += f"<ul><b>{domain}</b>: {genes}</ul>\n"
 
     # Summarise Gene Content
-    def generate_gene_summary_html(df: pd.DataFrame) -> str:
-        # Extract numeric coverage from COVERAGE column
-        # Example: "1-861/861" -> 861
-        df["coverage_length"] = df["COVERAGE"].str.extract(r"-(\d+)/").astype(int)
 
-        html_blocks = []
-
-        # Generate Coverage plots per species
-
-        # Generate tables
-        coverage_tables = build_gene_coverage_tables(df)
-        print(coverage_tables)
-
-        # for gene, group in df.groupby("GENE"):
-        #     read_count = group["SEQUENCE"].nunique()
-        #     avg_coverage = round(group["coverage_length"].mean(), 2)
-        #     min_coverage = group["coverage_length"].min()
-        #     max_coverage = group["coverage_length"].max()
-
-        #     block = f"""
-        #     <div class="card">
-        #         <h2>Gene {gene} Summary</h2>
-        #         <ul> Number of reads the gene is present in: {read_count}</ul>
-        #         <ul> Average coverage of the gene across reads: {avg_coverage}</ul>
-        #         <ul> Minimum coverage of the gene across reads: {min_coverage}</ul>
-        #         <ul> Maximum coverage of the gene across reads: {max_coverage}</ul>
-        #     </div>
-        #     """
-        #     html_blocks.append(block)
-
-        # return "\n".join(html_blocks)
-
-    gene_summary_html = generate_gene_summary_html(df)
+    gene_content_html = generate_gene_summary_html(df)
 
     # Summarise reads
     # min, max, median number of AMR annotations per read
