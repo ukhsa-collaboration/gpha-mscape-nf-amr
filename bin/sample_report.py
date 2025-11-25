@@ -543,11 +543,11 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-        <ul> Bacterial: {bacteria_amr_read_count}<ul>
-        <ul> Viral: {viral_amr_read_count}<ul>
-        <ul> Fungal: {fungal_amr_read_count}<ul>
-        <ul> Other: {other_amr_read_count}<ul>
-        <ul> Unclassified: {unclassified_amr_read_count}<ul>
+        <ul> Bacterial: {bacteria_amr_read_count}</ul>
+        <ul> Viral: {viral_amr_read_count}</ul>
+        <ul> Fungal: {fungal_amr_read_count}</ul>
+        <ul> Other: {other_amr_read_count}</ul>
+        <ul> Unclassified: {unclassified_amr_read_count}</ul>
     </li>
 </ul>
 </div>
