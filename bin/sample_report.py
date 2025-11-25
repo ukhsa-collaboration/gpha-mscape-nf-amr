@@ -543,9 +543,10 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-            {domain_counts_html}
+        {domain_counts_html}
     </li>
     <li> Classes of resistance observed are summarized below:
+        {domain_profiles_html}
     </li>
 </ul>
 </div>
@@ -622,23 +623,25 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     for domain, count in domain_read_count_dict.items():
         domain_counts_html += f"<ul>{domain}: {count}</ul>\n"
 
-    # # Get resistance profiles by domain
-    # def get_resistance_profile(domain: str) -> str:
-    #     domain_df = df[df["domain"] == domain]
-    #     if domain_df.empty:
-    #         return "None"
-    #     unique_resistance_classes = (
-    #         domain_df["RESISTANCE"].dropna().str.split(";").explode().str.strip().str.lower().dropna().unique()
-    #     )
-    #     return ", ".join(unique_resistance_classes)
+    # Get resistance profiles by domain
+    def get_resistance_profile(domain: str) -> str:
+        domain_df = df[df["domain"] == domain]
+        if domain_df.empty:
+            return "None"
+        unique_resistance_classes = (
+            domain_df["RESISTANCE"].dropna().str.split(";").explode().str.strip().str.lower().dropna().unique()
+        )
+        return ", ".join(unique_resistance_classes)
 
-    # domain_profiles_dict = {}
+    domain_profiles_dict = {}
+    for domain in df["domain"].unique():
+        profile = get_resistance_profile(domain)
+        domain_profiles_dict[domain] = profile
 
-    # for domain in df["domain"].unique():
-    #     profile = get_resistance_profile(domain)
-    #     domain_profiles_dict[domain] = profile
-
-    # print(domain_profiles_dict)
+    # Domain read counts in html
+    domain_profiles_html = ""
+    for domain, profile in domain_profiles_dict.items():
+        domain_profiles_html += f"<ul>{domain}: {profile}</ul>\n"
 
     html = HTML_TEMPLATE.format(
         title=sample_id,
@@ -646,6 +649,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         # Read counts
         total_reads_w_amr=total_reads_w_amr,
         domain_counts_html=domain_counts_html,
+        domain_profiles_html=domain_profiles_html,
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
