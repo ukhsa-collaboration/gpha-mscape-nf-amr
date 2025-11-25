@@ -667,7 +667,7 @@ def make_html_table(df_stats: pd.DataFrame, title: str = "Coverage Statistics") 
     html = f"""
     {css}
     <div class="card">
-      <h2>{escape(title)}</h2>
+      <h2>{(title)}</h2>
       {table_html}
     </div>
     """
