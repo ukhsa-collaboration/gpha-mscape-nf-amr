@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 from onyx import OnyxClient, OnyxConfig, OnyxEnv
-from onyx_analysis_helper import onyx_analysis_helper_functions as oa  # type: ignore
+from onyx_analysis_helper import onyx_analysis_helper_functions as oa
 
 config = OnyxConfig(
     domain=os.environ[OnyxEnv.DOMAIN],
