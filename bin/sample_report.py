@@ -606,13 +606,9 @@ def build_gene_coverage_tables(df):
 
         # Process each read
         for cov in group["COVERAGE"]:
-            print(cov)
-            match = re.match(r"(\\d+)-(\\d+)/(\\d+)", cov)
-            print(match)
-            breakpoint()
-            if match:
-                start, end = int(match.group(1)), int(match.group(2))
-                coverage_array[start - 1 : end] += 1  # Increment coverage for positions
+            start = int(cov.split("-")[0])
+            end = int(cov.split("-")[1])
+            coverage_array[start - 1 : end] += 1  # Increment coverage for positions
 
         # Create DataFrame for this gene
         coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
