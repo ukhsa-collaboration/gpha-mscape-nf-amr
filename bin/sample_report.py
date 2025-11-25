@@ -543,11 +543,11 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-        <ul> Bacterial: {bacteria_amr_read_count}</ul>
-        <ul> Viral: {viral_amr_read_count}</ul>
-        <ul> Fungal: {fungal_amr_read_count}</ul>
-        <ul> Other: {other_amr_read_count}</ul>
-        <ul> Unclassified: {unclassified_amr_read_count}</ul>
+        <ul>
+            {domain_counts_html}
+        </ul>
+    </li>}
+    <li> Classes of resistance observed are summarized below:
     </li>
 </ul>
 </div>
@@ -614,68 +614,40 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     # Get number of reads with AMR annotations
     total_reads_w_amr = df["SEQUENCE"].nunique()
     # Get number of reads with AMR annotations by domain
-    bacteria_amr_read_count = df[df["domain"] == "Bacteria"]["SEQUENCE"].nunique()
-    viral_amr_read_count = df[df["domain"] == "Viruses"]["SEQUENCE"].nunique()
-    fungal_amr_read_count = df[df["domain"] == "Fungi"]["SEQUENCE"].nunique()
-    other_amr_read_count = df[df["domain"] == "Other"]["SEQUENCE"].nunique()
-    unclassified_amr_read_count = df[df["domain"] == "Unknown"]["SEQUENCE"].nunique()
+    domain_read_count_dict = {}
+    for domain in df["domain"].unique():
+        domain_read_count = df[df["domain"] == domain]["SEQUENCE"].nunique()
+        domain_read_count_dict[domain] = domain_read_count
+    # Domain read counts in html
+    domain_counts_html = ""
+    for domain, count in domain_read_count_dict.items():
+        domain_counts_html += f"<ul>{domain}: {count}</ul>\n"
 
-    # unique_resistance_classes = (
-    #     df["RESISTANCE"]
-    #     .dropna()
-    #     .str.split(";")
-    #     .explode()
-    #     .str.strip()
-    #     .str.lower()  # or .str.capitalize() if you prefer
-    #     .dropna()
-    #     .unique()
-    # )
+    # # Get resistance profiles by domain
+    # def get_resistance_profile(domain: str) -> str:
+    #     domain_df = df[df["domain"] == domain]
+    #     if domain_df.empty:
+    #         return "None"
+    #     unique_resistance_classes = (
+    #         domain_df["RESISTANCE"].dropna().str.split(";").explode().str.strip().str.lower().dropna().unique()
+    #     )
+    #     return ", ".join(unique_resistance_classes)
 
-    # res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
-    # fp = Path(output_path, "res_counts_by_species.csv")
-    # res_counts_by_species.to_csv(fp, index=True)
+    # domain_profiles_dict = {}
 
-    # # Summary information for paragraphs:
-    # def most_common_string(top5: tuple[object, int, float] | list[tuple[object, int, float]]) -> str:
-    #     most_common_list = []
-    #     most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
-    #     for item in top5[1:]:
-    #         most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
-    #     return str(", ".join(most_common_list))
+    # for domain in df["domain"].unique():
+    #     profile = get_resistance_profile(domain)
+    #     domain_profiles_dict[domain] = profile
 
-    # top5_spp = most_common(df["species_name"], top_n=5)
-    # most_common_taxa_str = most_common_string(top5_spp)
-
-    # top5_genes = most_common(df["GENE"], top_n=5)
-    # most_common_genes_str = most_common_string(top5_genes)
-
-    # # create figures
-    # fig1 = plot_class_bar(res_counts_by_species, output_path)
-    # fig2 = heatplot(df, output_path)
-
-    # species_sankey_html = sankey_html_from_counts(
-    #     df, "Total reads", "species_name", include_plotlyjs="cdn", full_html=False
-    # )
-
-    # genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE", include_plotlyjs="cdn", full_html=False)
-
-    # bar_class_b64 = fig_to_base64(fig1)
-    # heatplot_b64 = fig_to_base64(fig2)
-
-    # # tables to HTML
-    # summary_html = df_to_html_table(res_counts_by_species)
-
-    # read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
+    # print(domain_profiles_dict)
 
     html = HTML_TEMPLATE.format(
         title=sample_id,
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
+        # Read counts
         total_reads_w_amr=total_reads_w_amr,
-        bacteria_amr_read_count=bacteria_amr_read_count,
-        viral_amr_read_count=viral_amr_read_count,
-        fungal_amr_read_count=fungal_amr_read_count,
-        other_amr_read_count=other_amr_read_count,
-        unclassified_amr_read_count=unclassified_amr_read_count,
+        domain_counts_html=domain_counts_html,
+        # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
         # no_of_taxa=len(df["species_name"].unique()),
