@@ -606,6 +606,7 @@ def build_gene_coverage_tables(df):
 
         # Process each read
         for cov in group["COVERAGE"]:
+            print(cov)
             match = re.match(r"(\\d+)-(\\d+)/(\\d+)", cov)
             print(match)
             breakpoint()
