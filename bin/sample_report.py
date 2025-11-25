@@ -618,10 +618,6 @@ def build_gene_coverage_tables(df):
     return tables
 
 
-# Generate tables
-coverage_tables = build_gene_coverage_tables(df)
-
-
 # -------------------------
 # Main
 # -------------------------
