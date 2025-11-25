@@ -169,14 +169,6 @@ def load_table(path: str | Path) -> pd.DataFrame:
     return df
 
 
-def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
-    # One-hot encode the semicolon-separated list in RESISTANCE
-    res_dummies = df["RESISTANCE"].str.get_dummies(sep=";").astype(bool)
-    # Join back and (optionally) keep or drop the original RESISTANCE column
-    out = pd.concat([df, res_dummies], axis=1)  # .drop(columns=['RESISTANCE'])
-    return out
-
-
 # -------------------------
 # Summaries & plots
 # -------------------------x
@@ -551,6 +543,9 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     <li> AMR genes observed are summarized below (# reads):
         {domain_genes_html}
     </li>
+    <li> Taxa with AMR annotations are summarized in the Taxa Summary section below.
+    
+    </li>
 </ul>
 </div>
 </body>
@@ -558,13 +553,6 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 """  # noqa: E501
 
 
-#     <li>Total AMR annotations: <b>{total_amr_count}</b>.</li>
-#     <li>Total unique AMR elements: <b>{total_unique_genes}</b></li>
-#         <ul>
-#             <li>Top 5: <b>{gene_string}</b></li>
-#             <li>Classes of resistance observed: {resistance_string}.</li>
-#         </ul>
-# </ul>
 # {genes_sankey_html}
 # <h3>Number of Reads with Annotated Genes, per Species</h3>
 # <img class="img" src="{heatmap_img}" alt="Identity vs Coverage"/>
@@ -610,21 +598,31 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # -------------------------
 def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr_tsv: str) -> None:
     # Create boolean columns for each resistance class
-    res_expanded_df = explode_resistance(df)
     fp = Path(output_path, "output_with_booleans.csv")
 
     # Get number of reads with AMR annotations
     total_reads_w_amr = df["SEQUENCE"].nunique()
     # Get number of reads with AMR annotations by domain
     domain_read_count_dict = {}
+    domain_species_count_dict = {}
+
     for domain in df["domain"].unique():
-        domain_read_count = df[df["domain"] == domain]["SEQUENCE"].nunique()
+        domain_df = df[df["domain"] == domain]
+
+        # Count unique reads
+        domain_read_count = domain_df["SEQUENCE"].nunique()
         domain_read_count_dict[domain] = domain_read_count
 
-    # Domain read counts in html
+        # Count unique species
+        species_count = domain_df["species_name"].nunique() if "species_name" in df.columns else 0
+        domain_species_count_dict[domain] = species_count
+
+    # Build HTML dynamically
     domain_counts_html = ""
-    for domain, count in domain_read_count_dict.items():
-        domain_counts_html += f"<ul><b>{domain}</b>: {count}</ul>\n"
+    for domain in df["domain"].unique():
+        reads = domain_read_count_dict.get(domain, 0)
+        species = domain_species_count_dict.get(domain, 0)
+        domain_counts_html += f"<ul><b>{domain}</b>: Reads = {reads}, Species = {species}</ul>\n"
 
     # Get resistance profiles by domain
     def get_resistance_profile(domain: str) -> str:
