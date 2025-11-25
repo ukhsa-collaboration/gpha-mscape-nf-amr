@@ -97,6 +97,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
         try:
             handle = Entrez.efetch(db="taxonomy", id=taxid)
             record = ET.fromstring(handle.read())
+
             # Extract lineage
             lineage_info = record.find(".//LineageEx")
             species_name = None
@@ -104,8 +105,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
                 for taxon in lineage_info:
                     rank = taxon.find("Rank").text
                     domain = taxon.find("Domain").text
-                    print(domain)
-                    print(rank)
+                    print(f"Rank: {rank}, Domain: {domain}")
                     name = taxon.find("ScientificName").text
                     if rank == "species":
                         species_name = name
