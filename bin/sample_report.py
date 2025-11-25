@@ -548,6 +548,9 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     <li> Classes of resistance observed are summarized below:
         {domain_profiles_html}
     </li>
+    <li> AMR genes observed are summarized below:
+        {domain_genes_html}
+    </li>
 </ul>
 </div>
 </body>
@@ -638,10 +641,32 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         profile = get_resistance_profile(domain)
         domain_profiles_dict[domain] = profile
 
-    # Domain read counts in html
     domain_profiles_html = ""
     for domain, profile in domain_profiles_dict.items():
         domain_profiles_html += f"<ul>{domain}: {profile}</ul>\n"
+
+    # AMR Genes by domain
+    def get_gene_profile(domain: str) -> str:
+        domain_df = df[df["domain"] == domain]
+        if domain_df.empty:
+            return "None"
+
+        # Count occurrences of each gene
+        gene_counts = domain_df["GENE"].dropna().str.strip().str.upper().value_counts()
+
+        # Format as "GENE (count)"
+        formatted_genes = [f"{gene} ({count})" for gene, count in gene_counts.items()]
+
+        return ", ".join(formatted_genes)
+
+    domain_gene_profiles_dict = {}
+    for domain in df["domain"].unique():
+        gene_profile = get_gene_profile(domain)
+        domain_gene_profiles_dict[domain] = gene_profile
+
+    domain_genes_html = ""
+    for domain, genes in domain_gene_profiles_dict.items():
+        domain_genes_html += f"<ul>{domain}: {genes}</ul>\n"
 
     html = HTML_TEMPLATE.format(
         title=sample_id,
@@ -650,6 +675,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         total_reads_w_amr=total_reads_w_amr,
         domain_counts_html=domain_counts_html,
         domain_profiles_html=domain_profiles_html,
+        domain_genes_html=domain_genes_html,
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
