@@ -543,7 +543,11 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-
+        <ul> Bacterial: {bacteria_amr_read_count}<ul>
+        <ul> Viral: {viral_amr_read_count}<ul>
+        <ul> Fungal: {fungal_amr_read_count}<ul>
+        <ul> Other: {other_amr_read_count}<ul>
+        <ul> Unclassified: {unclassified_amr_read_count}<ul>
     </li>
 </ul>
 </div>
@@ -609,6 +613,12 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     # Get number of reads with AMR annotations
     total_reads_w_amr = df["SEQUENCE"].nunique()
+    # Get number of reads with AMR annotations by domain
+    bacteria_amr_read_count = df[df["domain"] == "Bacteria"]["SEQUENCE"].nunique()
+    viral_amr_read_count = df[df["domain"] == "Viruses"]["SEQUENCE"].nunique()
+    fungal_amr_read_count = df[df["domain"] == "Fungi"]["SEQUENCE"].nunique()
+    other_amr_read_count = df[df["domain"] == "Other"]["SEQUENCE"].nunique()
+    unclassified_amr_read_count = df[df["domain"] == "Unknown"]["SEQUENCE"].nunique()
 
     # unique_resistance_classes = (
     #     df["RESISTANCE"]
@@ -661,6 +671,11 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         title=sample_id,
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
         total_reads_w_amr=total_reads_w_amr,
+        bacteria_amr_read_count=bacteria_amr_read_count,
+        viral_amr_read_count=viral_amr_read_count,
+        fungal_amr_read_count=fungal_amr_read_count,
+        other_amr_read_count=other_amr_read_count,
+        unclassified_amr_read_count=unclassified_amr_read_count,
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
         # no_of_taxa=len(df["species_name"].unique()),
@@ -710,6 +725,7 @@ def main() -> None:
             sys.exit()
 
     df = simplify_taxa(email, df)
+    print(df)
 
     generate_html_report(df, output_path, sample_id, amr_tsv)
 
