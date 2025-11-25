@@ -13,6 +13,7 @@ Produces:
 import argparse
 import base64
 import io
+import logging
 import sys
 import textwrap
 import time
@@ -21,13 +22,13 @@ from collections.abc import Iterable
 from datetime import UTC, datetime
 from pathlib import Path
 
-import matplotlib.pyplot as plt  # type: ignore
-import numpy as np  # type: ignore
-import pandas as pd  # type: ignore
-import plotly.graph_objects as go  # type: ignore
-from Bio import Entrez  # type: ignore
-from matplotlib.axes import Axes  # type: ignore
-from matplotlib.figure import Figure  # type: ignore
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+from Bio import Entrez
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 
 
 # -------------------------
@@ -51,6 +52,32 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("-t", "--taxon_id", help="Taxon ID to filter reads on.", required=False, type=int)
     args = parser.parse_args()
     return args
+
+
+# Logger set up
+def set_up_logger(stdout_file: str) -> logging.Logger:
+    """Example logger set up which can be amended as required. In this example,
+    all logging messages go to a stdout log file, and error messages also go to
+    stderr log. If the component runs correctly, stderr is empty. The logger is
+    set to append mode so logs from older runs are not overwritten.
+    """
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
+
+    out_handler = logging.FileHandler(stdout_file, mode="a")
+    out_handler.setFormatter(formatter)
+    out_handler.setLevel(logging.INFO)
+    logger.addHandler(out_handler)
+
+    stderr_file = str(stdout_file).replace(".txt", "_stderr.txt")
+    err_handler = logging.FileHandler(stderr_file, mode="a")
+    err_handler.setFormatter(formatter)
+    err_handler.setLevel(logging.ERROR)
+    logger.addHandler(err_handler)
+
+    return logger
 
 
 def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
@@ -640,16 +667,26 @@ def main() -> None:
     email = args.email
     sample_id = Path(amr_tsv).name.split("_")[0]
 
+    log_file = Path(output_path, "amr_html_report_log.txt")
+    set_up_logger(log_file)
+    logger = logging.getLogger(__name__)
+
+    # Add in rest of code including logging messages:
+    logger.info("AMR report generation started.")  # Example only - add more informative logging messages
+
     df = load_table(amr_tsv)
     if args.taxon_id:
         df = df[df["taxid"] == args.taxon_id]
         if df.empty:
-            print(f"Dataframe is empty. No results match Taxon ID {args.taxon_id}")
+            logger.info("Dataframe is empty. No results match Taxon ID %s", args.taxon_id)
             sys.exit()
 
     df = simplify_taxa(email, df)
 
     generate_html_report(df, output_path, sample_id, amr_tsv)
+
+    # Write to logs if component finished successfully (or not):
+    logger.info("AMR report generation successfully completed")
 
 
 if __name__ == "__main__":

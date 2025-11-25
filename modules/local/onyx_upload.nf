@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
-nextflow.enable.dsl=2
 process ONYX_UPLOAD{
     tag "${unique_id}"
+    label 'process_low'
     publishDir "${params.output}/${unique_id}", mode: 'copy', pattern: "*.json"
 
     // Onyx and Onyx Helper

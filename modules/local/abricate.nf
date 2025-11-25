@@ -10,15 +10,12 @@ process RUN_ABRICATE{
     output:
     tuple  val(climb_id),  path(kraken_assignments), path(kraken_report), path("abricate_out.tsv"), emit: abricate_results
 
-    when:
-    task.ext.when == null || task.ext.when
-
     script:
-    def args = task.ext.args ?: ''
-
     """
     abricate \\
-        $args \\
+        --db ${params.arg_abricate_db} \\
+        --minid ${params.arg_abricate_minid} \\
+        --mincov ${params.arg_abricate_mincov} \\
         --threads $task.cpus \\
         ${fastq1} > abricate_out.tsv
     """

@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 process GENERATE_SAMPLESHEET{
     tag "${unique_id}"
+    label 'process_low'
     publishDir "${params.output}/${unique_id}/", mode: 'copy', pattern: "*.csv"
 
     // Onyx and Onyx Helper
