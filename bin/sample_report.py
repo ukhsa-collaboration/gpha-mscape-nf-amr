@@ -614,7 +614,9 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_read_count_dict[domain] = domain_read_count
 
         # Count unique species
-        species_list = domain_df["species_name"].unique() if "species_name" in df.columns else "No species info"
+        species_list = domain_df["species_name"].unique()
+        print(species_list)
+        breakpoint()
         domain_species_list_dict[domain] = species_list.join(", ")
 
     # Build HTML dynamically
