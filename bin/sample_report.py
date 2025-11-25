@@ -688,6 +688,5 @@ def main() -> None:
     # Write to logs if component finished successfully (or not):
     logger.info("AMR report generation successfully completed")
 
-
 if __name__ == "__main__":
     main()
