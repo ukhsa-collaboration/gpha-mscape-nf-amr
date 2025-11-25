@@ -543,13 +543,15 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-        # <ul> Bacterial: {bacteria_amr_read_count}<ul>
-        # <ul> Viral: {viral_amr_read_count}<ul>
-        # <ul> Fungal: {fungal_amr_read_count}<ul>
-        # <ul> Other: {other_amr_read_count}<ul>
-        # <ul> Unclassified: {unclassified_amr_read_count}<ul>
+
     </li>
+</ul>
 </div>
+</body>
+</html>
+"""  # noqa: E501
+
+
 #     <li>Total AMR annotations: <b>{total_amr_count}</b>.</li>
 #     <li>Total unique AMR elements: <b>{total_unique_genes}</b></li>
 #         <ul>
@@ -575,7 +577,7 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # </div>
 # <div class="card">
 # <h2>Taxa Summary</h2>
-# <p> 
+# <p>
 # <ul>
 #     <li>Total unique taxa associated with AMR annotations: <b>{no_of_taxa}</b>:</li>
 #         <ul><li>Top 5: <b>{taxa_string}</b>.</li></ul>
@@ -591,14 +593,10 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # <img class="img" src="{bar_class_img}" alt="Class distribution"/>
 
 
-
 # <div class="footer">
 # <p>Source file: {source_file}</p>
 # <p>Notes: Tables derived from input. 'RESISTANCE' column is split on ';' to produce class-level counts.</p>
 # </div>
-</body>
-</html>
-"""  # noqa: E501
 
 
 # -------------------------
