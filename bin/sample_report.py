@@ -604,7 +604,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     total_reads_w_amr = df["SEQUENCE"].nunique()
     # Get number of reads with AMR annotations by domain
     domain_read_count_dict = {}
-    domain_species_count_dict = {}
+    domain_species_list_dict = {}
 
     for domain in df["domain"].unique():
         domain_df = df[df["domain"] == domain]
