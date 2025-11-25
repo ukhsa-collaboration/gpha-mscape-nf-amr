@@ -543,9 +543,10 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     <li> AMR genes observed are summarized below (# reads):
         {domain_genes_html}
     </li>
-
 </ul>
 </div>
+{gene_summary_html}
+
 </body>
 </html>
 """  # noqa: E501
@@ -669,6 +670,42 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     for domain, genes in domain_gene_profiles_dict.items():
         domain_genes_html += f"<ul><b>{domain}</b>: {genes}</ul>\n"
 
+    # Summarise Gene Content
+    # for each gene:
+    # Calculate the min, max, and average proportion of the gene in the sequence df['COVERAGE']
+
+    def generate_gene_summary_html(df: pd.DataFrame) -> str:
+        # Extract numeric coverage from COVERAGE column
+        # Example: "1-861/861" -> 861
+        df["coverage_length"] = df["COVERAGE"].str.extract(r"/(\d+)").astype(int)
+
+        html_blocks = []
+
+        for gene, group in df.groupby("GENE"):
+            read_count = group["SEQUENCE"].nunique()
+            avg_coverage = round(group["coverage_length"].mean(), 2)
+            min_coverage = group["coverage_length"].min()
+            max_coverage = group["coverage_length"].max()
+
+            block = f"""
+            <div class="card">
+                <h2>Gene {gene} Summary</h2>
+                <ul> Number of reads the gene is present in: {read_count}</ul>
+                <ul> Average coverage of the gene across reads: {avg_coverage}</ul>
+                <ul> Minimum coverage of the gene across reads: {min_coverage}</ul>
+                <ul> Maximum coverage of the gene across reads: {max_coverage}</ul>
+            </div>
+            """
+            html_blocks.append(block)
+
+        return "\n".join(html_blocks)
+
+    gene_summary_html = generate_gene_summary_html(df)
+
+    # Summarise reads
+    # min, max, median number of AMR annotations per read
+    # min, max, median number of AMR classes per read
+
     html = HTML_TEMPLATE.format(
         title=sample_id,
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
@@ -677,6 +714,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_counts_html=domain_counts_html,
         domain_profiles_html=domain_profiles_html,
         domain_genes_html=domain_genes_html,
+        gene_summary_html=gene_summary_html,
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
