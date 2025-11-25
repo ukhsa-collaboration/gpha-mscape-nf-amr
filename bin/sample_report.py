@@ -674,7 +674,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     def generate_gene_summary_html(df: pd.DataFrame) -> str:
         # Extract numeric coverage from COVERAGE column
         # Example: "1-861/861" -> 861
-        df["coverage_length"] = df["COVERAGE"].str.extract(r"/(\d+)").astype(int)
+        df["coverage_length"] = df["COVERAGE"].str.extract(r"-(\d+)/").astype(int)
 
         html_blocks = []
 
