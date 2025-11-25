@@ -757,7 +757,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_counts_html=domain_counts_html,
         domain_profiles_html=domain_profiles_html,
         domain_genes_html=domain_genes_html,
-        gene_summary_html=gene_summary_html,
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
