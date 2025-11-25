@@ -14,6 +14,7 @@ import argparse
 import base64
 import io
 import logging
+import re
 import sys
 import textwrap
 import time
