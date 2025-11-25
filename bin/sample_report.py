@@ -596,7 +596,7 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 def build_gene_coverage_tables(df):
     tables = {}
 
-    for gene, group in df.groupby("GENE" & df["species_name"].notnull()):
+    for gene_species, group in df.groupby(["GENE", "species_name"].notnull()):
         # Get gene length from value after '/'
         gene_length = int(group["COVERAGE"].iloc[0].split("/")[-1])
 
@@ -613,7 +613,7 @@ def build_gene_coverage_tables(df):
         # Create DataFrame for this gene
         coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
 
-        tables[gene] = coverage_df
+        tables[gene_species] = coverage_df
 
     return tables
 
