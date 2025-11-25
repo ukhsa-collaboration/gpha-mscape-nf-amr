@@ -707,7 +707,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         # Generate Coverage plots per species
 
         # Generate tables
-        coverage_tables = build_gene_coverage_table(df)
+        coverage_tables = build_gene_coverage_tables(df)
         print(coverage_tables)
 
         # for gene, group in df.groupby("GENE"):
