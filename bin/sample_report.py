@@ -534,58 +534,68 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 </style>
 </head>
 <body>
+<div class="card">
 <h1>AMR Report: {title}</h1>
 <p class="small">Generated: {timestamp}</p>
+</div>
 
 <div class="card">
-<h2>AMR Summary</h2>
+<h2>Summary</h2>
 <ul>
-    <li>Total AMR annotations: <b>{total_amr_count}</b>.</li>
-    <li>Total unique AMR elements: <b>{total_unique_genes}</b></li>
-        <ul>
-            <li>Top 5: <b>{gene_string}</b></li>
-            <li>Classes of resistance observed: {resistance_string}.</li>
-        </ul>
-</ul>
-{genes_sankey_html}
-<h3>Number of Reads with Annotated Genes, per Species</h3>
-<img class="img" src="{heatmap_img}" alt="Identity vs Coverage"/>
+    <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
+        <ul> Bacterial: {bacteria_amr_read_count}<ul>
+        <ul> Viral: {viral_amr_read_count}<ul>
+        <ul> Fungal: {fungal_amr_read_count}<ul>
+        <ul> Other: {other_amr_read_count}<ul>
+        <ul> Unclassified: {unclassified_amr_read_count}<ul>
+    </li>
 </div>
+#     <li>Total AMR annotations: <b>{total_amr_count}</b>.</li>
+#     <li>Total unique AMR elements: <b>{total_unique_genes}</b></li>
+#         <ul>
+#             <li>Top 5: <b>{gene_string}</b></li>
+#             <li>Classes of resistance observed: {resistance_string}.</li>
+#         </ul>
+# </ul>
+# {genes_sankey_html}
+# <h3>Number of Reads with Annotated Genes, per Species</h3>
+# <img class="img" src="{heatmap_img}" alt="Identity vs Coverage"/>
+# </div>
 
-<div class="card">
-<h2>Read Summary</h2>
-<ul>
-    <li> The median number of AMR annotations per read was {median_read_amr_count}.</li>
-    <li> The maximum number of AMR annotations per read was {max_read_amr_count}. {reads_w_max_amr_count} reads had this many AMR hits.<li>
-    <li> The median number of AMR classes per read was {median_read_class_count}.</li>
-    <li> The maximum number of AMR classes for a read was {max_read_class_count}. {reads_w_max_class_count} reads had this many AMR hits.<li>
-</ul>
-<h3>Plot of AMR Class Co-Occurance on Reads</h3>
-{coocc_fig}
-</div>
-<div class="card">
-<h2>Taxa Summary</h2>
-<p> 
-<ul>
-    <li>Total unique taxa associated with AMR annotations: <b>{no_of_taxa}</b>:</li>
-        <ul><li>Top 5: <b>{taxa_string}</b>.</li></ul>
-</ul>
-{species_sankey_html}
+# <div class="card">
+# <h2>Read Summary</h2>
+# <ul>
+#     <li> The median number of AMR annotations per read was {median_read_amr_count}.</li>
+#     <li> The maximum number of AMR annotations per read was {max_read_amr_count}. {reads_w_max_amr_count} reads had this many AMR hits.<li>
+#     <li> The median number of AMR classes per read was {median_read_class_count}.</li>
+#     <li> The maximum number of AMR classes for a read was {max_read_class_count}. {reads_w_max_class_count} reads had this many AMR hits.<li>
+# </ul>
+# <h3>Plot of AMR Class Co-Occurance on Reads</h3>
+# {coocc_fig}
+# </div>
+# <div class="card">
+# <h2>Taxa Summary</h2>
+# <p> 
+# <ul>
+#     <li>Total unique taxa associated with AMR annotations: <b>{no_of_taxa}</b>:</li>
+#         <ul><li>Top 5: <b>{taxa_string}</b>.</li></ul>
+# </ul>
+# {species_sankey_html}
 
-</div>
+# </div>
 
-<div class="card">
-<h2>Plots</h2>
-<h3>AMR Genes by Resistance Class</h3>
-<p>The number of unique reads annotated with a gene confering resistance to a given class of antimicrobial.</p>
-<img class="img" src="{bar_class_img}" alt="Class distribution"/>
+# <div class="card">
+# <h2>Plots</h2>
+# <h3>AMR Genes by Resistance Class</h3>
+# <p>The number of unique reads annotated with a gene confering resistance to a given class of antimicrobial.</p>
+# <img class="img" src="{bar_class_img}" alt="Class distribution"/>
 
 
 
-<div class="footer">
-<p>Source file: {source_file}</p>
-<p>Notes: Tables derived from input. 'RESISTANCE' column is split on ';' to produce class-level counts.</p>
-</div>
+# <div class="footer">
+# <p>Source file: {source_file}</p>
+# <p>Notes: Tables derived from input. 'RESISTANCE' column is split on ';' to produce class-level counts.</p>
+# </div>
 </body>
 </html>
 """  # noqa: E501
@@ -598,6 +608,9 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     # Create boolean columns for each resistance class
     res_expanded_df = explode_resistance(df)
     fp = Path(output_path, "output_with_booleans.csv")
+
+    # Get number of reads with AMR annotations
+    total_reads_w_amr = df["SEQUENCE"].nunique()
 
     unique_resistance_classes = (
         df["RESISTANCE"]
@@ -649,25 +662,26 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     html = HTML_TEMPLATE.format(
         title=sample_id,
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
-        summary_table=summary_html,
-        total_amr_count=len(df["SEQUENCE"]),
-        no_of_taxa=len(df["species_name"].unique()),
-        taxa_string=most_common_taxa_str,
-        total_unique_genes=len(df["GENE"].unique()),
-        gene_string=most_common_genes_str,
-        resistance_string=", ".join(unique_resistance_classes),
-        bar_class_img=bar_class_b64,
-        heatmap_img=heatplot_b64,
-        species_sankey_html=species_sankey_html,
-        genes_sankey_html=genes_sankey_html,
-        median_read_amr_count=read_amr_summary_dict["median_read_amr_count"],
-        max_read_amr_count=read_amr_summary_dict["max_read_amr_count"],
-        reads_w_max_amr_count=read_amr_summary_dict["reads_w_max_amr_count"],
-        median_read_class_count=read_amr_summary_dict["median_read_class_count"],
-        max_read_class_count=read_amr_summary_dict["max_read_class_count"],
-        reads_w_max_class_count=read_amr_summary_dict["reads_w_max_class_count"],
-        coocc_fig=coocc_fig,
-        source_file=amr_tsv,
+        total_reads_w_amr=total_reads_w_amr,
+        # summary_table=summary_html,
+        # total_amr_count=len(df["SEQUENCE"]),
+        # no_of_taxa=len(df["species_name"].unique()),
+        # taxa_string=most_common_taxa_str,
+        # total_unique_genes=len(df["GENE"].unique()),
+        # gene_string=most_common_genes_str,
+        # resistance_string=", ".join(unique_resistance_classes),
+        # bar_class_img=bar_class_b64,
+        # heatmap_img=heatplot_b64,
+        # species_sankey_html=species_sankey_html,
+        # genes_sankey_html=genes_sankey_html,
+        # median_read_amr_count=read_amr_summary_dict["median_read_amr_count"],
+        # max_read_amr_count=read_amr_summary_dict["max_read_amr_count"],
+        # reads_w_max_amr_count=read_amr_summary_dict["reads_w_max_amr_count"],
+        # median_read_class_count=read_amr_summary_dict["median_read_class_count"],
+        # max_read_class_count=read_amr_summary_dict["max_read_class_count"],
+        # reads_w_max_class_count=read_amr_summary_dict["reads_w_max_class_count"],
+        # coocc_fig=coocc_fig,
+        # source_file=amr_tsv,
     )
 
     fp = Path(output_path, str(f"{sample_id}_sample_amr_report.html"))
