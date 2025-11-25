@@ -546,7 +546,6 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     </li>
 </ul>
 </div>
-{gene_summary_html}
 
 </body>
 </html>
