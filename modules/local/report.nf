@@ -21,8 +21,8 @@ process GENERATE_REPORT{
     script:
     """
     sample_report.py \\
-        -i '${abricate_taxa_out}' \\
-        -e '${email}' \\
+        -i ${abricate_taxa_out} \\
+        -e ${email} \\
         -o ./
     """
 }
