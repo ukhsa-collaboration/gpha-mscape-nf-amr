@@ -91,6 +91,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
 
     # 2️⃣ Create a lookup dict to store results
     taxid_to_species = {}
+    taxid_to_domain = {}
 
     # 3️⃣ Query NCBI only once per unique taxid
     for taxid in unique_taxids:
@@ -101,27 +102,40 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
             # Extract lineage
             lineage_info = record.find(".//LineageEx")
             species_name = None
+            domain_name = None
+
             if lineage_info is not None:
                 for taxon in lineage_info:
                     rank = taxon.find("Rank").text
-                    print(rank)
                     name = taxon.find("ScientificName").text
-                    print(name)
+
+                    # Capture domain (superkingdom)
+                    if rank == "superkingdom":
+                        domain_name = name
+
+                    # Capture species
                     if rank == "species":
                         species_name = name
-                        break
 
-            # If the taxid itself is already at species level
+            # If species not found, use main ScientificName
             if not species_name:
                 species_name = record.find(".//ScientificName").text
 
+            # If domain not found, fallback to Unknown
+            if not domain_name:
+                domain_name = "Unknown"
+
             taxid_to_species[taxid] = species_name
-            time.sleep(0.4)  # Respect NCBI’s rate limit (max 3/sec)
+            taxid_to_domain[taxid] = domain_name
+
+            time.sleep(0.4)  # Respect NCBI’s rate limit
         except Exception:
             taxid_to_species[taxid] = "Unknown"
+            taxid_to_domain[taxid] = "Unknown"
 
-    # 4️⃣ Map the results back into your dataframe
+    # 4️⃣ Map results back into dataframe
     df["species_name"] = df["taxid"].astype(str).map(taxid_to_species)
+    df["domain"] = df["taxid"].astype(str).map(taxid_to_domain)
 
     return df
 
@@ -684,6 +698,7 @@ def main() -> None:
             sys.exit()
 
     df = simplify_taxa(email, df)
+    print(df)
     breakpoint()
     generate_html_report(df, output_path, sample_id, amr_tsv)
 
