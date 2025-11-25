@@ -592,6 +592,36 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # </div>
 
 
+# Function to build coverage table per gene
+def build_gene_coverage_tables(df):
+    tables = {}
+
+    for gene, group in df.groupby("GENE" & df["species_name"].notnull()):
+        # Get gene length from value after '/'
+        gene_length = int(group["COVERAGE"].iloc[0].split("/")[-1])
+
+        # Initialize coverage array
+        coverage_array = np.zeros(gene_length, dtype=int)
+
+        # Process each read
+        for cov in group["COVERAGE"]:
+            match = re.match(r"(\\d+)-(\\d+)/(\\d+)", cov)
+            if match:
+                start, end = int(match.group(1)), int(match.group(2))
+                coverage_array[start - 1 : end] += 1  # Increment coverage for positions
+
+        # Create DataFrame for this gene
+        coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
+
+        tables[gene] = coverage_df
+
+    return tables
+
+
+# Generate tables
+coverage_tables = build_gene_coverage_tables(df)
+
+
 # -------------------------
 # Main
 # -------------------------
@@ -678,24 +708,30 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
         html_blocks = []
 
-        for gene, group in df.groupby("GENE"):
-            read_count = group["SEQUENCE"].nunique()
-            avg_coverage = round(group["coverage_length"].mean(), 2)
-            min_coverage = group["coverage_length"].min()
-            max_coverage = group["coverage_length"].max()
+        # Generate Coverage plots per species
 
-            block = f"""
-            <div class="card">
-                <h2>Gene {gene} Summary</h2>
-                <ul> Number of reads the gene is present in: {read_count}</ul>
-                <ul> Average coverage of the gene across reads: {avg_coverage}</ul>
-                <ul> Minimum coverage of the gene across reads: {min_coverage}</ul>
-                <ul> Maximum coverage of the gene across reads: {max_coverage}</ul>
-            </div>
-            """
-            html_blocks.append(block)
+        # Generate tables
+        coverage_tables = build_gene_coverage_table
+        print(coverage_tables)
 
-        return "\n".join(html_blocks)
+        # for gene, group in df.groupby("GENE"):
+        #     read_count = group["SEQUENCE"].nunique()
+        #     avg_coverage = round(group["coverage_length"].mean(), 2)
+        #     min_coverage = group["coverage_length"].min()
+        #     max_coverage = group["coverage_length"].max()
+
+        #     block = f"""
+        #     <div class="card">
+        #         <h2>Gene {gene} Summary</h2>
+        #         <ul> Number of reads the gene is present in: {read_count}</ul>
+        #         <ul> Average coverage of the gene across reads: {avg_coverage}</ul>
+        #         <ul> Minimum coverage of the gene across reads: {min_coverage}</ul>
+        #         <ul> Maximum coverage of the gene across reads: {max_coverage}</ul>
+        #     </div>
+        #     """
+        #     html_blocks.append(block)
+
+        # return "\n".join(html_blocks)
 
     gene_summary_html = generate_gene_summary_html(df)
 
