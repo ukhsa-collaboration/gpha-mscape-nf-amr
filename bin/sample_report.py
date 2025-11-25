@@ -546,6 +546,8 @@ h1, h2, h3 {{ color: #0b4d6b; }}
     </li>
 </ul>
 </div>
+{gene_coverage_table_html}
+{gene_figure_html}
 
 </body>
 </html>
@@ -592,10 +594,92 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # </div>
 
 
+def coverage_stats_from_tables(coverage_tables: dict) -> pd.DataFrame:
+    """
+    coverage_tables: dict with keys (gene, species_name) and values DataFrame
+                     with columns ['Position', 'Coverage'].
+    Returns a DataFrame of summary statistics for each (gene, species).
+    """
+    rows = []
+    for (gene, species), df in coverage_tables.items():
+        # Ensure expected columns exist
+        if not {"Position", "Coverage"}.issubset(df.columns):
+            raise ValueError(f"Table for ({gene}, {species}) must have 'Position' and 'Coverage' columns.")
+
+        # Basic stats
+        ref_len = int(df["Position"].max())  # number of positions
+        covered_mask = df["Coverage"] > 0
+        covered_len = int(covered_mask.sum())  # positions with coverage > 0
+        pct_covered = 100.0 * covered_len / ref_len if ref_len > 0 else 0.0
+        total_cov = int(df["Coverage"].sum())  # area under coverage curve
+        mean_cov = float(df["Coverage"].mean())
+        median_cov = float(df["Coverage"].median())
+        min_cov = int(df["Coverage"].min())
+        max_cov = int(df["Coverage"].max())
+
+        # Coverage start/end (None if no coverage)
+        if covered_len > 0:
+            start_pos = int(df.loc[covered_mask, "Position"].min())
+            end_pos = int(df.loc[covered_mask, "Position"].max())
+        else:
+            start_pos = None
+            end_pos = None
+
+        rows.append(
+            {
+                "Gene": gene,
+                "Species": species,
+                "Reference length (bp)": ref_len,
+                "Covered length (bp)": covered_len,
+                "% Covered": round(pct_covered, 2),
+                "Total coverage (area)": total_cov,
+                "Mean coverage": round(mean_cov, 2),
+                "Median coverage": round(median_cov, 2),
+                "Min coverage": min_cov,
+                "Max coverage": max_cov,
+                "Start of coverage": start_pos if start_pos is not None else "-",
+                "End of coverage": end_pos if end_pos is not None else "-",
+            }
+        )
+
+    return pd.DataFrame(rows)
+
+
+def make_html_table(df_stats: pd.DataFrame, title: str = "Coverage Statistics") -> str:
+    """
+    Create a styled HTML table string from the stats DataFrame.
+    """
+    # Basic CSS for readability
+    css = """
+    <style>
+    .table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-family: Arial, Helvetica, sans-serif; }
+    .table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+    .table th { background: #f2f2f2; }
+    .card { border: 1px solid #e1e1e1; padding: 12px; border-radius: 6px; margin: 16px 0; background: #fff; }
+    h2 { color: #0b4d6b; margin: 0 0 8px 0; }
+    </style>
+    """
+
+    # Convert DataFrame to HTML
+    table_html = df_stats.to_html(index=False, classes=["table"], escape=False)
+
+    # Wrap in a card
+    html = f"""
+    {css}
+    <div class="card">
+      <h2>{escape(title)}</h2>
+      {table_html}
+    </div>
+    """
+    return html
+
+
 # Function to build coverage table per gene
 def generate_gene_summary_html(df: pd.DataFrame) -> str:
     """Generate gene coverage summary HTML blocks."""
-    tables = {}
+
+    # Generate tables for each gene-species combination
+    coverage_tables = {}
 
     for gene_species, group in df.groupby(["GENE", "species_name"]):
         # Get gene length from value after '/'
@@ -613,30 +697,46 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
         # Create DataFrame for this gene
         coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
 
-        print(gene_species[0])
+        coverage_tables[gene_species] = coverage_df
 
-    # # ✅ Group by gene and create plots
-    # genes = set([key[0] for key in tables.keys()])
+    #  Generate stats
+    df_stats = coverage_stats_from_tables(coverage_tables)
 
-    # gene_figures = []
-    # for gene in genes:
-    #     fig = go.Figure()
+    # Generate coverage plots per gene
+    for gene in df["GENE"].unique():
+        # Generate coverage plot per gene
+        fig = go.Figure()
 
-    #     # Add a line for each species for this gene
-    #     for (g, species), df in tables.items():
-    #         if g == gene:
-    #             fig.add_trace(go.Scatter(x=df["Position"], y=df["Coverage"], mode="lines", name=species))
+        # Add a line for each species for this gene
+        for (g, species), df in coverage_tables.items():
+            if g == gene:
+                fig.add_trace(go.Scatter(x=df["Position"], y=df["Coverage"], mode="lines", name=species))
 
-    #     # Customize layout
-    #     fig.update_layout(
-    #         title=f"Coverage Plot for Gene: {gene}",
-    #         xaxis_title="Position",
-    #         yaxis_title="Coverage",
-    #         template="plotly_white",
-    #     )
+        # Customize layout
+        fig.update_layout(
+            title=f"Coverage Plot for Gene: {gene}",
+            xaxis_title="Position",
+            yaxis_title="Coverage",
+            template="plotly_white",
+        )
 
-    #     # Show or save figure
-    #     gene_figures.append(fig)  # Use fig.write_image("coverage_plot_{gene}.png") to save
+        # Save plot as HTML div
+        cov_gene_figures = fig.to_html(full_html=False, include_plotlyjs="cdn")
+
+        gene_figure_html_block = f"""
+        <div class="card">
+            <h2>Gene {gene} Coverage Plot</h2>
+            {cov_gene_figures}
+        </div>
+        """
+
+        # Generate stats
+        df_stats = coverage_stats_from_tables(coverage_tables)
+
+        # Overall table
+        cov_table_html = make_html_table(df_stats, title="Coverage Statistics by Gene & Species")
+
+        return gene_figure_html_block, cov_table_html
 
     # html_blocks = []
 
@@ -742,7 +842,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     # Summarise Gene Content
 
-    generate_gene_summary_html(df)
+    gene_figure_html_block, cov_table_html = generate_gene_summary_html(df)
 
     # Summarise reads
     # min, max, median number of AMR annotations per read
@@ -756,6 +856,9 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_counts_html=domain_counts_html,
         domain_profiles_html=domain_profiles_html,
         domain_genes_html=domain_genes_html,
+        # Gene summaries
+        gene_figure_html=gene_figure_html_block,
+        gene_coverage_table_html=cov_table_html,
         # AMR Profiles
         # summary_table=summary_html,
         # total_amr_count=len(df["SEQUENCE"]),
