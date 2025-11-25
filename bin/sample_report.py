@@ -671,9 +671,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         domain_genes_html += f"<ul><b>{domain}</b>: {genes}</ul>\n"
 
     # Summarise Gene Content
-    # for each gene:
-    # Calculate the min, max, and average proportion of the gene in the sequence df['COVERAGE']
-
     def generate_gene_summary_html(df: pd.DataFrame) -> str:
         # Extract numeric coverage from COVERAGE column
         # Example: "1-861/861" -> 861
