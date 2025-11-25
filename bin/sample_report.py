@@ -618,6 +618,9 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     for domain in df["domain"].unique():
         domain_read_count = df[df["domain"] == domain]["SEQUENCE"].nunique()
         domain_read_count_dict[domain] = domain_read_count
+
+    print(domain_read_count_dict)
+    breakpoint()
     # Domain read counts in html
     domain_counts_html = ""
     for domain, count in domain_read_count_dict.items():
