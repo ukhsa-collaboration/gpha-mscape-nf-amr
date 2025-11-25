@@ -543,11 +543,11 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 <h2>Summary</h2>
 <ul>
     <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
-        <ul> Bacterial: {bacteria_amr_read_count}<ul>
-        <ul> Viral: {viral_amr_read_count}<ul>
-        <ul> Fungal: {fungal_amr_read_count}<ul>
-        <ul> Other: {other_amr_read_count}<ul>
-        <ul> Unclassified: {unclassified_amr_read_count}<ul>
+        # <ul> Bacterial: {bacteria_amr_read_count}<ul>
+        # <ul> Viral: {viral_amr_read_count}<ul>
+        # <ul> Fungal: {fungal_amr_read_count}<ul>
+        # <ul> Other: {other_amr_read_count}<ul>
+        # <ul> Unclassified: {unclassified_amr_read_count}<ul>
     </li>
 </div>
 #     <li>Total AMR annotations: <b>{total_amr_count}</b>.</li>
@@ -612,52 +612,52 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     # Get number of reads with AMR annotations
     total_reads_w_amr = df["SEQUENCE"].nunique()
 
-    unique_resistance_classes = (
-        df["RESISTANCE"]
-        .dropna()
-        .str.split(";")
-        .explode()
-        .str.strip()
-        .str.lower()  # or .str.capitalize() if you prefer
-        .dropna()
-        .unique()
-    )
+    # unique_resistance_classes = (
+    #     df["RESISTANCE"]
+    #     .dropna()
+    #     .str.split(";")
+    #     .explode()
+    #     .str.strip()
+    #     .str.lower()  # or .str.capitalize() if you prefer
+    #     .dropna()
+    #     .unique()
+    # )
 
-    res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
-    fp = Path(output_path, "res_counts_by_species.csv")
-    res_counts_by_species.to_csv(fp, index=True)
+    # res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
+    # fp = Path(output_path, "res_counts_by_species.csv")
+    # res_counts_by_species.to_csv(fp, index=True)
 
-    # Summary information for paragraphs:
-    def most_common_string(top5: tuple[object, int, float] | list[tuple[object, int, float]]) -> str:
-        most_common_list = []
-        most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
-        for item in top5[1:]:
-            most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
-        return str(", ".join(most_common_list))
+    # # Summary information for paragraphs:
+    # def most_common_string(top5: tuple[object, int, float] | list[tuple[object, int, float]]) -> str:
+    #     most_common_list = []
+    #     most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
+    #     for item in top5[1:]:
+    #         most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
+    #     return str(", ".join(most_common_list))
 
-    top5_spp = most_common(df["species_name"], top_n=5)
-    most_common_taxa_str = most_common_string(top5_spp)
+    # top5_spp = most_common(df["species_name"], top_n=5)
+    # most_common_taxa_str = most_common_string(top5_spp)
 
-    top5_genes = most_common(df["GENE"], top_n=5)
-    most_common_genes_str = most_common_string(top5_genes)
+    # top5_genes = most_common(df["GENE"], top_n=5)
+    # most_common_genes_str = most_common_string(top5_genes)
 
-    # create figures
-    fig1 = plot_class_bar(res_counts_by_species, output_path)
-    fig2 = heatplot(df, output_path)
+    # # create figures
+    # fig1 = plot_class_bar(res_counts_by_species, output_path)
+    # fig2 = heatplot(df, output_path)
 
-    species_sankey_html = sankey_html_from_counts(
-        df, "Total reads", "species_name", include_plotlyjs="cdn", full_html=False
-    )
+    # species_sankey_html = sankey_html_from_counts(
+    #     df, "Total reads", "species_name", include_plotlyjs="cdn", full_html=False
+    # )
 
-    genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE", include_plotlyjs="cdn", full_html=False)
+    # genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE", include_plotlyjs="cdn", full_html=False)
 
-    bar_class_b64 = fig_to_base64(fig1)
-    heatplot_b64 = fig_to_base64(fig2)
+    # bar_class_b64 = fig_to_base64(fig1)
+    # heatplot_b64 = fig_to_base64(fig2)
 
-    # tables to HTML
-    summary_html = df_to_html_table(res_counts_by_species)
+    # # tables to HTML
+    # summary_html = df_to_html_table(res_counts_by_species)
 
-    read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
+    # read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
 
     html = HTML_TEMPLATE.format(
         title=sample_id,
