@@ -607,7 +607,7 @@ def build_gene_coverage_tables(df):
         # Process each read
         for cov in group["COVERAGE"]:
             start = int(cov.split("-")[0])
-            end = int(cov.split("-")[1])
+            end = int(cov.split("-")[1].split("/")[0])
             coverage_array[start - 1 : end] += 1  # Increment coverage for positions
 
         # Create DataFrame for this gene
