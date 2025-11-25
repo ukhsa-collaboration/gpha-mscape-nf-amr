@@ -613,7 +613,7 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
         # Create DataFrame for this gene
         coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
 
-        print(gene_species)
+        print(gene_species[0])
 
     # # ✅ Group by gene and create plots
     # genes = set([key[0] for key in tables.keys()])
