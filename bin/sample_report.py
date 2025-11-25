@@ -102,7 +102,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
             species_name = None
             if lineage_info is not None:
                 for taxon in lineage_info:
-                    rank = taxon.find("Rank").text]
+                    rank = taxon.find("Rank").text
                     domain = taxon.find("Domain").text
                     print(domain)
                     print(rank)
