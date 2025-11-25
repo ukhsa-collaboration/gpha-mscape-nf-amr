@@ -615,9 +615,12 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
         # Count unique species
         species_list = domain_df["species_name"].unique()
-        print(species_list)
-        breakpoint()
-        domain_species_list_dict[domain] = species_list.join(", ")
+        if len(species_list) > 1:
+            domain_species_list_dict[domain] = species_list.join(", ")
+        elif len(species_list) == 1:
+            domain_species_list_dict[domain] = species_list[0]
+        else:
+            domain_species_list_dict[domain] = "No species level annotations."
 
     # Build HTML dynamically
     domain_counts_html = ""
