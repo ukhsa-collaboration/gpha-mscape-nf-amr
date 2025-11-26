@@ -754,12 +754,11 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
 
         coverage_tables[gene_species] = coverage_df
 
-    print(coverage_tables)
-    breakpoint()
-
     #  Generate stats
     df_stats = coverage_stats_from_tables(coverage_tables)
 
+    print(df_stats)
+    breakpoint()
     # Generate coverage plots per gene
     for gene in df["GENE"].unique():
         # Generate Figure
