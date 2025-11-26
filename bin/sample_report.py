@@ -860,6 +860,15 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     gene_figure_html_block, cov_table_html = generate_gene_summary_html(df)
 
     # Summarise reads
+    # Get unique resistance classes
+    unique_resistance_classes = (
+        df["RESISTANCE"].dropna().str.split(";").explode().str.strip().str.lower().dropna().unique()
+    ).tolist()
+    read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
+    # Generate a summary HTML table for reads with AMR annotations
+    print(read_amr_summary_dict)
+    breakpoint()
+
     # min, max, median number of AMR annotations per read
     # min, max, median number of AMR classes per read
 
@@ -875,17 +884,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
         gene_figure_html=gene_figure_html_block,
         gene_coverage_table_html=cov_table_html,
         # AMR Profiles
-        # summary_table=summary_html,
-        # total_amr_count=len(df["SEQUENCE"]),
-        # no_of_taxa=len(df["species_name"].unique()),
-        # taxa_string=most_common_taxa_str,
-        # total_unique_genes=len(df["GENE"].unique()),
-        # gene_string=most_common_genes_str,
-        # resistance_string=", ".join(unique_resistance_classes),
-        # bar_class_img=bar_class_b64,
-        # heatmap_img=heatplot_b64,
-        # species_sankey_html=species_sankey_html,
-        # genes_sankey_html=genes_sankey_html,
         # median_read_amr_count=read_amr_summary_dict["median_read_amr_count"],
         # max_read_amr_count=read_amr_summary_dict["max_read_amr_count"],
         # reads_w_max_amr_count=read_amr_summary_dict["reads_w_max_amr_count"],
