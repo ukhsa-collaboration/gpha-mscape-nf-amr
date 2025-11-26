@@ -756,46 +756,25 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
 
     #  Generate stats
     df_stats = coverage_stats_from_tables(coverage_tables)
+    # Create HTML table
+    cov_table_html = make_html_table(df_stats, title="AMR Gene Coverage Summary")
 
-    print(df_stats)
-    breakpoint()
+    gene_fig_list = []
     # Generate coverage plots per gene
     for gene in df["GENE"].unique():
         # Generate Figure
         gene_figs = gene_figures(df[df["GENE"] == gene])
         fig = gene_figs[gene]
-        gene_figure_html_block = make_gene_figure_html_block(gene, fig)
+        gene_fig_list.append(fig)
 
-        # Generate stats
-        df_stats = coverage_stats_from_tables(coverage_tables)
+    # Create HTML block for all gene figures
+    gene_figure_html_blocks = []
+    for gene, fig in zip(df["GENE"].unique(), gene_fig_list):
+        block = make_gene_figure_html_block(gene, fig)
+        gene_figure_html_blocks.append(block)
+    gene_figure_html = "\n".join(gene_figure_html_blocks)
 
-        # Overall table
-        cov_table_html = make_html_table(df_stats, title="Coverage Statistics by Gene & Species")
-
-        return gene_figure_html_block, cov_table_html
-
-    # html_blocks = []
-
-    # for gene, group in df.groupby("GENE"):
-    #     read_count = group["SEQUENCE"].nunique()
-    #     avg_coverage = round(group["coverage_length"].mean(), 2)
-    #     min_coverage = group["coverage_length"].min()
-    #     max_coverage = group["coverage_length"].max()
-
-    #     block = f"""
-    #     <div class="card">
-    #         <h2>Gene {gene} Summary</h2>
-    #         <ul> Number of reads the gene is present in: {read_count}</ul>
-    #         <ul> Average coverage of the gene across reads: {avg_coverage}</ul>
-    #         <ul> Minimum coverage of the gene across reads: {min_coverage}</ul>
-    #         <ul> Maximum coverage of the gene across reads: {max_coverage}</ul>
-    #     </div>
-    #     """
-    #     html_blocks.append(block)
-
-    # return "\n".join(html_blocks)
-
-    # return tables, gene_figures
+    return cov_table_html, gene_figure_html
 
 
 # -------------------------
