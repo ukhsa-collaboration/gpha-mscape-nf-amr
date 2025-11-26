@@ -861,12 +861,11 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     # Summarise reads
     # Get unique resistance classes
-    unique_resistance_classes = (
-        df["RESISTANCE"].dropna().str.split(";").explode().str.strip().str.lower().dropna().unique()
-    ).tolist()
-    read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
+    unique_genes = df["GENE"].dropna().str.strip().str.upper().unique().tolist()
+
+    # read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
     # Generate a summary HTML table for reads with AMR annotations
-    print(read_amr_summary_dict)
+    print(unique_genes)
     breakpoint()
 
     # min, max, median number of AMR annotations per read
