@@ -611,7 +611,6 @@ def coverage_stats_from_tables(coverage_tables: dict) -> pd.DataFrame:
         covered_mask = df["Coverage"] > 0
         covered_len = int(covered_mask.sum())  # positions with coverage > 0
         pct_covered = 100.0 * covered_len / ref_len if ref_len > 0 else 0.0
-        total_cov = int(df["Coverage"].sum())  # area under coverage curve
         mean_cov = float(df["Coverage"].mean())
         median_cov = float(df["Coverage"].median())
         min_cov = int(df["Coverage"].min())
@@ -632,7 +631,6 @@ def coverage_stats_from_tables(coverage_tables: dict) -> pd.DataFrame:
                 "Reference length (bp)": ref_len,
                 "Covered length (bp)": covered_len,
                 "% Covered": round(pct_covered, 2),
-                "Total coverage (area)": total_cov,
                 "Mean coverage": round(mean_cov, 2),
                 "Median coverage": round(median_cov, 2),
                 "Min coverage": min_cov,
