@@ -672,6 +672,63 @@ def make_html_table(df_stats: pd.DataFrame, title: str = "Coverage Statistics") 
     return html
 
 
+def gene_figures(df: pd.DataFrame) -> dict[str, go.Figure]:
+    """
+    Generate coverage plots per gene using Plotly.
+    Returns a dictionary mapping gene names to Plotly Figure objects.
+    """
+    gene_figs = {}
+
+    for gene in df["GENE"].unique():
+        fig = go.Figure()
+
+        # Add a line for each species for this gene
+        for (g, species), group in df.groupby(["GENE", "species_name"]):
+            if g == gene:
+                # Create coverage array
+                gene_length = int(group["COVERAGE"].iloc[0].split("/")[-1])
+                coverage_array = np.zeros(gene_length, dtype=int)
+
+                for cov in group["COVERAGE"]:
+                    start = int(cov.split("-")[0])
+                    end = int(cov.split("-")[1].split("/")[0])
+                    coverage_array[start - 1 : end] += 1  # Increment coverage for positions
+
+                coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
+
+                fig.add_trace(
+                    go.Scatter(x=coverage_df["Position"], y=coverage_df["Coverage"], mode="lines", name=species)
+                )
+
+        # Customize layout
+        fig.update_layout(
+            title=f"Coverage Plot for Gene: {gene}",
+            xaxis_title="Position",
+            yaxis_title="Coverage",
+            template="plotly_white",
+        )
+
+        gene_figs[gene] = fig
+
+    return gene_figs
+
+
+def make_gene_figure_html_block(gene: str, fig: go.Figure) -> str:
+    """
+    Create an HTML block for a gene coverage figure.
+    """
+    # Save plot as HTML div
+    cov_gene_figures = fig.to_html(full_html=False, include_plotlyjs="cdn")
+
+    gene_figure_html_block = f"""
+    <div class="card">
+        <h2>Gene {gene} Coverage Plot</h2>
+        {cov_gene_figures}
+    </div>
+    """
+    return gene_figure_html_block
+
+
 # Function to build coverage table per gene
 def generate_gene_summary_html(df: pd.DataFrame) -> str:
     """Generate gene coverage summary HTML blocks."""
@@ -697,36 +754,18 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
 
         coverage_tables[gene_species] = coverage_df
 
+    print(coverage_tables)
+    breakpoint()
+
     #  Generate stats
     df_stats = coverage_stats_from_tables(coverage_tables)
 
     # Generate coverage plots per gene
     for gene in df["GENE"].unique():
-        # Generate coverage plot per gene
-        fig = go.Figure()
-
-        # Add a line for each species for this gene
-        for (g, species), df in coverage_tables.items():
-            if g == gene:
-                fig.add_trace(go.Scatter(x=df["Position"], y=df["Coverage"], mode="lines", name=species))
-
-        # Customize layout
-        fig.update_layout(
-            title=f"Coverage Plot for Gene: {gene}",
-            xaxis_title="Position",
-            yaxis_title="Coverage",
-            template="plotly_white",
-        )
-
-        # Save plot as HTML div
-        cov_gene_figures = fig.to_html(full_html=False, include_plotlyjs="cdn")
-
-        gene_figure_html_block = f"""
-        <div class="card">
-            <h2>Gene {gene} Coverage Plot</h2>
-            {cov_gene_figures}
-        </div>
-        """
+        # Generate Figure
+        gene_figs = gene_figures(df[df["GENE"] == gene])
+        fig = gene_figs[gene]
+        gene_figure_html_block = make_gene_figure_html_block(gene, fig)
 
         # Generate stats
         df_stats = coverage_stats_from_tables(coverage_tables)
