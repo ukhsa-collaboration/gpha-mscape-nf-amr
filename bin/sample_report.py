@@ -862,9 +862,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
     # Summarise reads
     # Get unique resistance classes
     unique_genes = df["GENE"].dropna().str.strip().str.upper().unique().tolist()
-    # Create a dataframe with read id, gene combinations, and count unique genes per sequence
-    df_reads_genes = df[["SEQUENCE", "GENE"]].dropna().drop_duplicates()
-    print(df_reads_genes)
+    # Create a dataframe with SEQUENCE, each GENE associated with SEQUENCE
 
     # read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
     # Generate a summary HTML table for reads with AMR annotations
