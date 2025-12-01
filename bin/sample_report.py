@@ -866,7 +866,6 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     # read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
     # Generate a summary HTML table for reads with AMR annotations
-    breakpoint()
 
     # min, max, median number of AMR annotations per read
     # min, max, median number of AMR classes per read
