@@ -921,7 +921,6 @@ def main() -> None:
             sys.exit()
 
     df = simplify_taxa(email, df)
-    print(df)
 
     generate_html_report(df, output_path, sample_id, amr_tsv)
 
