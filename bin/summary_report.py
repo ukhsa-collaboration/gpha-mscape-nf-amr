@@ -129,6 +129,41 @@ def format_dates(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def domain_amr_read_counts(df: pd.DataFrame) -> pd.DataFrame:
+    """Generate figures for number of reads annotated with AMR per species per domain."""
+    amr_annotations_per_domain_fig_list = []
+    # for each domain
+    for domain in df["domain"].unique():
+        print(domain)
+        domain_df = df[df["domain"] == domain]
+        # summarise the number of unique SEQUENCE per climb_id per species
+        species_sample_amr_reads = (
+            domain_df.groupby(["climb_id", "species_name"])["SEQUENCE"]
+            .nunique()
+            .reset_index(name="unique_amr_sequence_count")
+        )
+        # Generate a box-whisker plot showing the distribution of unique_amr_sequence_count per species with plotly
+        print(species_sample_amr_reads)
+
+        fig = px.box(
+            species_sample_amr_reads,
+            x="species_name",
+            y="unique_amr_sequence_count",
+            title=f"Distribution of Unique AMR Sequences per Species in {domain}",
+            labels={"species_name": "Taxa", "unique_amr_sequence_count": "# Reads with AMR Annotations, per sample"},
+        )
+
+        fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
+        amr_annotations_per_domain_fig_list.append(fig)
+
+    amr_annotations_per_domain_html_blocks = []
+    for fig in amr_annotations_per_domain_fig_list:
+        amr_annotations_per_domain_html_blocks.append(fig.to_html(full_html=False, include_plotlyjs="cdn"))
+
+    amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
+    return amr_annotations_per_domain_html
+
+
 def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> None:
     """Generate line graph of AMR sample counts over time."""
     logger.info("Generating AMR sample counts over time.")
@@ -178,36 +213,7 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     )
 
     # Figures for number of reads annotated with AMR per species per domain
-    amr_annotations_per_domain_fig_list = []
-    # for each domain
-    for domain in df["domain"].unique():
-        print(domain)
-        domain_df = df[df["domain"] == domain]
-        # summarise the number of unique SEQUENCE per climb_id per species
-        species_sample_amr_reads = (
-            domain_df.groupby(["climb_id", "species_name"])["SEQUENCE"]
-            .nunique()
-            .reset_index(name="unique_amr_sequence_count")
-        )
-        # Generate a box-whisker plot showing the distribution of unique_amr_sequence_count per species with plotly
-        print(species_sample_amr_reads)
-
-        fig = px.box(
-            species_sample_amr_reads,
-            x="species_name",
-            y="unique_amr_sequence_count",
-            title=f"Distribution of Unique AMR Sequences per Species in {domain}",
-            labels={"species_name": "Taxa", "unique_amr_sequence_count": "# Reads with AMR Annotations, per sample"},
-        )
-
-        fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
-        amr_annotations_per_domain_fig_list.append(fig)
-
-    amr_annotations_per_domain_html_blocks = []
-    for fig in amr_annotations_per_domain_fig_list:
-        amr_annotations_per_domain_html_blocks.append(fig.to_html(full_html=False, include_plotlyjs="cdn"))
-
-    amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
+    amr_annotations_per_domain_html = domain_amr_read_counts(df, output_dir)
 
     # Generate line graph with the number of samples with AMR annotations over time, each line is a domain, grouped by week
     html_fig_samples_over_time = amr_sample_counts_over_time(df, output_dir)
