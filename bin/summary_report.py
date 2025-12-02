@@ -129,6 +129,39 @@ def format_dates(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> None:
+    """Generate line graph of AMR sample counts over time."""
+    logger.info("Generating AMR sample counts over time.")
+
+    # Group by epi_week_year and domain, count unique climb_id
+    time_series_df = df.groupby(["epi_week_year", "domain"])["climb_id"].nunique().reset_index(name="amr_sample_count")
+
+    # Generate line plot with plotly
+    fig = px.line(
+        time_series_df,
+        x="epi_week_year",
+        y="amr_sample_count",
+        color="domain",
+        title="Number of Samples with AMR Annotations Over Time",
+        labels={
+            "epi_week_year": "Epi Week-Year",
+            "amr_sample_count": "# Samples with AMR Annotations",
+            "domain": "Domain Affiliation",
+        },
+    )
+    fig.update_layout(xaxis_tickangle=-45)
+
+    fig.update_yaxes(
+        tickmode="linear",  # ensures evenly spaced ticks
+        dtick=1,  # step size of 1 for whole numbers
+    )
+
+    # Save figure to HTML
+    fig.write_html(Path(output_dir) / "amr_sample_counts_over_time.html")
+    fig.to_html(full_html=False, include_plotlyjs="cdn")
+    return fig
+
+
 def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     """Generate summary statistics and save to HTML report."""
     logger.info("Generating summary statistics.")
@@ -166,6 +199,7 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
             title=f"Distribution of Unique AMR Sequences per Species in {domain}",
             labels={"species_name": "Taxa", "unique_amr_sequence_count": "# Reads with AMR Annotations, per sample"},
         )
+
         fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
         amr_annotations_per_domain_fig_list.append(fig)
 
@@ -176,21 +210,9 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
 
     # Generate line graph with the number of samples with AMR annotations over time, each line is a domain, grouped by week
-    samples_over_time_df = (
-        df.groupby(["epi_week_year", "domain"])["climb_id"].nunique().reset_index(name="num_samples")
-    ).sort_values("epi_week_year")
-    fig_samples_over_time = px.line(
-        samples_over_time_df,
-        x="epi_week_year",
-        y="num_samples",
-        color="domain",
-        title="Number of Samples with AMR Annotations Over Time",
-        labels={"epi_week_year": "Epi Week-Year", "num_samples": "# Samples with AMR Annotations"},
-    )
-    fig_samples_over_time.write_html(Path(output_dir) / "samples_with_amr_over_time.html")
-    fig_samples_over_time_html = fig_samples_over_time.to_html(full_html=False, include_plotlyjs="cdn")
+    html_fig_samples_over_time = amr_sample_counts_over_time(df, output_dir)
 
-    return amr_annotations_per_domain_html
+    return amr_annotations_per_domain_html, html_fig_samples_over_time
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
