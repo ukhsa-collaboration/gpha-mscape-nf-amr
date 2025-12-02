@@ -129,6 +129,15 @@ def format_dates(df: pd.DataFrame, date_column: str) -> pd.DataFrame:
     return df
 
 
+def total_sample_counts(df: pd.DataFrame) -> pd.DataFrame:
+    """Generate a dataframe with the total sample counts per epi week year."""
+    total_samples_epi_week_df = df.groupby("epi_week_year")["climb_id"].nunique().reset_index(name="total_sample_count")
+    print(total_samples_epi_week_df)
+    total_samples = df["climb_id"].nunique()
+    logger.info("Total number of samples: %d", total_samples)
+    return total_samples, total_samples_epi_week_df
+
+
 def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     """Generate figures for number of reads annotated with AMR per species per domain."""
     amr_annotations_per_domain_fig_list = []
@@ -247,14 +256,14 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     metadata_df = format_dates(metadata_df, date_column="published_date")
 
-    # # Merge data with metadata
-    # merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
-    # logger.info("Merged data with metadata. Total records: %d", len(merged_df))
+    # Merge data with metadata
+    merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
+    logger.info("Merged data with metadata. Total records: %d", len(merged_df))
 
-    # # Generate Summary Statement for report
-    # summary_stats(merged_df, metadata_df, output_dir)
+    # Generate Summary Statement for report
+    summary_stats(merged_df, metadata_df, output_dir)
 
-    # logger.info("Summary report generated at %s", output_dir)
+    logger.info("Summary report generated at %s", output_dir)
 
 
 def main() -> None:
