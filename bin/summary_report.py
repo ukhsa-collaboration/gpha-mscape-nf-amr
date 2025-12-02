@@ -109,7 +109,7 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     # Format publish date
     merged_df["publish_date"] = pd.to_datetime(merged_df["publish_date"]).dt.strftime("%Y-%m-%d")
-    print(merged_df["publish_date"])
+    print(merged_df.columns)
 
     logger.info("Summary report generated at %s", output_dir)
 
