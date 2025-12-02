@@ -1,9 +1,7 @@
 #!/usr/bin/env nextflow
-
-nextflow.enable.dsl=2
-
 process GZ_TO_FASTQ{
     tag "${climb_id}"
+    label 'process_low'
     container 'community.wave.seqera.io/library/pip_gunzip:1ea8ddc0b75355cd'
 
     input:

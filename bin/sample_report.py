@@ -13,6 +13,8 @@ Produces:
 import argparse
 import base64
 import io
+import logging
+import sys
 import textwrap
 import time
 import xml.etree.ElementTree as ET
@@ -20,13 +22,15 @@ from collections.abc import Iterable
 from datetime import UTC, datetime
 from pathlib import Path
 
-import matplotlib.pyplot as plt  # type: ignore
-import numpy as np  # type: ignore
-import pandas as pd  # type: ignore
-import plotly.graph_objects as go  # type: ignore
-from Bio import Entrez  # type: ignore
-from matplotlib.axes import Axes  # type: ignore
-from matplotlib.figure import Figure  # type: ignore
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+from Bio import Entrez
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
+
+logger = logging.getLogger(__name__)
 
 
 # -------------------------
@@ -47,8 +51,26 @@ def get_args() -> argparse.Namespace:
     )
     parser.add_argument("-o", "--output", help="Output folder.", required=True, type=Path)
     parser.add_argument("-e", "--email", help="Email address to query Enterez.", required=True, type=str)
+    parser.add_argument("-t", "--taxon_id", help="Taxon ID to filter reads on.", required=False, type=int)
     args = parser.parse_args()
     return args
+
+
+# Logger set up
+def set_up_logger(log_file: str) -> None:
+    """Example logger set up which can be amended as required. In this example,
+    all logging messages go a log file. The logger is
+    set to append mode so logs from older runs are not overwritten.
+    """
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
+
+    out_handler = logging.FileHandler(log_file, mode="a")
+    out_handler.setFormatter(formatter)
+    out_handler.setLevel(logging.INFO)
+    logger.addHandler(out_handler)
 
 
 def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
@@ -220,6 +242,7 @@ def plot_class_bar(df: pd.DataFrame, output_path: str) -> Figure:
     return fig
 
 
+# TODO: Replace with plotly
 def heatplot(df: pd.DataFrame, output_path: str) -> Figure:
     # Sanity check: make sure required columns exist
     required = {"GENE", "species_name", "SEQUENCE"}
@@ -637,10 +660,25 @@ def main() -> None:
     email = args.email
     sample_id = Path(amr_tsv).name.split("_")[0]
 
+    log_file = Path(output_path, "amr_html_report_log.txt")
+    set_up_logger(log_file)
+
+    # Add in rest of code including logging messages:
+    logger.info("AMR report generation started.")  # Example only - add more informative logging messages
+
     df = load_table(amr_tsv)
+    if args.taxon_id:
+        df = df[df["taxid"] == args.taxon_id]
+        if df.empty:
+            logger.info("Dataframe is empty. No results match Taxon ID %s", args.taxon_id)
+            sys.exit()
+
     df = simplify_taxa(email, df)
 
     generate_html_report(df, output_path, sample_id, amr_tsv)
+
+    # Write to logs if component finished successfully (or not):
+    logger.info("AMR report generation successfully completed")
 
 
 if __name__ == "__main__":

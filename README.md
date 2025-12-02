@@ -16,6 +16,7 @@ nextflow run \
     -profile docker \
     --samplesheet <SAMPLESHEET.csv> \
     --output <OUTDIR> \
+    --email <EMAIL> \
     -e.ONYX_DOMAIN=$ONYX_DOMAIN \
     -e.ONYX_TOKEN=$ONYX_TOKEN \
 ```
@@ -28,6 +29,7 @@ nextflow run \
     -profile docker \
     --unique_id <UNIQUE_ID> \
     --output <OUTDIR> \
+    --email <EMAIL> \
     -e.ONYX_DOMAIN=$ONYX_DOMAIN \
     -e.ONYX_TOKEN=$ONYX_TOKEN \
 ```
