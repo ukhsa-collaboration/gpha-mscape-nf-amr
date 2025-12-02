@@ -3,6 +3,7 @@ process RUN_ABRICATE{
     tag "${climb_id}"
     label 'process_medium'
     container 'community.wave.seqera.io/library/abricate:1.0.1--0fd3388e9b365eeb'
+    maxForks 4
 
     input:
     tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
