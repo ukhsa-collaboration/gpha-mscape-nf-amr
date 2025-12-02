@@ -189,6 +189,14 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     # Format publish date
     merged_df["published_date"] = pd.to_datetime(merged_df["published_date"]).dt.strftime("%Y-%m-%d")
+    # Create epi week-year column
+    df["epi_year"] = df["published_date"].dt.isocalendar().year
+    df["epi_week"] = df["published_date"].dt.isocalendar().week
+
+    # Combine into epi week-year format (e.g., 2025-W01)
+    df["epi_week_year"] = df["epi_year"].astype(str) + "-W" + df["epi_week"].astype(str).str.zfill(2)
+
+    print(df["epi_week_year"])
 
     # Generate Summary Statement for report
     summary_stats(merged_df, output_dir)
