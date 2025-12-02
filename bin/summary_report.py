@@ -175,18 +175,20 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
 
     amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
 
-    # Generate line graph with the number of AMR annotations over time, each line is a domain, grouped by week
-    amr_over_time_df = df.groupby(["epi_week_year", "domain"]).size().reset_index(name="amr_annotation_count")
-    amr_over_time_fig = px.line(
-        amr_over_time_df,
+    # Generate line graph with the number of samples with AMR annotations over time, each line is a domain, grouped by week
+    samples_over_time_df = (
+        df.groupby(["epi_week_year", "domain"])["climb_id"].nunique().reset_index(name="num_samples")
+    ).sort_values("epi_week_year")
+    fig_samples_over_time = px.line(
+        samples_over_time_df,
         x="epi_week_year",
-        y="amr_annotation_count",
+        y="num_samples",
         color="domain",
-        title="Number of AMR Annotations Over Time by Domain",
-        labels={"epi_week_year": "Epi Week-Year", "amr_annotation_count": "# AMR Annotations"},
+        title="Number of Samples with AMR Annotations Over Time",
+        labels={"epi_week_year": "Epi Week-Year", "num_samples": "# Samples with AMR Annotations"},
     )
-    amr_over_time_fig.write_html(Path(output_dir) / "amr_annotations_over_time.html")
-    amr_over_time_html = amr_over_time_fig.to_html(full_html=False, include_plotlyjs="cdn")
+    fig_samples_over_time.write_html(Path(output_dir) / "samples_with_amr_over_time.html")
+    fig_samples_over_time_html = fig_samples_over_time.to_html(full_html=False, include_plotlyjs="cdn")
 
     return amr_annotations_per_domain_html
 
