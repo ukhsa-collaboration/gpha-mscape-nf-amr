@@ -125,13 +125,17 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
         .reset_index()
     )
     print(summary_stats_df)
-    # for each domain, generate a box and whisker plot showing the distribution of AMR hits per species_name
-    for domain in summary_df["domain"].unique():
-        domain_df = summary_df[summary_df["domain"] == domain]
-        plot = domain_df.boxplot(column="amr_hit_count", by="domain", grid=False)
-        fig = plot.get_figure()
-        fig.savefig(Path(output_dir) / f"{domain}_amr_hit_distribution.png")
-        fig.clf()
+    # for each domain
+    for domain in df["domain"].unique():
+        print(domain)
+        domain_df = df[df["domain"] == domain]
+        # summarise the number of unique SEQUENCE per climb_id per species
+        species_sample_amr_reads = (
+            domain_df.groupby(["climb_id", "species_name"])["SEQUENCE"]
+            .nunique()
+            .reset_index(name="unique_amr_sequence_count")
+        )
+        print(species_sample_amr_reads)
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
