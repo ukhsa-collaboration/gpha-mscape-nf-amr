@@ -116,9 +116,16 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     # Number of samples with AMR annotations
     num_samples = df["climb_id"].nunique()
     logger.info("Number of samples with AMR annotations: %d", num_samples)
-    # Summary table of SEQUENCE per domain, min, max, median
-    summary_table = df.groupby("domain")["SEQUENCE"]
-    print(summary_table)
+    # Generate the Number of unique SEQUENCE per climb_id per domain
+    summary = (
+        df.groupby(["climb_id", "domain"])["SEQUENCE"]
+        .nunique()
+        .reset_index()
+        .groupby("domain")["SEQUENCE"]
+        .sum()
+        .reset_index()
+    )
+    print(summary)
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
