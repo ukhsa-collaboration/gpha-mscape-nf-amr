@@ -215,8 +215,9 @@ def summary_stats(df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) 
 
     # Number of samples with AMR annotations
     num_amr_samples = df["climb_id"].nunique()
-    per_amr_samples = (num_amr_samples / total_samples) * 100
-    logger.info("Number of samples with AMR annotations: %d (%f\%)", num_amr_samples, per_amr_samples)
+    # percentage of samples with AMR annotations to 2 decimal places
+    per_amr_samples = round((num_amr_samples / total_samples) * 100), 2)
+    logger.info("Number of samples with AMR annotations: %d (%d%)", num_amr_samples, per_amr_samples)
     # Create a dataframe where the first column is the climb id, the second is the domain, and the third is the number of reads
     summary_df = df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
     # From the summary_df, create a summary table that shows the min, max, median, and mean number of amr hits per domain
