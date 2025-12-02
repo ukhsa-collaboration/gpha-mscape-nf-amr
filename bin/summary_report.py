@@ -243,18 +243,19 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
     df["climb_id"] = df["#FILE"].str.replace(".fastq", "", regex=False)
 
     # Load metadata
-    metadata_df = pd.read_csv(metadata_file, sep=None)
+    metadata_df = pd.read_csv(metadata_file, sep=",")
+    print(metadata_df.head())
 
-    metadata_df = format_dates(metadata_df, date_column="published_date")
+    # metadata_df = format_dates(metadata_df, date_column="published_date")
 
-    # Merge data with metadata
-    merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
-    logger.info("Merged data with metadata. Total records: %d", len(merged_df))
+    # # Merge data with metadata
+    # merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
+    # logger.info("Merged data with metadata. Total records: %d", len(merged_df))
 
-    # Generate Summary Statement for report
-    summary_stats(merged_df, metadata_df, output_dir)
+    # # Generate Summary Statement for report
+    # summary_stats(merged_df, metadata_df, output_dir)
 
-    logger.info("Summary report generated at %s", output_dir)
+    # logger.info("Summary report generated at %s", output_dir)
 
 
 def main() -> None:
@@ -264,7 +265,7 @@ def main() -> None:
     log_file = Path(args.output_dir, "amr_html_summary_report_log.txt")
     set_up_logger(log_file)
     logger.info("Starting summary report generation.")
-    df = pd.read_csv(args.input_tsv, sep=None)
+    df = pd.read_csv(args.input_tsv, sep="\t")
     logger.info("Simplifying taxa using Enterez.")
     df = simplify_taxa(args.email, df)
     generate_summary_report(df, args.metadata, args.output_dir)
