@@ -132,7 +132,6 @@ def format_dates(df: pd.DataFrame, date_column: str) -> pd.DataFrame:
 def total_sample_counts(df: pd.DataFrame) -> pd.DataFrame:
     """Generate a dataframe with the total sample counts per epi week year."""
     total_samples_epi_week_df = df.groupby("epi_week_year")["climb_id"].nunique().reset_index(name="total_sample_count")
-    print(total_samples_epi_week_df)
     total_samples = df["climb_id"].nunique()
     logger.info("Total number of samples: %d", total_samples)
     return total_samples, total_samples_epi_week_df
@@ -212,20 +211,12 @@ def summary_stats(df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) 
     """Generate summary statistics and save to HTML report."""
     logger.info("Generating summary statistics.")
     # Total number of Samples
-    total_samples = metadata_df["climb_id"].nunique()
-    logger.info("Total number of samples: %d", total_samples)
-
-    # Create df for number of samples per epi week year
-    samples_per_epi_week_year = (
-        metadata_df.groupby("epi_week_year")["climb_id"].nunique().reset_index(name="num_samples")
-    )
-    logger.info("Samples per epi week year:\n%s", samples_per_epi_week_year.to_string(index=False))
-
-    print(samples_per_epi_week_year)
+    total_samples, total_samples_epi_week_df = total_sample_counts(metadata_df)
 
     # Number of samples with AMR annotations
-    num_samples = df["climb_id"].nunique()
-    logger.info("Number of samples with AMR annotations: %d", num_samples)
+    num_amr_samples = df["climb_id"].nunique()
+    per_amr_samples = (num_amr_samples / total_samples) * 100
+    print("Number of samples with AMR annotations: %d (%f\%)", num_amr_samples, per_amr_samples)
     # Create a dataframe where the first column is the climb id, the second is the domain, and the third is the number of reads
     summary_df = df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
     # From the summary_df, create a summary table that shows the min, max, median, and mean number of amr hits per domain
