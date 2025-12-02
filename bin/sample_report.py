@@ -30,6 +30,8 @@ from Bio import Entrez
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
+logger = logging.getLogger(__name__)
+
 
 # -------------------------
 # Utilities
@@ -55,7 +57,7 @@ def get_args() -> argparse.Namespace:
 
 
 # Logger set up
-def set_up_logger(log_file: str) -> logging.Logger:
+def set_up_logger(log_file: str) -> None:
     """Example logger set up which can be amended as required. In this example,
     all logging messages go a log file. The logger is
     set to append mode so logs from older runs are not overwritten.
@@ -69,8 +71,6 @@ def set_up_logger(log_file: str) -> logging.Logger:
     out_handler.setFormatter(formatter)
     out_handler.setLevel(logging.INFO)
     logger.addHandler(out_handler)
-
-    return logger
 
 
 def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
@@ -662,7 +662,6 @@ def main() -> None:
 
     log_file = Path(output_path, "amr_html_report_log.txt")
     set_up_logger(log_file)
-    logger = logging.getLogger(__name__)
 
     # Add in rest of code including logging messages:
     logger.info("AMR report generation started.")  # Example only - add more informative logging messages
