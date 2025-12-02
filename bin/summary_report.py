@@ -114,6 +114,8 @@ def main() -> None:
     set_up_logger(log_file)
     logger.info("Starting summary report generation.")
     df = pd.read_csv(args.input_tsv, sep="\t")
+    print(df).head()
+    breakpoint()
     logger.info("Simplifying taxa using Enterez.")
     df = simplify_taxa(args.email, df)
     generate_summary_report(df, args.metadata, args.output_dir)
