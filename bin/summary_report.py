@@ -187,8 +187,11 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
     # Remove ".fasta" from all items in the 'filename' column
     df["climb_id"] = df["#FILE"].str.replace(".fasta", "", regex=False)
 
+    print(df["climb_id"])
     # Load metadata
     metadata = pd.read_csv(metadata_file, sep=",")
+    print(metadata["climb_id"])
+    breakpoint()
 
     # Merge data with metadata
     merged_df = pd.merge(df, metadata, on="climb_id", how="left")
