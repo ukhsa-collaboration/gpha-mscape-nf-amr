@@ -15,6 +15,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import pandas as pd
+import plotly.express as px
 from Bio import Entrez
 
 logger = logging.getLogger(__name__)
@@ -135,7 +136,16 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
             .nunique()
             .reset_index(name="unique_amr_sequence_count")
         )
-        print(species_sample_amr_reads)
+        # Generate a box-whisker plot showing the distribution of unique_amr_sequence_count per species with plotly
+
+        fig = px.box(
+            species_sample_amr_reads,
+            x="species_name",
+            y="unique_amr_sequence_count",
+            title=f"Distribution of Unique AMR Sequences per Species in {domain}",
+            labels={"species_name": "Species", "unique_amr_sequence_count": "# Reads with AMR Annotations"},
+        )
+        fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
