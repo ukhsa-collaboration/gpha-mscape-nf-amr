@@ -94,6 +94,12 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
+    """Generate summary statistics and save to HTML report."""
+    summary = df.groupby("species_name").size().reset_index(name="count")
+    print(summary)
+
+
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
     """Generate a summary report in HTML format."""
     # Extract CLIMB IDs from sample IDs
@@ -109,7 +115,9 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     # Format publish date
     merged_df["published_date"] = pd.to_datetime(merged_df["published_date"]).dt.strftime("%Y-%m-%d")
-    print(merged_df)
+
+    # Generate Summary Statement for report
+    summary_stats(merged_df, output_dir)
 
     logger.info("Summary report generated at %s", output_dir)
 
