@@ -55,10 +55,9 @@ def get_args() -> argparse.Namespace:
 
 
 # Logger set up
-def set_up_logger(stdout_file: str) -> logging.Logger:
+def set_up_logger(log_file: str) -> logging.Logger:
     """Example logger set up which can be amended as required. In this example,
-    all logging messages go to a stdout log file, and error messages also go to
-    stderr log. If the component runs correctly, stderr is empty. The logger is
+    all logging messages go a log file. The logger is
     set to append mode so logs from older runs are not overwritten.
     """
 
@@ -66,16 +65,10 @@ def set_up_logger(stdout_file: str) -> logging.Logger:
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
 
-    out_handler = logging.FileHandler(stdout_file, mode="a")
+    out_handler = logging.FileHandler(log_file, mode="a")
     out_handler.setFormatter(formatter)
     out_handler.setLevel(logging.INFO)
     logger.addHandler(out_handler)
-
-    stderr_file = str(stdout_file).replace(".txt", "_stderr.txt")
-    err_handler = logging.FileHandler(stderr_file, mode="a")
-    err_handler.setFormatter(formatter)
-    err_handler.setLevel(logging.ERROR)
-    logger.addHandler(err_handler)
 
     return logger
 
@@ -687,6 +680,7 @@ def main() -> None:
 
     # Write to logs if component finished successfully (or not):
     logger.info("AMR report generation successfully completed")
+
 
 if __name__ == "__main__":
     main()
