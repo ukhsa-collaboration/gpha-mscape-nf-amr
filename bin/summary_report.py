@@ -96,11 +96,16 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
     """Generate a summary report in HTML format."""
+    # Extract CLIMB IDs from sample IDs
+
+    # Remove ".fasta" from all items in the 'filename' column
+    df["climb_id"] = df["#FILE"].str.replace(".fasta", "", regex=False)
+
     # Load metadata
     metadata = pd.read_csv(metadata_file, sep=",")
 
     # Merge data with metadata
-    merged_df = pd.merge(df, metadata, left_on="sample_id", right_on="climb_id", how="left")
+    merged_df = pd.merge(df, metadata, on="climb_id", how="left")
     print(merged_df)
 
     logger.info("Summary report generated at %s", output_dir)
@@ -114,8 +119,6 @@ def main() -> None:
     set_up_logger(log_file)
     logger.info("Starting summary report generation.")
     df = pd.read_csv(args.input_tsv, sep="\t")
-    print(df).head()
-    breakpoint()
     logger.info("Simplifying taxa using Enterez.")
     df = simplify_taxa(args.email, df)
     generate_summary_report(df, args.metadata, args.output_dir)
