@@ -111,17 +111,17 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def format_dates(df: pd.DataFrame) -> pd.DataFrame:
+def format_dates(df: pd.DataFrame, date_column: str) -> pd.DataFrame:
     """Format date columns in the dataframe."""
     # Format publish date
-    df["published_date"] = pd.to_datetime(df["published_date"]).dt.strftime("%Y-%m-%d")
+    df[date_column] = pd.to_datetime(df[date_column]).dt.strftime("%Y-%m-%d")
 
     # Convert to datetime
-    df["published_date"] = pd.to_datetime(df["published_date"])
+    df[date_column] = pd.to_datetime(df[date_column])
 
     # Extract ISO year and week
-    df["epi_year"] = df["published_date"].dt.isocalendar().year
-    df["epi_week"] = df["published_date"].dt.isocalendar().week
+    df["epi_year"] = df[date_column].dt.isocalendar().year
+    df["epi_week"] = df[date_column].dt.isocalendar().week
 
     # Combine into epi week-year format (e.g., 2025-W01)
     df["epi_week_year"] = df["epi_year"].astype(str) + "-W" + df["epi_week"].astype(str).str.zfill(2)
@@ -149,7 +149,10 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
             x="species_name",
             y="unique_amr_sequence_count",
             title=f"Distribution of Unique AMR Sequences per Species in {domain}",
-            labels={"species_name": "Taxa", "unique_amr_sequence_count": "# Reads with AMR Annotations, per sample"},
+            labels={
+                "species_name": "Taxa",
+                "unique_amr_sequence_count": "Distribution of Sample Read Counts with AMR Annotations",
+            },
         )
 
         fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
@@ -196,9 +199,21 @@ def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> None:
     return fig
 
 
-def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
+def summary_stats(df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
     """Generate summary statistics and save to HTML report."""
     logger.info("Generating summary statistics.")
+    # Total number of Samples
+    total_samples = metadata_df["climb_id"].nunique()
+    logger.info("Total number of samples: %d", total_samples)
+
+    # Create df for number of samples per epi week year
+    samples_per_epi_week_year = (
+        metadata_df.groupby("epi_week_year")["climb_id"].nunique().reset_index(name="num_samples")
+    )
+    logger.info("Samples per epi week year:\n%s", samples_per_epi_week_year.to_string(index=False))
+
+    print(samples_per_epi_week_year)
+
     # Number of samples with AMR annotations
     num_samples = df["climb_id"].nunique()
     logger.info("Number of samples with AMR annotations: %d", num_samples)
@@ -228,16 +243,15 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
     df["climb_id"] = df["#FILE"].str.replace(".fastq", "", regex=False)
 
     # Load metadata
-    metadata = pd.read_csv(metadata_file, sep=",")
+    metadata_df = pd.read_csv(metadata_file, sep=",")
+    metadata_df = format_dates(metadata_df, date_column="published_date")
 
     # Merge data with metadata
-    merged_df = pd.merge(df, metadata, on="climb_id", how="left")
-
-    # format dates
-    merged_df = format_dates(merged_df)
+    merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
+    logger.info("Merged data with metadata. Total records: %d", len(merged_df))
 
     # Generate Summary Statement for report
-    summary_stats(merged_df, output_dir)
+    summary_stats(merged_df, metadata_df, output_dir)
 
     logger.info("Summary report generated at %s", output_dir)
 
