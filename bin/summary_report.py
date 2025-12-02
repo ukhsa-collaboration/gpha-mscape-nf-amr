@@ -118,7 +118,13 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     logger.info("Number of samples with AMR annotations: %d", num_samples)
     # Create a dataframe where the first column is the climb id, the second is the domain, and the third is the number of reads
     summary_df = df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
-    print(summary_df)
+    # From the summary_df, create a summary table that shows the min, max, median, and mean number of amr hits per domain
+    summary_stats_df = (
+        summary_df.groupby("domain")["amr_hit_count"]
+        .agg(min_amr_hits="min", max_amr_hits="max", median_amr_hits="median", mean_amr_hits="mean")
+        .reset_index()
+    )
+    print(summary_stats_df)
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
