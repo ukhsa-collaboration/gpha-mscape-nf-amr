@@ -244,7 +244,7 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     # Load metadata
     metadata_df = pd.read_csv(metadata_file, sep=",")
-    print(metadata_df.head())
+    print(metadata_df['published_date']).unique())
 
     # metadata_df = format_dates(metadata_df, date_column="published_date")
 
