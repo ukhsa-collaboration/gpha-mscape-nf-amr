@@ -129,12 +129,11 @@ def format_dates(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def domain_amr_read_counts(df: pd.DataFrame) -> pd.DataFrame:
+def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     """Generate figures for number of reads annotated with AMR per species per domain."""
     amr_annotations_per_domain_fig_list = []
     # for each domain
     for domain in df["domain"].unique():
-        print(domain)
         domain_df = df[df["domain"] == domain]
         # summarise the number of unique SEQUENCE per climb_id per species
         species_sample_amr_reads = (
