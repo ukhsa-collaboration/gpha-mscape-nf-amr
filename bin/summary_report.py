@@ -176,6 +176,17 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
 
     # Generate line graph with the number of AMR annotations over time, each line is a domain, grouped by week
+    amr_over_time_df = df.groupby(["epi_week_year", "domain"]).size().reset_index(name="amr_annotation_count")
+    amr_over_time_fig = px.line(
+        amr_over_time_df,
+        x="epi_week_year",
+        y="amr_annotation_count",
+        color="domain",
+        title="Number of AMR Annotations Over Time by Domain",
+        labels={"epi_week_year": "Epi Week-Year", "amr_annotation_count": "# AMR Annotations"},
+    )
+    amr_over_time_fig.write_html(Path(output_dir) / "amr_annotations_over_time.html")
+    amr_over_time_html = amr_over_time_fig.to_html(full_html=False, include_plotlyjs="cdn")
 
     return amr_annotations_per_domain_html
 
@@ -195,8 +206,6 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     # format dates
     merged_df = format_dates(merged_df)
-    print(merged_df["epi_week_year"].unique())
-    breakpoint()
 
     # Generate Summary Statement for report
     summary_stats(merged_df, output_dir)
