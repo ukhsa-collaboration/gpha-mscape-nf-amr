@@ -125,7 +125,9 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
         .agg(min_amr_hits="min", median_amr_hits="median", max_amr_hits="max")
         .reset_index()
     )
-    print(summary_stats_df)
+
+    # Figures for number of reads annotated with AMR per species per domain
+    amr_annotations_per_domain_fig_list = []
     # for each domain
     for domain in df["domain"].unique():
         print(domain)
@@ -144,9 +146,32 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
             x="species_name",
             y="unique_amr_sequence_count",
             title=f"Distribution of Unique AMR Sequences per Species in {domain}",
-            labels={"species_name": "Species", "unique_amr_sequence_count": "# Reads with AMR Annotations"},
+            labels={"species_name": "Taxa", "unique_amr_sequence_count": "# Reads with AMR Annotations, per sample"},
         )
         fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
+        amr_annotations_per_domain_fig_list.append(fig)
+
+    amr_annotations_per_domain_html_blocks = []
+    for fig in amr_annotations_per_domain_fig_list:
+        amr_annotations_per_domain_html_blocks.append(fig.to_html(full_html=False, include_plotlyjs="cdn"))
+
+    amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
+
+    # Generate line graph with the number of AMR annotations over time, each line is a domain, grouped by epi week
+    df["published_date"] = pd.to_datetime(df["published_date"])
+    df["epi_week"] = df["published_date"].dt.to_period("W").apply(lambda r: r.start_time)
+    amr_annotations_over_time = df.groupby(["epi_week", "domain"]).size().reset_index(name="amr_hit_count")
+    fig = px.line(
+        amr_annotations_over_time,
+        x="epi_week",
+        y="amr_hit_count",
+        color="domain",
+        title="AMR Annotations Over Time by Domain",
+        labels={"epi_week": "Epidemiological Week", "amr_hit_count": "# AMR Annotations"},
+    )
+    fig.write_html(Path(output_dir) / "amr_annotations_over_time.html")
+
+    return amr_annotations_per_domain_html
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
