@@ -187,19 +187,15 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
     # Remove ".fasta" from all items in the 'filename' column
     df["climb_id"] = df["#FILE"].str.replace(".fastq", "", regex=False)
 
-    print(df["climb_id"])
     # Load metadata
     metadata = pd.read_csv(metadata_file, sep=",")
-    print(metadata["climb_id"])
-    breakpoint()
 
     # Merge data with metadata
     merged_df = pd.merge(df, metadata, on="climb_id", how="left")
 
     # format dates
-    print(merged_df)
-    # merged_df = format_dates(merged_df)
-    # print(merged_df["published_date"])
+    merged_df = format_dates(merged_df)
+    print(merged_df["epi_week_year"].unique())
     breakpoint()
 
     # Generate Summary Statement for report
