@@ -194,8 +194,10 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
     merged_df = pd.merge(df, metadata, on="climb_id", how="left")
 
     # format dates
+    print(merged_df["published_date"].unique())
     merged_df = format_dates(merged_df)
     print(merged_df["published_date"].unique())
+    breakpoint()
 
     # Generate Summary Statement for report
     summary_stats(merged_df, output_dir)
