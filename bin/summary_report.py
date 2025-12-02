@@ -96,8 +96,6 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
     """Generate a summary report in HTML format."""
-    from jinja2 import Environment, FileSystemLoader
-
     # Load metadata
     metadata = pd.read_csv(metadata_file, sep=",")
 
@@ -110,6 +108,8 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
 def main() -> None:
     args = get_args()
+    if args.output_dir:
+        Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     log_file = Path(args.output_dir, "amr_html_summary_report_log.txt")
     set_up_logger(log_file)
     logger.info("Starting summary report generation.")
