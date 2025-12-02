@@ -121,10 +121,17 @@ def summary_stats(df: pd.DataFrame, output_dir: str) -> None:
     # From the summary_df, create a summary table that shows the min, max, median, and mean number of amr hits per domain
     summary_stats_df = (
         summary_df.groupby("domain")["amr_hit_count"]
-        .agg(min_amr_hits="min", max_amr_hits="max", median_amr_hits="median", mean_amr_hits="mean")
+        .agg(min_amr_hits="min", median_amr_hits="median", max_amr_hits="max")
         .reset_index()
     )
     print(summary_stats_df)
+    # for each domain, generate a box and whisker plot showing the distribution of AMR hits per species_name
+    for domain in summary_df["domain"].unique():
+        domain_df = summary_df[summary_df["domain"] == domain]
+        plot = domain_df.boxplot(column="amr_hit_count", by="domain", grid=False)
+        fig = plot.get_figure()
+        fig.savefig(Path(output_dir) / f"{domain}_amr_hit_distribution.png")
+        fig.clf()
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
