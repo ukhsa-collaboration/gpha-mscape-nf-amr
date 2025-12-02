@@ -185,7 +185,7 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
     # Extract CLIMB IDs from sample IDs
 
     # Remove ".fasta" from all items in the 'filename' column
-    df["climb_id"] = df["#FILE"].str.replace(".fasta", "", regex=False)
+    df["climb_id"] = df["#FILE"].str.replace(".fastq", "", regex=False)
 
     print(df["climb_id"])
     # Load metadata
