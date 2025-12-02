@@ -244,16 +244,17 @@ def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: st
 
     # Load metadata
     metadata_df = pd.read_csv(metadata_file, sep=",")
-    metadata_df = format_dates(metadata_df, date_column="published_date")
+    print(metadata_df["published_date"])
+    # metadata_df = format_dates(metadata_df, date_column="published_date")
 
-    # Merge data with metadata
-    merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
-    logger.info("Merged data with metadata. Total records: %d", len(merged_df))
+    # # Merge data with metadata
+    # merged_df = pd.merge(df, metadata_df, on="climb_id", how="left")
+    # logger.info("Merged data with metadata. Total records: %d", len(merged_df))
 
-    # Generate Summary Statement for report
-    summary_stats(merged_df, metadata_df, output_dir)
+    # # Generate Summary Statement for report
+    # summary_stats(merged_df, metadata_df, output_dir)
 
-    logger.info("Summary report generated at %s", output_dir)
+    # logger.info("Summary report generated at %s", output_dir)
 
 
 def main() -> None:
