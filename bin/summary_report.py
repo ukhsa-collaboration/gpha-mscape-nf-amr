@@ -184,7 +184,7 @@ def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
     fig.update_yaxes(
         title_text="Samples with AMR Annotations\n(%)", ticksuffix="%", rangemode="tozero", secondary_y=False
     )
-    fig.update_yaxes(title_text="Total samples", tickmode="linear", dtick=5, rangemode="tozero", secondary_y=True)
+    fig.update_yaxes(title_text="AMR Sample Count", tickmode="linear", dtick=5, rangemode="tozero", secondary_y=True)
     fig.update_xaxes(title_text="Epi week-year")
 
     # Save to HTML (optional)
@@ -193,7 +193,7 @@ def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
 
 
 def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
-    """Generate figures for number of reads annotated with AMR per species per domain."""
+    """Generate figures for number of reads annotated with AMR per Taxa per domain."""
     amr_annotations_per_domain_fig_list = []
     # for each domain
     for domain in df["domain"].unique():
@@ -210,7 +210,7 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
             species_sample_amr_reads,
             x="species_name",
             y="unique_amr_sequence_count",
-            title=f"Distribution of Unique AMR Sequences per Species in {domain}",
+            title=f"Distribution of Unique AMR Sequences per Taxa in {domain}",
             labels={
                 "species_name": "Taxa",
                 "unique_amr_sequence_count": "Distribution of Sample Read Counts with AMR Annotations",
@@ -263,7 +263,18 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         .reset_index()
     )
 
-    print(summary_stats_df)
+    # Summarise by Class of resistance
+    unique_resistance_classes = (
+        amr_df["RESISTANCE"]
+        .dropna()
+        .str.split(";")
+        .explode()
+        .str.strip()
+        .str.lower()  # or .str.capitalize() if you prefer
+        .dropna()
+        .unique()
+    )
+    print(unique_resistance_classes)
 
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
