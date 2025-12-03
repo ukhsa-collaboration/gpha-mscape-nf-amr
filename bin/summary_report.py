@@ -236,7 +236,7 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def summarize_by_class(df: pd.DataFrame) -> pd.DataFrame:
+def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     # Split RESISTANCE into lists
     df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
 
@@ -248,16 +248,45 @@ def summarize_by_class(df: pd.DataFrame) -> pd.DataFrame:
         df[r] = df["RESISTANCE_LIST"].apply(lambda x: 1 if x and r in x else 0)
 
     # Group by #FILE and name, aggregate counts
-    summary = (
+    summary_df = (
         df.groupby(["#FILE", "name"])
         .agg(read_count=("read_id", "count"), **{r: (r, "sum") for r in unique_resistances})
         .reset_index()
     )
 
     # Sort for readability
-    summary = summary.sort_values(by=["#FILE", "read_count"], ascending=[True, False])
+    summary_df = summary_df.sort_values(by=["#FILE", "read_count"], ascending=[True, False])
 
-    print(summary)
+    # Generat plot
+    # Identify resistance columns
+    resistance_cols = [col for col in summary_df.columns if col not in ["#FILE", "name", "read_count"]]
+
+    # Convert to presence/absence per sample
+    df_presence = summary_df.copy()
+    df_presence[resistance_cols] = (df_presence[resistance_cols] > 0).astype(int)
+
+    # Melt for long format
+    melted = df_presence.melt(
+        id_vars=["#FILE", "name"], value_vars=resistance_cols, var_name="Resistance Class", value_name="Present"
+    )
+
+    # Filter only rows where resistance is present
+    melted = melted[melted["Present"] == 1]
+
+    # Count unique samples per species and resistance class
+    class_summary_df = melted.groupby(["name", "Resistance Class"])["#FILE"].nunique().reset_index(name="Sample Count")
+
+    # Plot
+    fig = px.bar(
+        class_summary_df,
+        x="name",
+        y="Sample Count",
+        color="Resistance Class",
+        title="Number of Unique Samples per Resistance Class Split by Species",
+    )
+
+    fig.write_html(Path(output_dir) / f"sample_class_counts_barchart.html")
+    return fig.to_html(include_plotlyjs="cdn", full_html="False")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
@@ -298,7 +327,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
 
-    summarize_by_class(amr_df)
+    sample_class_amr_barplot_html = summarize_by_class(amr_df, output_dir)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
