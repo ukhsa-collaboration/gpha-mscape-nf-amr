@@ -241,8 +241,6 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
-    print(total_samples_df)
-    print(df)
     # Generate a presence/absence df for class resistance, split by domain, include epi-week-year
 
     # Split RESISTANCE into list
@@ -268,104 +266,64 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
         df_presence_expanded.groupby(["domain", "epi_week_year"])[unique_resistances].sum().reset_index()
     )
 
-    def iso_week_to_date(iso_week_str):
-        """
-        Convert 'YYYY-Www' to a representative date (Monday of that ISO week).
-        Example: '2025-W43' -> datetime(2025, week 43, Monday).
-        """
-        m = re.match(r"^(\d{4})-W(\d{2})$", str(iso_week_str))
+    # Add total samples per epi_week_year to calculate percentage
+    summary_by_domain_week = pd.merge(summary_by_domain_week, total_samples_df, on="epi_week_year", how="left")
+
+    # Helper to convert epi_week_year to datetime for sorting
+    def iso_week_to_date(iso_week_str: str) -> pd.Timestamp:
+        m = re.match(r"^(\\d{4})-W(\\d{2})$", str(iso_week_str))
         if not m:
             return pd.NaT
-        year = int(m.group(1))
-        week = int(m.group(2))
-        # ISO calendar: Monday=1, Sunday=7
-        # Construct the first week Monday then add (week-1)*7 days
-        # Use pandas to avoid edge cases with ISO week algorithms
-        # Strategy: build a date range by ISO week indexing:
-        # Create the Monday of the given ISO week using ISO calendar arithmetic.
-        # pandas >= 1.1 supports to_datetime with ISO week via format, but we implement robustly:
-        # Find the Monday of the first ISO week of the year, then offset.
-        # Simpler: use datetime.fromisocalendar
-        try:
-            return datetime.fromisocalendar(year, week, 1)  # Monday
-        except ValueError:
-            return pd.NaT
+        year, week = int(m.group(1)), int(m.group(2))
+        return datetime.fromisocalendar(year, week, 1)
 
-    def plot_domain_lines(
-        summary_by_domain_week: pd.DataFrame,
-        output_dir: str,
-        rare_threshold: int = 5,
-        save_html: bool = True,
-        html_prefix: str = "domain_week_lines",
-    ):
-        """
-        For each domain, create a line plot with:
-        x = epi_week_year (chronologically ordered)
-        y = Sample Count
-        color = Resistance Class
-        Resistance classes with total count < rare_threshold across all weeks/domains
-        are consolidated into 'Other'.
-        """
+    # Identify resistance columns (exclude domain, epi_week_year, total_sample_count)
+    resistance_cols = [
+        c for c in summary_by_domain_week.columns if c not in ["domain", "epi_week_year", "total_sample_count"]
+    ]
 
-        # Identify resistance columns (everything except domain and epi_week_year)
-        resistance_cols = [c for c in summary_by_domain_week.columns if c not in ["domain", "epi_week_year"]]
+    # Melt into long format
+    long_df = summary_by_domain_week.melt(
+        id_vars=["domain", "epi_week_year", "total_sample_count"],
+        value_vars=resistance_cols,
+        var_name="Resistance Class",
+        value_name="Sample Count",
+    )
 
-        # Melt into long format: one row per (domain, week, resistance class)
-        long_df = summary_by_domain_week.melt(
-            id_vars=["domain", "epi_week_year"],
-            value_vars=resistance_cols,
-            var_name="Resistance Class",
-            value_name="Sample Count",
+    # Consolidate rare classes (<5 samples total) into 'Other'
+    totals = long_df.groupby("Resistance Class")["Sample Count"].sum()
+    rare_classes = set(totals[totals < 5].index)
+    long_df["Resistance (consolidated)"] = long_df["Resistance Class"].where(
+        ~long_df["Resistance Class"].isin(rare_classes), "Other"
+    )
+
+    # Aggregate after consolidation
+    agg_df = long_df.groupby(
+        ["domain", "epi_week_year", "Resistance (consolidated)", "total_sample_count"], as_index=False
+    )["Sample Count"].sum()
+
+    # Compute percentage
+    agg_df["Percentage"] = (agg_df["Sample Count"] / agg_df["total_sample_count"]) * 100
+
+    # Add chronological sort key
+    agg_df["week_date"] = agg_df["epi_week_year"].apply(iso_week_to_date)
+    agg_df = agg_df.sort_values(["domain", "week_date"])
+
+    # Generate stacked percentage charts for each domain
+    for dom in agg_df["domain"].unique():
+        d = agg_df[agg_df["domain"] == dom]
+        fig = px.area(
+            d,
+            x="epi_week_year",
+            y="Percentage",
+            color="Resistance (consolidated)",
+            title=f"Stacked Percentage Chart: Resistance Classes per Week ({dom})",
         )
-
-        # Compute total samples per resistance class across all domains/weeks
-        totals = long_df.groupby("Resistance Class", as_index=False)["Sample Count"].sum()
-
-        # Classes below threshold -> 'Other'
-        rare_classes = set(totals.loc[totals["Sample Count"] < rare_threshold, "Resistance Class"])
-        long_df["Resistance (consolidated)"] = long_df["Resistance Class"].where(
-            ~long_df["Resistance Class"].isin(rare_classes), "Other"
+        ordered_weeks = (
+            d[["epi_week_year", "week_date"]].drop_duplicates().sort_values("week_date")["epi_week_year"].tolist()
         )
-
-        # After consolidation, aggregate by domain/week/consolidated class
-        agg_df = long_df.groupby(["domain", "epi_week_year", "Resistance (consolidated)"], as_index=False).agg(
-            {"Sample Count": "sum"}
-        )
-
-        # Add a sort key for epi_week_year
-        agg_df["week_date"] = agg_df["epi_week_year"].apply(iso_week_to_date)
-
-        # Ensure proper ordering per domain
-        agg_df = agg_df.sort_values(["domain", "week_date", "Resistance (consolidated)"])
-
-        # Plot per domain
-        for dom in agg_df["domain"].unique():
-            d = agg_df[agg_df["domain"] == dom].copy()
-
-            # Build the line plot
-            fig = px.area(
-                d,
-                x="epi_week_year",
-                y="Sample Count",
-                color="Resistance (consolidated)",
-                markers=True,
-                title=f"Stacked Line Chart: Samples per Week by Resistance Class ({dom})",
-            )
-
-            # Enforce x-axis order by the chronological week_date sort
-            ordered_weeks = (
-                d[["epi_week_year", "week_date"]].drop_duplicates().sort_values("week_date")["epi_week_year"].tolist()
-            )
-            fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks})
-
-            # Optional: save each domain plot as HTML
-            if save_html:
-                safe_dom = re.sub(r"[^A-Za-z0-9_.-]+", "_", dom)
-                fig.write_html(Path(output_dir) / f"{html_prefix}_{safe_dom}.html")
-
-        return agg_df, rare_classes
-
-    consolidated_df, rare = plot_domain_lines(summary_by_domain_week, output_dir, rare_threshold=10, save_html=True)
+        fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
+        fig.write_html(f"stacked_percentage_{dom}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
