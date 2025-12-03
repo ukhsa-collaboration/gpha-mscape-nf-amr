@@ -16,7 +16,9 @@ from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objs as go
 from Bio import Entrez
+from plotly.subplots import make_subplots
 
 logger = logging.getLogger(__name__)
 
@@ -176,35 +178,51 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
 
 
 def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> None:
-    """Generate line graph of AMR sample counts over time."""
-    logger.info("Generating AMR sample counts over time.")
+    # Create a figure with a secondary y-axis
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-    # Group by epi_week_year and domain, count unique climb_id
-    time_series_df = df.groupby(["epi_week_year", "domain"])["climb_id"].nunique().reset_index(name="amr_sample_count")
-
-    # Generate line plot with plotly
-    fig = px.line(
-        time_series_df,
-        x="epi_week_year",
-        y="amr_sample_count",
-        color="domain",
-        title="Number of Samples with AMR Annotations Over Time",
-        labels={
-            "epi_week_year": "Epi Week-Year",
-            "amr_sample_count": "# Samples with AMR Annotations",
-            "domain": "Domain Affiliation",
-        },
+    # Bar: AMR percentage
+    fig.add_trace(
+        go.Bar(
+            x=df["epi_week_year"],
+            y=df["amr_percentage"],
+            name="AMR %",
+            marker_color="#1f77b4",
+            hovertemplate="Week %{x}<br>AMR %: %{y:.2f}%<extra></extra>",
+        ),
+        secondary_y=False,
     )
-    fig.update_layout(xaxis_tickangle=-45)
 
+    # Line: Total sample count (secondary y-axis)
+    fig.add_trace(
+        go.Scatter(
+            x=df["epi_week_year"],
+            y=df["total_sample_count"],
+            name="Total samples",
+            mode="lines+markers",
+            line={"color": "#ff7f0e", "width": 2},
+            marker={"size": 8},
+            hovertemplate="Week %{x}<br>Total: %{y:d}<extra></extra>",
+        ),
+        secondary_y=True,
+    )
+
+    # Layout & axes
+    fig.update_layout(
+        title="Percentage of Samples with AMR Annotation by Epi Week (bar) with Total Sample Count (line)",
+        barmode="group",
+        legend={"orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "right", "x": 1},
+        margin={"l": 40, "r": 40, "t": 60, "b": 40},
+        template="plotly_white",
+    )
     fig.update_yaxes(
-        tickmode="linear",  # ensures evenly spaced ticks
-        dtick=1,  # step size of 1 for whole numbers
+        title_text="Samples with AMR Annotation\n(%)", ticksuffix="%", rangemode="tozero", secondary_y=False
     )
+    fig.update_yaxes(title_text="Total samples", tickmode="linear", dtick=5, rangemode="tozero", secondary_y=True)
+    fig.update_xaxes(title_text="Epi week-year")
 
-    # Save figure to HTML
-    fig.write_html(Path(output_dir) / "amr_sample_counts_over_time.html")
-    fig.to_html(full_html=False, include_plotlyjs="cdn")
+    # Save to HTML (optional)
+    fig.write_html("sample_amr_percentage_bar_with_total_line.html", include_plotlyjs="cdn")
     return fig
 
 
@@ -230,7 +248,10 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         total_samples_epi_week_df["amr_sample_count"] / total_samples_epi_week_df["total_sample_count"] * 100
     ).round(2)
 
-    print(epi_week_sample_counts)
+    print()
+
+    amr_sample_pct_barplot_plty_fig = amr_sample_counts_over_time(total_samples_epi_week_df)
+
     # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
 
     # Create a dataframe where the first column is the climb id, the second is the domain,
