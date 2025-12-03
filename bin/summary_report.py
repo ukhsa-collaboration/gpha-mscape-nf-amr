@@ -269,14 +269,42 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
     # Add total samples per epi_week_year to calculate percentage
     summary_by_domain_week = pd.merge(summary_by_domain_week, total_samples_df, on="epi_week_year", how="left")
 
-    # Convert total counts to percentages
-    cols_to_convert = [col for col in df.columns if col not in ["domain", "epi_week_year", "total_sample_count"]]
+    print(summary_by_domain_week)
 
-    df_percentage = df.copy()
-    for col in cols_to_convert:
-        df_percentage[col] = (df_percentage[col] / df_percentage["total_sample_count"]) * 100
+    # # Convert total counts to percentages
+    # cols_to_convert = [col for col in df.columns if col not in ["domain", "epi_week_year", "total_sample_count"]]
 
-    print(df_percentage)
+    # df_percentage = df.copy()
+    # for col in cols_to_convert:
+    #     df_percentage[col] = (df_percentage[col] / df_percentage["total_sample_count"]) * 100
+
+    # print(df_percentage)
+
+    # # Melt df_percentage for plotting
+    # resistance_cols = [
+    #     col for col in df_percentage.columns if col not in ["domain", "epi_week_year", "total_sample_count"]
+    # ]
+    # melted = df_percentage.melt(
+    #     id_vars=["domain", "epi_week_year"],
+    #     value_vars=resistance_cols,
+    #     var_name="Resistance Class",
+    #     value_name="Percentage",
+    # )
+
+    # # Generate grouped bar plots for each domain
+    # for dom in melted["domain"].unique():
+    #     d = melted[melted["domain"] == dom]
+    #     fig = px.bar(
+    #         d,
+    #         x="epi_week_year",
+    #         y="Percentage",
+    #         color="Resistance Class",
+    #         barmode="group",  # Side-by-side bars
+    #         title=f"Grouped Bar Plot: Resistance Class Percentages per Week ({dom})",
+    #     )
+    #     ordered_weeks = d["epi_week_year"].unique().tolist()
+    #     fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
+    #     fig.write_html(Path(output_dir) / f"grouped_bar_{dom}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
