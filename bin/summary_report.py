@@ -267,18 +267,20 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
     )
 
     # Add total samples per epi_week_year to calculate percentage
-    summary_by_domain_week = pd.merge(summary_by_domain_week, total_samples_df, on="epi_week_year", how="left")
+    summary_by_domain_week_df = pd.merge(summary_by_domain_week, total_samples_df, on="epi_week_year", how="left")
 
-    print(summary_by_domain_week)
+    print(summary_by_domain_week_df)
 
     # # Convert total counts to percentages
-    # cols_to_convert = [col for col in df.columns if col not in ["domain", "epi_week_year", "total_sample_count"]]
+    cols_to_convert = [
+        col for col in summary_by_domain_week_df.columns if col not in ["domain", "epi_week_year", "total_sample_count"]
+    ]
 
-    # df_percentage = df.copy()
-    # for col in cols_to_convert:
-    #     df_percentage[col] = (df_percentage[col] / df_percentage["total_sample_count"]) * 100
+    df_percentage = summary_by_domain_week_df.copy()
+    for col in cols_to_convert:
+        df_percentage[col] = (df_percentage[col] / df_percentage["total_sample_count"]) * 100
 
-    # print(df_percentage)
+    print(df_percentage)
 
     # # Melt df_percentage for plotting
     # resistance_cols = [
