@@ -177,7 +177,9 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     return amr_annotations_per_domain_html
 
 
-def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> None:
+def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> Figure:
+    """Generate a plotly figure for the percentage/number of samples per epi-week with AMR annotations.
+    Save as HTML file, return as plotly figure"""
     # Create a figure with a secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -235,7 +237,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     # Total AMR samples
     amr_samples, amr_samples_epi_week_df = total_sample_counts(amr_df, "amr")
 
-    # percentage of samples with AMR annotations to 2 decim
+    # percentage of samples with AMR annotations, per week
     per_amr_samples = (amr_samples / total_samples) * 100
 
     logger.info("Number of samples with AMR annotations: %d (%.2f%%)", amr_samples, per_amr_samples)
@@ -248,9 +250,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         epi_week_sample_counts_df["amr_sample_count"] / epi_week_sample_counts_df["total_sample_count"] * 100
     ).round(2)
 
-    print()
-
-    amr_sample_pct_barplot_plty_fig = amr_sample_counts_over_time(epi_week_sample_counts_df)
+    amr_sample_pct_barplot_plty_fig = amr_sample_counts_over_time(epi_week_sample_counts_df, output_dir)
 
     # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
 
