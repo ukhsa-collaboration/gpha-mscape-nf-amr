@@ -225,6 +225,11 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     epi_week_sample_counts = pd.merge(
         total_samples_epi_week_df, amr_samples_epi_week_df, on="epi_week_year", how="left"
     )
+
+    total_samples_epi_week_df["amr_percentage"] = (
+        total_samples_epi_week_df["amr_sample_count"] / total_samples_epi_week_df["total_sample_count"] * 100
+    ).round(2)
+
     print(epi_week_sample_counts)
     # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
 
