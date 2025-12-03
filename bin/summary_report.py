@@ -273,6 +273,8 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     # Filter only rows where resistance is present
     melted = melted[melted["Present"] == 1]
 
+    print(melted)
+
     # Count unique samples per species and resistance class
     class_summary_df = melted.groupby(["name", "Resistance Class"])["#FILE"].nunique().reset_index(name="Sample Count")
 
