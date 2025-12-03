@@ -280,18 +280,18 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
     for col in cols_to_convert:
         df_percentage[col] = (df_percentage[col] / df_percentage["total_sample_count"]) * 100
 
-    print(df_percentage)
+    # Melt df_percentage for plotting
+    resistance_cols = [
+        col for col in df_percentage.columns if col not in ["domain", "epi_week_year", "total_sample_count"]
+    ]
+    melted = df_percentage.melt(
+        id_vars=["domain", "epi_week_year"],
+        value_vars=resistance_cols,
+        var_name="Resistance Class",
+        value_name="Percentage",
+    )
 
-    # # Melt df_percentage for plotting
-    # resistance_cols = [
-    #     col for col in df_percentage.columns if col not in ["domain", "epi_week_year", "total_sample_count"]
-    # ]
-    # melted = df_percentage.melt(
-    #     id_vars=["domain", "epi_week_year"],
-    #     value_vars=resistance_cols,
-    #     var_name="Resistance Class",
-    #     value_name="Percentage",
-    # )
+    print(melted)
 
     # # Generate grouped bar plots for each domain
     # for dom in melted["domain"].unique():
