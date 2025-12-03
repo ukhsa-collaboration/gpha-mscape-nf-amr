@@ -177,7 +177,7 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     return amr_annotations_per_domain_html
 
 
-def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> Figure:
+def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
     """Generate a plotly figure for the percentage/number of samples per epi-week with AMR annotations.
     Save as HTML file, return as plotly figure"""
     # Create a figure with a secondary y-axis
