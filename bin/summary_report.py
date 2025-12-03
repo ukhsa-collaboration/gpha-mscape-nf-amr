@@ -259,6 +259,7 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
                 .apply(lambda lists: int(any(r in lst for lst in lists)))
                 .reset_index(drop=True)
             )
+        print(df_presence)
 
         # Melt for long format
         melted = df_presence.melt(
