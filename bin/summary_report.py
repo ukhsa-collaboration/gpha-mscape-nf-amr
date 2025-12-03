@@ -224,7 +224,7 @@ def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
     fig.update_xaxes(title_text="Epi week-year")
 
     # Save to HTML (optional)
-    fig.write_html("sample_amr_percentage_bar_with_total_line.html", include_plotlyjs="cdn")
+    fig.write_html(Path(output_dir) / "sample_amr_percentage_bar_with_total_line.html", include_plotlyjs="cdn")
     return fig.to_html(include_plotlyjs="cdn", full_html="False")
 
 
