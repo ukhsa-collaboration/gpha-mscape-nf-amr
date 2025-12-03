@@ -150,7 +150,6 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
             .reset_index(name="unique_amr_sequence_count")
         )
         # Generate a box-whisker plot showing the distribution of unique_amr_sequence_count per species with plotly
-        print(species_sample_amr_reads)
 
         fig = px.box(
             species_sample_amr_reads,
