@@ -262,14 +262,35 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
         df_presence_expanded.groupby(["domain", "epi_week_year"])[unique_resistances].sum().reset_index()
     )
 
-    # Output DataFrames
-    print("Presence/Absence DataFrame per sample:")
-    print(df_presence_expanded)
+    # Identify resistance columns
+    resistance_cols = [col for col in summary_by_domain_week.columns if col not in ["domain", "epi_week_year"]]
 
-    print("\nSummary grouped by domain and epi_week_year:")
-    print(summary_by_domain_week)
+    # Melt for long format
+    melted = summary_by_domain_week.melt(
+        id_vars=["domain", "epi_week_year"],
+        value_vars=resistance_cols,
+        var_name="Resistance Class",
+        value_name="Sample Count",
+    )
 
-    # fig.write_html(Path(output_dir) / f"samples_by_week_resistance_{domain}.html")
+    # Filter rows where Sample Count > 0
+    melted = melted[melted["Sample Count"] > 0]
+
+    # Generate separate line plots for each domain
+    for domain in melted["domain"].unique():
+        df_domain = melted[melted["domain"] == domain]
+
+        fig = px.line(
+            df_domain,
+            x="Sample Count",
+            y="epi_week_year",
+            color="Resistance Class",
+            markers=True,
+            title=f"Number of Samples vs epi_week_year by Resistance Class ({domain})",
+        )
+
+        # Save each plot as HTML
+        fig.write_html(Path(output_dir) / f"line_plot_{domain}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
