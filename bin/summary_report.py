@@ -225,7 +225,7 @@ def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
 
     # Save to HTML (optional)
     fig.write_html("sample_amr_percentage_bar_with_total_line.html", include_plotlyjs="cdn")
-    return fig
+    return fig.to_html(include_plotlyjs="cdn", full_html="False")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
@@ -250,7 +250,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         epi_week_sample_counts_df["amr_sample_count"] / epi_week_sample_counts_df["total_sample_count"] * 100
     ).round(2)
 
-    amr_sample_pct_barplot_plty_fig = amr_sample_counts_over_time(epi_week_sample_counts_df, output_dir)
+    amr_sample_pct_barplot_html_fig = amr_sample_counts_over_time(epi_week_sample_counts_df, output_dir)
 
     # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
 
@@ -268,11 +268,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
 
-    # Generate line graph with the number of samples with AMR annotations over time,
-    # each line is a domain, grouped by week
-    html_fig_samples_over_time = amr_sample_counts_over_time(amr_df, output_dir)
-
-    return amr_annotations_per_domain_html, html_fig_samples_over_time
+    return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
 
 def generate_summary_report(df: pd.DataFrame, metadata_file: str, output_dir: str) -> None:
