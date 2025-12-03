@@ -297,9 +297,10 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         .dropna()
         .unique()
     )
+    print(unique_resistance_classes)
 
-    res_counts_by_species = summarize_by_class(amr_df, unique_resistance_classes)
-    print(res_counts_by_species)
+    # res_counts_by_species = summarize_by_class(amr_df, unique_resistance_classes)
+    # print(res_counts_by_species)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
