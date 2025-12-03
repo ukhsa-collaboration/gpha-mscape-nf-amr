@@ -228,6 +228,14 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     return amr_annotations_per_domain_html
 
 
+def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
+    # One-hot encode the semicolon-separated list in RESISTANCE
+    res_dummies = df["RESISTANCE"].str.get_dummies(sep=";").astype(bool)
+    # Join back and (optionally) keep or drop the original RESISTANCE column
+    out = pd.concat([df, res_dummies], axis=1)  # .drop(columns=['RESISTANCE'])
+    return out
+
+
 def summarize_by_class(df: pd.DataFrame, unique_resistance_classes: list) -> pd.DataFrame:
     # Ensure TRUE/FALSE (strings) are booleans; if they’re already booleans, this is harmless
     for c in unique_resistance_classes:
@@ -287,6 +295,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
 
     # Summarise by Class of resistance
+    res_expanded_df = explode_resistance(amr_df)
     unique_resistance_classes = (
         amr_df["RESISTANCE"]
         .dropna()
@@ -299,8 +308,8 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     )
     print(unique_resistance_classes)
 
-    # res_counts_by_species = summarize_by_class(amr_df, unique_resistance_classes)
-    # print(res_counts_by_species)
+    res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
+    print(res_counts_by_species)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
