@@ -240,17 +240,17 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
 
     logger.info("Number of samples with AMR annotations: %d (%.2f%%)", amr_samples, per_amr_samples)
 
-    epi_week_sample_counts = pd.merge(
+    epi_week_sample_counts_df = pd.merge(
         total_samples_epi_week_df, amr_samples_epi_week_df, on="epi_week_year", how="left"
     )
 
-    total_samples_epi_week_df["amr_percentage"] = (
-        total_samples_epi_week_df["amr_sample_count"] / total_samples_epi_week_df["total_sample_count"] * 100
+    epi_week_sample_counts_df["amr_percentage"] = (
+        epi_week_sample_counts_df["amr_sample_count"] / epi_week_sample_counts_df["total_sample_count"] * 100
     ).round(2)
 
     print()
 
-    amr_sample_pct_barplot_plty_fig = amr_sample_counts_over_time(total_samples_epi_week_df)
+    amr_sample_pct_barplot_plty_fig = amr_sample_counts_over_time(epi_week_sample_counts_df)
 
     # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
 
