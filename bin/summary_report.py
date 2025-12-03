@@ -237,58 +237,39 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
+    # Generate a presence/absence df for class resistance, split by domain, include epi-week-year
+
     # Split RESISTANCE into list
     df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
-    print(df["RESISTANCE_LIST"])
 
     # Get unique resistance classes
-    unique_resistances = sorted({r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist})
-    print(unique_resistances)
+    unique_resistances = sorted(set(r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist))
 
-    # Generate separate plots for each domain
-    for domain in df["domain"].unique():
-        df_domain = df[df["domain"] == domain]
-        print(df_domain["domain"])
+    # Create presence/absence per sample (#FILE) including epi_week_year
+    df_presence = (
+        df.groupby(["#FILE", "domain", "epi_week_year"])["RESISTANCE_LIST"]
+        .apply(lambda lists: [item for sublist in lists for item in sublist])
+        .reset_index()
+    )
 
-        # Create presence columns for each resistance class per sample-week
-        df_presence = df_domain[["climb_id", "epi_week_year"]].drop_duplicates().copy()
-        print(df_presence)
-        print(df_domain.groupby(["#FILE", "epi_week_year"])["RESISTANCE_LIST"])
-        for r in unique_resistances:
-            df_presence[r] = (
-                df_domain.groupby(["climb_id", "epi_week_year"])["RESISTANCE_LIST"]
-                .apply(lambda lists: int(any(r in lst for lst in lists)))
-                .reset_index(drop=True)
-            )
-        print(df_presence)
+    # Initialize columns for each resistance class
+    df_presence_expanded = df_presence[["#FILE", "domain", "epi_week_year"]].copy()
+    for r in unique_resistances:
+        df_presence_expanded[r] = df_presence["RESISTANCE_LIST"].apply(lambda x: 1 if r in x else 0)
 
-        # Melt for long format
-        melted = df_presence.melt(
-            id_vars=["climb_id", "epi_week_year"],
-            value_vars=unique_resistances,
-            var_name="Resistance Class",
-            value_name="Present",
-        )
+    # Group by domain and epi_week_year and sum presence counts
+    summary_by_domain_week = (
+        df_presence_expanded.groupby(["domain", "epi_week_year"])[unique_resistances].sum().reset_index()
+    )
 
-        # Filter only rows where resistance is present
-        melted = melted[melted["Present"] == 1]
+    # Output DataFrames
+    print("Presence/Absence DataFrame per sample:")
+    print(df_presence_expanded)
 
-        # Count unique samples per epi_week_year and resistance class
-        summary = (
-            melted.groupby(["epi_week_year", "Resistance Class"])["climb_id"].nunique().reset_index(name="Sample Count")
-        )
+    print("\nSummary grouped by domain and epi_week_year:")
+    print(summary_by_domain_week)
 
-        # Plot line chart
-        fig = px.line(
-            summary,
-            x="epi_week_year",
-            y="Sample Count",
-            color="Resistance Class",
-            title=f"Number of Samples per Week by Resistance Class ({domain})",
-        )
-
-        # Save as HTML
-        fig.write_html(Path(output_dir) / f"samples_by_week_resistance_{domain}.html")
+    # fig.write_html(Path(output_dir) / f"samples_by_week_resistance_{domain}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
