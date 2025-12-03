@@ -217,7 +217,7 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
             },
         )
 
-        fig.write_html(Path(output_dir) / f"{domain}_amr_reads_species_distribution.html")
+        fig.write_html(Path(output_dir) / f"{domain}_amr_reads_taxa_distribution.html")
         amr_annotations_per_domain_fig_list.append(fig)
 
     amr_annotations_per_domain_html_blocks = []
@@ -226,6 +226,26 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
 
     amr_annotations_per_domain_html = "\n".join(amr_annotations_per_domain_html_blocks)
     return amr_annotations_per_domain_html
+
+
+def summarize_by_class(df: pd.DataFrame, unique_resistance_classes: list) -> pd.DataFrame:
+    # Ensure TRUE/FALSE (strings) are booleans; if they’re already booleans, this is harmless
+    for c in unique_resistance_classes:
+        if df[c].dtype != bool:
+            df[c] = df[c].astype(str).str.strip().str.upper().map({"TRUE": True, "FALSE": False})
+
+    # Group by species and count TRUEs per column
+    res_counts_by_species = df.groupby("species_name")[unique_resistance_classes].sum().astype(int)
+
+    # Add number of rows and total TRUEs across all resistance classes
+    res_counts_by_species["n_reads"] = df.groupby("species_name").size()
+    res_counts_by_species["total_TRUE"] = res_counts_by_species[unique_resistance_classes].sum(axis=1)
+
+    res_counts_by_species = res_counts_by_species.reset_index()  # moves index to a column named 'index' by default
+    # If you want to rename it and ensure it's the first column:
+    res_counts_by_species = res_counts_by_species.rename(columns={"index": "species_name"})
+
+    return res_counts_by_species
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
@@ -263,6 +283,9 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         .reset_index()
     )
 
+    # Figures for number of reads annotated with AMR per species per domain
+    amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
+
     # Summarise by Class of resistance
     unique_resistance_classes = (
         amr_df["RESISTANCE"]
@@ -274,10 +297,9 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         .dropna()
         .unique()
     )
-    print(unique_resistance_classes)
 
-    # Figures for number of reads annotated with AMR per species per domain
-    amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
+    res_counts_by_species = summarize_by_class(amr_df, unique_resistance_classes)
+    print(res_counts_by_species)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
