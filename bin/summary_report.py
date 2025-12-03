@@ -282,7 +282,7 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
         )
 
         # Save as HTML
-        fig.write_html(f"samples_by_week_resistance_{domain}.html")
+        fig.write_html(Path(output_dir) / f"samples_by_week_resistance_{domain}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
