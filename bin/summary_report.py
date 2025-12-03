@@ -214,15 +214,23 @@ def summary_stats(df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) 
 
     # Number of samples with AMR annotations
     num_amr_samples = df["climb_id"].nunique()
+    # Number of AMR samples per epi_week_year
+    total_amr_samples_epi_week_df = (
+        df.groupby("epi_week_year")["climb_id"].nunique().reset_index(name="total_amr_sample_count")
+    )
+    print(total_amr_samples_epi_week_df)
+
     # percentage of samples with AMR annotations to 2 decim
     per_amr_samples = (num_amr_samples / total_samples) * 100
     logger.info("Number of samples with AMR annotations: %d (%.2f%%)", num_amr_samples, per_amr_samples)
 
     print(total_samples_epi_week_df)
 
-    # Create a dataframe where the first column is the climb id, the second is the domain, and the third is the number of reads
+    # Create a dataframe where the first column is the climb id, the second is the domain,
+    #  and the third is the number of reads
     summary_df = df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
-    # From the summary_df, create a summary table that shows the min, max, median, and mean number of amr hits per domain
+    # From the summary_df, create a summary table that shows the min, max, median,
+    # and mean number of amr hits per domain
     summary_stats_df = (
         summary_df.groupby("domain")["amr_hit_count"]
         .agg(min_amr_hits="min", median_amr_hits="median", max_amr_hits="max")
@@ -232,7 +240,8 @@ def summary_stats(df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) 
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(df, output_dir)
 
-    # Generate line graph with the number of samples with AMR annotations over time, each line is a domain, grouped by week
+    # Generate line graph with the number of samples with AMR annotations over time,
+    # each line is a domain, grouped by week
     html_fig_samples_over_time = amr_sample_counts_over_time(df, output_dir)
 
     return amr_annotations_per_domain_html, html_fig_samples_over_time
