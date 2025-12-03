@@ -237,7 +237,6 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
-    print(df.columns)
     # Split RESISTANCE into list
     df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
     print(df["RESISTANCE_LIST"])
@@ -249,6 +248,7 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     # Generate separate plots for each domain
     for domain in df["domain"].unique():
         df_domain = df[df["domain"] == domain]
+        print(df_domain)
 
         # Create presence columns for each resistance class per sample-week
         df_presence = df_domain[["climb_id", "epi_week_year"]].drop_duplicates().copy()
