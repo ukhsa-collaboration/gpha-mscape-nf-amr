@@ -253,6 +253,7 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
         # Create presence columns for each resistance class per sample-week
         df_presence = df_domain[["climb_id", "epi_week_year"]].drop_duplicates().copy()
         print(df_presence)
+        print(df_domain.groupby(["#FILE", "epi_week_year"])["RESISTANCE_LIST"])
         for r in unique_resistances:
             df_presence[r] = (
                 df_domain.groupby(["climb_id", "epi_week_year"])["RESISTANCE_LIST"]
