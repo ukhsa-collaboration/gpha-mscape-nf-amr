@@ -237,6 +237,7 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
+    print(df.columns)
     # Split RESISTANCE into list
     df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
 
