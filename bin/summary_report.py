@@ -285,7 +285,7 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
         col for col in df_percentage.columns if col not in ["domain", "epi_week_year", "total_sample_count"]
     ]
     melted = df_percentage.melt(
-        id_vars=["domain", "epi_week_year"],
+        id_vars=["domain", "epi_week_year", "total_sample_count"],
         value_vars=resistance_cols,
         var_name="Resistance Class",
         value_name="Percentage",
@@ -294,17 +294,37 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
     # Generate grouped bar plots for each domain
     for dom in melted["domain"].unique():
         d = melted[melted["domain"] == dom]
-        fig = px.bar(
-            d,
-            x="epi_week_year",
-            y="Percentage",
-            color="Resistance Class",
-            barmode="group",  # Side-by-side bars
-            title=f"Grouped Bar Plot: Resistance Class Percentages per Week ({dom})",
+
+        fig = go.Figure()
+
+        # Add grouped bars
+        for resistance in resistance_cols:
+            subset = d[d["Resistance Class"] == resistance]
+            fig.add_trace(go.Bar(x=subset["epi_week_year"], y=subset["Percentage"], name=resistance))
+
+        # Add line for total samples
+        total_subset = df_percentage[df_percentage["domain"] == dom]
+        fig.add_trace(
+            go.Scatter(
+                x=total_subset["epi_week_year"],
+                y=total_subset["total_sample_count"],
+                mode="lines+markers",
+                name="Total Samples",
+                yaxis="y2",
+                line=dict(color="black", width=2),
+            )
         )
-        ordered_weeks = d["epi_week_year"].unique().tolist()
-        fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
-        fig.write_html(Path(output_dir) / f"grouped_bar_{dom}.html")
+
+        # Layout with dual y-axis
+        fig.update_layout(
+            title=f"Grouped Bar Plot with Total Samples Line ({dom})",
+            barmode="group",
+            xaxis=dict(title="epi_week_year"),
+            yaxis=dict(title="% of Samples"),
+            yaxis2=dict(title="Total Samples", overlaying="y", side="right"),
+        )
+
+        fig.write_html(Path(output_dir) / f"sample_class_epi_week_pct_bar_{dom}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
