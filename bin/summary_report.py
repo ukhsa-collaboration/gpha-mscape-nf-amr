@@ -236,24 +236,28 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def summarize_by_class(df: pd.DataFrame, unique_resistance_classes: list) -> pd.DataFrame:
-    # Ensure TRUE/FALSE (strings) are booleans; if they’re already booleans, this is harmless
-    for c in unique_resistance_classes:
-        if df[c].dtype != bool:
-            df[c] = df[c].astype(str).str.strip().str.upper().map({"TRUE": True, "FALSE": False})
+def summarize_by_class(df: pd.DataFrame) -> pd.DataFrame:
+    # Split RESISTANCE into lists
+    df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
 
-    # Group by species and count TRUEs per column
-    res_counts_by_species = df.groupby("species_name")[unique_resistance_classes].sum().astype(int)
+    # Get all unique resistance types
+    unique_resistances = sorted(set(r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist))
 
-    # Add number of rows and total TRUEs across all resistance classes
-    res_counts_by_species["n_reads"] = df.groupby("species_name").size()
-    res_counts_by_species["total_TRUE"] = res_counts_by_species[unique_resistance_classes].sum(axis=1)
+    # Create columns for each resistance type
+    for r in unique_resistances:
+        df[r] = df["RESISTANCE_LIST"].apply(lambda x: 1 if x and r in x else 0)
 
-    res_counts_by_species = res_counts_by_species.reset_index()  # moves index to a column named 'index' by default
-    # If you want to rename it and ensure it's the first column:
-    res_counts_by_species = res_counts_by_species.rename(columns={"index": "species_name"})
+    # Group by #FILE and name, aggregate counts
+    summary = (
+        df.groupby(["#FILE", "name"])
+        .agg(read_count=("read_id", "count"), **{r: (r, "sum") for r in unique_resistances})
+        .reset_index()
+    )
 
-    return res_counts_by_species
+    # Sort for readability
+    summary = summary.sort_values(by=["#FILE", "read_count"], ascending=[True, False])
+
+    print(summary)
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
@@ -294,22 +298,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
 
-    # Summarise by Class of resistance
-    res_expanded_df = explode_resistance(amr_df)
-    unique_resistance_classes = (
-        amr_df["RESISTANCE"]
-        .dropna()
-        .str.split(";")
-        .explode()
-        .str.strip()
-        .str.lower()  # or .str.capitalize() if you prefer
-        .dropna()
-        .unique()
-    )
-    print(unique_resistance_classes)
-
-    res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
-    print(res_counts_by_species)
+    summarize_by_class(amr_df)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
