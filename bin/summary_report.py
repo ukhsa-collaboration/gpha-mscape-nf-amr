@@ -269,7 +269,7 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
 
         # Count unique samples per epi_week_year and resistance class
         summary = (
-            melted.groupby(["epi_week_year", "Resistance Class"])["#FILE"].nunique().reset_index(name="Sample Count")
+            melted.groupby(["epi_week_year", "Resistance Class"])["climb_id"].nunique().reset_index(name="Sample Count")
         )
 
         # Plot line chart
