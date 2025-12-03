@@ -240,7 +240,9 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
+def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
+    print(total_samples_df)
+    print(df)
     # Generate a presence/absence df for class resistance, split by domain, include epi-week-year
 
     # Split RESISTANCE into list
@@ -341,13 +343,13 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
             d = agg_df[agg_df["domain"] == dom].copy()
 
             # Build the line plot
-            fig = px.line(
+            fig = px.area(
                 d,
                 x="epi_week_year",
                 y="Sample Count",
                 color="Resistance (consolidated)",
                 markers=True,
-                title=f"Number of Samples per Week by Resistance Class — {dom}",
+                title=f"Stacked Line Chart: Samples per Week by Resistance Class ({dom})",
             )
 
             # Enforce x-axis order by the chronological week_date sort
@@ -361,12 +363,9 @@ def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
                 safe_dom = re.sub(r"[^A-Za-z0-9_.-]+", "_", dom)
                 fig.write_html(Path(output_dir) / f"{html_prefix}_{safe_dom}.html")
 
-            # Show the figure (uncomment if running interactively)
-            # fig.show()
-
         return agg_df, rare_classes
 
-    consolidated_df, rare = plot_domain_lines(summary_by_domain_week, output_dir, rare_threshold=5, save_html=True)
+    consolidated_df, rare = plot_domain_lines(summary_by_domain_week, output_dir, rare_threshold=10, save_html=True)
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
@@ -407,7 +406,7 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
 
-    sample_class_amr_barplot_html = summarize_by_class(amr_df, output_dir)
+    sample_class_amr_barplot_html = summarize_by_class(amr_df, total_samples_epi_week_df, output_dir)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
