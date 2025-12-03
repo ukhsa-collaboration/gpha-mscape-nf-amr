@@ -222,8 +222,9 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
 
     logger.info("Number of samples with AMR annotations: %d (%.2f%%)", amr_samples, per_amr_samples)
 
-    print(total_samples_epi_week_df)
-    print(amr_samples_epi_week_df)
+    epi_week_sample_counts = pd.merge(total_samples, per_amr_samples, on="epi_week_year", how="left")
+    print(epi_week_sample_counts)
+    # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
 
     # Create a dataframe where the first column is the climb id, the second is the domain,
     #  and the third is the number of reads
