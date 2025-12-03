@@ -269,61 +269,65 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
     # Add total samples per epi_week_year to calculate percentage
     summary_by_domain_week = pd.merge(summary_by_domain_week, total_samples_df, on="epi_week_year", how="left")
 
-    # Helper to convert epi_week_year to datetime for sorting
-    def iso_week_to_date(iso_week_str: str) -> pd.Timestamp:
-        m = re.match(r"^(\\d{4})-W(\\d{2})$", str(iso_week_str))
-        if not m:
-            return pd.NaT
-        year, week = int(m.group(1)), int(m.group(2))
-        return datetime.fromisocalendar(year, week, 1)
+    print(summary_by_domain_week)
 
-    # Identify resistance columns (exclude domain, epi_week_year, total_sample_count)
-    resistance_cols = [
-        c for c in summary_by_domain_week.columns if c not in ["domain", "epi_week_year", "total_sample_count"]
-    ]
+    # Convert total counts to percentages
 
-    # Melt into long format
-    long_df = summary_by_domain_week.melt(
-        id_vars=["domain", "epi_week_year", "total_sample_count"],
-        value_vars=resistance_cols,
-        var_name="Resistance Class",
-        value_name="Sample Count",
-    )
+    # # Helper to convert epi_week_year to datetime for sorting
+    # def iso_week_to_date(iso_week_str: str) -> pd.Timestamp:
+    #     m = re.match(r"^(\\d{4})-W(\\d{2})$", str(iso_week_str))
+    #     if not m:
+    #         return pd.NaT
+    #     year, week = int(m.group(1)), int(m.group(2))
+    #     return datetime.fromisocalendar(year, week, 1)
 
-    # Consolidate rare classes (<5 samples total) into 'Other'
-    totals = long_df.groupby("Resistance Class")["Sample Count"].sum()
-    rare_classes = set(totals[totals < 5].index)
-    long_df["Resistance (consolidated)"] = long_df["Resistance Class"].where(
-        ~long_df["Resistance Class"].isin(rare_classes), "Other"
-    )
+    # # Identify resistance columns (exclude domain, epi_week_year, total_sample_count)
+    # resistance_cols = [
+    #     c for c in summary_by_domain_week.columns if c not in ["domain", "epi_week_year", "total_sample_count"]
+    # ]
 
-    # Aggregate after consolidation
-    agg_df = long_df.groupby(
-        ["domain", "epi_week_year", "Resistance (consolidated)", "total_sample_count"], as_index=False
-    )["Sample Count"].sum()
+    # # Melt into long format
+    # long_df = summary_by_domain_week.melt(
+    #     id_vars=["domain", "epi_week_year", "total_sample_count"],
+    #     value_vars=resistance_cols,
+    #     var_name="Resistance Class",
+    #     value_name="Sample Count",
+    # )
 
-    # Compute percentage
-    agg_df["Percentage"] = (agg_df["Sample Count"] / agg_df["total_sample_count"]) * 100
+    # # Consolidate rare classes (<5 samples total) into 'Other'
+    # totals = long_df.groupby("Resistance Class")["Sample Count"].sum()
+    # rare_classes = set(totals[totals < 5].index)
+    # long_df["Resistance (consolidated)"] = long_df["Resistance Class"].where(
+    #     ~long_df["Resistance Class"].isin(rare_classes), "Other"
+    # )
 
-    # Add chronological sort key
-    agg_df["week_date"] = agg_df["epi_week_year"].apply(iso_week_to_date)
-    agg_df = agg_df.sort_values(["domain", "week_date"])
+    # # Aggregate after consolidation
+    # agg_df = long_df.groupby(
+    #     ["domain", "epi_week_year", "Resistance (consolidated)", "total_sample_count"], as_index=False
+    # )["Sample Count"].sum()
 
-    # Generate stacked percentage charts for each domain
-    for dom in agg_df["domain"].unique():
-        d = agg_df[agg_df["domain"] == dom]
-        fig = px.area(
-            d,
-            x="epi_week_year",
-            y="Percentage",
-            color="Resistance (consolidated)",
-            title=f"Stacked Percentage Chart: Resistance Classes per Week ({dom})",
-        )
-        ordered_weeks = (
-            d[["epi_week_year", "week_date"]].drop_duplicates().sort_values("week_date")["epi_week_year"].tolist()
-        )
-        fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
-        fig.write_html(Path(output_dir) / f"stacked_percentage_{dom}.html")
+    # # Compute percentage
+    # agg_df["Percentage"] = (agg_df["Sample Count"] / agg_df["total_sample_count"]) * 100
+
+    # # Add chronological sort key
+    # agg_df["week_date"] = agg_df["epi_week_year"].apply(iso_week_to_date)
+    # agg_df = agg_df.sort_values(["domain", "week_date"])
+
+    # # Generate stacked percentage charts for each domain
+    # for dom in agg_df["domain"].unique():
+    #     d = agg_df[agg_df["domain"] == dom]
+    #     fig = px.area(
+    #         d,
+    #         x="epi_week_year",
+    #         y="Percentage",
+    #         color="Resistance (consolidated)",
+    #         title=f"Stacked Percentage Chart: Resistance Classes per Week ({dom})",
+    #     )
+    #     ordered_weeks = (
+    #         d[["epi_week_year", "week_date"]].drop_duplicates().sort_values("week_date")["epi_week_year"].tolist()
+    #     )
+    #     fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
+    #     fig.write_html(Path(output_dir) / f"stacked_percentage_{dom}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
