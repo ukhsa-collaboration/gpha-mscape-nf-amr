@@ -323,7 +323,7 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
             d[["epi_week_year", "week_date"]].drop_duplicates().sort_values("week_date")["epi_week_year"].tolist()
         )
         fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
-        fig.write_html(f"stacked_percentage_{dom}.html")
+        fig.write_html(Path(output_dir) / f"stacked_percentage_{dom}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
