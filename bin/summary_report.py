@@ -237,58 +237,52 @@ def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_by_class(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
-    # Split RESISTANCE into lists
+    # Split RESISTANCE into list
     df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
 
-    # Get all unique resistance types
-    unique_resistances = sorted(set(r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist))
+    # Get unique resistance classes
+    unique_resistances = sorted({r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist})
 
-    # Create columns for each resistance type
-    for r in unique_resistances:
-        df[r] = df["RESISTANCE_LIST"].apply(lambda x: 1 if x and r in x else 0)
+    # Generate separate plots for each domain
+    for domain in df["domain"].unique():
+        df_domain = df[df["domain"] == domain]
 
-    # Group by #FILE and name, aggregate counts
-    summary_df = (
-        df.groupby(["#FILE", "name"])
-        .agg(read_count=("read_id", "count"), **{r: (r, "sum") for r in unique_resistances})
-        .reset_index()
-    )
+        # Create presence columns for each resistance class per sample-week
+        df_presence = df_domain[["#FILE", "epi_week_year"]].drop_duplicates().copy()
+        for r in unique_resistances:
+            df_presence[r] = (
+                df_domain.groupby(["#FILE", "epi_week_year"])["RESISTANCE_LIST"]
+                .apply(lambda lists: int(any(r in lst for lst in lists)))
+                .reset_index(drop=True)
+            )
 
-    # Sort for readability
-    summary_df = summary_df.sort_values(by=["#FILE", "read_count"], ascending=[True, False])
+        # Melt for long format
+        melted = df_presence.melt(
+            id_vars=["#FILE", "epi_week_year"],
+            value_vars=unique_resistances,
+            var_name="Resistance Class",
+            value_name="Present",
+        )
 
-    # Generat plot
-    # Identify resistance columns
-    resistance_cols = [col for col in summary_df.columns if col not in ["#FILE", "name", "read_count"]]
+        # Filter only rows where resistance is present
+        melted = melted[melted["Present"] == 1]
 
-    # Convert to presence/absence per sample
-    df_presence = summary_df.copy()
-    df_presence[resistance_cols] = (df_presence[resistance_cols] > 0).astype(int)
+        # Count unique samples per epi_week_year and resistance class
+        summary = (
+            melted.groupby(["epi_week_year", "Resistance Class"])["#FILE"].nunique().reset_index(name="Sample Count")
+        )
 
-    # Melt for long format
-    melted = df_presence.melt(
-        id_vars=["#FILE", "name"], value_vars=resistance_cols, var_name="Resistance Class", value_name="Present"
-    )
+        # Plot line chart
+        fig = px.line(
+            summary,
+            x="epi_week_year",
+            y="Sample Count",
+            color="Resistance Class",
+            title=f"Number of Samples per Week by Resistance Class ({domain})",
+        )
 
-    # Filter only rows where resistance is present
-    melted = melted[melted["Present"] == 1]
-
-    print(melted)
-
-    # Count unique samples per species and resistance class
-    class_summary_df = melted.groupby(["name", "Resistance Class"])["#FILE"].nunique().reset_index(name="Sample Count")
-
-    # Plot
-    fig = px.bar(
-        class_summary_df,
-        x="name",
-        y="Sample Count",
-        color="Resistance Class",
-        title="Number of Unique Samples per Resistance Class Split by Species",
-    )
-
-    fig.write_html(Path(output_dir) / f"sample_class_counts_barchart.html")
-    return fig.to_html(include_plotlyjs="cdn", full_html="False")
+        # Save as HTML
+        fig.write_html(f"samples_by_week_resistance_{domain}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
