@@ -141,6 +141,57 @@ def total_sample_counts(df: pd.DataFrame, unqiue_name: str) -> pd.DataFrame:
     return total_samples, total_samples_epi_week_df
 
 
+def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
+    """Generate a plotly figure for the percentage/number of samples per epi-week with AMR annotations.
+    Save as HTML file, return as plotly figure"""
+    # Create a figure with a secondary y-axis
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    # Bar: AMR percentage
+    fig.add_trace(
+        go.Bar(
+            x=df["epi_week_year"],
+            y=df["amr_percentage"],
+            name="AMR %",
+            marker_color="#1f77b4",
+            hovertemplate="Week %{x}<br>AMR %: %{y:.2f}%<extra></extra>",
+        ),
+        secondary_y=False,
+    )
+
+    # Line: Total sample count (secondary y-axis)
+    fig.add_trace(
+        go.Scatter(
+            x=df["epi_week_year"],
+            y=df["total_sample_count"],
+            name="Total samples",
+            mode="lines+markers",
+            line={"color": "#ff7f0e", "width": 2},
+            marker={"size": 8},
+            hovertemplate="Week %{x}<br>Total: %{y:d}<extra></extra>",
+        ),
+        secondary_y=True,
+    )
+
+    # Layout & axes
+    fig.update_layout(
+        title="Percentage of Samples with AMR Annotations by Epi Week (bar) with Total Sample Count (line)",
+        barmode="group",
+        legend={"orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "right", "x": 1},
+        margin={"l": 40, "r": 40, "t": 60, "b": 40},
+        template="plotly_white",
+    )
+    fig.update_yaxes(
+        title_text="Samples with AMR Annotations\n(%)", ticksuffix="%", rangemode="tozero", secondary_y=False
+    )
+    fig.update_yaxes(title_text="Total samples", tickmode="linear", dtick=5, rangemode="tozero", secondary_y=True)
+    fig.update_xaxes(title_text="Epi week-year")
+
+    # Save to HTML (optional)
+    fig.write_html(Path(output_dir) / "sample_amr_percentage_bar_with_total_line.html", include_plotlyjs="cdn")
+    return fig.to_html(include_plotlyjs="cdn", full_html="False")
+
+
 def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     """Generate figures for number of reads annotated with AMR per species per domain."""
     amr_annotations_per_domain_fig_list = []
@@ -177,57 +228,6 @@ def domain_amr_read_counts(df: pd.DataFrame, output_dir: str) -> pd.DataFrame:
     return amr_annotations_per_domain_html
 
 
-def amr_sample_counts_over_time(df: pd.DataFrame, output_dir: str) -> go.Figure:
-    """Generate a plotly figure for the percentage/number of samples per epi-week with AMR annotations.
-    Save as HTML file, return as plotly figure"""
-    # Create a figure with a secondary y-axis
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    # Bar: AMR percentage
-    fig.add_trace(
-        go.Bar(
-            x=df["epi_week_year"],
-            y=df["amr_percentage"],
-            name="AMR %",
-            marker_color="#1f77b4",
-            hovertemplate="Week %{x}<br>AMR %: %{y:.2f}%<extra></extra>",
-        ),
-        secondary_y=False,
-    )
-
-    # Line: Total sample count (secondary y-axis)
-    fig.add_trace(
-        go.Scatter(
-            x=df["epi_week_year"],
-            y=df["total_sample_count"],
-            name="Total samples",
-            mode="lines+markers",
-            line={"color": "#ff7f0e", "width": 2},
-            marker={"size": 8},
-            hovertemplate="Week %{x}<br>Total: %{y:d}<extra></extra>",
-        ),
-        secondary_y=True,
-    )
-
-    # Layout & axes
-    fig.update_layout(
-        title="Percentage of Samples with AMR Annotation by Epi Week (bar) with Total Sample Count (line)",
-        barmode="group",
-        legend={"orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "right", "x": 1},
-        margin={"l": 40, "r": 40, "t": 60, "b": 40},
-        template="plotly_white",
-    )
-    fig.update_yaxes(
-        title_text="Samples with AMR Annotation\n(%)", ticksuffix="%", rangemode="tozero", secondary_y=False
-    )
-    fig.update_yaxes(title_text="Total samples", tickmode="linear", dtick=5, rangemode="tozero", secondary_y=True)
-    fig.update_xaxes(title_text="Epi week-year")
-
-    # Save to HTML (optional)
-    fig.write_html(Path(output_dir) / "sample_amr_percentage_bar_with_total_line.html", include_plotlyjs="cdn")
-    return fig.to_html(include_plotlyjs="cdn", full_html="False")
-
-
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
     """Generate summary statistics and save to HTML report."""
     logger.info("Generating summary statistics.")
@@ -252,8 +252,6 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
 
     amr_sample_pct_barplot_html_fig = amr_sample_counts_over_time(epi_week_sample_counts_df, output_dir)
 
-    # For each domain in amr_df, generate a table with the unqiue climb_id per weeek
-
     # Create a dataframe where the first column is the climb id, the second is the domain,
     #  and the third is the number of reads
     summary_df = amr_df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
@@ -264,6 +262,8 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
         .agg(min_amr_hits="min", median_amr_hits="median", max_amr_hits="max")
         .reset_index()
     )
+
+    print(summary_stats_df)
 
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
