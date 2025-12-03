@@ -291,22 +291,20 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
         value_name="Percentage",
     )
 
-    print(melted)
-
-    # # Generate grouped bar plots for each domain
-    # for dom in melted["domain"].unique():
-    #     d = melted[melted["domain"] == dom]
-    #     fig = px.bar(
-    #         d,
-    #         x="epi_week_year",
-    #         y="Percentage",
-    #         color="Resistance Class",
-    #         barmode="group",  # Side-by-side bars
-    #         title=f"Grouped Bar Plot: Resistance Class Percentages per Week ({dom})",
-    #     )
-    #     ordered_weeks = d["epi_week_year"].unique().tolist()
-    #     fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
-    #     fig.write_html(Path(output_dir) / f"grouped_bar_{dom}.html")
+    # Generate grouped bar plots for each domain
+    for dom in melted["domain"].unique():
+        d = melted[melted["domain"] == dom]
+        fig = px.bar(
+            d,
+            x="epi_week_year",
+            y="Percentage",
+            color="Resistance Class",
+            barmode="group",  # Side-by-side bars
+            title=f"Grouped Bar Plot: Resistance Class Percentages per Week ({dom})",
+        )
+        ordered_weeks = d["epi_week_year"].unique().tolist()
+        fig.update_layout(xaxis={"categoryorder": "array", "categoryarray": ordered_weeks}, yaxis_title="% of Samples")
+        fig.write_html(Path(output_dir) / f"grouped_bar_{dom}.html")
 
 
 def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: str) -> None:
