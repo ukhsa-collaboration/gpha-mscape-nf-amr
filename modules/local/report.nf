@@ -2,7 +2,7 @@
 process GENERATE_REPORT{
     tag "${climb_id}"
     label 'process_low'
-    publishDir "${params.output}/${climb_id}/", mode: 'copy'
+    publishDir "${params.outdir}/${climb_id}/", mode: 'copy'
 
     // Onyx and Onyx Helper
     container 'community.wave.seqera.io/library/pip_bio_matplotlib_numpy_pruned:489abe68b90e0d56'
