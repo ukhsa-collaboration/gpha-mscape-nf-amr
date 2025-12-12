@@ -3,7 +3,7 @@ process READ_ANALYSIS{
     tag "${climb_id}"
     label 'process_low'
     container 'community.wave.seqera.io/library/pip_pandas:40d2e76c16c136f0'
-    publishDir "${params.output}/${climb_id}/", mode: 'copy'
+    publishDir "${params.outdir}/${climb_id}/", mode: 'copy'
 
     // 1. Extract Read IDs from Abricate output file
     input:

@@ -2,7 +2,7 @@
 process ONYX_UPLOAD{
     tag "${unique_id}"
     label 'process_low'
-    publishDir "${params.output}/${unique_id}", mode: 'copy', pattern: "*.json"
+    publishDir "${params.outdir}/${unique_id}", mode: 'copy', pattern: "*.json"
 
     // Onyx and Onyx Helper
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-onyx-analysis-helper:pr-2'
@@ -16,11 +16,11 @@ process ONYX_UPLOAD{
     
     script:
     """
-    mkdir -p "${params.output}/${unique_id}"
+    mkdir -p "${params.outdir}/${unique_id}"
     
     onyx_upload.py \\
         -i ${unique_id} \\
-        -f ${params.output}/${unique_id} \\
+        -f ${params.outdir}/${unique_id} \\
         -o ./ \\
         --pipeline_status ${pipeline_status} \\
         --amr_params \"tool:${tool},db:${params.arg_abricate_db},minid:${params.arg_abricate_minid},mincov:${params.arg_abricate_mincov}\" \\

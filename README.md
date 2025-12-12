@@ -15,7 +15,7 @@ nextflow run \
     ukhsa-collaboration/gpha-mscape-nf-amr \
     -profile docker \
     --samplesheet <SAMPLESHEET.csv> \
-    --output <OUTDIR> \
+    --outdir <OUTDIR> \
     --email <EMAIL> \
     -e.ONYX_DOMAIN=$ONYX_DOMAIN \
     -e.ONYX_TOKEN=$ONYX_TOKEN \
@@ -28,7 +28,7 @@ nextflow run \
     ukhsa-collaboration/gpha-mscape-nf-amr \
     -profile docker \
     --unique_id <UNIQUE_ID> \
-    --output <OUTDIR> \
+    --outdir <OUTDIR> \
     --email <EMAIL> \
     -e.ONYX_DOMAIN=$ONYX_DOMAIN \
     -e.ONYX_TOKEN=$ONYX_TOKEN \
