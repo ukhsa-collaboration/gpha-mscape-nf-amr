@@ -20,10 +20,6 @@ import plotly.graph_objs as go
 from Bio import Entrez
 from plotly.subplots import make_subplots
 
-from datetime import datetime
-import re
-
-
 logger = logging.getLogger(__name__)
 
 
