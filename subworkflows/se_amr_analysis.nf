@@ -14,6 +14,7 @@ workflow SE_AMR_ANALYSIS {
     main:
 
     amrfinder_db = file(params.amrfinder_db, checkIfExists: true)
+    println(amrfinder_db)
     // Testing mapping
     RUN_METAPOINTFINDER(single_end_ch, amrfinder_db)
      
