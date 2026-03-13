@@ -6,9 +6,8 @@ process RUN_METAPOINTFINDER{
     maxForks 4
 
     input:
-    tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
-    path(amrfinder_db)
-    output:
+        tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
+        path(amrfinder_db)
 
     script:
     """
