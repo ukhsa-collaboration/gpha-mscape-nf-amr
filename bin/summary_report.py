@@ -243,7 +243,7 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
     df["RESISTANCE_LIST"] = df["RESISTANCE"].str.split(";")
 
     # Get unique resistance classes
-    unique_resistances = sorted(set(r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist))
+    unique_resistances = sorted({r for sublist in df["RESISTANCE_LIST"].dropna() for r in sublist})
 
     # Create presence/absence per sample (#FILE) including epi_week_year
     df_presence = (
@@ -254,8 +254,9 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
 
     # Initialize columns for each resistance class
     df_presence_expanded = df_presence[["#FILE", "domain", "epi_week_year"]].copy()
+
     for r in unique_resistances:
-        df_presence_expanded[r] = df_presence["RESISTANCE_LIST"].apply(lambda x: 1 if r in x else 0)
+        df_presence_expanded[r] = df_presence["RESISTANCE_LIST"].apply(lambda x, r=r: 1 if r in x else 0)
 
     # Group by domain and epi_week_year and sum presence counts
     summary_by_domain_week = (
@@ -264,8 +265,6 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
 
     # Add total samples per epi_week_year to calculate percentage
     summary_by_domain_week_df = pd.merge(summary_by_domain_week, total_samples_df, on="epi_week_year", how="left")
-
-    print(summary_by_domain_week_df)
 
     # # Convert total counts to percentages
     cols_to_convert = [
@@ -307,7 +306,7 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
                 mode="lines+markers",
                 name="Total Samples",
                 yaxis="y2",
-                line=dict(color="black", width=2),
+                line={"color": "black", "width": 2},
             )
         )
 
@@ -315,9 +314,9 @@ def summarize_by_class(df: pd.DataFrame, total_samples_df: pd.DataFrame, output_
         fig.update_layout(
             title=f"Grouped Bar Plot with Total Samples Line ({dom})",
             barmode="group",
-            xaxis=dict(title="epi_week_year"),
-            yaxis=dict(title="% of Samples"),
-            yaxis2=dict(title="Total Samples", overlaying="y", side="right"),
+            xaxis={"title": "epi_week_year"},
+            yaxis={"title": "% of Samples"},
+            yaxis2={"title": "Total Samples", "overlaying": "y", "side": "right"},
         )
 
         fig.write_html(Path(output_dir) / f"sample_class_epi_week_pct_bar_{dom}.html")
@@ -349,19 +348,19 @@ def summary_stats(amr_df: pd.DataFrame, metadata_df: pd.DataFrame, output_dir: s
 
     # Create a dataframe where the first column is the climb id, the second is the domain,
     #  and the third is the number of reads
-    summary_df = amr_df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
+    # summary_df = amr_df.groupby(["climb_id", "domain"]).size().reset_index(name="amr_hit_count")
     # From the summary_df, create a summary table that shows the min, max, median,
     # and mean number of amr hits per domain
-    summary_stats_df = (
-        summary_df.groupby("domain")["amr_hit_count"]
-        .agg(min_amr_hits="min", median_amr_hits="median", max_amr_hits="max")
-        .reset_index()
-    )
+    # summary_stats_df = (
+    #     summary_df.groupby("domain")["amr_hit_count"]
+    #     .agg(min_amr_hits="min", median_amr_hits="median", max_amr_hits="max")
+    #     .reset_index()
+    # )
 
     # Figures for number of reads annotated with AMR per species per domain
     amr_annotations_per_domain_html = domain_amr_read_counts(amr_df, output_dir)
 
-    sample_class_amr_barplot_html = summarize_by_class(amr_df, total_samples_epi_week_df, output_dir)
+    # sample_class_amr_barplot_html = summarize_by_class(amr_df, total_samples_epi_week_df, output_dir)
 
     return amr_annotations_per_domain_html, amr_sample_pct_barplot_html_fig
 
