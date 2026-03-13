@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-process RUN_MAPPING{
+process RUN_METAPOINTFINDER{
     tag "${climb_id}"
     label 'process_medium'
     container 'community.wave.seqera.io/library/metapointfinder:1.01--5d58f0a02b5fc1c8`'
