@@ -18,7 +18,7 @@ process RUN_METAPOINTFINDER{
         --db ${amrfinder_db} \\
         --output ./ \\
         --identity ${params.arg_abricate_minid} \\
-        --threads ${task.cpus}
-
+        --threads ${task.cpus} \\
+        --force
     """
 }
