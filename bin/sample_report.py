@@ -84,6 +84,7 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
 
     # 2️⃣ Create a lookup dict to store results
     taxid_to_species = {}
+    taxid_to_domain = {}
 
     # 3️⃣ Query NCBI only once per unique taxid
     for taxid in unique_taxids:
@@ -94,25 +95,40 @@ def simplify_taxa(email: str, df: pd.DataFrame) -> pd.DataFrame:
             # Extract lineage
             lineage_info = record.find(".//LineageEx")
             species_name = None
+            domain_name = None
+
             if lineage_info is not None:
                 for taxon in lineage_info:
                     rank = taxon.find("Rank").text
                     name = taxon.find("ScientificName").text
+
+                    # Capture domain (superkingdom)
+                    if rank == "domain":
+                        domain_name = name
+
+                    # Capture species
                     if rank == "species":
                         species_name = name
-                        break
 
-            # If the taxid itself is already at species level
+            # If species not found, use main ScientificName
             if not species_name:
                 species_name = record.find(".//ScientificName").text
 
+            # If domain not found, fallback to Unknown
+            if not domain_name:
+                domain_name = "Unknown"
+
             taxid_to_species[taxid] = species_name
-            time.sleep(0.4)  # Respect NCBI’s rate limit (max 3/sec)
+            taxid_to_domain[taxid] = domain_name
+
+            time.sleep(0.4)  # Respect NCBI’s rate limit
         except Exception:
             taxid_to_species[taxid] = "Unknown"
+            taxid_to_domain[taxid] = "Unknown"
 
-    # 4️⃣ Map the results back into your dataframe
+    # 4️⃣ Map results back into dataframe
     df["species_name"] = df["taxid"].astype(str).map(taxid_to_species)
+    df["domain"] = df["taxid"].astype(str).map(taxid_to_domain)
 
     return df
 
@@ -144,14 +160,6 @@ def load_table(path: str | Path) -> pd.DataFrame:
     # normalize column names (strip whitespace)
     df.columns = [c.strip() for c in df.columns]
     return df
-
-
-def explode_resistance(df: pd.DataFrame) -> pd.DataFrame:
-    # One-hot encode the semicolon-separated list in RESISTANCE
-    res_dummies = df["RESISTANCE"].str.get_dummies(sep=";").astype(bool)
-    # Join back and (optionally) keep or drop the original RESISTANCE column
-    out = pd.concat([df, res_dummies], axis=1)  # .drop(columns=['RESISTANCE'])
-    return out
 
 
 # -------------------------
@@ -511,61 +519,256 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 </style>
 </head>
 <body>
+<div class="card">
 <h1>AMR Report: {title}</h1>
 <p class="small">Generated: {timestamp}</p>
+</div>
 
 <div class="card">
-<h2>AMR Summary</h2>
+<h2>Summary</h2>
 <ul>
-    <li>Total AMR annotations: <b>{total_amr_count}</b>.</li>
-    <li>Total unique AMR elements: <b>{total_unique_genes}</b></li>
-        <ul>
-            <li>Top 5: <b>{gene_string}</b></li>
-            <li>Classes of resistance observed: {resistance_string}.</li>
-        </ul>
+    <li>Number of reads with AMR annotations: <b>{total_reads_w_amr}</b> 
+        {domain_counts_html}
+    </li>
+    <li> Classes of resistance observed are summarized below:
+        {domain_profiles_html}
+    </li>
+    <li> AMR genes observed are summarized below (# reads):
+        {domain_genes_html}
+    </li>
 </ul>
-{genes_sankey_html}
-<h3>Number of Reads with Annotated Genes, per Species</h3>
-<img class="img" src="{heatmap_img}" alt="Identity vs Coverage"/>
 </div>
+{gene_coverage_table_html}
+{gene_figure_html}
 
-<div class="card">
-<h2>Read Summary</h2>
-<ul>
-    <li> The median number of AMR annotations per read was {median_read_amr_count}.</li>
-    <li> The maximum number of AMR annotations per read was {max_read_amr_count}. {reads_w_max_amr_count} reads had this many AMR hits.<li>
-    <li> The median number of AMR classes per read was {median_read_class_count}.</li>
-    <li> The maximum number of AMR classes for a read was {max_read_class_count}. {reads_w_max_class_count} reads had this many AMR hits.<li>
-</ul>
-<h3>Plot of AMR Class Co-Occurance on Reads</h3>
-{coocc_fig}
-</div>
-<div class="card">
-<h2>Taxa Summary</h2>
-<p> 
-<ul>
-    <li>Total unique taxa associated with AMR annotations: <b>{no_of_taxa}</b>:</li>
-        <ul><li>Top 5: <b>{taxa_string}</b>.</li></ul>
-</ul>
-{species_sankey_html}
-
-</div>
-
-<div class="card">
-<h2>Plots</h2>
-<h3>AMR Genes by Resistance Class</h3>
-<p>The number of unique reads annotated with a gene confering resistance to a given class of antimicrobial.</p>
-<img class="img" src="{bar_class_img}" alt="Class distribution"/>
-
-
-
-<div class="footer">
-<p>Source file: {source_file}</p>
-<p>Notes: Tables derived from input. 'RESISTANCE' column is split on ';' to produce class-level counts.</p>
-</div>
 </body>
 </html>
 """  # noqa: E501
+
+
+# {genes_sankey_html}
+# <h3>Number of Reads with Annotated Genes, per Species</h3>
+# <img class="img" src="{heatmap_img}" alt="Identity vs Coverage"/>
+# </div>
+
+# <div class="card">
+# <h2>Read Summary</h2>
+# <ul>
+#     <li> The median number of AMR annotations per read was {median_read_amr_count}.</li>
+#     <li> The maximum number of AMR annotations per read was {max_read_amr_count}.
+#           {reads_w_max_amr_count} reads had this many AMR hits.<li>
+#     <li> The median number of AMR classes per read was {median_read_class_count}.</li>
+#     <li> The maximum number of AMR classes for a read was {max_read_class_count}.
+#           {reads_w_max_class_count} reads had this many AMR hits.<li>
+# </ul>
+# <h3>Plot of AMR Class Co-Occurance on Reads</h3>
+# {coocc_fig}
+# </div>
+# <div class="card">
+# <h2>Taxa Summary</h2>
+# <p>
+# <ul>
+#     <li>Total unique taxa associated with AMR annotations: <b>{no_of_taxa}</b>:</li>
+#         <ul><li>Top 5: <b>{taxa_string}</b>.</li></ul>
+# </ul>
+# {species_sankey_html}
+
+# </div>
+
+# <div class="card">
+# <h2>Plots</h2>
+# <h3>AMR Genes by Resistance Class</h3>
+# <p>The number of unique reads annotated with a gene confering resistance to a given class of antimicrobial.</p>
+# <img class="img" src="{bar_class_img}" alt="Class distribution"/>
+
+
+# <div class="footer">
+# <p>Source file: {source_file}</p>
+# <p>Notes: Tables derived from input. 'RESISTANCE' column is split on ';' to produce class-level counts.</p>
+# </div>
+
+
+def coverage_stats_from_tables(coverage_tables: dict) -> pd.DataFrame:
+    """
+    coverage_tables: dict with keys (gene, species_name) and values DataFrame
+                     with columns ['Position', 'Coverage'].
+    Returns a DataFrame of summary statistics for each (gene, species).
+    """
+    rows = []
+    for (gene, species), df in coverage_tables.items():
+        # Ensure expected columns exist
+        if not {"Position", "Coverage"}.issubset(df.columns):
+            raise ValueError(f"Table for ({gene}, {species}) must have 'Position' and 'Coverage' columns.")
+
+        # Basic stats
+        ref_len = int(df["Position"].max())  # number of positions
+        covered_mask = df["Coverage"] > 0
+        covered_len = int(covered_mask.sum())  # positions with coverage > 0
+        pct_covered = 100.0 * covered_len / ref_len if ref_len > 0 else 0.0
+        mean_cov = float(df["Coverage"].mean())
+        median_cov = float(df["Coverage"].median())
+        min_cov = int(df["Coverage"].min())
+        max_cov = int(df["Coverage"].max())
+
+        # Coverage start/end (None if no coverage)
+        if covered_len > 0:
+            start_pos = int(df.loc[covered_mask, "Position"].min())
+            end_pos = int(df.loc[covered_mask, "Position"].max())
+        else:
+            start_pos = None
+            end_pos = None
+
+        rows.append(
+            {
+                "Gene": gene,
+                "Species": species,
+                "Reference length (bp)": ref_len,
+                "Covered length (bp)": covered_len,
+                "% Covered": round(pct_covered, 2),
+                "Mean coverage": round(mean_cov, 2),
+                "Median coverage": round(median_cov, 2),
+                "Min coverage": min_cov,
+                "Max coverage": max_cov,
+                "Start of coverage": start_pos if start_pos is not None else "-",
+                "End of coverage": end_pos if end_pos is not None else "-",
+            }
+        )
+
+    return pd.DataFrame(rows)
+
+
+def make_html_table(df_stats: pd.DataFrame, title: str = "Coverage Statistics") -> str:
+    """
+    Create a styled HTML table string from the stats DataFrame.
+    """
+    # Basic CSS for readability
+    css = """
+    <style>
+    .table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-family: Arial, Helvetica, sans-serif; }
+    .table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+    .table th { background: #f2f2f2; }
+    .card { border: 1px solid #e1e1e1; padding: 12px; border-radius: 6px; margin: 16px 0; background: #fff; }
+    h2 { color: #0b4d6b; margin: 0 0 8px 0; }
+    </style>
+    """
+
+    # Convert DataFrame to HTML
+    table_html = df_stats.to_html(index=False, classes=["table"], escape=False)
+
+    # Wrap in a card
+    html = f"""
+    {css}
+    <div class="card">
+      <h2>{(title)}</h2>
+      {table_html}
+    </div>
+    """
+    return html
+
+
+def gene_figures(df: pd.DataFrame) -> dict[str, go.Figure]:
+    """
+    Generate coverage plots per gene using Plotly.
+    Returns a dictionary mapping gene names to Plotly Figure objects.
+    """
+    gene_figs = {}
+
+    for gene in df["GENE"].unique():
+        fig = go.Figure()
+
+        # Add a line for each species for this gene
+        for (g, species), group in df.groupby(["GENE", "species_name"]):
+            if g == gene:
+                # Create coverage array
+                gene_length = int(group["COVERAGE"].iloc[0].split("/")[-1])
+                coverage_array = np.zeros(gene_length, dtype=int)
+
+                for cov in group["COVERAGE"]:
+                    start = int(cov.split("-")[0])
+                    end = int(cov.split("-")[1].split("/")[0])
+                    coverage_array[start - 1 : end] += 1  # Increment coverage for positions
+
+                coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
+
+                fig.add_trace(
+                    go.Scatter(x=coverage_df["Position"], y=coverage_df["Coverage"], mode="lines", name=species)
+                )
+
+        # Customize layout
+        fig.update_layout(
+            title=f"Coverage Plot for Gene: {gene}",
+            xaxis_title="Position",
+            yaxis_title="Coverage",
+            template="plotly_white",
+        )
+
+        gene_figs[gene] = fig
+
+    return gene_figs
+
+
+def make_gene_figure_html_block(gene: str, fig: go.Figure) -> str:
+    """
+    Create an HTML block for a gene coverage figure.
+    """
+    # Save plot as HTML div
+    cov_gene_figures = fig.to_html(full_html=False, include_plotlyjs="cdn")
+
+    gene_figure_html_block = f"""
+    <div class="card">
+        <h2>Gene {gene} Coverage Plot</h2>
+        {cov_gene_figures}
+    </div>
+    """
+    return gene_figure_html_block
+
+
+# Function to build coverage table per gene
+def generate_gene_summary_html(df: pd.DataFrame) -> str:
+    """Generate gene coverage summary HTML blocks."""
+
+    # Generate tables for each gene-species combination
+    coverage_tables = {}
+
+    for gene_species, group in df.groupby(["GENE", "species_name"]):
+        # Get gene length from value after '/'
+        gene_length = int(group["COVERAGE"].iloc[0].split("/")[-1])
+
+        # Initialize coverage array
+        coverage_array = np.zeros(gene_length, dtype=int)
+
+        # Process each read
+        for cov in group["COVERAGE"]:
+            start = int(cov.split("-")[0])
+            end = int(cov.split("-")[1].split("/")[0])
+            coverage_array[start - 1 : end] += 1  # Increment coverage for positions
+
+        # Create DataFrame for this gene
+        coverage_df = pd.DataFrame({"Position": range(1, gene_length + 1), "Coverage": coverage_array})
+
+        coverage_tables[gene_species] = coverage_df
+
+    #  Generate stats
+    df_stats = coverage_stats_from_tables(coverage_tables)
+    # Create HTML table
+    cov_table_html = make_html_table(df_stats, title="AMR Gene Coverage Summary")
+
+    gene_fig_list = []
+    # Generate coverage plots per gene
+    for gene in df["GENE"].unique():
+        # Generate Figure
+        gene_figs = gene_figures(df[df["GENE"] == gene])
+        fig = gene_figs[gene]
+        gene_fig_list.append(fig)
+
+    # Create HTML block for all gene figures
+    gene_figure_html_blocks = []
+    for gene, fig in zip(df["GENE"].unique(), gene_fig_list, strict=False):
+        block = make_gene_figure_html_block(gene, fig)
+        gene_figure_html_blocks.append(block)
+    gene_figure_html = "\n".join(gene_figure_html_blocks)
+
+    return cov_table_html, gene_figure_html
 
 
 # -------------------------
@@ -573,78 +776,114 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # -------------------------
 def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr_tsv: str) -> None:
     # Create boolean columns for each resistance class
-    res_expanded_df = explode_resistance(df)
     fp = Path(output_path, "output_with_booleans.csv")
 
-    unique_resistance_classes = (
-        df["RESISTANCE"]
-        .dropna()
-        .str.split(";")
-        .explode()
-        .str.strip()
-        .str.lower()  # or .str.capitalize() if you prefer
-        .dropna()
-        .unique()
-    )
+    # Get number of reads with AMR annotations
+    total_reads_w_amr = df["SEQUENCE"].nunique()
+    # Get number of reads with AMR annotations by domain
+    domain_read_count_dict = {}
+    domain_species_list_dict = {}
 
-    res_counts_by_species = summarize_by_class(res_expanded_df, unique_resistance_classes)
-    fp = Path(output_path, "res_counts_by_species.csv")
-    res_counts_by_species.to_csv(fp, index=True)
+    for domain in df["domain"].unique():
+        domain_df = df[df["domain"] == domain]
 
-    # Summary information for paragraphs:
-    def most_common_string(top5: tuple[object, int, float] | list[tuple[object, int, float]]) -> str:
-        most_common_list = []
-        most_common_list.append(str(f"{top5[0][0]} (AMR Reads: {top5[0][1]}, {top5[0][2]}%)"))
-        for item in top5[1:]:
-            most_common_list.append(str(f"{item[0]} ({item[1]}, {item[2]}%)"))
-        return str(", ".join(most_common_list))
+        # Count unique reads
+        domain_read_count = domain_df["SEQUENCE"].nunique()
+        domain_read_count_dict[domain] = domain_read_count
 
-    top5_spp = most_common(df["species_name"], top_n=5)
-    most_common_taxa_str = most_common_string(top5_spp)
+        # Count unique species
+        species_list = domain_df["species_name"].unique()
+        if len(species_list) > 1:
+            domain_species_list_dict[domain] = species_list.join(", ")
+        elif len(species_list) == 1:
+            domain_species_list_dict[domain] = species_list[0]
+        else:
+            domain_species_list_dict[domain] = "No species level annotations."
 
-    top5_genes = most_common(df["GENE"], top_n=5)
-    most_common_genes_str = most_common_string(top5_genes)
+    # Build HTML dynamically
+    domain_counts_html = ""
+    for domain in df["domain"].unique():
+        reads = domain_read_count_dict.get(domain, 0)
+        species = domain_species_list_dict.get(domain, 0)
+        domain_counts_html += f"<ul><b>{domain}</b>:<ul>Read Counts: {reads}</ul><ul>Species: {species}</ul></ul>\n"
 
-    # create figures
-    fig1 = plot_class_bar(res_counts_by_species, output_path)
-    fig2 = heatplot(df, output_path)
+    # Get resistance profiles by domain
+    def get_resistance_profile(domain: str) -> str:
+        domain_df = df[df["domain"] == domain]
+        if domain_df.empty:
+            return "None"
+        unique_resistance_classes = (
+            domain_df["RESISTANCE"].dropna().str.split(";").explode().str.strip().str.lower().dropna().unique()
+        )
+        return ", ".join(unique_resistance_classes)
 
-    species_sankey_html = sankey_html_from_counts(
-        df, "Total reads", "species_name", include_plotlyjs="cdn", full_html=False
-    )
+    domain_profiles_dict = {}
+    for domain in df["domain"].unique():
+        profile = get_resistance_profile(domain)
+        domain_profiles_dict[domain] = profile
 
-    genes_sankey_html = sankey_html_from_counts(df, "Total reads", "GENE", include_plotlyjs="cdn", full_html=False)
+    domain_profiles_html = ""
+    for domain, profile in domain_profiles_dict.items():
+        domain_profiles_html += f"<ul><b>{domain}</b>: {profile}</ul>\n"
 
-    bar_class_b64 = fig_to_base64(fig1)
-    heatplot_b64 = fig_to_base64(fig2)
+    # AMR Genes by domain
+    def get_gene_profile(domain: str) -> str:
+        domain_df = df[df["domain"] == domain]
+        if domain_df.empty:
+            return "None"
 
-    # tables to HTML
-    summary_html = df_to_html_table(res_counts_by_species)
+        # Count occurrences of each gene
+        gene_counts = domain_df["GENE"].dropna().str.strip().str.upper().value_counts()
 
-    read_amr_summary_dict, coocc_fig = read_amr_summary(res_expanded_df, unique_resistance_classes, output_path)
+        # Format as "GENE (count)"
+        formatted_genes = [f"{gene} ({count})" for gene, count in gene_counts.items()]
+
+        return ", ".join(formatted_genes)
+
+    domain_gene_profiles_dict = {}
+    for domain in df["domain"].unique():
+        gene_profile = get_gene_profile(domain)
+        domain_gene_profiles_dict[domain] = gene_profile
+
+    domain_genes_html = ""
+    for domain, genes in domain_gene_profiles_dict.items():
+        domain_genes_html += f"<ul><b>{domain}</b>: {genes}</ul>\n"
+
+    # Summarise Gene Content
+
+    gene_figure_html_block, cov_table_html = generate_gene_summary_html(df)
+
+    # Summarise reads
+    # Get unique resistance classes
+    # unique_genes = df["GENE"].dropna().str.strip().str.upper().unique().tolist()
+    # Create a dataframe with SEQUENCE, each GENE associated with SEQUENCE
+
+    # read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
+    # Generate a summary HTML table for reads with AMR annotations
+
+    # min, max, median number of AMR annotations per read
+    # min, max, median number of AMR classes per read
 
     html = HTML_TEMPLATE.format(
         title=sample_id,
         timestamp=datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
-        summary_table=summary_html,
-        total_amr_count=len(df["SEQUENCE"]),
-        no_of_taxa=len(df["species_name"].unique()),
-        taxa_string=most_common_taxa_str,
-        total_unique_genes=len(df["GENE"].unique()),
-        gene_string=most_common_genes_str,
-        resistance_string=", ".join(unique_resistance_classes),
-        bar_class_img=bar_class_b64,
-        heatmap_img=heatplot_b64,
-        species_sankey_html=species_sankey_html,
-        genes_sankey_html=genes_sankey_html,
-        median_read_amr_count=read_amr_summary_dict["median_read_amr_count"],
-        max_read_amr_count=read_amr_summary_dict["max_read_amr_count"],
-        reads_w_max_amr_count=read_amr_summary_dict["reads_w_max_amr_count"],
-        median_read_class_count=read_amr_summary_dict["median_read_class_count"],
-        max_read_class_count=read_amr_summary_dict["max_read_class_count"],
-        reads_w_max_class_count=read_amr_summary_dict["reads_w_max_class_count"],
-        coocc_fig=coocc_fig,
-        source_file=amr_tsv,
+        # Read counts
+        total_reads_w_amr=total_reads_w_amr,
+        domain_counts_html=domain_counts_html,
+        domain_profiles_html=domain_profiles_html,
+        domain_genes_html=domain_genes_html,
+        # Gene summaries
+        gene_figure_html=gene_figure_html_block,
+        gene_coverage_table_html=cov_table_html,
+        # AMR Profiles
+        # median_read_amr_count=read_amr_summary_dict["median_read_amr_count"],
+        # max_read_amr_count=read_amr_summary_dict["max_read_amr_count"],
+        # reads_w_max_amr_count=read_amr_summary_dict["reads_w_max_amr_count"],
+        # median_read_class_count=read_amr_summary_dict["median_read_class_count"],
+        # max_read_class_count=read_amr_summary_dict["max_read_class_count"],
+        # reads_w_max_class_count=read_amr_summary_dict["reads_w_max_class_count"],
+        # coocc_fig=coocc_fig,
+        # source_file=amr_tsv,
     )
 
     fp = Path(output_path, str(f"{sample_id}_sample_amr_report.html"))
