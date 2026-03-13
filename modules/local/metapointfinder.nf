@@ -7,7 +7,7 @@ process RUN_METAPOINTFINDER{
 
     input:
     tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
-    
+    path(amrfinder_db)
     output:
 
     script:
@@ -15,7 +15,7 @@ process RUN_METAPOINTFINDER{
 
     metapointfinder.py \\
         --input ${fastq1} \\
-        --db databasefolder \\
+        --db ${amrfinder_db} \\
         --output ./ \\
         --identity ${params.arg_abricate_minid} \\
         --threads ${task.cpus}
