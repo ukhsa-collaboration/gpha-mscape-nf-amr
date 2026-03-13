@@ -11,7 +11,6 @@ process RUN_METAPOINTFINDER{
 
     script:
     """
-
     metapointfinder.py \\
         --input ${fastq1} \\
         --db ${amrfinder_db} \\
