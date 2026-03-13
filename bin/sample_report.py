@@ -14,7 +14,6 @@ import argparse
 import base64
 import io
 import logging
-import re
 import sys
 import textwrap
 import time
@@ -563,9 +562,11 @@ h1, h2, h3 {{ color: #0b4d6b; }}
 # <h2>Read Summary</h2>
 # <ul>
 #     <li> The median number of AMR annotations per read was {median_read_amr_count}.</li>
-#     <li> The maximum number of AMR annotations per read was {max_read_amr_count}. {reads_w_max_amr_count} reads had this many AMR hits.<li>
+#     <li> The maximum number of AMR annotations per read was {max_read_amr_count}.
+#           {reads_w_max_amr_count} reads had this many AMR hits.<li>
 #     <li> The median number of AMR classes per read was {median_read_class_count}.</li>
-#     <li> The maximum number of AMR classes for a read was {max_read_class_count}. {reads_w_max_class_count} reads had this many AMR hits.<li>
+#     <li> The maximum number of AMR classes for a read was {max_read_class_count}.
+#           {reads_w_max_class_count} reads had this many AMR hits.<li>
 # </ul>
 # <h3>Plot of AMR Class Co-Occurance on Reads</h3>
 # {coocc_fig}
@@ -769,7 +770,7 @@ def generate_gene_summary_html(df: pd.DataFrame) -> str:
 
     # Create HTML block for all gene figures
     gene_figure_html_blocks = []
-    for gene, fig in zip(df["GENE"].unique(), gene_fig_list):
+    for gene, fig in zip(df["GENE"].unique(), gene_fig_list, strict=False):
         block = make_gene_figure_html_block(gene, fig)
         gene_figure_html_blocks.append(block)
     gene_figure_html = "\n".join(gene_figure_html_blocks)
@@ -861,7 +862,7 @@ def generate_html_report(df: pd.DataFrame, output_path: str, sample_id: str, amr
 
     # Summarise reads
     # Get unique resistance classes
-    unique_genes = df["GENE"].dropna().str.strip().str.upper().unique().tolist()
+    # unique_genes = df["GENE"].dropna().str.strip().str.upper().unique().tolist()
     # Create a dataframe with SEQUENCE, each GENE associated with SEQUENCE
 
     # read_amr_summary_dict, coocc_fig = read_amr_summary(df, unique_resistance_classes, output_path)
