@@ -11,7 +11,7 @@ process RUN_KMA{
         path(card_kma_db)
 
     output:
-        tuple path("*tsv"), path("*.res"), path("*.fsa"), path("*.frag.gz"), path("*.aln"), emit: kma_out 
+    tuple val(climb_id), path("*.res"), path("*.fsa"), path("*.frag.gz"), path("*.aln"), emit: kma_out
         
     script:
     """
