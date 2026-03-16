@@ -15,7 +15,7 @@ workflow SE_AMR_ANALYSIS {
 
     main:
 
-    card_db_fasta = file(params.card_kma_db, checkIfExists: true)
+    card_kma_db = file(params.card_kma_db, checkIfExists: true)
     
     // Testing mapping
     // RUN_METAPOINTFINDER(single_end_ch, amrfinder_db)
