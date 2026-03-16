@@ -8,8 +8,6 @@ process RUN_KMA{
 
     
     errorStrategy 'ignore'
-    validExitStatus 0,95 // indicates no reads are present, but that's fine
-
 
     input:
         tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
