@@ -6,6 +6,11 @@ process RUN_KMA{
     publishDir "${params.output}/${climb_id}/kma", mode: 'copy'
     // maxForks 4
 
+    
+    errorStrategy 'ignore'
+    validExitStatus 0,95
+
+
     input:
         tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
         path(card_kma_db)
