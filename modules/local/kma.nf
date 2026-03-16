@@ -3,15 +3,15 @@ process RUN_KMA{
     tag "${climb_id}"
     label 'process_medium'
     container 'community.wave.seqera.io/library/kma:1.6.8--8337f908ec0ef88a'
-    // publishDir "${params.output}/${climb_id}/kma", mode: 'copy'
+    publishDir "${params.output}/${climb_id}/kma", mode: 'copy'
     // maxForks 4
 
     input:
         tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
         path(card_kma_db)
 
-    // output:
-    // tuple val(climb_id), path("*.res"), path("*.fsa"), path("*.frag.gz"), path("*.aln"), emit: kma_out
+    output:
+    tuple val(climb_id), path("*.res"), path("*.fsa"), path("*.frag.gz"), path("*.aln"), emit: kma_out
         
     script:
     """
