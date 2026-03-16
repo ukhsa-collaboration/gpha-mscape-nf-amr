@@ -19,7 +19,7 @@ workflow SE_AMR_ANALYSIS {
     
     // Testing mapping
     // RUN_METAPOINTFINDER(single_end_ch, amrfinder_db)
-    RUN_kma(single_end_ch, card_kma_db)
+    RUN_KMA(single_end_ch, card_kma_db)
      
     // // 1. Gunzip FASTQ
     // // Abricate can use fastq.gz, so just point to files.
