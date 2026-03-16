@@ -1,11 +1,13 @@
 #!/usr/bin/env nextflow
 
-include { GZ_TO_FASTQ     } from "../modules/local/gunzip"
-include { RUN_ABRICATE    } from "../modules/local/abricate"
+include { GZ_TO_FASTQ             } from "../modules/local/gunzip"
+include { RUN_ABRICATE            } from "../modules/local/abricate"
 include { RUN_METAPOINTFINDER     } from "../modules/local/metapointfinder"
-include { READ_ANALYSIS   } from "../modules/local/taxonomy"
-include { GENERATE_REPORT } from "../modules/local/report"
-include { ONYX_UPLOAD     } from "../modules/local/onyx_upload"
+include { RUN_KMA        } from "../modules/local/kma"
+include { READ_ANALYSIS           } from "../modules/local/taxonomy"
+include { GENERATE_REPORT         } from "../modules/local/report"
+include { ONYX_UPLOAD             } from "../modules/local/onyx_upload"
+
 
 workflow SE_AMR_ANALYSIS {
     take:
@@ -13,10 +15,11 @@ workflow SE_AMR_ANALYSIS {
 
     main:
 
-    amrfinder_db = file(params.amrfinder_db, checkIfExists: true)
-    println(amrfinder_db)
+    card_db_fasta = file(params.card_kma_db, checkIfExists: true)
+    
     // Testing mapping
-    RUN_METAPOINTFINDER(single_end_ch, amrfinder_db)
+    // RUN_METAPOINTFINDER(single_end_ch, amrfinder_db)
+    RUN_kma(single_end_ch, card_kma_db)
      
     // // 1. Gunzip FASTQ
     // // Abricate can use fastq.gz, so just point to files.
