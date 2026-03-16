@@ -21,11 +21,11 @@ process RUN_KMA{
     """
     kma \\
          -i ${fastq1} \\
-         -o ./ \\
+         -o ./kma_results \\
          -t_db ${card_kma_db}/nucleotide_fasta_protein_homolog_model_kma_db \\
          -ont \\
          -reassign;
     
-    cp kma_card_out.res kma_card_out.res.tsv
+    cp kma_results.res kma_results.res.tsv
     """
 }
