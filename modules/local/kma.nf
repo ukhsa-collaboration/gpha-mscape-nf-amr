@@ -7,7 +7,7 @@ process RUN_KMA{
     // maxForks 4
 
     
-    errorStrategy 'ignore'
+    errorStrategy { task.exitStatus = 95 ? "ignore" : "retry" }
 
     input:
         tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
