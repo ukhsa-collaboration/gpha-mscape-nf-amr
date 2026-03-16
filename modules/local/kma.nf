@@ -26,6 +26,5 @@ process RUN_KMA{
          -ont \\
          -reassign;
     
-    cp kma_results.res kma_results.res.tsv
     """
 }
