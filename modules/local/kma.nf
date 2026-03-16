@@ -12,11 +12,7 @@ process RUN_KMA{
 
     output:
         tuple path("*tsv"), path("*.res"), path("*.fsa"), path("*.frag.gz"), path("*.aln"), emit: kma_out 
-    // Other minisnpfinder output files: path(class), path(accession), path(dna_class), path(dna_accession), path(*.prot.hits.txt), path(*.prot.input.tsv), path(*.res), path(*.frag.gz), path((*.dna.input.tsv),
-
-            
-            
-
+        
     script:
     """
     kma \\
@@ -24,7 +20,7 @@ process RUN_KMA{
          -o ./kma_results \\
          -t_db ${card_kma_db}/nucleotide_fasta_protein_homolog_model_kma_db \\
          -ont \\
-         -reassign;
+         -reassign
     
     """
 }
