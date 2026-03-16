@@ -21,7 +21,7 @@ process RUN_KMA{
     """
     kma \\
          -i ${fastq1} \\
-         -o kma_card_out \\
+         -o kma_card_out/nucleotide_fasta_protein_homolog_model_kma_db \\
          -t_db ${kma_card_db} \\
          -ont \\
          -reassign;
