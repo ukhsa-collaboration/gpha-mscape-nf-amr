@@ -8,7 +8,7 @@ process RUN_KMA{
 
     
     errorStrategy 'ignore'
-    validExitStatus 0,95
+    validExitStatus 0,95 // indicates no reads are present, but that's fine
 
 
     input:
