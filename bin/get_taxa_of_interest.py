@@ -110,13 +110,14 @@ def read_commandline() -> argparse:
 
 
 # Extract the taxa id for taxa of interest
-def get_species_names(reference_taxa_list: str) -> list:
+def get_species_names(reference_taxa_fp: str) -> list:
     """
     Read in file path for textfile of species names, split into list
     :args: filepath, str
     :return: list[species name, ... ]
     """
-    with open("file.txt", "r") as f:
+    reference_taxa_fp = Path(reference_taxa_fp)
+    with reference_taxa_fp.open("r").open() as f:
         species = [line.strip() for line in f if line.strip()]
     return species
 
