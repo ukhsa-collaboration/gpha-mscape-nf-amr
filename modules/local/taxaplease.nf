@@ -12,10 +12,12 @@ process RUN_TAXAPLEASE{
         tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
         path(taxaplease_db)
   
+    output:
+        path("test.txt")
         
     script:
     """
-    taxaplease --database ${taxaplease_db} record --record 1337
+    taxaplease --database ${taxaplease_db} record --record 1337 >test.txt
 
     """
 }
