@@ -27,7 +27,7 @@ process RUN_KMA{
          -reassign
 
     gunzip kma_results.frag.gz
-    echo "read\t#_equally_well_mapping_templates\tmapping_score\ttemplate_start_position\ttemplate_end_position\tchoosen_template\tread_id\n" >mapping_info.tsv
+    echo "read\t#_equally_well_mapping_templates\tmapping_score\ttemplate_start_position\ttemplate_end_position\tchoosen_template\tread_id" >mapping_info.tsv
     cat kma_results.frag >>mapping_info.tsv
     gzip kma_results.frag
     """
