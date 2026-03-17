@@ -117,7 +117,7 @@ def get_species_names(reference_taxa_fp: str) -> list:
     :return: list[species name, ... ]
     """
     reference_taxa_fp = Path(reference_taxa_fp)
-    with reference_taxa_fp.open("r").open() as f:
+    with reference_taxa_fp.open("r") as f:
         species = [line.strip() for line in f if line.strip()]
     return species
 
