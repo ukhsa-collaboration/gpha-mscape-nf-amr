@@ -18,9 +18,12 @@ workflow SE_AMR_ANALYSIS {
     card_kma_db = file(params.card_kma_db, checkIfExists: true)
 
     // Testing mapping
-    // RUN_METAPOINTFINDER(single_end_ch, amrfinder_db)
     RUN_KMA(single_end_ch, card_kma_db)
-     
+
+    // Get Taxa information on reads
+    
+
+
     // // 1. Gunzip FASTQ
     // // Abricate can use fastq.gz, so just point to files.
     // GZ_TO_FASTQ(single_end_ch)
