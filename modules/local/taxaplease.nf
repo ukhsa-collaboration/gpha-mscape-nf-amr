@@ -8,8 +8,8 @@ process RUN_TAXAPLEASE{
 
 
     input:
-        file(kma_mapping_tsv)
-        val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
+        path(kma_mapping_tsv)
+        tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
         path(taxaplease_db)
   
         
