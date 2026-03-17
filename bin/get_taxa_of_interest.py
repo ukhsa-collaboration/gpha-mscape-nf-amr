@@ -172,18 +172,18 @@ def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.D
     """
     tp = TaxaPlease(database=taxaplease_db)
 
-    parent_records = []
+    parent_lists = []
 
     for taxid in species_match_df["taxid"]:
         if pd.isna(taxid):
-            parent_records.append(None)
+            parent_lists.append(None)
             continue
 
-        parent_taxids = tp.get_all_parent_taxids(int(taxid), includeSelf=False)
-        records = [tp.get_record(t) for t in parent_taxids]
-        parent_records.append(records)
+        parents = tp.get_all_parent_taxids(int(taxid), includeSelf=False)
+        parent_lists.append(parents)
 
-    species_match_df["parent_records"] = parent_records
+    species_match_df["parent_taxids"] = parent_lists
+
     logging.debug(species_match_df)
     return species_match_df
 
