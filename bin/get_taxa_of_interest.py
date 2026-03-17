@@ -184,7 +184,7 @@ def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.D
 
     species_match_df["parent_taxids"] = parent_lists
 
-    logging.debug(species_match_df)
+    logging.logging("Retreived parent taxids.")
     return species_match_df
 
 
@@ -207,6 +207,7 @@ def main(args) -> None:
     species_match_df = get_parent_taxid(species_match_df, args.taxaplease_db)
     output_fn = Path(args.output_dir) / str("taxaplease_reference_table.tsv")
     species_match_df.to_csv(output_fn, index=False, sep="\t")
+    logging.info("Wrote output file: %s", output_fn)
 
 
 def cli():
