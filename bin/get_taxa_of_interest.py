@@ -196,7 +196,8 @@ def main(args) -> None:
     """
     setup_logging(Path(args.output_dir), "taxaplease", args.log_level)
     logging.debug(args)
-
+    logging.info("Using reference file: %s", args.reference_taxa_list)
+    logging.info("Using taxaplease database: %s", args.taxaplease_db)
     # Get species names
     species = get_species_names(args.reference_taxa_list)
     species_match_df = get_taxa_id(species, args.taxaplease_db)
