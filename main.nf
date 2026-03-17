@@ -46,5 +46,5 @@ workflow {
         .set { ch_fastqs }
             
     SE_AMR_ANALYSIS(ch_fastqs.single_end)
-    PE_AMR_ANALYSIS(ch_fastqs.paired_end)
+    // PE_AMR_ANALYSIS(ch_fastqs.paired_end)
 }
