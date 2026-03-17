@@ -132,7 +132,7 @@ def get_taxa_id(species: list, taxaplease_db: str) -> dict:
     :args: species list, database fp (str)
     :return: dictionar {species_name: taxid, ... }
     """
-
+    logging.info("Querying database for reference species...")
     conn = sqlite3.connect(taxaplease_db)
 
     out_rows = []
@@ -154,9 +154,12 @@ def get_taxa_id(species: list, taxaplease_db: str) -> dict:
                 out_rows.append({"input_name": sp, "matched_name": row["name"], "taxid": row["taxid"]})
 
     conn.close()
+    logging.info("Foundf %s matches to query species", len(out_rows))
 
-    logging.debug(out_rows)
-    return pd.DataFrame(out_rows)
+    if len(out_rows):
+        sys.exit(logging.error("No database matches to the following species:\n%s", ", ".join(species)))
+    else:
+        return pd.DataFrame(out_rows)
 
 
 # provide all parent taxa ids for taxa of interest
