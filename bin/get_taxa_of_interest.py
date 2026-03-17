@@ -194,7 +194,6 @@ def main(args) -> None:
 
     :return: N/A
     """
-    start_time = datetime.now()  #
     setup_logging(Path(args.output_dir), "taxaplease", args.log_level)
     logging.debug(args)
 
