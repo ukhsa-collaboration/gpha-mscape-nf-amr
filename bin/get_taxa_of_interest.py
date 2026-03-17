@@ -188,9 +188,6 @@ def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.D
     return species_match_df
 
 
-# write to output tsv
-
-
 def main(args) -> None:
     """
     Main running of the script to run the BLAST query and wrangle the results to provide a per segment and sample summary of the genotyping results.
