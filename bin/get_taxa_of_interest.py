@@ -6,6 +6,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from taxaplease import TaxaPlease
+
 
 def existing_file(path_str: str) -> Path:
     path = Path(path_str)
@@ -106,7 +108,18 @@ def read_commandline() -> argparse:
 
 # Use taxaplease
 
+
 # Extract the taxa id for taxa of interest
+def get_species_names(reference_taxa_list: str) -> list:
+    """
+    Read in file path for textfile of species names, split into list
+    :args: filepath, str
+    :return: list[species name, ... ]
+    """
+    with open("file.txt", "r") as f:
+        species = [line.strip() for line in f if line.strip()]
+    return species
+
 
 # provide all parent taxa ids for taxa of interest
 
@@ -120,8 +133,12 @@ def main(args) -> None:
     :return: N/A
     """
     start_time = datetime.now()  #
-    setup_logging(Path(args.output_dir), "ai_genotyping", args.log_level)
+    setup_logging(Path(args.output_dir), "taxaplease", args.log_level)
     logging.debug(args)
+
+    # Get species names
+    species = get_species_names(args.reference_taxa_list)
+    logging.debug(species)
 
 
 def cli():
