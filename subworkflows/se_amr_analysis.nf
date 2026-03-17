@@ -3,11 +3,11 @@
 include { GZ_TO_FASTQ             } from "../modules/local/gunzip"
 include { RUN_ABRICATE            } from "../modules/local/abricate"
 include { RUN_METAPOINTFINDER     } from "../modules/local/metapointfinder"
-include { RUN_KMA        } from "../modules/local/kma"
+include { RUN_KMA                 } from "../modules/local/kma"
 include { READ_ANALYSIS           } from "../modules/local/taxonomy"
 include { GENERATE_REPORT         } from "../modules/local/report"
 include { ONYX_UPLOAD             } from "../modules/local/onyx_upload"
-
+include { RUN_TAXAPLEASE          } from "../modules/local/taxaplease"
 
 workflow SE_AMR_ANALYSIS {
     take:
@@ -23,7 +23,7 @@ workflow SE_AMR_ANALYSIS {
 
     // Get Taxa information on reads
     // Run taxaplease
-    RUN_TAXAPLEASE(RUN_KMA, taxa_please_db)
+    RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, taxa_please_db, single_end_ch)
 
 
     // // 1. Gunzip FASTQ
