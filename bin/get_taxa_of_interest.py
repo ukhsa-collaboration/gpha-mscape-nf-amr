@@ -179,7 +179,7 @@ def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.D
             parent_records.append(None)
             continue
 
-        parent_taxids = tp.get_all_parent_taxids(int(taxid), includeSelf=True)
+        parent_taxids = tp.get_all_parent_taxids(int(taxid), includeSelf=False)
         records = [tp.get_record(t) for t in parent_taxids]
         parent_records.append(records)
 
