@@ -126,7 +126,7 @@ def get_species_names(reference_taxa_fp: str) -> list:
 
 
 # Get taxid for species
-def get_taxa_id(species: list, taxaplease_db: str) -> dict:
+def get_taxa_id(species: list, taxaplease_db: str) -> pd.DataFrame:
     """
     Read in list of species names (strings), query database, extract taxaid, map taxid to species name as dictionary
     :args: species list, database fp (str)
@@ -163,6 +163,29 @@ def get_taxa_id(species: list, taxaplease_db: str) -> dict:
 
 
 # provide all parent taxa ids for taxa of interest
+def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.DataFrame:
+    """
+    Get TaxaIDs from pandas dataframe column and identify all parent taxaids, extract  into a list and add as a new column to the dataframe
+    :args: species_match_df dataframe, database fp (str)
+    :return: dataframe with parent_taxid column
+    """
+    tp = TaxaPlease(database=taxaplease_db)
+
+    parent_records = []
+
+    for taxid in species_match_df["taxid"]:
+        if pd.isna(taxid):
+            parent_records.append(None)
+            continue
+
+        parent_taxids = tp.get_all_parent_taxids(int(taxid), includeSelf=True)
+        records = [tp.get_record(t) for t in parent_taxids]
+        parent_records.append(records)
+
+    species_match_df["parent_records"] = parent_records
+    logging.debug(species_match_df)
+    return species_match_df
+
 
 # write to output tsv
 
@@ -179,7 +202,8 @@ def main(args) -> None:
 
     # Get species names
     species = get_species_names(args.reference_taxa_list)
-    get_taxa_id(species, args.taxaplease_db)
+    species_match_df = get_taxa_id(species, args.taxaplease_db)
+    get_parent_taxid(species_match_df)
 
 
 def cli():
