@@ -21,9 +21,11 @@ workflow SE_AMR_ANALYSIS {
     // Testing mapping
     RUN_KMA(single_end_ch, card_kma_db)
 
+
+    RUN_KMA.out.kma_mapping_tsv
     // Get Taxa information on reads
     // Run taxaplease
-    RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, taxaplease_db, single_end_ch)
+    RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, single_end_ch, taxaplease_db )
 
 
     // // 1. Gunzip FASTQ
