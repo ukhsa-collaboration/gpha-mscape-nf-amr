@@ -204,7 +204,9 @@ def main(args) -> None:
     # Get species names
     species = get_species_names(args.reference_taxa_list)
     species_match_df = get_taxa_id(species, args.taxaplease_db)
-    get_parent_taxid(species_match_df, args.taxaplease_db)
+    species_match_df = get_parent_taxid(species_match_df, args.taxaplease_db)
+    output_fn = Path(args.output_dir) / str("_taxaplease_reference_table.tsv")
+    species_match_df.to_csv(output_fn, index=False, sep="\t")
 
 
 def cli():
