@@ -133,8 +133,7 @@ def get_taxa_id(species: list, taxaplease_db: str) -> dict:
     :return: dictionar {species_name: taxid, ... }
     """
 
-    db_path = Path(taxaplease_db) / "taxa.db"
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(taxaplease_db)
 
     out_rows = []
 
