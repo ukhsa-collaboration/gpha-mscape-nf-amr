@@ -16,14 +16,14 @@ workflow SE_AMR_ANALYSIS {
     main:
 
     card_kma_db = file(params.card_kma_db, checkIfExists: true)
-    taxa_please_db = file(params.taxa_please_db, checkIfExists: true)
+    taxaplease_db = file(params.taxaplease_db, checkIfExists: true)
 
     // Testing mapping
     RUN_KMA(single_end_ch, card_kma_db)
 
     // Get Taxa information on reads
     // Run taxaplease
-    RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, taxa_please_db, single_end_ch)
+    RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, taxaplease_db, single_end_ch)
 
 
     // // 1. Gunzip FASTQ
