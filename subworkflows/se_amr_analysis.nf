@@ -21,6 +21,7 @@ workflow SE_AMR_ANALYSIS {
     RUN_KMA(single_end_ch, card_kma_db)
 
     // Get Taxa information on reads
+    // Run taxaplease
     
 
 
