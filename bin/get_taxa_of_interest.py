@@ -30,7 +30,7 @@ def setup_logging(logdir: Path, tag: str, level: str) -> Path:
 
     logdir.mkdir(parents=True, exist_ok=True)
 
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M")
     logfile = logdir / f"{tag}_{timestamp}.log"
 
     # Clear existing handlers (avoids double logging if called twice)
