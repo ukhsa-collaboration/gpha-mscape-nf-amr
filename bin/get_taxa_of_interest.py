@@ -8,6 +8,7 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+from taxaplease import TaxaPlease
 
 
 def existing_file(path_str: str) -> Path:
