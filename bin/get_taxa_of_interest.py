@@ -154,9 +154,9 @@ def get_taxa_id(species: list, taxaplease_db: str) -> dict:
                 out_rows.append({"input_name": sp, "matched_name": row["name"], "taxid": row["taxid"]})
 
     conn.close()
-    logging.info("Foundf %s matches to query species", len(out_rows))
+    logging.info("Found %s matches to query species", len(out_rows))
 
-    if len(out_rows):
+    if len(out_rows) == 0:
         sys.exit(logging.error("No database matches to the following species:\n%s", ", ".join(species)))
     else:
         return pd.DataFrame(out_rows)
