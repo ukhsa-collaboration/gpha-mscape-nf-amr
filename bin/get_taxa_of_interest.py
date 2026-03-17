@@ -184,7 +184,7 @@ def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.D
 
     species_match_df["parent_taxids"] = parent_lists
 
-    logging.logging("Retreived parent taxids.")
+    logging.info("Retreived parent taxids.")
     return species_match_df
 
 
