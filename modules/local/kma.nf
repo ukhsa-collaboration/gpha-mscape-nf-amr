@@ -14,7 +14,7 @@ process RUN_KMA{
         path(card_kma_db)
 
     output:
-    tuple val(climb_id), path("kma_results.res"), path("kma_results.fsa"), path("kma_results.frag"), path("kma_results.aln"), emit: kma_out
+    tuple val(climb_id), path("kma_results.res"), path("kma_results.fsa"), path("kma_results.frag.gz"), path("kma_results.aln"), emit: kma_out
     path("mapping_info.tsv"), emit: kma_mapping_tsv
         
     script:
@@ -29,5 +29,6 @@ process RUN_KMA{
     gunzip kma_results.frag.gz
     echo "read\t#_equally_well_mapping_templates\tmapping_score\ttemplate_start_position\ttemplate_end_position\tchoosen_template\tread_id\n" >mapping_info.tsv
     cat kma_results.frag >>mapping_info.tsv
+    gzip kma_results.frag
     """
 }
