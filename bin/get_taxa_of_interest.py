@@ -2,11 +2,12 @@
 
 import argparse
 import logging
+import sqlite3
 import sys
 from datetime import datetime
 from pathlib import Path
 
-from taxaplease import TaxaPlease
+import pandas as pd
 
 
 def existing_file(path_str: str) -> Path:
@@ -116,10 +117,47 @@ def get_species_names(reference_taxa_fp: str) -> list:
     :args: filepath, str
     :return: list[species name, ... ]
     """
+    logging.info("Parsing reference taxa from file %s", reference_taxa_fp)
     reference_taxa_fp = Path(reference_taxa_fp)
     with reference_taxa_fp.open("r") as f:
         species = [line.strip() for line in f if line.strip()]
+    logging.info("Identified the following species %s", ", ".join(species))
     return species
+
+
+# Get taxid for species
+def get_taxa_id(species: list, taxaplease_db: str) -> dict:
+    """
+    Read in list of species names (strings), query database, extract taxaid, map taxid to species name as dictionary
+    :args: species list, database fp (str)
+    :return: dictionar {species_name: taxid, ... }
+    """
+
+    db_path = Path(taxaplease_db) / "taxa.db"
+    conn = sqlite3.connect(db_path)
+
+    out_rows = []
+
+    for sp in species:
+        query = """
+            SELECT taxid, name
+            FROM taxa
+            WHERE name LIKE ?
+        """
+        # Use parameterised query to avoid SQL injection
+        df = pd.read_sql(query, conn, params=[sp])
+
+        if df.empty:
+            out_rows.append({"input_name": sp, "matched_name": None, "taxid": None})
+        else:
+            # Return all matches; could refine logic to take first match if preferred
+            for _, row in df.iterrows():
+                out_rows.append({"input_name": sp, "matched_name": row["name"], "taxid": row["taxid"]})
+
+    conn.close()
+
+    logging.debug(out_rows)
+    return pd.DataFrame(out_rows)
 
 
 # provide all parent taxa ids for taxa of interest
@@ -139,7 +177,7 @@ def main(args) -> None:
 
     # Get species names
     species = get_species_names(args.reference_taxa_list)
-    logging.debug(species)
+    get_taxa_id(species, args.taxaplease_db)
 
 
 def cli():
