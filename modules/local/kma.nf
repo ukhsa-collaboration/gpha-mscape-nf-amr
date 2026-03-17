@@ -14,7 +14,7 @@ process RUN_KMA{
         path(card_kma_db)
 
     output:
-    tuple val(climb_id), path("*.res"), path("*.fsa"), path("*.frag.gz"), path("*.aln"), emit: kma_out
+    tuple val(climb_id), path("kma_results.res"), path("kma_results.fsa"), path("kma_results.frag"), path("kma_results.aln"), emit: kma_out
         
     script:
     """
@@ -24,6 +24,8 @@ process RUN_KMA{
          -t_db ${card_kma_db}/nucleotide_fasta_protein_homolog_model_kma_db \\
          -ont \\
          -reassign
+
+    gunzip kma_results.frag.gz
     
     """
 }
