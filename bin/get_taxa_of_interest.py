@@ -141,7 +141,7 @@ def get_taxa_id(species: list, taxaplease_db: str) -> dict:
         query = """
             SELECT taxid, name
             FROM taxa
-            WHERE name LIKE ?
+            WHERE name = ?
         """
         # Use parameterised query to avoid SQL injection
         df = pd.read_sql(query, conn, params=[sp])
