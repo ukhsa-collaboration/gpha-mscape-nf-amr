@@ -18,10 +18,6 @@ process RUN_TAXAPLEASE{
         
     script:
     """
-    get_taxa_of_interest.py \\
-         -db ${taxaplease_db} \\
-         --reference_taxa_list ${taxa_of_interest} \\  
-         --output_dir ./ \\
-         --log-level INFO
+    get_taxa_of_interest.py -db ${taxaplease_db} --reference_taxa_list ${taxa_of_interest} --output_dir ./ --log-level INFO
     """
 }
