@@ -14,10 +14,15 @@ process RUN_TAXAPLEASE{
         path(taxa_of_interest)
   
     output:
-        path("taxa_of_interest_taxaplease.tsv")
+        path("taxaplease_reference_table.tsv")
         
     script:
     """
-    get_taxa_of_interest.py -db ${taxaplease_db} --reference_taxa_list ${taxa_of_interest} --output_dir ./ --log-level INFO
+    get_taxa_of_interest.py \
+        -db ${taxaplease_db} \
+        --reference_taxa_list \
+        ${taxa_of_interest} \
+        --output_dir ./ \
+        --log-level INFO
     """
 }
