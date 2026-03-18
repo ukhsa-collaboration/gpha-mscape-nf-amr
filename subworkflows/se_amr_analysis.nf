@@ -1,13 +1,16 @@
 #!/usr/bin/env nextflow
 
-include { GZ_TO_FASTQ             } from "../modules/local/gunzip"
-include { RUN_ABRICATE            } from "../modules/local/abricate"
-include { RUN_METAPOINTFINDER     } from "../modules/local/metapointfinder"
-include { RUN_KMA                 } from "../modules/local/kma"
-include { READ_ANALYSIS           } from "../modules/local/taxonomy"
-include { GENERATE_REPORT         } from "../modules/local/report"
-include { ONYX_UPLOAD             } from "../modules/local/onyx_upload"
-include { RUN_TAXAPLEASE          } from "../modules/local/taxaplease"
+include { RUN_ABRICATE          } from "../modules/local/abricate"
+include { RUN_METAPOINTFINDER   } from "../modules/local/metapointfinder"
+include { RUN_KMA_SR               } from "../modules/local/kma"
+include { TAXAPLEASE_REFS       } from "../modules/local/taxaplease"
+include { KMA_TAXA_LINKAGE      } from "../modules/local/taxonomy"
+
+include { GZ_TO_FASTQ           } from "../modules/local/gunzip"
+include { ABRICATE_TAXA_LINKAGE } from "../modules/local/taxonomy"
+include { GENERATE_REPORT       } from "../modules/local/report"
+include { ONYX_UPLOAD           } from "../modules/local/onyx_upload"
+
 
 workflow SE_AMR_ANALYSIS {
     take:
@@ -18,17 +21,17 @@ workflow SE_AMR_ANALYSIS {
     card_kma_db = file(params.card_kma_db, checkIfExists: true)
     taxaplease_db = file(params.taxaplease_db, checkIfExists: true)
 
-    // Testing mapping
-    RUN_KMA(single_end_ch, card_kma_db)
-
-
-    RUN_KMA.out.kma_mapping_tsv
-    // Get Taxa information on reads
-    // Run taxaplease
+    // Get Reference TaxIDs
     def ch_taxa_of_interest = Channel.of(
         file("${projectDir}/references/taxa_of_interest.txt", checkIfExists: true)
     )
-    RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, single_end_ch, taxaplease_db, ch_taxa_of_interest)
+    TAXAPLEASE_REFS(taxaplease_db, ch_taxa_of_interest)
+
+    // KMA Mapping
+    RUN_KMA_SR(single_end_ch, card_kma_db)
+
+    // Get TaxIDs for Reads from Kraken data
+    KMA_TAXA_LINKAGE(RUN_KMA_SR.out.kma_mapping)
 
 
     // // 1. Gunzip FASTQ

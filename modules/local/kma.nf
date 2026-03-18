@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-process RUN_KMA{
+process RUN_KMA_SR{
     tag "${climb_id}"
     label 'process_medium'
     container 'community.wave.seqera.io/library/kma:1.6.8--8337f908ec0ef88a'
@@ -15,7 +15,7 @@ process RUN_KMA{
 
     output:
     tuple val(climb_id), path("kma_results.res"), path("kma_results.fsa"), path("kma_results.frag.gz"), path("kma_results.aln"), emit: kma_out
-    path("mapping_info.tsv"), emit: kma_mapping_tsv
+    tuple val(climb_id), path(kraken_assignments), path(kraken_report), path("mapping_info.tsv"), emit: kma_mapping
         
     script:
     """

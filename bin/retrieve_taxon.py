@@ -15,8 +15,9 @@ def commandline() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Left join a TSV file with a JSON file based on taxid.")
     parser.add_argument("-t", "--tsv", required=True, help="Input TSV file (with read_id and taxid).")
     parser.add_argument("-j", "--json", required=True, help="Input JSON file (with taxid and name).")
-    parser.add_argument("-a", "--abricate", required=True, help="Input Abricate results file.")
+    parser.add_argument("-a", "--amr_table", required=True, help="Input to AMR results file. TSV seperated.")
     parser.add_argument("-o", "--output", required=True, help="Output TSV file after join.")
+    parser.add_argument("-r", "--amr_reference", required=True, help="Column name containing reads in AMR table.")
     args = parser.parse_args()
     return args
 
@@ -52,7 +53,7 @@ def add_species(df_tsv: pd.DataFrame, taxid_dict: dict) -> pd.DataFrame:
     return df_merged
 
 
-def link_abricate_results(df_merged: pd.DataFrame, abricate_csv: Path) -> pd.DataFrame:
+def link_amr_results(df_merged: pd.DataFrame, amr_table: Path, amr_reference: str) -> pd.DataFrame:
     """
     Read in abricate results, and left join the species annotations to abricate results
     :params:    pandas dataframe containing read id and kraken annotations
@@ -60,9 +61,9 @@ def link_abricate_results(df_merged: pd.DataFrame, abricate_csv: Path) -> pd.Dat
     :return: combined dataframe
     """
     # Load TSV file into a DataFrame
-    abricate_df = pd.read_csv(abricate_csv, sep="\t")
-    abricate_merge_df = abricate_df.merge(df_merged, how="left", left_on="SEQUENCE", right_on="read_id")
-    return abricate_merge_df
+    amr_df = pd.read_csv(amr_table, sep="\t")
+    amr_df_merge_df = amr_df.merge(df_merged, how="left", left_on=amr_reference, right_on="read_id")
+    return amr_df_merge_df
 
 
 def write_tsv(df_merged: pd.DataFrame, output_fn: Path) -> None:
@@ -77,8 +78,8 @@ def main() -> None:
     args = commandline()
     df_tsv, taxid_dict = load_files(args.tsv, args.json)
     df_merged = add_species(df_tsv, taxid_dict)
-    abricate_merge_df = link_abricate_results(df_merged, args.abricate)
-    write_tsv(abricate_merge_df, args.output)
+    amr_merge_df = link_amr_results(df_merged, args.amr_table, args.amr_reference)
+    write_tsv(amr_merge_df, args.output)
 
 
 if __name__ == "__main__":
