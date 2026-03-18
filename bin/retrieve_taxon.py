@@ -17,7 +17,7 @@ def commandline() -> argparse.Namespace:
     parser.add_argument("-j", "--json", required=True, help="Input JSON file (with taxid and name).")
     parser.add_argument("-a", "--amr_table", required=True, help="Input to AMR results file. TSV seperated.")
     parser.add_argument("-o", "--output", required=True, help="Output TSV file after join.")
-    parser.add_arugment("-r", "--amr_reference", required=True, help="Column name containing reads in AMR table.")
+    parser.add_argument("-r", "--amr_reference", required=True, help="Column name containing reads in AMR table.")
     args = parser.parse_args()
     return args
 
