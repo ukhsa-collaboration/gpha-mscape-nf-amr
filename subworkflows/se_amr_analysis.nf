@@ -1,15 +1,15 @@
 #!/usr/bin/env nextflow
 
-include { RUN_ABRICATE         } from "../modules/local/abricate"
-include { RUN_METAPOINTFINDER  } from "../modules/local/metapointfinder"
-include { RUN_KMA              } from "../modules/local/kma"
+include { RUN_ABRICATE          } from "../modules/local/abricate"
+include { RUN_METAPOINTFINDER   } from "../modules/local/metapointfinder"
+include { RUN_KMA               } from "../modules/local/kma"
 include { TAXAPLEASE_REFS       } from "../modules/local/taxaplease"
-include { KMA_TAXA_LINKAGE     } from "../modules/local/taxonomy"
+include { KMA_TAXA_LINKAGE      } from "../modules/local/taxonomy"
 
-include { GZ_TO_FASTQ          } from "../modules/local/gunzip"
-include { READ_ANALYSIS        } from "../modules/local/taxonomy"
-include { GENERATE_REPORT      } from "../modules/local/report"
-include { ONYX_UPLOAD          } from "../modules/local/onyx_upload"
+include { GZ_TO_FASTQ           } from "../modules/local/gunzip"
+include { ABRICATE_TAXA_LINKAGE } from "../modules/local/taxonomy"
+include { GENERATE_REPORT       } from "../modules/local/report"
+include { ONYX_UPLOAD           } from "../modules/local/onyx_upload"
 
 
 workflow SE_AMR_ANALYSIS {

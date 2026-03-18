@@ -29,7 +29,7 @@ process KMA_TAXA_LINKAGE{
 
 }
 
-process READ_ANALYSIS{
+process ABRICATE_TAXA_LINKAGE{
     tag "${climb_id}"
     label 'process_low'
     container 'community.wave.seqera.io/library/pip_pandas:40d2e76c16c136f0'
