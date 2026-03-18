@@ -185,8 +185,25 @@ def get_parent_taxid(species_match_df: pd.DataFrame, taxaplease_db: str) -> pd.D
 
     species_match_df["parent_records"] = parent_records
 
+    long_df = (
+        species_match_df.explode("parent_records")  # One row per parent dict
+        .assign(
+            parent_taxid=lambda d: d["parent_records"].apply(lambda x: x.get("taxid") if isinstance(x, dict) else None),
+            parent_name=lambda d: d["parent_records"].apply(lambda x: x.get("name") if isinstance(x, dict) else None),
+            parent_rank=lambda d: d["parent_records"].apply(lambda x: x.get("rank") if isinstance(x, dict) else None),
+            parent_parent_taxid=lambda d: d["parent_records"].apply(
+                lambda x: x.get("parent_taxid") if isinstance(x, dict) else None
+            ),
+        )
+        .drop(columns=["parent_records"])
+    )
+
+    long_df["level"] = (
+        (species_match_df["parent_records"].apply(lambda x: list(range(1, len(x) + 1)))).explode().astype(int)
+    )
+
     logging.info("Retreived parent taxids.")
-    return species_match_df
+    return long_df
 
 
 def main(args) -> None:
