@@ -45,7 +45,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "-i",
         "--input_tsv",
-        help="Abricate AMR table with read taxonomic information included.",
+        help="AMR table with read taxonomic information included.",
         required=True,
         type=Path,
     )
