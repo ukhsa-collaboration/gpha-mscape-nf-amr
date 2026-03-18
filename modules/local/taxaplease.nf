@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 process TAXAPLEASE_REFS{
-    tag "${climb_id}"
+    tag "TaxaPlease"
     label 'process_medium'
     container 'ghcr.io/ukhsa-collaboration/gpha-mscape-taxaplease:2.1.1'
     publishDir "${params.output}/", mode: 'copy'
