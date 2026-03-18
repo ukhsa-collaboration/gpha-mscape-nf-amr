@@ -26,7 +26,7 @@ workflow SE_AMR_ANALYSIS {
     // Get Taxa information on reads
     // Run taxaplease
     def ch_taxa_of_interest = Channel.of(
-        file("${projectDir}/references/taxa_of_interest")
+        file("${projectDir}/references/taxa_of_interest.txt", checkIfExists: true)
     )
     RUN_TAXAPLEASE(RUN_KMA.out.kma_mapping_tsv, single_end_ch, taxaplease_db, ch_taxa_of_interest)
 
