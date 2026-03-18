@@ -3,7 +3,7 @@
 include { RUN_ABRICATE         } from "../modules/local/abricate"
 include { RUN_METAPOINTFINDER  } from "../modules/local/metapointfinder"
 include { RUN_KMA              } from "../modules/local/kma"
-include { RUN_TAXAPLEASE       } from "../modules/local/taxaplease"
+include { TAXAPLEASE_REFS       } from "../modules/local/taxaplease"
 include { KMA_TAXA_LINKAGE     } from "../modules/local/taxonomy"
 
 include { GZ_TO_FASTQ          } from "../modules/local/gunzip"
