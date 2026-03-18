@@ -2,7 +2,7 @@
 
 include { RUN_ABRICATE          } from "../modules/local/abricate"
 include { RUN_METAPOINTFINDER   } from "../modules/local/metapointfinder"
-include { RUN_KMA               } from "../modules/local/kma"
+include { RUN_KMA_SR               } from "../modules/local/kma"
 include { TAXAPLEASE_REFS       } from "../modules/local/taxaplease"
 include { KMA_TAXA_LINKAGE      } from "../modules/local/taxonomy"
 
@@ -28,10 +28,10 @@ workflow SE_AMR_ANALYSIS {
     TAXAPLEASE_REFS(taxaplease_db, ch_taxa_of_interest)
 
     // KMA Mapping
-    RUN_KMA(single_end_ch, card_kma_db)
+    RUN_KMA_SR(single_end_ch, card_kma_db)
 
     // Get TaxIDs for Reads from Kraken data
-    KMA_TAXA_LINKAGE(RUN_KMA.out.kma_mapping)
+    KMA_TAXA_LINKAGE(RUN_KMA_SR.out.kma_mapping)
 
 
     // // 1. Gunzip FASTQ

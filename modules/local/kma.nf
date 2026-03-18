@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-process RUN_KMA{
+process RUN_KMA_SR{
     tag "${climb_id}"
     label 'process_medium'
     container 'community.wave.seqera.io/library/kma:1.6.8--8337f908ec0ef88a'
