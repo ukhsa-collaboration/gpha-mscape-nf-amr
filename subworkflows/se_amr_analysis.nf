@@ -21,17 +21,19 @@ workflow SE_AMR_ANALYSIS {
     card_kma_db = file(params.card_kma_db, checkIfExists: true)
     taxaplease_db = file(params.taxaplease_db, checkIfExists: true)
 
-    // KMA Mapping
-    RUN_KMA(single_end_ch, card_kma_db)
-
     // Get Reference TaxIDs
     def ch_taxa_of_interest = Channel.of(
         file("${projectDir}/references/taxa_of_interest.txt", checkIfExists: true)
     )
     TAXAPLEASE_REFS(taxaplease_db, ch_taxa_of_interest)
 
+    // KMA Mapping
+    RUN_KMA(single_end_ch, card_kma_db)
+
+    RUN_KMA.out.kma_mapping_tsv.view()
+
     // Get TaxIDs for Reads from Kraken data
-    KMA_TAXA_LINKAGE(single_end_ch, RUN_KMA.out.kma_mapping_tsv)
+    // KMA_TAXA_LINKAGE(single_end_ch, RUN_KMA.out.kma_mapping_tsv)
 
 
     // // 1. Gunzip FASTQ
