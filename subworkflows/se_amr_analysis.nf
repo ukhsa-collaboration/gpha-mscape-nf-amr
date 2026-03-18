@@ -31,7 +31,7 @@ workflow SE_AMR_ANALYSIS {
     RUN_KMA(single_end_ch, card_kma_db)
 
     // Get TaxIDs for Reads from Kraken data
-    KMA_TAXA_LINKAGE(single_end_ch, RUN_KMA.out.kma_mapping)
+    KMA_TAXA_LINKAGE(RUN_KMA.out.kma_mapping)
 
 
     // // 1. Gunzip FASTQ
