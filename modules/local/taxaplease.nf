@@ -11,13 +11,17 @@ process RUN_TAXAPLEASE{
         path(kma_mapping_tsv)
         tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
         path(taxaplease_db)
+        path(taxa_of_interest)
   
     output:
-        path("test.txt")
+        path("taxa_of_interest_taxaplease.tsv")
         
     script:
     """
-    taxaplease --database ${taxaplease_db} record --record 1337 >test.txt
-
+    get_taxa_of_interest.py \\
+         -db ${taxaplease_db} \\
+         --reference_taxa_list ${taxa_of_interest} \\  
+         --output_dir ./ \\
+         --log-level INFO
     """
 }
