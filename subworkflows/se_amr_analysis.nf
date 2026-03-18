@@ -33,6 +33,14 @@ workflow SE_AMR_ANALYSIS {
     // Get TaxIDs for Reads from Kraken data
     KMA_TAXA_LINKAGE(RUN_KMA_SR.out.kma_mapping)
 
+    // Reporting
+    KMA_TAXA_LINKAGE.out.kma_taxa
+            .map{ climb_id,  kma_taxa_out ->
+                tuple( climb_id, kma_taxa_out, "kma", params.email )
+            }
+            .set{ kma_report_ch }
+    GENERATE_REPORT( kma_report_ch )
+
 
     // // 1. Gunzip FASTQ
     // // Abricate can use fastq.gz, so just point to files.

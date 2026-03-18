@@ -9,7 +9,7 @@ process KMA_TAXA_LINKAGE{
     input:
     tuple  val(climb_id), path(kraken_assignments), path(kraken_report), path(kma_mapping_tsv)
     output:
-    path("${climb_id}_kma_taxa_out.tsv")
+    tuple val(climb_id), path("${climb_id}_kma_taxa_out.tsv"), emit: kma_taxa
 
 
     script:
