@@ -7,8 +7,7 @@ process KMA_TAXA_LINKAGE{
 
     // 1. Extract Read IDs from Abricate output file
     input:
-    tuple val(climb_id), path(kraken_assignments), path(kraken_report), path(fastq1)
-    path(kma_mapping_tsv)
+    tuple  val(climb_id), path(kraken_assignments), path(kraken_report), path(kma_mapping_tsv), emit: kma_mapping_tsv
 
     script:
     """

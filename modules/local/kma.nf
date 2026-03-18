@@ -15,7 +15,7 @@ process RUN_KMA{
 
     output:
     tuple val(climb_id), path("kma_results.res"), path("kma_results.fsa"), path("kma_results.frag.gz"), path("kma_results.aln"), emit: kma_out
-    path("mapping_info.tsv"), emit: kma_mapping_tsv
+    tuple  val(climb_id), path(kraken_assignments), path(kraken_report), path("mapping_info.tsv"), emit: kma_mapping_tsv
         
     script:
     """
