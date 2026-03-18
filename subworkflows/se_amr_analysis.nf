@@ -2,9 +2,11 @@
 
 include { RUN_ABRICATE          } from "../modules/local/abricate"
 include { RUN_METAPOINTFINDER   } from "../modules/local/metapointfinder"
-include { RUN_KMA_SR               } from "../modules/local/kma"
+include { RUN_KMA_SR            } from "../modules/local/kma"
 include { TAXAPLEASE_REFS       } from "../modules/local/taxaplease"
 include { KMA_TAXA_LINKAGE      } from "../modules/local/taxonomy"
+include { GENERATE_KMA_REPORT   } from "../modules/local/report"
+
 
 include { GZ_TO_FASTQ           } from "../modules/local/gunzip"
 include { ABRICATE_TAXA_LINKAGE } from "../modules/local/taxonomy"
@@ -39,7 +41,7 @@ workflow SE_AMR_ANALYSIS {
                 tuple( climb_id, kma_taxa_out, "kma", params.email )
             }
             .set{ kma_report_ch }
-    GENERATE_REPORT( kma_report_ch )
+    GENERATE_KMA_REPORT( kma_report_ch )
 
 
     // // 1. Gunzip FASTQ

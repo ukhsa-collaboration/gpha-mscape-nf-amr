@@ -906,6 +906,7 @@ def main() -> None:
     logger.info("AMR report generation started.")  # Example only - add more informative logging messages
 
     df = load_table(amr_tsv)
+
     if args.taxon_id:
         df = df[df["taxid"] == args.taxon_id]
         if df.empty:

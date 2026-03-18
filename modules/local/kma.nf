@@ -44,7 +44,7 @@ process RUN_KMA_PR{
     errorStrategy { task.exitStatus = 95 ? "ignore" : "retry" }
 
     input:
-        tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1)
+        tuple val(climb_id),  path(kraken_assignments), path(kraken_report), path(fastq1), path(fastq2)
         path(card_kma_db)
 
     output:
@@ -54,11 +54,10 @@ process RUN_KMA_PR{
     script:
     """
     kma \\
-         -i ${fastq1} \\
+         -ipe ${fastq1} ${fastq2} \\
          -o kma_results \\
          -t_db ${card_kma_db}/nucleotide_fasta_protein_homolog_model_kma_db \\
-         -ont \\
-         -reassign
+         -1t1 \\
 
     gunzip kma_results.frag.gz
     echo "read\t#_equally_well_mapping_templates\tmapping_score\ttemplate_start_position\ttemplate_end_position\tchoosen_template\tread_id" >mapping_info.tsv
